@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAWN • Loja</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', system_ui, sans-serif; }
+    </style>
+</head>
+<body class="bg-[#000000] text-white">
+
+    <!-- Navbar -->
+    <nav class="bg-[#000000] border-b border-white/10">
+        <div class="max-w-screen-2xl mx-auto px-8 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-x-4">
+                <img src="images/logo2v1.png" alt="Dawn Logo" class="h-8 w-auto">
+                    <a href="index.html" class="font-semibold text-lg">LOJA OFICIAL</a>
+            </div>
+            
+            <div class="flex items-center gap-x-4">
+                <a href="index.html" class="text-sm hover:text-white/70">Voltar ao Site</a>
+                <button onclick="showCart()" 
+                        class="flex items-center gap-x-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/10">
+                    <i class="fa-solid fa-shopping-bag"></i>
+                    <span>Carrinho</span>
+                    <div id="cart-count" 
+                         class="bg-white text-black text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">0</div>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Conteúdo da Loja -->
+    <div class="max-w-screen-2xl mx-auto px-6 py-10">
+        <div class="flex justify-between items-end mb-8">
+            <div>
+                <h1 class="text-4xl font-bold tracking-tighter">Jersey Oficial 2027</h1>
+                <p class="text-white/60">Faça sua vida inteira valer o sacrifício</p>
+            </div>
+        </div>
+
+        <!-- Grid de Produtos -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            
+            <!-- Produto 1 -->
+            <div class="bg-white/5 border border-white/10 rounded-3xl overflow-hidden">
+                <img src="https://picsum.photos/id/1060/600/600" class="w-full aspect-square object-cover">
+                <div class="p-5">
+                    <div class="font-semibold">Camiseta Oficial Dawn 2026</div>
+                    <div class="text-sm text-white/60 mt-1">R$ 89,90</div>
+                    <button onclick="addToCart(0, 'Camiseta Oficial Dawn 2026', 89.90)"
+                            class="mt-4 w-full py-2.5 bg-white text-black font-semibold rounded-2xl hover:bg-white/90 transition-all">
+                        Adicionar ao Carrinho
+                    </button>
+                </div>
+            </div>
+
+            <!-- Produto 2 -->
+            <div class="bg-white/5 border border-white/10 rounded-3xl overflow-hidden">
+                <img src="https://picsum.photos/id/160/600/600" class="w-full aspect-square object-cover">
+                <div class="p-5">
+                    <div class="font-semibold">Moletom Premium Dawn</div>
+                    <div class="text-sm text-white/60 mt-1">R$ 189,90</div>
+                    <button onclick="addToCart(1, 'Moletom Premium Dawn', 189.90)"
+                            class="mt-4 w-full py-2.5 bg-white text-black font-semibold rounded-2xl hover:bg-white/90 transition-all">
+                        Adicionar ao Carrinho
+                    </button>
+                </div>
+            </div>
+
+            <!-- Produto 3 -->
+            <div class="bg-white/5 border border-white/10 rounded-3xl overflow-hidden">
+                <img src="https://picsum.photos/id/201/600/600" class="w-full aspect-square object-cover">
+                <div class="p-5">
+                    <div class="font-semibold">Boné Snapback Dawn</div>
+                    <div class="text-sm text-white/60 mt-1">R$ 59,90</div>
+                    <button onclick="addToCart(2, 'Boné Snapback Dawn', 59.90)"
+                            class="mt-4 w-full py-2.5 bg-white text-black font-semibold rounded-2xl hover:bg-white/90 transition-all">
+                        Adicionar ao Carrinho
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Carrinho Modal -->
+    <div id="cart-modal" onclick="if (event.target.id === 'cart-modal') hideCart()" 
+         class="hidden fixed inset-0 bg-black/80 z-[100] flex justify-end">
+        <div onclick="event.stopImmediatePropagation()" 
+             class="bg-[#111111] w-full max-w-md p-6 overflow-auto">
+            
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-semibold">Seu Carrinho</h3>
+                <button onclick="hideCart()" class="text-3xl leading-none">&times;</button>
+            </div>
+
+            <div id="cart-items" class="space-y-4"></div>
+
+            <div class="mt-8 pt-6 border-t border-white/10">
+                <div class="flex justify-between text-lg font-semibold mb-6">
+                    <span>Total</span>
+                    <span id="cart-total">R$ 0,00</span>
+                </div>
+                <button onclick="checkout()" 
+                        class="w-full py-3 bg-white text-black font-semibold rounded-2xl hover:bg-white/90">
+                    Finalizar Compra
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function updateCartCount() {
+            document.getElementById('cart-count').innerText = cart.length;
+        }
+
+        function addToCart(id, name, price) {
+            cart.push({ id, name, price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            alert(`${name} adicionado ao carrinho!`);
+        }
+
+        function showCart() {
+            const modal = document.getElementById('cart-modal');
+            const container = document.getElementById('cart-items');
+            container.innerHTML = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                container.innerHTML += `
+                    <div class="flex justify-between bg-white/5 p-4 rounded-2xl">
+                        <div>
+                            <div class="font-medium">${item.name}</div>
+                            <div class="text-sm text-white/60">R$ ${item.price}</div>
+                        </div>
+                        <button onclick="removeFromCart(${index})" class="text-red-400 text-sm">Remover</button>
+                    </div>
+                `;
+            });
+
+            document.getElementById('cart-total').innerText = `R$ ${total}`;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function hideCart() {
+            const modal = document.getElementById('cart-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            showCart();
+            updateCartCount();
+        }
+
+        function checkout() {
+            if (cart.length === 0) return;
+            alert('Compra finalizada com sucesso! (Simulação para o TCC)');
+            cart = [];
+            localStorage.removeItem('cart');
+            hideCart();
+            updateCartCount();
+        }
+
+        // Inicializar contador do carrinho
+        updateCartCount();
+    </script>
+</body>
+</html>

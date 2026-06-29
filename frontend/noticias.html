@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAWN • News</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', system_ui, sans-serif; }
+    </style>
+</head>
+<body class="bg-[#000000] text-white">
+
+    <!-- NAVBAR -->
+    <nav class="bg-[#000000]/95 backdrop-blur-lg border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto px-8 py-5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-x-8">
+                    <img src="dawnlogo2.png" alt="Dawn Logo" class="h-9 w-auto">
+                    <div class="hidden md:flex items-center gap-x-7 text-sm font-semibold tracking-[1px]">
+                        <a href="index.html" class="hover:text-white/80">O TIME</a>
+                        <a href="index.html#elenco" class="hover:text-white/80">ELENCO</a>
+                        <a href="noticias.html" class="hover:text-white/80">NOTÍCIAS</a>
+                        <a href="shop.html" class="hover:text-white/80">SHOP</a>
+                        <a href="index.html#tcc" class="hover:text-white/80">TCC</a>
+                    </div>
+                </div>
+                <div class="flex items-center gap-x-5 text-xl">
+                    <a href="https://x.com/" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://discord.gg/" target="_blank"><i class="fa-brands fa-discord"></i></a>
+                    <a href="mailto:"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTEÚDO -->
+    <div class="max-w-screen-2xl mx-auto px-6 py-12">
+        <div class="mb-10">
+            <h1 class="text-4xl font-bold tracking-tighter">Notícias</h1>
+            <p class="text-white/60">Fique por dentro de tudo que acontece na Dawn</p>
+        </div>
+
+        <div id="news-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Notícias serão carregadas via JavaScript -->
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div id="news-modal" onclick="if (event.target.id === 'news-modal') hideNewsModal()" 
+         class="hidden fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-4">
+        <div onclick="event.stopImmediatePropagation()" 
+             class="bg-[#111111] border border-white/10 rounded-3xl max-w-2xl w-full overflow-hidden">
+            
+            <div class="relative">
+                <img id="modal-image" class="w-full h-64 object-cover">
+                <button onclick="hideNewsModal()" 
+                        class="absolute top-4 right-4 w-11 h-11 bg-black/70 hover:bg-black/90 rounded-2xl flex items-center justify-center text-xl">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+
+            <div class="p-8">
+                <div id="modal-date" class="text-sm text-white/60 mb-1"></div>
+                <h2 id="modal-title" class="text-2xl font-bold mb-4"></h2>
+                <div id="modal-content" class="text-white/90 leading-relaxed mb-6"></div>
+
+                <a id="modal-read-more" href="#" 
+                   class="inline-block px-6 py-2.5 bg-white text-black font-semibold rounded-2xl hover:bg-white/90">
+                    Ler notícia completa
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Array de notícias (dinâmico)
+        const newsData = [
+            {
+                id: 1,
+                title: "Dawn anuncia novo roster para a temporada 2026",
+                date: "15 de Junho de 2026",
+                image: "https://picsum.photos/id/1015/1200/600",
+                excerpt: "O time revela as novas contratações e o planejamento para os próximos campeonatos.",
+                content: "O time Dawn Esports anunciou hoje as novas contratações para a próxima temporada. Com o objetivo de fortalecer o elenco, três novos jogadores foram integrados ao time principal."
+            },
+            {
+                id: 2,
+                title: "Dawn inicia preparação para o próximo split",
+                date: "10 de Junho de 2026",
+                image: "https://picsum.photos/id/1005/1200/600",
+                excerpt: "O elenco já está em ritmo intenso de treinos com foco em estratégia e comunicação.",
+                content: "O elenco da Dawn já está em ritmo intenso de treinamentos. A equipe está focada em melhorar a comunicação e a estratégia dentro do jogo."
+            },
+            {
+                id: 3,
+                title: "Dawn abre inscrições para tryouts da base",
+                date: "02 de Junho de 2026",
+                image: "https://picsum.photos/id/201/1200/600",
+                excerpt: "Jovens talentos interessados em fazer parte da organização podem se inscrever até o dia 20.",
+                content: "A organização está em busca de novos talentos para sua base. As inscrições para os tryouts estão abertas até o dia 20 de junho."
+            }
+        ];
+
+        // Carregar notícias dinamicamente
+        function loadNews() {
+            const container = document.getElementById('news-grid');
+            container.innerHTML = '';
+
+            newsData.forEach((news, index) => {
+                const card = document.createElement('div');
+                card.className = `bg-white/5 border border-white/10 rounded-3xl overflow-hidden cursor-pointer hover:border-white/30 transition-all`;
+                card.innerHTML = `
+                    <img src="${news.image}" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center gap-x-2 text-xs text-white/60 mb-3">
+                            <span>${news.date}</span>
+                        </div>
+                        <h3 class="font-semibold text-xl leading-tight">${news.title}</h3>
+                        <p class="text-white/70 mt-3 text-sm line-clamp-3">${news.excerpt}</p>
+                    </div>
+                `;
+                card.onclick = () => showNewsModal(index);
+                container.appendChild(card);
+            });
+        }
+
+        let currentNewsIndex = 0;
+
+        function showNewsModal(index) {
+            currentNewsIndex = index;
+            const news = newsData[index];
+
+            document.getElementById('modal-image').src = news.image;
+            document.getElementById('modal-title').innerText = news.title;
+            document.getElementById('modal-date').innerText = news.date;
+            document.getElementById('modal-content').innerText = news.content;
+            document.getElementById('modal-read-more').href = `noticia.html?id=${news.id}`;
+
+            document.getElementById('news-modal').classList.remove('hidden');
+            document.getElementById('news-modal').classList.add('flex');
+        }
+
+        function hideNewsModal() {
+            const modal = document.getElementById('news-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+
+        // Inicializar
+        loadNews();
+    </script>
+</body>
+</html>
