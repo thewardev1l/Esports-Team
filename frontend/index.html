@@ -3,188 +3,285 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DAWN • Home</title>
+    <title>RED VORTEX</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', system_ui, sans-serif; }
-        .font-display { font-family: 'Space Grotesk', 'Inter', sans-serif; font-weight: 600; }
-        .section-header { font-size: 2.25rem; line-height: 2.5rem; font-weight: 700; letter-spacing: -0.025em; }
-
-        .stagger-item {
-            opacity: 0;
-            transform: translateY(40px);
+        :root {
+            /* Baseado no fundo da logo #950707 */
+            --bg: #130000;
+            --bg-card: #160808;
+            --accent: #bb0505;
+            --accent-hover: #B80909;
+            --accent-soft: rgba(149, 7, 7, 0.18);
+            --text: #FFFFFF;
+            --text-muted: #C4B5B9;
+            --border: rgba(255, 255, 255, 0.08);
         }
-        .stagger-item.show {
-            animation: staggerEnter 0.6s ease forwards;
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
         }
-        @keyframes staggerEnter {
-            to { opacity: 1; transform: translateY(0); }
+        .font-display {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            font-weight: 600;
+        }
+        .btn-accent {
+            background-color: var(--accent);
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+        .btn-accent:hover {
+            background-color: var(--accent-hover);
+        }
+        .player-card, .product-card {
+            transition: all 0.3s ease;
+            background-color: var(--bg-card);
+        }
+        .player-card:hover, .product-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent);
+            box-shadow: 0 12px 40px -12px rgba(165, 7, 7, 0.35);
+        }
+        .nav-link:hover {
+            color: var(--accent-hover);
         }
     </style>
 </head>
-<body class="bg-[#000000] text-white">
+<body>
+    <!-- Barra de navegação -->
+    <nav class="bg-[var(--bg)] border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto px-8 py-5">
+            <div class="flex items-center justify-between">
+               
+                <!-- Logo + Menu -->
+                <div class="flex items-center gap-x-9">
+                    <a href="#" class="flex items-center">
+                        <img src="images/redvortex2.png" alt="Dawn Logo" class="h-11 w-auto">
+                    </a>
+                   
+                    <div class="hidden md:flex items-center gap-x-8 text-base font-semibold tracking-[1px]">
+                        <a href="#sobre" class="nav-link transition-colors">SOBRE</a>
+                        <a href="#elenco" class="nav-link transition-colors">ELENCO</a>
+                        <a href="shop.html" class="nav-link transition-colors">LOJA</a>
+                    </div>
+                </div>
 
-    <!-- Barra de Navegação -->
-<nav class="bg-[#000000]/95 backdrop-blur-lg border-b border-white/10 sticky top-0 z-50">
-    <div class="max-w-screen-2xl mx-auto px-8 py-6">
-        <div class="flex items-center justify-between">
-            
-            <!-- Logo + Menu -->
-            <div class="flex items-center gap-x-9">
-                
-                <!-- Logo -->
-                <img src="images/logo2v1.png" alt="Dawn Logo" class="h-10 w-auto">
-
-                <!-- Menu -->
-                <div class="hidden md:flex items-center gap-x-8 text-base font-semibold tracking-[1px]">
-                    <a href="#sobre" class="hover:text-white/80 transition-colors">SOBRE</a>
-                    <a href="#elenco" class="hover:text-white/80 transition-colors">ELENCO</a>
-                    <a href="noticias.html" class="hover:text-white/80 transition-colors">NOTÍCIAS</a>
-                    <a href="store.html" class="hover:text-white/80 transition-colors">LOJA</a>
+                <!-- Redes Sociais -->
+                <div class="flex items-center gap-x-6 text-2xl">
+                    <a href="https://x.com/seuusuario" target="_blank" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="X / Twitter">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                    <a href="https://instagram.com/seuusuario" target="_blank" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://discord.gg/seulink" target="_blank" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="Discord">
+                        <i class="fa-brands fa-discord"></i>
+                    </a>
+                    <a href="mailto:contato@dawnesports.com" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="E-mail">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
                 </div>
             </div>
-
-            <!-- Redes Sociais -->
-            <div class="flex items-center gap-x-6 text-2xl">
-                <a href="https://x.com/" target="_blank" class="hover:text-white/70 transition-colors">
-                    <i class="fa-brands fa-x-twitter"></i>
-                </a>
-                <a href="https://instagram.com/" target="_blank" class="hover:text-white/70 transition-colors">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="https://discord.gg/" target="_blank" class="hover:text-white/70 transition-colors">
-                    <i class="fa-brands fa-discord"></i>
-                </a>
-                <a href="mailto:" class="hover:text-white/70 transition-colors">
-                    <i class="fa-solid fa-envelope"></i>
-                </a>
-            </div>
-
         </div>
-    </div>
-</nav>
+    </nav>
 
-    <!-- HERO -->
+    <!-- ==================== HERO ==================== -->
     <header class="relative h-[100dvh] flex items-center justify-center overflow-hidden">
-        <img src="https://picsum.photos/id/1018/2000/1200" class="absolute inset-0 w-full h-full object-cover opacity-40">
-        <div class="absolute inset-0 bg-gradient-to-b from-black/70 to-black"></div>
-        
+        <img src="https://picsum.photos/id/1018/2000/1200" alt="" class="absolute inset-0 w-full h-full object-cover opacity-25">
+        <div class="absolute inset-0 bg-gradient-to-b from-[var(--bg)]/85 via-[var(--bg)]/75 to-[var(--bg)]"></div>
+       
         <div class="relative z-10 text-center px-6">
-            <div class="inline-block px-4 py-1 rounded-full bg-white/10 mb-6 text-sm tracking-widest">TIME OFICIAL DE HONOR OF KINGS</div>
-            <h1 class="font-display text-7xl md:text-[110px] font-black tracking-tighter mb-4">DAWN</h1>
-            <p class="text-3xl text-white/90 mb-8">O amanhecer de uma nova era.</p>
-            
-            <div class="flex gap-4 justify-center">
-                <a href="#elenco" class="px-8 py-3 bg-white text-black rounded-2xl font-semibold">Ver Elenco</a>
-                <a href="#loja" class="px-8 py-3 border border-white/30 rounded-2xl font-semibold">Loja Oficial</a>
+            <div class="inline-block px-5 py-1.5 rounded-full bg-[var(--accent)]/20 border border-[var(--accent)]/40 mb-6 text-sm tracking-widest text-[var(--accent-hover)]">
+                FREE AGENT
+            </div>
+           
+            <h1 class="font-display text-7xl md:text-[110px] font-black tracking-tighter mb-4">RED VORTEX</h1>
+            <p class="text-3xl text-white/90 mb-10">O amanhecer de uma nova era.</p>
+           
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#elenco" class="px-10 py-4 rounded-2xl btn-accent text-white font-semibold">
+                    Ver Elenco
+                </a>
+                <a href="shop.html" class="px-10 py-4 rounded-2xl border border-white/30 hover:bg-white/5 font-semibold transition-colors">
+                    Loja Oficial
+                </a>
             </div>
         </div>
     </header>
 
-    <!-- SOBRE -->
-    <section id="sobre" class="max-w-screen-2xl mx-auto px-6 py-20">
+    <!-- ==================== SOBRE ==================== -->
+    <section id="sobre" class="max-w-screen-2xl mx-auto px-6 py-24">
         <div class="grid md:grid-cols-12 gap-x-12 items-center">
-            
+           
             <!-- Texto -->
             <div class="md:col-span-7">
                 <div class="mb-3">
-                    <span class="uppercase tracking-[3px] text-xs font-semibold text-white/70">EST. 2027 • BRASIL</span>
+                    <span class="uppercase tracking-[3px] text-xs font-semibold text-[var(--accent)]">EST. 2027 • BRASIL</span>
                 </div>
-                <h2 class="section-header tracking-tighter mb-6">Nascemos para<br>iluminar o cenário.</h2>
-                <p class="max-w-xl text-lg text-white/80">A Dawn é uma organização brasileira de esports focada no desenvolvimento de talentos no cenário de Honor of Kings.</p>
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tighter mb-6">
+                    Nascemos para<br>iluminar o cenário.
+                </h2>
+                <p class="max-w-xl text-lg text-[var(--text-muted)] leading-relaxed">
+                    Somos um grupo de jogadores que se uniu com o objetivo de competir, evoluir e conquistar espaço no cenário. Não somos uma organização, mas sim uma equipe independente que busca oportunidades, desafios e a chance de mostrar nosso potencial.
+Nossa prioridade é o crescimento coletivo, a dedicação dentro e fora do jogo, e a construção de uma identidade própria no competitivo.
+                </p>
             </div>
 
-            <!-- Logo -->
-            <div class="md:col-span-5 flex justify-center md:justify-center mt-10 md:mt-0">
-                <img src="images/logo2v1.png" alt="Dawn Logo" class="w-72 h-72 md:w-80 md:h-80 object-contain">
-            </div>
-        </div>
-    </section>
-
-    <!-- ELENCO -->
-    <section id="elenco" class="max-w-screen-2xl mx-auto px-6 py-16 bg-[#000000]">
-        <div class="mb-10">
-            <h2 class="section-header tracking-tighter">O Elenco da Dawn</h2>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
-            <!-- Cards do Elenco -->
-            <div onclick="showPlayerModal(0)" class="stagger-item player-card bg-white/5 border border-white/10 rounded-3xl overflow-hidden">
-                <div class="aspect-[4/3] overflow-hidden">
-                    <img src="https://picsum.photos/id/1005/600/450" class="w-full h-full object-cover">
-                </div>
-                <div class="p-5">
-                    <div class="font-semibold text-xl">Hwan</div>
-                    <div class="text-white/60">Ruan • Topo</div>
+            <!-- Logo grande -->
+            <div class="md:col-span-5 flex justify-center mt-12 md:mt-0">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-[var(--accent)]/20 blur-3xl rounded-full scale-90"></div>
+                    <img src="images/redvortex2.png" alt="RED VORTEX LOGO" class="relative w-72 h-72 md:w-80 md:h-80 object-contain">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CONQUISTAS e LOJA -->
-
-    <script>
-        // Animação stagger
-        function animateStagger(sectionId) {
-            const section = document.getElementById(sectionId);
-            const items = section.querySelectorAll('.stagger-item');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        items.forEach((item, i) => {
-                            setTimeout(() => item.classList.add('show'), i * 100);
-                        });
-                        observer.disconnect();
-                    }
-                });
-            }, { threshold: 0.3 });
-            observer.observe(section);
-        }
-
-        function initializeSite() {
-            animateStagger('elenco');
-            animateStagger('loja');
-    }
-
-        window.onload = initializeSite;
-
-        // Funções do modal e carrinho
-    </script>
-
-    <!-- FOOTER COM REDES SOCIAIS -->
-<footer class="bg-[#000000] border-t border-white/10 mt-16">
-    <div class="max-w-screen-2xl mx-auto px-6 py-8">
-        <div class="flex flex-col md:flex-row items-center justify-between gap-y-6">
-            
-            <!-- Copyright -->
-            <div class="text-sm text-white/60 text-center md:text-left">
-                © 2027 <span class="text-white font-medium">DAWN</span>. Todos os direitos reservados.
+    <!-- ==================== ELENCO ==================== -->
+<section id="elenco" class="max-w-screen-2xl mx-auto px-6 py-20">
+    <div class="mb-12">
+        <div class="text-sm text-[var(--accent)] tracking-widest font-semibold mb-2">LINEUP</div>
+        <h2 class="text-4xl font-bold tracking-tighter">Elenco</h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+       
+        <!-- Hwan -->
+        <div onclick="showPlayerModal(0)" class="player-card border border-white/10 rounded-3xl overflow-hidden cursor-pointer">
+            <div class="aspect-[4/3] overflow-hidden">
+                <img src="https://picsum.photos/id/1005/600/450" alt="Hwan" class="w-full h-full object-cover">
             </div>
-
-            <!-- Ícones das Redes Sociais -->
-            <div class="flex items-center gap-x-6 text-xl">
-                <a href="https://x.com/" target="_blank" 
-                   class="text-white/70 hover:text-white transition-colors">
-                    <i class="fa-brands fa-x-twitter"></i>
-                </a>
-                <a href="https://instagram.com/" target="_blank" 
-                   class="text-white/70 hover:text-white transition-colors">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="https://discord.gg/" target="_blank" 
-                   class="text-white/70 hover:text-white transition-colors">
-                    <i class="fa-brands fa-discord"></i>
-                </a>
-                <a href="mailto:" 
-                   class="text-white/70 hover:text-white transition-colors">
-                    <i class="fa-solid fa-envelope"></i>
-                </a>
+            <div class="p-5">
+                <div class="font-semibold text-xl">Hwan</div>
+                <div class="text-[var(--text-muted)] text-sm flex items-center gap-1.5">
+                    @rxnz12 • Topo
+                    <img src="images/topo.png" alt="Topo" class="w-4 h-4 object-contain">
+                </div>
             </div>
+        </div>
 
+        <!-- Kira -->
+        <div onclick="showPlayerModal(1)" class="player-card border border-white/10 rounded-3xl overflow-hidden cursor-pointer">
+            <div class="aspect-[4/3] overflow-hidden">
+                <img src="https://picsum.photos/id/1011/600/450" alt="Kira" class="w-full h-full object-cover">
+            </div>
+            <div class="p-5">
+                <div class="font-semibold text-xl">Kira</div>
+                <div class="text-[var(--text-muted)] text-sm flex items-center gap-1.5">
+                    @hok.kira • Caçador
+                    <img src="images/cacador.png" alt="Caçador" class="w-4 h-4 object-contain">
+                </div>
+            </div>
+        </div>
+
+        <!-- Tayo -->
+        <div onclick="showPlayerModal(2)" class="player-card border border-white/10 rounded-3xl overflow-hidden cursor-pointer">
+            <div class="aspect-[4/3] overflow-hidden">
+                <img src="https://picsum.photos/id/1009/600/450" alt="Tayo" class="w-full h-full object-cover">
+            </div>
+            <div class="p-5">
+                <div class="font-semibold text-xl">Tayo</div>
+                <div class="text-[var(--text-muted)] text-sm flex items-center gap-1.5">
+                    @hok.tayo • Meio
+                    <img src="images/midrota.png" alt="Meio" class="w-4 h-4 object-contain">
+                </div>
+            </div>
+        </div>
+
+        <!-- aizeN -->
+        <div onclick="showPlayerModal(3)" class="player-card border border-white/10 rounded-3xl overflow-hidden cursor-pointer">
+            <div class="aspect-[4/3] overflow-hidden">
+                <img src="https://picsum.photos/id/1027/600/450" alt="aizeN" class="w-full h-full object-cover">
+            </div>
+            <div class="p-5">
+                <div class="font-semibold text-xl">aizeN</div>
+                <div class="text-[var(--text-muted)] text-sm flex items-center gap-1.5">
+                    @hok.aizen • Atirador
+                    <img src="images/adcrota.png" alt="Atirador" class="w-4 h-4 object-contain">
+                </div>
+            </div>
+        </div>
+
+        <!-- Horizon -->
+        <div onclick="showPlayerModal(4)" class="player-card border border-white/10 rounded-3xl overflow-hidden cursor-pointer">
+            <div class="aspect-[4/3] overflow-hidden">
+                <img src="https://picsum.photos/id/201/600/450" alt="Horizon" class="w-full h-full object-cover">
+            </div>
+            <div class="p-5">
+                <div class="font-semibold text-xl">Horizon</div>
+                <div class="text-[var(--text-muted)] text-sm flex items-center gap-1.5">
+                    @hok.juan1 • Suporte
+                    <img src="images/suporterota.png" alt="Suporte" class="w-4 h-4 object-contain">
+                </div>
+            </div>
         </div>
     </div>
-</footer>
+</section>
+
+    <!-- ==================== PRODUTOS EM DESTAQUE ==================== -->
+    <section class="max-w-screen-2xl mx-auto px-6 py-20">
+        <div class="flex items-end justify-between mb-10">
+            <div>
+                <h2 class="text-4xl font-bold tracking-tighter">Merchandising em Destaque</h2>
+                <p class="text-[var(--text-muted)] mt-1">Conheça alguns dos nossos produtos</p>
+            </div>
+            <a href="shop.html" class="hidden md:flex items-center gap-x-2 text-sm font-semibold text-[var(--accent)] hover:text-[var(--accent-hover)] transition-colors">
+                Ver toda a loja <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+            <!-- Produto 1 -->
+            <div class="product-card border border-white/10 rounded-3xl overflow-hidden">
+                <img src="https://picsum.photos/id/1060/600/600" alt="Camiseta Oficial Dawn" class="w-full aspect-square object-cover">
+                <div class="p-5">
+                    <div class="font-semibold">Jersey Oficial 2027</div>
+                    <div class="text-sm text-[var(--text-muted)] mt-1">R$ 149,99</div>
+                    <a href="shop.html" class="mt-4 block w-full text-center py-2.5 btn-accent text-white font-semibold rounded-2xl">
+                        Ir para Loja
+                    </a>
+                </div>
+            </div>
+            <!-- Produto 2 -->
+            <div class="product-card border border-white/10 rounded-3xl overflow-hidden">
+                <img src="https://picsum.photos/id/160/600/600" alt="Moletom Premium Dawn" class="w-full aspect-square object-cover">
+                <div class="p-5">
+                    <div class="font-semibold">Manguito</div>
+                    <div class="text-sm text-[var(--text-muted)] mt-1">R$ 59,90</div>
+                    <a href="shop.html" class="mt-4 block w-full text-center py-2.5 btn-accent text-white font-semibold rounded-2xl">
+                        Ir para Loja
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 mt-10">
+        <div class="max-w-screen-2xl mx-auto px-6 py-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-y-6">
+                <div class="text-sm text-[var(--text-muted)]">
+                    © 2026 <span class="text-white font-medium">RED VORTEX</span>. Todos os direitos reservados.
+                </div>
+                <div class="flex items-center gap-x-6 text-xl">
+                    <a href="https://x.com/seuusuario" target="_blank" class="text-[var(--text-muted)] hover:text-[var(--accent-hover)] transition-colors">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                    <a href="https://instagram.com/seuusuario" target="_blank" class="text-[var(--text-muted)] hover:text-[var(--accent-hover)] transition-colors">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://discord.gg/seulink" target="_blank" class="text-[var(--text-muted)] hover:text-[var(--accent-hover)] transition-colors">
+                        <i class="fa-brands fa-discord"></i>
+                    </a>
+                    <a href="mailto:contato@dawnesports.com" class="text-[var(--text-muted)] hover:text-[var(--accent-hover)] transition-colors">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
