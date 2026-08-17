@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             /* Baseado no fundo da logo #950707 */
@@ -49,54 +49,56 @@
         .nav-link:hover {
             color: var(--accent-hover);
         }
+
     </style>
 </head>
 <body>
+
     <!-- Barra de navegação -->
-    <nav class="bg-[var(--bg)] border-b border-white/10 sticky top-0 z-50">
-        <div class="max-w-screen-2xl mx-auto px-8 py-5">
-            <div class="flex items-center justify-between">
-               
-                <!-- Logo + Menu -->
-                <div class="flex items-center gap-x-9">
-                    <a href="#" class="flex items-center">
-                        <img src="images/redvortex2.png" alt="Dawn Logo" class="h-11 w-auto">
-                    </a>
-                   
-                    <div class="hidden md:flex items-center gap-x-8 text-base font-semibold tracking-[1px]">
-                        <a href="#sobre" class="nav-link transition-colors">SOBRE</a>
-                        <a href="#elenco" class="nav-link transition-colors">ELENCO</a>
-                        <a href="shop.html" class="nav-link transition-colors">LOJA</a>
+            <nav class="bg-[var(--bg)] border-b border-white/10 sticky top-0 z-50">
+                <div class="w-full max-w-screen-2xl mx-auto px-6 md:px-8 py-4">
+                    <div class="flex items-center justify-between w-full">
+                    
+                        <!-- Esquerda: Logo + Menu -->
+                        <div class="flex items-center gap-x-8">
+                            <a href="#" class="flex items-center shrink-0">
+                                <img src="images/redvortex2.png" alt="Red Vortex Logo" class="h-10 w-auto">
+                            </a>
+                        
+                            <div class="hidden md:flex items-center gap-x-7 text-base font-semibold tracking-[2px] uppercase">
+                                <a href="#sobre" class="nav-link transition-colors">SOBRE</a>
+                                <a href="#elenco" class="nav-link transition-colors">ELENCO</a>
+                                <a href="shop.html" class="nav-link transition-colors">LOJA</a>
+                            </div>
+                        </div>
+
+                        <!-- Direita: Redes Sociais -->
+                        <div class="flex items-center gap-x-5 text-xl text-white/90">
+                            <a href="https://x.com/seuusuario" target="_blank" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="X / Twitter">
+                                <i class="fa-brands fa-x-twitter"></i>
+                            </a>
+                            <a href="https://instagram.com/seuusuario" target="_blank" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="Instagram">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                            <a href="https://discord.gg/seulink" target="_blank" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="Discord">
+                                <i class="fa-brands fa-discord"></i>
+                            </a>
+                            <a href="mailto:contato@dawnesports.com" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="E-mail">
+                                <i class="fa-solid fa-envelope"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
+            </nav>
 
-                <!-- Redes Sociais -->
-                <div class="flex items-center gap-x-6 text-2xl">
-                    <a href="https://x.com/seuusuario" target="_blank" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="X / Twitter">
-                        <i class="fa-brands fa-x-twitter"></i>
-                    </a>
-                    <a href="https://instagram.com/seuusuario" target="_blank" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="Instagram">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                    <a href="https://discord.gg/seulink" target="_blank" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="Discord">
-                        <i class="fa-brands fa-discord"></i>
-                    </a>
-                    <a href="mailto:contato@dawnesports.com" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="E-mail">
-                        <i class="fa-solid fa-envelope"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- ==================== HERO ==================== -->
+    <!-- Hero / Início -->
     <header class="relative h-[100dvh] flex items-center justify-center overflow-hidden">
         <img src="https://picsum.photos/id/1018/2000/1200" alt="" class="absolute inset-0 w-full h-full object-cover opacity-25">
         <div class="absolute inset-0 bg-gradient-to-b from-[var(--bg)]/85 via-[var(--bg)]/75 to-[var(--bg)]"></div>
        
         <div class="relative z-10 text-center px-6">
             <div class="inline-block px-5 py-1.5 rounded-full bg-[var(--accent)]/20 border border-[var(--accent)]/40 mb-6 text-sm tracking-widest text-[var(--accent-hover)]">
-                FREE AGENT
+                LINE FREE AGENT
             </div>
            
             <h1 class="font-display text-7xl md:text-[110px] font-black tracking-tighter mb-4">RED VORTEX</h1>
@@ -104,16 +106,16 @@
            
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="#elenco" class="px-10 py-4 rounded-2xl btn-accent text-white font-semibold">
-                    Ver Elenco
+                    Nosso Elenco
                 </a>
                 <a href="shop.html" class="px-10 py-4 rounded-2xl border border-white/30 hover:bg-white/5 font-semibold transition-colors">
-                    Loja Oficial
+                    Loja
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- ==================== SOBRE ==================== -->
+    <!-- Sobre -->
     <section id="sobre" class="max-w-screen-2xl mx-auto px-6 py-24">
         <div class="grid md:grid-cols-12 gap-x-12 items-center">
            
@@ -141,7 +143,7 @@ Nossa prioridade é o crescimento coletivo, a dedicação dentro e fora do jogo,
         </div>
     </section>
 
-    <!-- ==================== ELENCO ==================== -->
+    <!-- Elenco -->
 <section id="elenco" class="max-w-screen-2xl mx-auto px-6 py-20">
     <div class="mb-12">
         <div class="text-sm text-[var(--accent)] tracking-widest font-semibold mb-2">LINEUP</div>
@@ -158,7 +160,7 @@ Nossa prioridade é o crescimento coletivo, a dedicação dentro e fora do jogo,
                 <div class="font-semibold text-xl">Hwan</div>
                 <div class="text-[var(--text-muted)] text-sm flex items-center gap-1.5">
                     @rxnz12 • Topo
-                    <img src="images/topo.png" alt="Topo" class="w-4 h-4 object-contain">
+                    <img src="images/clashrota.png" alt="Topo" class="w-4 h-4 object-contain">
                 </div>
             </div>
         </div>
@@ -172,7 +174,7 @@ Nossa prioridade é o crescimento coletivo, a dedicação dentro e fora do jogo,
                 <div class="font-semibold text-xl">Kira</div>
                 <div class="text-[var(--text-muted)] text-sm flex items-center gap-1.5">
                     @hok.kira • Caçador
-                    <img src="images/cacador.png" alt="Caçador" class="w-4 h-4 object-contain">
+                    <img src="images/junglerota.png" alt="Caçador" class="w-4 h-4 object-contain">
                 </div>
             </div>
         </div>
@@ -221,12 +223,13 @@ Nossa prioridade é o crescimento coletivo, a dedicação dentro e fora do jogo,
     </div>
 </section>
 
-    <!-- ==================== PRODUTOS EM DESTAQUE ==================== -->
+    <!-- Produtos em destaque -->
     <section class="max-w-screen-2xl mx-auto px-6 py-20">
         <div class="flex items-end justify-between mb-10">
             <div>
                 <h2 class="text-4xl font-bold tracking-tighter">Merchandising em Destaque</h2>
-                <p class="text-[var(--text-muted)] mt-1">Conheça alguns dos nossos produtos</p>
+    
+                <p class="text-[var(--text-muted)] mt-1">Uniforme Oficial 2027</p>
             </div>
             <a href="shop.html" class="hidden md:flex items-center gap-x-2 text-sm font-semibold text-[var(--accent)] hover:text-[var(--accent-hover)] transition-colors">
                 Ver toda a loja <i class="fa-solid fa-arrow-right"></i>
@@ -235,7 +238,7 @@ Nossa prioridade é o crescimento coletivo, a dedicação dentro e fora do jogo,
         <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
             <!-- Produto 1 -->
             <div class="product-card border border-white/10 rounded-3xl overflow-hidden">
-                <img src="https://picsum.photos/id/1060/600/600" alt="Camiseta Oficial Dawn" class="w-full aspect-square object-cover">
+                <img src="images/jersey2027.jpg" alt="Camiseta Oficial Dawn" class="w-full aspect-square object-cover">
                 <div class="p-5">
                     <div class="font-semibold">Jersey Oficial 2027</div>
                     <div class="text-sm text-[var(--text-muted)] mt-1">R$ 149,99</div>
