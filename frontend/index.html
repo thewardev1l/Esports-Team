@@ -11,85 +11,211 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Baseado no fundo da logo #950707 */
+            /* Paleta RED VORTEX - baseada na logo */
             --bg: #130000;
             --bg-card: #160808;
             --accent: #bb0505;
-            --accent-hover: #B80909;
+            --accent-hover: #d90707;
             --accent-soft: rgba(149, 7, 7, 0.18);
             --text: #FFFFFF;
             --text-muted: #C4B5B9;
             --border: rgba(255, 255, 255, 0.08);
         }
+        
         body {
             font-family: 'Inter', system-ui, sans-serif;
             background-color: var(--bg);
             color: var(--text);
+            scroll-behavior: smooth; /* Scroll suave nativo */
         }
+        
         .font-display {
             font-family: 'Space Grotesk', 'Inter', sans-serif;
             font-weight: 600;
         }
+        
         .btn-accent {
             background-color: var(--accent);
-            transition: background-color 0.2s ease, transform 0.2s ease;
+            transition: all 0.3s ease;
         }
+        
         .btn-accent:hover {
             background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(187, 5, 5, 0.4);
         }
+        
+        /* Cards com animação de entrada */
         .player-card, .product-card {
             transition: all 0.3s ease;
             background-color: var(--bg-card);
+            opacity: 0; /* Inicia invisível para animação */
+            transform: translateY(30px);
         }
+        
         .player-card:hover, .product-card:hover {
             transform: translateY(-6px);
             border-color: var(--accent);
             box-shadow: 0 12px 40px -12px rgba(165, 7, 7, 0.35);
         }
-        .nav-link:hover {
-            color: var(--accent-hover);
+        
+        /* Classe que será adicionada via JS para animar entrada */
+        .animate-in {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
         }
-
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Efeito de brilho na logo */
+        .logo-glow {
+            transition: filter 0.3s ease;
+        }
+        
+        .logo-glow:hover {
+            filter: drop-shadow(0 0 20px rgba(187, 5, 5, 0.6));
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1.5rem;
+            max-width: 500px;
+            width: 100%;
+            padding: 2rem;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        /* Menu mobile */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            z-index: 90;
+            padding-top: 80px;
+        }
+        
+        .mobile-menu.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        /* Animação de pulso sutil no botão CTA */
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(187, 5, 5, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(187, 5, 5, 0.6); }
+        }
+        
+        .pulse-animation {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
     </style>
 </head>
 <body>
 
     <!-- Barra de navegação -->
-            <nav class="bg-[var(--bg)] border-b border-white/10 sticky top-0 z-50">
-                <div class="w-full max-w-screen-2xl mx-auto px-6 md:px-8 py-4">
-                    <div class="flex items-center justify-between w-full">
-                    
-                        <!-- Esquerda: Logo + Menu -->
-                        <div class="flex items-center gap-x-8">
-                            <a href="#" class="flex items-center shrink-0">
-                                <img src="images/redvortex2.png" alt="Red Vortex Logo" class="h-10 w-auto">
-                            </a>
-                        
-                            <div class="hidden md:flex items-center gap-x-7 text-base font-semibold tracking-[2px] uppercase">
-                                <a href="#sobre" class="nav-link transition-colors">SOBRE</a>
-                                <a href="#elenco" class="nav-link transition-colors">ELENCO</a>
-                                <a href="shop.html" class="nav-link transition-colors">LOJA</a>
-                            </div>
-                        </div>
-
-                        <!-- Direita: Redes Sociais -->
-                        <div class="flex items-center gap-x-5 text-xl text-white/90">
-                            <a href="https://x.com/seuusuario" target="_blank" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="X / Twitter">
-                                <i class="fa-brands fa-x-twitter"></i>
-                            </a>
-                            <a href="https://instagram.com/seuusuario" target="_blank" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="Instagram">
-                                <i class="fa-brands fa-instagram"></i>
-                            </a>
-                            <a href="https://discord.gg/seulink" target="_blank" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="Discord">
-                                <i class="fa-brands fa-discord"></i>
-                            </a>
-                            <a href="mailto:contato@dawnesports.com" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="E-mail">
-                                <i class="fa-solid fa-envelope"></i>
-                            </a>
-                        </div>
+    <nav class="bg-[var(--bg)] border-b border-white/10 sticky top-0 z-50">
+        <div class="w-full max-w-screen-2xl mx-auto px-6 md:px-8 py-4">
+            <div class="flex items-center justify-between w-full">
+            
+                <!-- Esquerda: Logo + Menu -->
+                <div class="flex items-center gap-x-8">
+                    <a href="#" class="flex items-center shrink-0 logo-glow">
+                        <!-- Substitua pelo caminho correto da sua logo -->
+                        <img src="images/redvortex2.png" alt="Red Vortex Logo" class="h-10 w-auto">
+                    </a>
+                
+                    <!-- Menu Desktop -->
+                    <div class="hidden md:flex items-center gap-x-7 text-base font-semibold tracking-[2px] uppercase">
+                        <a href="#sobre" class="nav-link transition-colors">SOBRE</a>
+                        <a href="#elenco" class="nav-link transition-colors">ELENCO</a>
+                        <a href="shop.html" class="nav-link transition-colors">LOJA</a>
                     </div>
+                    
+                    <!-- Botão Menu Mobile -->
+                    <button id="menu-toggle" class="md:hidden text-2xl text-white">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
                 </div>
-            </nav>
+
+                <!-- Direita: Redes Sociais -->
+                <div class="hidden md:flex items-center gap-x-5 text-xl text-white/90">
+                    <a href="https://x.com/seuusuario" target="_blank" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="X / Twitter">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                    <a href="https://instagram.com/seuusuario" target="_blank" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://discord.gg/seulink" target="_blank" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="Discord">
+                        <i class="fa-brands fa-discord"></i>
+                    </a>
+                    <a href="mailto:contato@dawnesports.com" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="E-mail">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Menu Mobile (oculto por padrão) -->
+        <div id="mobile-menu" class="mobile-menu">
+            <a href="#sobre" class="text-2xl font-bold tracking-wider hover:text-[var(--accent)] transition-colors">SOBRE</a>
+            <a href="#elenco" class="text-2xl font-bold tracking-wider hover:text-[var(--accent)] transition-colors">ELENCO</a>
+            <a href="shop.html" class="text-2xl font-bold tracking-wider hover:text-[var(--accent)] transition-colors">LOJA</a>
+            <div class="flex gap-6 mt-8 text-2xl">
+                <a href="https://x.com/seuusuario" target="_blank" class="hover:text-[var(--accent)]"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://instagram.com/seuusuario" target="_blank" class="hover:text-[var(--accent)]"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://discord.gg/seulink" target="_blank" class="hover:text-[var(--accent)]"><i class="fa-brands fa-discord"></i></a>
+            </div>
+        </div>
+    </nav>
 
     <!-- Hero / Início -->
     <header class="relative h-[100dvh] flex items-center justify-center overflow-hidden">
@@ -97,7 +223,7 @@
         <div class="absolute inset-0 bg-gradient-to-b from-[var(--bg)]/85 via-[var(--bg)]/75 to-[var(--bg)]"></div>
        
         <div class="relative z-10 text-center px-6">
-            <div class="inline-block px-5 py-1.5 rounded-full bg-[var(--accent)]/20 border border-[var(--accent)]/40 mb-6 text-sm tracking-widest text-[var(--accent-hover)]">
+            <div class="inline-block px-5 py-1.5 rounded-full bg-[var(--accent)]/20 border border-[var(--accent)]/40 mb-6 text-sm tracking-widest text-[var(--accent-hover)] animate-pulse">
                 LINE FREE AGENT
             </div>
            
@@ -105,13 +231,18 @@
             <p class="text-3xl text-white/90 mb-10">O amanhecer de uma nova era.</p>
            
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#elenco" class="px-10 py-4 rounded-2xl btn-accent text-white font-semibold">
+                <a href="#elenco" class="px-10 py-4 rounded-2xl btn-accent text-white font-semibold pulse-animation">
                     Nosso Elenco
                 </a>
                 <a href="shop.html" class="px-10 py-4 rounded-2xl border border-white/30 hover:bg-white/5 font-semibold transition-colors">
                     Loja
                 </a>
             </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <i class="fa-solid fa-chevron-down text-2xl text-white/50"></i>
         </div>
     </header>
 
@@ -129,106 +260,121 @@
                 </h2>
                 <p class="max-w-xl text-lg text-[var(--text-muted)] leading-relaxed">
                     Somos um grupo de jogadores que se uniu com o objetivo de competir, evoluir e conquistar espaço no cenário. Não somos uma organização, mas sim uma equipe independente que busca oportunidades, desafios e a chance de mostrar nosso potencial.
-Nossa prioridade é o crescimento coletivo, a dedicação dentro e fora do jogo, e a construção de uma identidade própria no competitivo.
+                    Nossa prioridade é o crescimento coletivo, a dedicação dentro e fora do jogo, e a construção de uma identidade própria no competitivo.
                 </p>
+                
+                <!-- Stats -->
+                <div class="flex gap-8 mt-10">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-[var(--accent)] stat-number" data-target="5">0</div>
+                        <div class="text-sm text-[var(--text-muted)] uppercase tracking-wider mt-1">Jogadores</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-[var(--accent)] stat-number" data-target="0">0</div>
+                        <div class="text-sm text-[var(--text-muted)] uppercase tracking-wider mt-1">Títulos</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-[var(--accent)] stat-number" data-target="2027">0</div>
+                        <div class="text-sm text-[var(--text-muted)] uppercase tracking-wider mt-1">Desde</div>
+                    </div>
+                </div>
             </div>
 
             <!-- Logo grande -->
             <div class="md:col-span-5 flex justify-center mt-12 md:mt-0">
-                <div class="relative">
-                    <div class="absolute inset-0 bg-[var(--accent)]/20 blur-3xl rounded-full scale-90"></div>
-                    <img src="images/redvortex2.png" alt="RED VORTEX LOGO" class="relative w-72 h-72 md:w-80 md:h-80 object-contain">
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-[var(--accent)]/30 blur-3xl rounded-full scale-90 group-hover:scale-110 transition-transform duration-500"></div>
+                    <img src="images/redvortex2.png" alt="RED VORTEX LOGO" class="relative w-72 h-72 md:w-80 md:h-80 object-contain logo-glow">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Elenco -->
-<section id="elenco" class="max-w-screen-2xl mx-auto px-6 py-20">
-    <div class="mb-12">
-        <div class="text-sm text-[var(--accent)] tracking-widest font-semibold mb-2">LINEUP</div>
-        <h2 class="text-4xl font-bold tracking-tighter">Elenco</h2>
-    </div>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
-       
-        <!-- Hwan -->
-        <div onclick="showPlayerModal(0)" class="player-card border border-white/10 rounded-3xl overflow-hidden cursor-pointer">
-            <div class="aspect-[4/3] overflow-hidden">
-                <img src="https://picsum.photos/id/1005/600/450" alt="Hwan" class="w-full h-full object-cover">
-            </div>
-            <div class="p-5">
-                <div class="font-semibold text-xl">Hwan</div>
-                <div class="text-[var(--text-muted)] text-sm flex items-center gap-1.5">
-                    @rxnz12 • Topo
-                    <img src="images/clashrota.png" alt="Topo" class="w-4 h-4 object-contain">
+    <section id="elenco" class="max-w-screen-2xl mx-auto px-6 py-20">
+        <div class="mb-12">
+            <div class="text-sm text-[var(--accent)] tracking-widest font-semibold mb-2">LINEUP</div>
+            <h2 class="text-4xl font-bold tracking-tighter">Elenco</h2>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+           
+            <!-- Hwan -->
+            <div onclick="showPlayerModal(0)" class="player-card border border-white/10 rounded-3xl overflow-hidden cursor-pointer">
+                <div class="aspect-[4/3] overflow-hidden">
+                    <img src="https://picsum.photos/id/1005/600/450" alt="Hwan" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                </div>
+                <div class="p-5">
+                    <div class="font-semibold text-xl">Hwan</div>
+                    <div class="text-[var(--text-muted)] text-sm flex items-center gap-1.5">
+                        @rxnz12 • Topo
+                        <img src="images/clashrota.png" alt="Topo" class="w-4 h-4 object-contain">
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Kira -->
-        <div onclick="showPlayerModal(1)" class="player-card border border-white/10 rounded-3xl overflow-hidden cursor-pointer">
-            <div class="aspect-[4/3] overflow-hidden">
-                <img src="https://picsum.photos/id/1011/600/450" alt="Kira" class="w-full h-full object-cover">
-            </div>
-            <div class="p-5">
-                <div class="font-semibold text-xl">Kira</div>
-                <div class="text-[var(--text-muted)] text-sm flex items-center gap-1.5">
-                    @hok.kira • Caçador
-                    <img src="images/junglerota.png" alt="Caçador" class="w-4 h-4 object-contain">
+            <!-- Kira -->
+            <div onclick="showPlayerModal(1)" class="player-card border border-white/10 rounded-3xl overflow-hidden cursor-pointer">
+                <div class="aspect-[4/3] overflow-hidden">
+                    <img src="https://picsum.photos/id/1011/600/450" alt="Kira" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                </div>
+                <div class="p-5">
+                    <div class="font-semibold text-xl">Kira</div>
+                    <div class="text-[var(--text-muted)] text-sm flex items-center gap-1.5">
+                        @hok.kira • Caçador
+                        <img src="images/junglerota.png" alt="Caçador" class="w-4 h-4 object-contain">
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Tayo -->
-        <div onclick="showPlayerModal(2)" class="player-card border border-white/10 rounded-3xl overflow-hidden cursor-pointer">
-            <div class="aspect-[4/3] overflow-hidden">
-                <img src="https://picsum.photos/id/1009/600/450" alt="Tayo" class="w-full h-full object-cover">
-            </div>
-            <div class="p-5">
-                <div class="font-semibold text-xl">Tayo</div>
-                <div class="text-[var(--text-muted)] text-sm flex items-center gap-1.5">
-                    @hok.tayo • Meio
-                    <img src="images/midrota.png" alt="Meio" class="w-4 h-4 object-contain">
+            <!-- Tayo -->
+            <div onclick="showPlayerModal(2)" class="player-card border border-white/10 rounded-3xl overflow-hidden cursor-pointer">
+                <div class="aspect-[4/3] overflow-hidden">
+                    <img src="https://picsum.photos/id/1009/600/450" alt="Tayo" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                </div>
+                <div class="p-5">
+                    <div class="font-semibold text-xl">Tayo</div>
+                    <div class="text-[var(--text-muted)] text-sm flex items-center gap-1.5">
+                        @hok.tayo • Meio
+                        <img src="images/midrota.png" alt="Meio" class="w-4 h-4 object-contain">
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- aizeN -->
-        <div onclick="showPlayerModal(3)" class="player-card border border-white/10 rounded-3xl overflow-hidden cursor-pointer">
-            <div class="aspect-[4/3] overflow-hidden">
-                <img src="https://picsum.photos/id/1027/600/450" alt="aizeN" class="w-full h-full object-cover">
-            </div>
-            <div class="p-5">
-                <div class="font-semibold text-xl">aizeN</div>
-                <div class="text-[var(--text-muted)] text-sm flex items-center gap-1.5">
-                    @hok.aizen • Atirador
-                    <img src="images/adcrota.png" alt="Atirador" class="w-4 h-4 object-contain">
+            <!-- aizeN -->
+            <div onclick="showPlayerModal(3)" class="player-card border border-white/10 rounded-3xl overflow-hidden cursor-pointer">
+                <div class="aspect-[4/3] overflow-hidden">
+                    <img src="https://picsum.photos/id/1027/600/450" alt="aizeN" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                </div>
+                <div class="p-5">
+                    <div class="font-semibold text-xl">aizeN</div>
+                    <div class="text-[var(--text-muted)] text-sm flex items-center gap-1.5">
+                        @hok.aizen • Atirador
+                        <img src="images/adcrota.png" alt="Atirador" class="w-4 h-4 object-contain">
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Horizon -->
-        <div onclick="showPlayerModal(4)" class="player-card border border-white/10 rounded-3xl overflow-hidden cursor-pointer">
-            <div class="aspect-[4/3] overflow-hidden">
-                <img src="https://picsum.photos/id/201/600/450" alt="Horizon" class="w-full h-full object-cover">
-            </div>
-            <div class="p-5">
-                <div class="font-semibold text-xl">Horizon</div>
-                <div class="text-[var(--text-muted)] text-sm flex items-center gap-1.5">
-                    @hok.juan1 • Suporte
-                    <img src="images/suporterota.png" alt="Suporte" class="w-4 h-4 object-contain">
+            <!-- Horizon -->
+            <div onclick="showPlayerModal(4)" class="player-card border border-white/10 rounded-3xl overflow-hidden cursor-pointer">
+                <div class="aspect-[4/3] overflow-hidden">
+                    <img src="https://picsum.photos/id/201/600/450" alt="Horizon" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                </div>
+                <div class="p-5">
+                    <div class="font-semibold text-xl">Horizon</div>
+                    <div class="text-[var(--text-muted)] text-sm flex items-center gap-1.5">
+                        @hok.juan1 • Suporte
+                        <img src="images/suporterota.png" alt="Suporte" class="w-4 h-4 object-contain">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Produtos em destaque -->
     <section class="max-w-screen-2xl mx-auto px-6 py-20">
         <div class="flex items-end justify-between mb-10">
             <div>
                 <h2 class="text-4xl font-bold tracking-tighter">Merchandising em Destaque</h2>
-    
                 <p class="text-[var(--text-muted)] mt-1">Uniforme Oficial 2027</p>
             </div>
             <a href="shop.html" class="hidden md:flex items-center gap-x-2 text-sm font-semibold text-[var(--accent)] hover:text-[var(--accent-hover)] transition-colors">
@@ -285,6 +431,200 @@ Nossa prioridade é o crescimento coletivo, a dedicação dentro e fora do jogo,
             </div>
         </div>
     </footer>
+
+    <!-- MODAL DE JOGADORES -->
+    <div id="player-modal" class="modal" onclick="closePlayerModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button onclick="closePlayerModal()" class="absolute top-4 right-4 text-2xl text-white/60 hover:text-white transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="modal-body">
+                <!-- Conteúdo preenchido via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // ============================================
+        // DADOS DOS JOGADORES
+        // ============================================
+        const players = [
+            {
+                name: 'Hwan',
+                role: 'Topo',
+                social: '@rxnz12',
+                description: 'Jogador dedicado que busca sempre o melhor desempenho em cada partida.',
+                image: 'https://picsum.photos/id/1005/600/450'
+            },
+            {
+                name: 'Kira',
+                role: 'Caçador',
+                social: '@hok.kira',
+                description: 'Controle de mapa e visão de jogo excepcionais.',
+                image: 'https://picsum.photos/id/1011/600/450'
+            },
+            {
+                name: 'Tayo',
+                role: 'Meio',
+                social: '@hok.tayo',
+                description: 'Mecânica afiada e decisões rápidas no momento certo.',
+                image: 'https://picsum.photos/id/1009/600/450'
+            },
+            {
+                name: 'aizeN',
+                role: 'Atirador',
+                social: '@hok.aizen',
+                description: 'Precisão e posicionamento impecáveis em teamfights.',
+                image: 'https://picsum.photos/id/1027/600/450'
+            },
+            {
+                name: 'Horizon',
+                role: 'Suporte',
+                social: '@hok.juan1',
+                description: 'Leitura de jogo e proteção ao carry como prioridade.',
+                image: 'https://picsum.photos/id/201/600/450'
+            }
+        ];
+
+        // ============================================
+        // MENU MOBILE
+        // ============================================
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        });
+
+        // Fecha menu ao clicar em link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+                menuToggle.querySelector('i').classList.remove('fa-xmark');
+            });
+        });
+
+        // ============================================
+        // ANIMAÇÃO DE ENTRADA (SCROLL)
+        // ============================================
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observa cards de jogadores e produtos
+        document.querySelectorAll('.player-card, .product-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ============================================
+        // CONTADOR ANIMADO (STATS)
+        // ============================================
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const element = entry.target;
+                    const target = parseInt(element.getAttribute('data-target'));
+                    animateCounter(element, target);
+                    statsObserver.unobserve(element);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-number').forEach(stat => {
+            statsObserver.observe(stat);
+        });
+
+        function animateCounter(element, target, duration = 2000) {
+            const startTime = performance.now();
+            
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                
+                element.textContent = Math.floor(target * easeOut);
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    element.textContent = target;
+                }
+            }
+            
+            requestAnimationFrame(update);
+        }
+
+        // ============================================
+        // MODAL DE JOGADORES
+        // ============================================
+        function showPlayerModal(index) {
+            const player = players[index];
+            const modal = document.getElementById('player-modal');
+            const modalBody = document.getElementById('modal-body');
+            
+            modalBody.innerHTML = `
+                <div class="text-center">
+                    <img src="${player.image}" alt="${player.name}" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-[var(--accent)]">
+                    <h3 class="text-2xl font-bold mb-1">${player.name}</h3>
+                    <p class="text-[var(--accent)] font-semibold mb-4">${player.role}</p>
+                    <p class="text-[var(--text-muted)] mb-4">${player.description}</p>
+                    <a href="https://twitter.com/${player.social.replace('@', '')}" target="_blank" class="inline-flex items-center gap-2 text-[var(--accent)] hover:text-[var(--accent-hover)]">
+                        <i class="fa-brands fa-x-twitter"></i> ${player.social}
+                    </a>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePlayerModal(event) {
+            if (!event || event.target.id === 'player-modal' || event.target.closest('button')) {
+                document.getElementById('player-modal').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Fecha modal com ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closePlayerModal();
+        });
+
+        // ============================================
+        // HEADER COM TRANSPARÊNCIA AO ROLAR
+        // ============================================
+        let lastScroll = 0;
+        const nav = document.querySelector('nav');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                nav.style.background = 'rgba(19, 0, 0, 0.98)';
+                nav.style.backdropFilter = 'blur(10px)';
+            } else {
+                nav.style.background = 'var(--bg)';
+                nav.style.backdropFilter = 'none';
+            }
+            
+            lastScroll = currentScroll;
+        });
+    </script>
 
 </body>
 </html>
