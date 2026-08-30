@@ -34,6 +34,49 @@
             font-weight: 600;
         }
         
+        .font-hero {
+            font-family: 'Bebas Neue', 'Space Grotesk', sans-serif;
+            letter-spacing: 0.02em;
+        }
+        
+        /* Fundo do hero - imagem com zoom lento + grade em movimento sutil */
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: hero-kenburns 24s ease-in-out infinite alternate;
+        }
+        
+        @keyframes hero-kenburns {
+            from { transform: scale(1) translate(0, 0); }
+            to { transform: scale(1.12) translate(-1%, -1%); }
+        }
+        
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: radial-gradient(ellipse at center, black 0%, transparent 72%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 72%);
+            animation: hero-grid-pan 18s linear infinite;
+        }
+        
+        @keyframes hero-grid-pan {
+            from { background-position: 0 0, 0 0; }
+            to { background-position: 48px 48px, 48px 48px; }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            .hero-bg, .hero-grid {
+                animation: none;
+            }
+        }
+        
         .btn-accent {
             background-color: var(--accent);
             transition: all 0.3s ease;
@@ -67,6 +110,11 @@
         
         .nav-link {
             position: relative;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent-hover);
         }
         
         .nav-link::after {
@@ -169,7 +217,6 @@
                 <!-- Esquerda: Logo + Menu -->
                 <div class="flex items-center gap-x-8">
                     <a href="#" class="flex items-center shrink-0 logo-glow">
-                        <!-- Substitua pelo caminho correto da sua logo -->
                         <img src="images/redvortex2.png" alt="Red Vortex Logo" class="h-10 w-auto">
                     </a>
                 
@@ -188,16 +235,16 @@
 
                 <!-- Direita: Redes Sociais -->
                 <div class="hidden md:flex items-center gap-x-5 text-xl text-white/90">
-                    <a href="https://x.com/seuusuario" target="_blank" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="X / Twitter">
+                    <a href="https://x.com/redvortexggs" target="_blank" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="X / Twitter">
                         <i class="fa-brands fa-x-twitter"></i>
                     </a>
-                    <a href="https://instagram.com/seuusuario" target="_blank" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="Instagram">
+                    <a href="https://instagram.com/redvortexggs" target="_blank" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="Instagram">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
-                    <a href="https://discord.gg/seulink" target="_blank" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="Discord">
+                    <a href="https://discord.gg/redvortex" target="_blank" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="Discord">
                         <i class="fa-brands fa-discord"></i>
                     </a>
-                    <a href="mailto:contato@dawnesports.com" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="E-mail">
+                    <a href="mailto:contato@redvortexggs.com" class="hover:text-[var(--accent-hover)] transition-colors" aria-label="E-mail">
                         <i class="fa-solid fa-envelope"></i>
                     </a>
                 </div>
@@ -210,24 +257,25 @@
             <a href="#elenco" class="text-2xl font-bold tracking-wider hover:text-[var(--accent)] transition-colors">ELENCO</a>
             <a href="shop.html" class="text-2xl font-bold tracking-wider hover:text-[var(--accent)] transition-colors">LOJA</a>
             <div class="flex gap-6 mt-8 text-2xl">
-                <a href="https://x.com/seuusuario" target="_blank" class="hover:text-[var(--accent)]"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://instagram.com/seuusuario" target="_blank" class="hover:text-[var(--accent)]"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://discord.gg/seulink" target="_blank" class="hover:text-[var(--accent)]"><i class="fa-brands fa-discord"></i></a>
+                <a href="https://x.com/redvortexggs" target="_blank" class="hover:text-[var(--accent)]"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://instagram.com/redvortexggs" target="_blank" class="hover:text-[var(--accent)]"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://discord.gg/redvortex" target="_blank" class="hover:text-[var(--accent)]"><i class="fa-brands fa-discord"></i></a>
             </div>
         </div>
     </nav>
 
     <!-- Hero / Início -->
     <header class="relative h-[100dvh] flex items-center justify-center overflow-hidden">
-        <img src="https://picsum.photos/id/1018/2000/1200" alt="" class="absolute inset-0 w-full h-full object-cover opacity-25">
-        <div class="absolute inset-0 bg-gradient-to-b from-[var(--bg)]/85 via-[var(--bg)]/75 to-[var(--bg)]"></div>
+        <img src="https://images.unsplash.com/photo-1621873493371-9aea49f66b9b?w=2000&auto=format&fit=crop" alt="" class="hero-bg opacity-40">
+        <div class="hero-grid"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-[var(--bg)]/70 via-[var(--bg)]/70 to-[var(--bg)]"></div>
        
         <div class="relative z-10 text-center px-6">
             <div class="inline-block px-5 py-1.5 rounded-full bg-[var(--accent)]/20 border border-[var(--accent)]/40 mb-6 text-sm tracking-widest text-[var(--accent-hover)] animate-pulse">
                 São Paulo - SP
             </div>
            
-            <h1 class="font-display text-7xl md:text-[110px] font-black tracking-tighter mb-4">RED VORTEX</h1>
+            <h1 class="font-hero text-8xl md:text-[140px] leading-none mb-4">RED VORTEX</h1>
             <p class="text-3xl text-white/90 mb-10">O amanhecer de uma nova era.</p>
            
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
@@ -274,8 +322,8 @@
                         <div class="text-sm text-[var(--text-muted)] uppercase tracking-wider mt-1">Títulos</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-4xl font-bold text-[var(--accent)] stat-number" data-target="2027">0</div>
-                        <div class="text-sm text-[var(--text-muted)] uppercase tracking-wider mt-1">Desde</div>
+                        <div class="text-4xl font-bold text-[var(--accent)] stat-number" data-target="2026">0</div>
+                        <div class="text-sm text-[var(--text-muted)] uppercase tracking-wider mt-1">Desde abril de</div>
                     </div>
                 </div>
             </div>
@@ -384,7 +432,7 @@
         <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
             <!-- Produto 1 -->
             <div class="product-card border border-white/10 rounded-3xl overflow-hidden">
-                <img src="images/jersey2027.jpg" alt="Camiseta Oficial Dawn" class="w-full aspect-square object-cover">
+                <img src="images/jersey2027.jpg" alt="Jersey Oficial RED VORTEX" class="w-full aspect-square object-cover">
                 <div class="p-5">
                     <div class="font-semibold">Jersey Oficial 2027</div>
                     <div class="text-sm text-[var(--text-muted)] mt-1">R$ 149,99</div>
@@ -395,7 +443,7 @@
             </div>
             <!-- Produto 2 -->
             <div class="product-card border border-white/10 rounded-3xl overflow-hidden">
-                <img src="https://picsum.photos/id/160/600/600" alt="Moletom Premium Dawn" class="w-full aspect-square object-cover">
+                <img src="https://picsum.photos/id/160/600/600" alt="Manguito RED VORTEX" class="w-full aspect-square object-cover">
                 <div class="p-5">
                     <div class="font-semibold">Manguito</div>
                     <div class="text-sm text-[var(--text-muted)] mt-1">R$ 59,90</div>
@@ -415,16 +463,16 @@
                     © 2026 <span class="text-white font-medium">RED VORTEX</span>. Todos os direitos reservados.
                 </div>
                 <div class="flex items-center gap-x-6 text-xl">
-                    <a href="https://x.com/seuusuario" target="_blank" class="text-[var(--text-muted)] hover:text-[var(--accent-hover)] transition-colors">
+                    <a href="https://x.com/redvortexggs" target="_blank" class="text-[var(--text-muted)] hover:text-[var(--accent-hover)] transition-colors">
                         <i class="fa-brands fa-x-twitter"></i>
                     </a>
-                    <a href="https://instagram.com/seuusuario" target="_blank" class="text-[var(--text-muted)] hover:text-[var(--accent-hover)] transition-colors">
+                    <a href="https://instagram.com/redvortexggs" target="_blank" class="text-[var(--text-muted)] hover:text-[var(--accent-hover)] transition-colors">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
-                    <a href="https://discord.gg/seulink" target="_blank" class="text-[var(--text-muted)] hover:text-[var(--accent-hover)] transition-colors">
+                    <a href="https://discord.gg/redvortex" target="_blank" class="text-[var(--text-muted)] hover:text-[var(--accent-hover)] transition-colors">
                         <i class="fa-brands fa-discord"></i>
                     </a>
-                    <a href="mailto:contato@dawnesports.com" class="text-[var(--text-muted)] hover:text-[var(--accent-hover)] transition-colors">
+                    <a href="mailto:contato@redvortexggs.com" class="text-[var(--text-muted)] hover:text-[var(--accent-hover)] transition-colors">
                         <i class="fa-solid fa-envelope"></i>
                     </a>
                 </div>
