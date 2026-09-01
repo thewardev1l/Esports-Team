@@ -90,7 +90,7 @@
             font-family: 'Bebas Neue', sans-serif;
         }
 
-        /* Barra superior */
+        /* Barra de anúncio */
         .announcement-bar {
             min-height: 34px;
             display: flex;
@@ -181,9 +181,9 @@
         .main-navigation a::after {
             content: '';
             position: absolute;
-            left: 0;
             right: 0;
             bottom: -9px;
+            left: 0;
             height: 2px;
             background: var(--red);
             transform: scaleX(0);
@@ -298,7 +298,7 @@
             font-size: 20px;
         }
 
-        /* Hero da loja */
+        /* Hero branco */
         .store-hero {
             position: relative;
             min-height: 600px;
@@ -308,7 +308,9 @@
             gap: 60px;
             overflow: hidden;
             padding: 90px max(24px, calc((100vw - 1320px) / 2));
-            border-bottom: 1px solid var(--line);
+            background: var(--white);
+            color: var(--black);
+            border-bottom: 1px solid #E5E5E5;
         }
 
         .store-hero::before {
@@ -319,32 +321,20 @@
             background:
                 linear-gradient(
                     115deg,
-                    rgba(240, 0, 0, 0.10),
+                    rgba(240, 0, 0, 0.08),
                     transparent 35%
                 ),
                 radial-gradient(
                     circle at 85% 50%,
-                    rgba(240, 0, 0, 0.12),
+                    rgba(240, 0, 0, 0.08),
                     transparent 32%
                 );
-        }
-
-        .store-hero::after {
-            content: 'RED VORTEX';
-            position: absolute;
-            right: -20px;
-            bottom: -30px;
-            color: rgba(255, 255, 255, 0.025);
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(110px, 19vw, 300px);
-            line-height: 0.8;
-            pointer-events: none;
-            white-space: nowrap;
         }
 
         .hero-content {
             position: relative;
             z-index: 1;
+            color: var(--black);
         }
 
         .eyebrow {
@@ -352,7 +342,7 @@
             align-items: center;
             gap: 10px;
             margin-bottom: 22px;
-            color: var(--red-light);
+            color: var(--red-dark);
             font-size: 10px;
             font-weight: 700;
             letter-spacing: 3px;
@@ -369,6 +359,7 @@
         .hero-title {
             max-width: 650px;
             margin: 0;
+            color: var(--black);
             font-family: 'Bebas Neue', sans-serif;
             font-size: clamp(76px, 10vw, 154px);
             font-weight: 400;
@@ -377,13 +368,16 @@
         }
 
         .hero-title span {
-            color: var(--red);
+            display: inline-block;
+            padding: 0 0.12em;
+            background: var(--black);
+            color: var(--white);
         }
 
         .hero-description {
             max-width: 440px;
             margin: 28px 0 36px;
-            color: var(--gray);
+            color: #3D3D43;
             font-size: 15px;
             line-height: 1.8;
         }
@@ -392,7 +386,7 @@
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            color: var(--white);
+            color: var(--black);
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 2px;
@@ -403,6 +397,10 @@
         .hero-link i {
             color: var(--red);
             transition: transform 0.25s ease;
+        }
+
+        .hero-link:hover {
+            color: var(--red-dark);
         }
 
         .hero-link:hover i {
@@ -416,26 +414,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .hero-product::before {
-            content: '';
-            position: absolute;
-            width: 390px;
-            height: 390px;
-            border: 1px solid rgba(240, 0, 0, 0.35);
-            border-radius: 50%;
-            box-shadow:
-                0 0 0 35px rgba(240, 0, 0, 0.025),
-                0 0 0 70px rgba(240, 0, 0, 0.018);
-        }
+        }   
 
         .hero-logo {
             position: relative;
+            z-index: 2;
             width: min(390px, 80%);
             height: 390px;
             object-fit: contain;
-            filter: drop-shadow(0 20px 45px rgba(240, 0, 0, 0.28));
+            mix-blend-mode: normal;
+            filter: drop-shadow(0 20px 45px rgba(240, 0, 0, 0.20));
             animation: floating-logo 5s ease-in-out infinite;
         }
 
@@ -550,6 +538,7 @@
             opacity: 0;
             transform: translateY(18px);
             animation: card-enter 0.55s ease forwards;
+            cursor: pointer;
         }
 
         @keyframes card-enter {
@@ -844,7 +833,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* Overlay e carrinho */
+        /* Overlay do carrinho */
         .cart-overlay {
             position: fixed;
             inset: 0;
@@ -860,6 +849,7 @@
             visibility: visible;
         }
 
+        /* Carrinho lateral */
         .cart-drawer {
             position: fixed;
             top: 0;
@@ -920,9 +910,9 @@
         .empty-cart {
             min-height: 300px;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
             gap: 14px;
             color: var(--gray);
             text-align: center;
@@ -937,6 +927,11 @@
         .empty-cart p {
             margin: 0;
             font-size: 13px;
+        }
+
+        .empty-cart span {
+            font-size: 11px;
+            color: var(--gray-dark);
         }
 
         .cart-item {
@@ -1220,7 +1215,7 @@
             cursor: not-allowed;
         }
 
-        /* Notificação */
+        /* Toast */
         .toast {
             position: fixed;
             right: 24px;
@@ -1437,7 +1432,7 @@
 
     <!-- Barra de anúncio -->
     <div class="announcement-bar">
-        Frete grátis nas compras acima de R$ 199 • coleção oficial RED VORTEX
+        Frete grátis nas compras acima de R$ 199 • coleção oficial IGNIS GAMING
     </div>
 
     <!-- Cabeçalho -->
@@ -1448,13 +1443,8 @@
             <a href="index.html" class="brand">
 
                 <img src="./images/logocortada.png"
-                    alt="Logo Red Vortex"
+                    alt="Logo IGNIS GAMING"
                     class="brand-mark">
-
-                <span class="brand-name">
-                    RED <span>VORTEX</span>
-                </span>
-
             </a>
 
             <nav class="main-navigation">
@@ -1463,8 +1453,6 @@
                     Início
                 </a>
 
-                <a href="#colecao" class="active">
-                    Loja
                 </a>
 
                 <a href="index.html#sobre">
@@ -1474,6 +1462,9 @@
                 <a href="index.html#elenco">
                     Elenco
                 </a>
+                
+                <a href="#colecao" class="active">
+                    Loja
 
             </nav>
 
@@ -1525,7 +1516,7 @@
 
     </header>
 
-    <!-- Navegação mobile -->
+    <!-- Menu mobile -->
     <nav id="mobile-navigation" class="mobile-navigation">
 
         <a href="index.html">
@@ -1576,17 +1567,17 @@
             <div class="hero-content">
 
                 <div class="eyebrow">
-                    Loja oficial do time
+                    Official team store
                 </div>
 
                 <h1 class="hero-title">
-                    VISTA<br>
-                    O <span>FOGO.</span>
+                    WEAR<br>
+                    <span>THE FIRE.</span>
                 </h1>
 
                 <p class="hero-description">
-                    A coleção oficial RED VORTEX foi criada para quem carrega
-                    a intensidade da competição dentro e fora do jogo.
+                    A coleção oficial IGNIS GAMING foi criada para quem
+                    carrega a intensidade da competição dentro e fora do jogo.
                 </p>
 
                 <a href="#colecao" class="hero-link">
@@ -1599,14 +1590,14 @@
             <div class="hero-product">
 
                 <img src="./images/logocortada.png"
-                    alt="Símbolo da fênix Red Vortex"
+                    alt="Símbolo da fênix IGNIS GAMING"
                     class="hero-logo">
 
             </div>
 
         </section>
 
-        <!-- Coleção principal -->
+        <!-- Coleção -->
         <section id="colecao" class="content-section">
 
             <div class="section-heading">
@@ -1614,7 +1605,7 @@
                 <div>
 
                     <div class="section-kicker">
-                        Red Vortex Supply
+                        IGNIS GAMING SUPPLY
                     </div>
 
                     <h2 class="section-title">
@@ -1624,8 +1615,8 @@
                 </div>
 
                 <p class="section-description">
-                    Peças selecionadas para representar a equipe em cada partida,
-                    evento e conquista.
+                    Peças selecionadas para representar a equipe em cada
+                    partida, evento e conquista.
                 </p>
 
             </div>
@@ -1636,22 +1627,30 @@
 
                     <button class="filter-button active"
                         data-filter="all">
+
                         Todos
+
                     </button>
 
                     <button class="filter-button"
                         data-filter="jerseys">
+
                         Jerseys
+
                     </button>
 
                     <button class="filter-button"
                         data-filter="clothing">
+
                         Vestuário
+
                     </button>
 
                     <button class="filter-button"
                         data-filter="accessories">
+
                         Acessórios
+
                     </button>
 
                 </div>
@@ -1698,7 +1697,7 @@
                 </div>
 
                 <img src="images/jersey2027.jpg"
-                    alt="Jersey oficial Red Vortex"
+                    alt="Jersey oficial IGNIS GAMING"
                     class="editorial-image">
 
             </div>
@@ -1716,14 +1715,9 @@
 
                 <a href="index.html" class="brand">
 
-                    <img src="./images/5.png"
-                        alt="Logo Red Vortex"
+                    <img src="./images/logocortada.png"
+                        alt="Logo IGNIS GAMING"
                         class="brand-mark">
-
-                    <span class="brand-name">
-                        RED <span>VORTEX</span>
-                    </span>
-
                 </a>
 
                 <p class="footer-brand-text">
@@ -1833,7 +1827,7 @@
         <div class="footer-bottom">
 
             <span>
-                © 2026 RED VORTEX. Todos os direitos reservados.
+                © 2026 IGNIS GAMING. Todos os direitos reservados.
             </span>
 
             <span>
@@ -1844,7 +1838,7 @@
 
     </footer>
 
-    <!-- Fundo do carrinho -->
+    <!-- Overlay do carrinho -->
     <div id="cart-overlay" class="cart-overlay"></div>
 
     <!-- Carrinho lateral -->
@@ -1896,7 +1890,7 @@
 
     </aside>
 
-    <!-- Modal de produto -->
+    <!-- Modal do produto -->
     <div id="product-modal" class="product-modal">
 
         <div class="modal-box">
@@ -1967,18 +1961,20 @@
                 image: 'images/jersey2027.jpg',
                 tag: 'NOVO',
                 sizes: ['P', 'M', 'G', 'GG'],
-                description: 'A camisa oficial da temporada 2027 do RED VORTEX. Desenvolvida para representar a equipe dentro e fora das competições.'
+                description:
+                    'A camisa oficial da temporada 2027 da IGNIS GAMING. Desenvolvida para representar a equipe dentro e fora das competições.'
             },
             {
                 id: 2,
-                name: 'Camiseta Red Vortex',
+                name: 'Camiseta IGNIS',
                 category: 'clothing',
                 categoryLabel: 'Vestuário',
                 price: 89.90,
                 image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=900',
                 tag: null,
                 sizes: ['P', 'M', 'G', 'GG'],
-                description: 'Camiseta essencial com identidade RED VORTEX para usar no dia a dia.'
+                description:
+                    'Camiseta essencial com a identidade IGNIS GAMING para usar no dia a dia.'
             },
             {
                 id: 3,
@@ -1989,7 +1985,8 @@
                 image: 'https://images.unsplash.com/photo-1556821840-3a63f95609b7?w=900',
                 tag: 'MAIS VENDIDO',
                 sizes: ['P', 'M', 'G', 'GG'],
-                description: 'Moletom oversized de alto conforto com visual urbano e acabamento inspirado no universo competitivo.'
+                description:
+                    'Moletom oversized de alto conforto com visual urbano e acabamento inspirado no universo competitivo.'
             },
             {
                 id: 4,
@@ -2000,7 +1997,8 @@
                 image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=900',
                 tag: null,
                 sizes: ['ÚNICO'],
-                description: 'Boné snapback com ajuste traseiro e visual minimalista da equipe.'
+                description:
+                    'Boné snapback com ajuste traseiro e visual minimalista da equipe.'
             },
             {
                 id: 5,
@@ -2011,7 +2009,8 @@
                 image: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=900',
                 tag: null,
                 sizes: ['P/M', 'G/GG'],
-                description: 'Manguito leve e confortável para completar o visual da equipe durante os treinos e campeonatos.'
+                description:
+                    'Manguito leve e confortável para completar o visual da equipe durante os treinos e campeonatos.'
             },
             {
                 id: 6,
@@ -2023,7 +2022,8 @@
                 tag: 'ESGOTADO',
                 soldOut: true,
                 sizes: ['ÚNICO'],
-                description: 'Mousepad de superfície ampla para setups competitivos. Produto temporariamente indisponível.'
+                description:
+                    'Mousepad de superfície ampla para setups competitivos. Produto temporariamente indisponível.'
             },
             {
                 id: 7,
@@ -2034,7 +2034,8 @@
                 image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=900',
                 tag: null,
                 sizes: ['ÚNICO'],
-                description: 'Garrafa térmica para acompanhar sua rotina de treinos, partidas e eventos.'
+                description:
+                    'Garrafa térmica para acompanhar sua rotina de treinos, partidas e eventos.'
             },
             {
                 id: 8,
@@ -2045,7 +2046,8 @@
                 image: 'https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=900',
                 tag: null,
                 sizes: ['ÚNICO'],
-                description: 'Kit de adesivos para personalizar seu setup, notebook ou acessórios.'
+                description:
+                    'Kit de adesivos para personalizar seu setup, notebook ou acessórios.'
             }
         ];
 
@@ -2059,7 +2061,7 @@
         let selectedSize = null;
 
         let cart = JSON.parse(
-            localStorage.getItem('vortex_cart')
+            localStorage.getItem('ignis_cart')
         ) || [];
 
         cart = cart.map(item => ({
@@ -2098,7 +2100,7 @@
 
         function saveCart() {
             localStorage.setItem(
-                'vortex_cart',
+                'ignis_cart',
                 JSON.stringify(cart)
             );
         }
@@ -2297,7 +2299,10 @@
         function closeCart() {
             cartOverlay.classList.remove('open');
             cartDrawer.classList.remove('open');
-            document.body.style.overflow = '';
+
+            if (!productModal.classList.contains('open')) {
+                document.body.style.overflow = '';
+            }
         }
 
         function openProductModal(productId) {
@@ -2330,6 +2335,7 @@
             `).join('');
 
             modalAddButton.disabled = product.soldOut;
+
             modalAddButton.textContent = product.soldOut
                 ? 'Produto esgotado'
                 : 'Adicionar ao carrinho';
@@ -2373,7 +2379,10 @@
 
             saveCart();
             updateCartInterface();
-            showToast(`${product.name} foi adicionado ao carrinho.`);
+
+            showToast(
+                `${product.name} foi adicionado ao carrinho.`
+            );
         }
 
         function changeQuantity(index, amount) {
@@ -2426,7 +2435,7 @@
             renderProducts();
         }
 
-        // Filtros da loja
+        // Filtros
         document.querySelectorAll('.filter-button').forEach(button => {
             button.addEventListener('click', () => {
                 setFilter(button.dataset.filter);
@@ -2455,7 +2464,7 @@
             }
         });
 
-        // Seleção de tamanhos
+        // Seleção de tamanho
         sizeOptions.addEventListener('click', event => {
             const option = event.target.closest('[data-size]');
 
@@ -2484,7 +2493,7 @@
             openCart();
         });
 
-        // Carrinho
+        // Eventos do carrinho
         cartButton.addEventListener('click', openCart);
         closeCartButton.addEventListener('click', closeCart);
         cartOverlay.addEventListener('click', closeCart);
@@ -2528,10 +2537,11 @@
             alert(
                 `Pedido demonstrativo realizado!\\n\\n` +
                 `Total: ${money.format(totalPrice)}\\n\\n` +
-                `Obrigado por apoiar o RED VORTEX!`
+                `Obrigado por apoiar a IGNIS GAMING!`
             );
 
             cart = [];
+
             saveCart();
             updateCartInterface();
             closeCart();
@@ -2604,5 +2614,4 @@
     </script>
 
 </body>
-
 </html>
