@@ -2570,6 +2570,783 @@ ul{
     }
 
 }
+/* =========================
+   ÚLTIMAS NOTÍCIAS
+========================= */
+
+.news-section{
+    position:relative;
+
+    width:100%;
+    padding:110px 7%;
+
+    background:#080808;
+
+    overflow:hidden;
+}
+
+.news-container{
+    max-width:1200px;
+    margin:0 auto;
+}
+
+.news-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+
+    gap:50px;
+
+    margin-bottom:50px;
+}
+
+.news-heading h2{
+    margin:0;
+
+    font-size:clamp(42px, 5vw, 64px);
+    line-height:1;
+
+    font-weight:800;
+
+    color:#fff;
+}
+
+.news-heading h2 span{
+    display:block;
+    color:#cfcfcf;
+}
+
+.news-heading p{
+    max-width:410px;
+
+    margin:0;
+
+    font-size:15px;
+    line-height:1.7;
+
+    color:#969696;
+}
+
+
+/* =========================
+   GRID
+========================= */
+
+.news-grid{
+    display:grid;
+
+    grid-template-columns:
+        1.6fr 1fr;
+
+    grid-template-rows:
+        1fr 1fr;
+
+    gap:20px;
+}
+
+.news-featured{
+    position:relative;
+
+    grid-row:span 2;
+
+    min-height:600px;
+
+    overflow:hidden;
+
+    text-decoration:none;
+
+    background:#151515;
+}
+
+.news-card{
+    position:relative;
+
+    min-height:290px;
+
+    overflow:hidden;
+
+    text-decoration:none;
+
+    background:#151515;
+}
+
+
+/* =========================
+   IMAGENS
+========================= */
+
+.news-featured img,
+.news-card img{
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    transition:
+        transform .6s ease;
+}
+
+.news-overlay{
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,.95) 0%,
+            rgba(0,0,0,.55) 50%,
+            rgba(0,0,0,.05) 100%
+        );
+}
+
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+.news-content{
+    position:absolute;
+
+    z-index:2;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    padding:30px;
+}
+
+.news-category{
+    display:block;
+
+    margin-bottom:10px;
+
+    font-size:10px;
+    font-weight:700;
+
+    letter-spacing:3px;
+
+    color:#c5c5c5;
+}
+
+.news-content h3{
+    max-width:650px;
+
+    margin:0;
+
+    font-size:28px;
+    line-height:1.15;
+
+    font-weight:800;
+
+    color:#fff;
+}
+
+.news-card .news-content h3{
+    font-size:21px;
+}
+
+.news-meta{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-top:20px;
+
+    font-size:11px;
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    color:#aaa;
+}
+
+.news-meta strong{
+    font-size:20px;
+
+    color:#fff;
+
+    transition:
+        transform .3s ease;
+}
+
+
+/* =========================
+   HOVER
+========================= */
+
+.news-featured:hover img,
+.news-card:hover img{
+    transform:scale(1.05);
+}
+
+.news-featured:hover .news-meta strong,
+.news-card:hover .news-meta strong{
+    transform:translateX(6px);
+}
+
+
+/* =========================
+   BOTÃO
+========================= */
+
+.news-footer{
+    display:flex;
+    justify-content:center;
+
+    margin-top:45px;
+}
+
+.news-button{
+    display:inline-flex;
+    align-items:center;
+
+    gap:18px;
+
+    padding:15px 24px;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-size:12px;
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    border:1px solid rgba(255,255,255,.25);
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        border-color .3s ease;
+}
+
+.news-button span{
+    font-size:19px;
+}
+
+.news-button:hover{
+    background:#fff;
+    color:#000;
+    border-color:#fff;
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width:900px){
+
+    .news-heading{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .news-grid{
+        grid-template-columns:1fr 1fr;
+        grid-template-rows:auto;
+    }
+
+    .news-featured{
+        grid-column:span 2;
+        grid-row:auto;
+
+        min-height:500px;
+    }
+
+}
+
+
+@media (max-width:600px){
+
+    .news-section{
+        padding:80px 6%;
+    }
+
+    .news-grid{
+        grid-template-columns:1fr;
+    }
+
+    .news-featured{
+        grid-column:auto;
+
+        min-height:420px;
+    }
+
+    .news-card{
+        min-height:320px;
+    }
+
+}
+
+/* =========================
+   PATROCINADORES
+========================= */
+
+.sponsors-section{
+    width:100%;
+    padding:100px 7%;
+
+    background:#0b0b0b;
+
+    border-top:1px solid rgba(255,255,255,.06);
+}
+
+.sponsors-container{
+    max-width:1200px;
+    margin:0 auto;
+}
+
+.sponsors-heading{
+    text-align:center;
+
+    max-width:650px;
+    margin:0 auto 55px;
+}
+
+.sponsors-heading .section-label{
+    margin-bottom:16px;
+}
+
+.sponsors-heading h2{
+    margin:0 0 20px;
+
+    font-size:clamp(38px, 5vw, 58px);
+    line-height:1.05;
+
+    font-weight:800;
+
+    color:#fff;
+}
+
+.sponsors-heading h2 span{
+    display:block;
+    color:#cfcfcf;
+}
+
+.sponsors-heading p{
+    max-width:550px;
+    margin:0 auto;
+
+    font-size:15px;
+    line-height:1.7;
+
+    color:#929292;
+}
+
+
+/* =========================
+   LOGOS
+========================= */
+
+/* =========================
+   GRID DE PATROCINADORES
+========================= */
+
+.sponsors-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    align-items:center;
+
+    border-top:1px solid rgba(255,255,255,.08);
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.sponsor-item{
+    min-height:150px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:30px 35px;
+
+    position:relative;
+
+    transition:
+        background .3s ease;
+}
+
+/* Divisórias entre os patrocinadores */
+
+.sponsor-item:not(:last-child)::after{
+    content:"";
+
+    position:absolute;
+
+    top:25%;
+    right:0;
+
+    width:1px;
+    height:50%;
+
+    background:rgba(255,255,255,.08);
+}
+
+
+/* LOGOS */
+
+.sponsor-item img{
+    max-width:170px;
+    max-height:65px;
+
+    width:auto;
+    height:auto;
+
+    object-fit:contain;
+
+    opacity:.55;
+
+    filter:grayscale(100%);
+
+    transition:
+        opacity .35s ease,
+        filter .35s ease,
+        transform .35s ease;
+}
+
+
+/* HOVER */
+
+.sponsor-item:hover{
+    background:rgba(255,255,255,.025);
+}
+
+.sponsor-item:hover img{
+    opacity:1;
+
+    filter:grayscale(0%);
+
+    transform:scale(1.05);
+}
+
+/* =========================
+   CHENNAI STORE
+========================= */
+
+.store-section{
+    position:relative;
+    width:100%;
+    padding:110px 7%;
+    background:#080808;
+    overflow:hidden;
+}
+
+.store-container{
+    max-width:1200px;
+    margin:0 auto;
+}
+
+
+/* =========================
+   CABEÇALHO
+========================= */
+
+.store-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:40px;
+    margin-bottom:50px;
+}
+
+.store-heading h2{
+    margin:0;
+    font-size:clamp(42px,5vw,64px);
+    line-height:1;
+    font-weight:800;
+    color:#fff;
+}
+
+.store-heading h2 span{
+    display:block;
+    color:#cfcfcf;
+}
+
+
+/* BOTÃO */
+
+.store-button{
+    display:inline-flex;
+    align-items:center;
+    gap:18px;
+
+    padding:15px 24px;
+
+    color:#fff;
+    text-decoration:none;
+
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:1px;
+
+    border:1px solid rgba(255,255,255,.25);
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        border-color .3s ease;
+}
+
+.store-button span{
+    font-size:19px;
+}
+
+.store-button:hover{
+    background:#fff;
+    color:#000;
+    border-color:#fff;
+}
+
+
+/* =========================
+   SLIDER
+========================= */
+
+.store-slider{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+
+/* ÁREA DOS PRODUTOS */
+
+.store-track{
+    width:100%;
+
+    display:flex;
+    gap:20px;
+
+    overflow:hidden;
+
+    scroll-behavior:smooth;
+
+    scrollbar-width:none;
+}
+
+.store-track::-webkit-scrollbar{
+    display:none;
+}
+
+
+/* =========================
+   CARD
+========================= */
+.product-card{
+    flex:0 0 calc((100% - 60px) / 4);
+
+    display:block;
+
+    color:#fff;
+    text-decoration:none;
+
+    background:#111;
+
+    transition:
+        transform .35s ease,
+        background .35s ease;
+}
+
+.product-card:hover{
+    transform:translateY(-6px);
+    background:#151515;
+}
+
+/* IMAGEM */
+
+.product-image{
+    position:relative;
+
+    width:100%;
+    aspect-ratio:1 / 1.15;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+
+    background:#151515;
+}
+
+.product-image img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    transition:transform .5s ease;
+}
+
+.product-card:hover .product-image img{
+    transform:scale(1.05);
+}
+
+
+/* INFORMAÇÕES */
+
+.product-info{
+    padding:22px;
+}
+
+.product-info span{
+    display:block;
+
+    margin-bottom:8px;
+
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:2px;
+
+    color:#888;
+}
+
+.product-info h3{
+    margin:0 0 12px;
+
+    font-size:19px;
+    line-height:1.2;
+    font-weight:700;
+
+    color:#fff;
+}
+
+.product-info strong{
+    font-size:15px;
+    font-weight:600;
+
+    color:#cfcfcf;
+}
+
+
+/* =========================
+   SETAS
+========================= */
+
+.store-arrow{
+    flex-shrink:0;
+
+    width:46px;
+    height:46px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid rgba(255,255,255,.2);
+
+    background:transparent;
+
+    color:#fff;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        border-color .3s ease;
+}
+
+.store-arrow:hover{
+    background:#fff;
+    color:#000;
+    border-color:#fff;
+}
+
+
+/* =========================
+   DOTS
+========================= */
+
+.store-dots{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+
+    margin-top:30px;
+}
+
+.store-dot{
+    width:7px;
+    height:7px;
+
+    padding:0;
+
+    border:0;
+
+    border-radius:50%;
+
+    background:#444;
+
+    cursor:pointer;
+
+    transition:
+        width .3s ease,
+        background .3s ease;
+}
+
+.store-dot.active{
+    width:25px;
+    border-radius:10px;
+    background:#fff;
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width:900px){
+
+    .store-heading{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .product-card{
+        flex:0 0 calc((100% - 20px) / 2);
+    }
+
+}
+
+
+@media (max-width:600px){
+
+    .store-section{
+        padding:80px 6%;
+    }
+
+    .store-slider{
+        gap:10px;
+    }
+
+    .product-card{
+        flex:0 0 100%;
+    }
+
+    .store-arrow{
+        width:40px;
+        height:40px;
+    }
+
+    .product-image{
+        aspect-ratio:1 / 1;
+    }
+
+}
+
 </style>
 </head>
 
@@ -3073,644 +3850,135 @@ ul{
 
 </section>
 
-<!-- =====================================================
-     RESULTADOS
-===================================================== -->
+<section class="news-section" id="noticias">
 
-<section
-    class="section section-dark"
-    id="results"
->
+    <div class="news-container">
 
-    <div class="container">
-
-        <div class="section-header reveal">
+        <div class="news-heading">
 
             <div>
-                <span class="section-kicker">
-                    Últimas partidas
-                </span>
+                <span class="section-label">CHENNAI NEWS</span>
 
-                <h2 class="section-title">
-                    Resultados
+                <h2>
+                    Últimas
+                    <span>notícias.</span>
                 </h2>
             </div>
 
-            <p class="section-description">
-                Alguns dos confrontos mais recentes das nossas
-                equipes competitivas.
+            <p>
+                Acompanhe as novidades, anúncios e acontecimentos
+                da Chennai dentro e fora dos servidores.
             </p>
 
         </div>
 
 
-        <div class="results-grid reveal">
+        <div class="news-grid">
 
-            <article class="result-card">
+            <!-- NOTÍCIA PRINCIPAL -->
 
-                <div class="result-date">
-                    19 SET 2026
-                </div>
+            <a href="#" class="news-featured">
 
-                <div class="result-game">
-                    MCT Americas 2026 2* Etapa — Grande Final
-                </div>
+                <img
+                    src="images/news-01.jpg"
+                    alt="Notícia em destaque da Chennai"
+                >
 
-                <div class="result-teams">
-
-                    <div class="result-team">
-                        <span class="team-name">
-                            Chennai
-                        </span>
-
-                        <span class="score">
-                            4
-                        </span>
-                    </div>
-
-                    <div class="result-team">
-                        <span class="team-name">
-                            Alpha7
-                        </span>
-
-                        <span class="score">
-                            1
-                        </span>
-                    </div>
-
-                </div>
-
-                <div class="result-status">
-                    Vitória
-                </div>
-
-            </article>
-
-
-            <article class="result-card">
-
-                <div class="result-date">
-                    09 JUN 2025
-                </div>
-
-                <div class="result-game">
-                    Valorant Champions 2026 - Fase de Grupos
-                    Grupo B
-                </div>
-
-                <div class="result-teams">
-
-                    <div class="result-team">
-                        <span class="team-name">
-                            Chennai
-                        </span>
-
-                        <span class="score">
-                            13
-                        </span>
-                    </div>
-
-                    <div class="result-team">
-                        <span class="team-name">
-                            FENNEL
-                        </span>
-
-                        <span class="score">
-                            9
-                        </span>
-                    </div>
-
-                </div>
-
-                <div class="result-status">
-                    Vitória
-                </div>
-
-            </article>
-
-
-            <article class="result-card">
-
-                <div class="result-date">
-                    04 JUN 2025
-                </div>
-
-                <div class="result-game">
-                    WORLDS 2026 - FASE SUÍÇA
-                </div>
-
-                <div class="result-teams">
-
-                    <div class="result-team">
-                        <span class="team-name">
-                            Chennai
-                        </span>
-
-                        <span class="score">
-                            0
-                        </span>
-                    </div>
-
-                    <div class="result-team">
-                        <span class="team-name">
-                            Phoenix
-                        </span>
-
-                        <span class="score">
-                            2
-                        </span>
-                    </div>
-
-                </div>
-
-                <div class="result-status">
-                    Derrota
-                </div>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     UPCOMING MATCHES
-===================================================== -->
-
-<section
-    class="section section-dark"
-    id="matches"
->
-
-    <div class="container">
-
-        <div class="section-header reveal">
-
-            <div>
-                <span class="section-kicker">
-                    Schedule
-                </span>
-
-                <h2 class="section-title">
-                    Upcoming
-                </h2>
-            </div>
-
-            <p class="section-description">
-                Confira os próximos confrontos das equipes Chennai.
-            </p>
-
-        </div>
-
-
-        <div class="matches reveal">
-
-            <article class="match">
-
-                <div class="match-date">
-                    21 JUN<br>
-                    19:00
-                </div>
-
-                <div class="match-opponents">
-
-                    <span class="match-team">
-                        Chennai
-                    </span>
-
-                    <span class="match-vs">
-                        VS
-                    </span>
-
-                    <span class="match-team">
-                        Eclipse
-                    </span>
-
-                </div>
-
-                <div class="match-game">
-                    Valorant
-                </div>
-
-                <div class="match-action">
-                    <a
-                        href="#contact"
-                        class="btn btn-outline"
-                    >
-                        Details
-                    </a>
-                </div>
-
-            </article>
-
-
-            <article class="match">
-
-                <div class="match-date">
-                    25 JUN<br>
-                    20:30
-                </div>
-
-                <div class="match-opponents">
-
-                    <span class="match-team">
-                        Chennai
-                    </span>
-
-                    <span class="match-vs">
-                        VS
-                    </span>
-
-                    <span class="match-team">
-                        Vortex
-                    </span>
-
-                </div>
-
-                <div class="match-game">
-                    Counter-Strike 2
-                </div>
-
-                <div class="match-action">
-                    <a
-                        href="#contact"
-                        class="btn btn-outline"
-                    >
-                        Details
-                    </a>
-                </div>
-
-            </article>
-
-
-            <article class="match">
-
-                <div class="match-date">
-                    28 JUN<br>
-                    18:00
-                </div>
-
-                <div class="match-opponents">
-
-                    <span class="match-team">
-                        Chennai
-                    </span>
-
-                    <span class="match-vs">
-                        VS
-                    </span>
-
-                    <span class="match-team">
-                        Horizon
-                    </span>
-
-                </div>
-
-                <div class="match-game">
-                    Mobile Legends
-                </div>
-
-                <div class="match-action">
-                    <a
-                        href="#contact"
-                        class="btn btn-outline"
-                    >
-                        Details
-                    </a>
-                </div>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     TEAMS
-===================================================== -->
-
-<section
-    class="section"
-    id="teams"
->
-
-    <div class="container">
-
-        <div class="section-header reveal">
-
-            <div>
-                <span class="section-kicker">
-                    Competitive Division
-                </span>
-
-                <h2 class="section-title">
-                    Teams
-                </h2>
-            </div>
-
-            <p class="section-description">
-                Nossas equipes representam a identidade Chennai
-                em diferentes títulos competitivos.
-            </p>
-
-        </div>
-
-
-        <div class="team-grid reveal">
-
-            <article class="team-card">
-
-                <span class="team-number">
-                    01
-                </span>
-
-                <div class="team-card-content">
-
-                    <h3>
-                        Valorant
-                    </h3>
-
-                    <p>
-                        Main Roster
-                    </p>
-
-                </div>
-
-            </article>
-
-
-            <article class="team-card">
-
-                <span class="team-number">
-                    02
-                </span>
-
-                <div class="team-card-content">
-
-                    <h3>
-                        CS2
-                    </h3>
-
-                    <p>
-                        Competitive Division
-                    </p>
-
-                </div>
-
-            </article>
-
-
-            <article class="team-card">
-
-                <span class="team-number">
-                    03
-                </span>
-
-                <div class="team-card-content">
-
-                    <h3>
-                        Mobile
-                    </h3>
-
-                    <p>
-                        Mobile Division
-                    </p>
-
-                </div>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     PLAYERS
-===================================================== -->
-
-<section
-    class="section"
-    id="players"
->
-
-    <div class="container">
-
-        <div class="section-header reveal">
-
-            <div>
-                <span class="section-kicker">
-                    Roster
-                </span>
-
-                <h2 class="section-title">
-                    Players
-                </h2>
-            </div>
-
-            <p class="section-description">
-                Talento, disciplina e identidade dentro de cada lineup.
-            </p>
-
-        </div>
-
-
-        <div class="players-grid reveal">
-
-            <article class="player-card">
-
-                <div class="player-image">
-                    01
-                </div>
-
-                <div class="player-overlay"></div>
-
-                <div class="player-info">
-
-                    <div class="player-role">
-                        Duelist
-                    </div>
-
-                    <div class="player-name">
-                        Arjun
-                    </div>
-
-                </div>
-
-            </article>
-
-
-            <article class="player-card">
-
-                <div class="player-image">
-                    02
-                </div>
-
-                <div class="player-overlay"></div>
-
-                <div class="player-info">
-
-                    <div class="player-role">
-                        Controller
-                    </div>
-
-                    <div class="player-name">
-                        Raze
-                    </div>
-
-                </div>
-
-            </article>
-
-
-            <article class="player-card">
-
-                <div class="player-image">
-                    03
-                </div>
-
-                <div class="player-overlay"></div>
-
-                <div class="player-info">
-
-                    <div class="player-role">
-                        Initiator
-                    </div>
-
-                    <div class="player-name">
-                        Kiran
-                    </div>
-
-                </div>
-
-            </article>
-
-
-            <article class="player-card">
-
-                <div class="player-image">
-                    04
-                </div>
-
-                <div class="player-overlay"></div>
-
-                <div class="player-info">
-
-                    <div class="player-role">
-                        Sentinel
-                    </div>
-
-                    <div class="player-name">
-                        Vikram
-                    </div>
-
-                </div>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     NEWS
-===================================================== -->
-
-<section
-    class="section section-light"
-    id="news"
->
-
-    <div class="container">
-
-        <div class="section-header reveal">
-
-            <div>
-                <span class="section-kicker">
-                    Latest
-                </span>
-
-                <h2 class="section-title">
-                    News
-                </h2>
-            </div>
-
-            <p class="section-description">
-                Notícias, anúncios e atualizações da organização.
-            </p>
-
-        </div>
-
-
-        <div class="news-grid reveal">
-
-            <article class="news-card featured">
+                <div class="news-overlay"></div>
 
                 <div class="news-content">
 
-                    <div class="news-date">
-                        18 JUN 2025
-                    </div>
+                    <span class="news-category">
+                        DESTAQUE
+                    </span>
 
                     <h3>
-                        Chennai anuncia nova fase
-                        competitiva para a temporada.
+                        Chennai anuncia novidades
+                        para a próxima temporada
                     </h3>
+
+                    <div class="news-meta">
+                        <span>02 OUT 2026</span>
+                        <strong>→</strong>
+                    </div>
 
                 </div>
 
-            </article>
+            </a>
 
 
-            <article class="news-card">
+            <!-- NOTÍCIA 2 -->
+
+            <a href="#" class="news-card">
+
+                <img
+                    src="images/news-02.jpg"
+                    alt="Notícia da Chennai"
+                >
+
+                <div class="news-overlay"></div>
 
                 <div class="news-content">
 
-                    <div class="news-date">
-                        12 JUN 2025
-                    </div>
+                    <span class="news-category">
+                        COMPETIÇÃO
+                    </span>
 
                     <h3>
-                        Novo roster entra em preparação
-                        para os próximos torneios.
+                        Chennai se prepara
+                        para novo desafio
                     </h3>
+
+                    <div class="news-meta">
+                        <span>28 SET 2026</span>
+                        <strong>→</strong>
+                    </div>
 
                 </div>
 
-            </article>
+            </a>
 
 
-            <article class="news-card">
+            <!-- NOTÍCIA 3 -->
+
+            <a href="#" class="news-card">
+
+                <img
+                    src="images/news-03.jpg"
+                    alt="Notícia da Chennai"
+                >
+
+                <div class="news-overlay"></div>
 
                 <div class="news-content">
 
-                    <div class="news-date">
-                        05 JUN 2025
-                    </div>
+                    <span class="news-category">
+                        ORGANIZAÇÃO
+                    </span>
 
                     <h3>
-                        Chennai abre novas oportunidades
-                        para a comunidade.
+                        Conheça as novidades
+                        da Chennai
                     </h3>
+
+                    <div class="news-meta">
+                        <span>25 SET 2026</span>
+                        <strong>→</strong>
+                    </div>
 
                 </div>
 
-            </article>
+            </a>
+
+        </div>
+
+
+        <div class="news-footer">
+
+            <a href="noticias.html" class="news-button">
+                VER TODAS AS NOTÍCIAS
+                <span>→</span>
+            </a>
 
         </div>
 
@@ -3718,175 +3986,58 @@ ul{
 
 </section>
 
+<!-- PATROCÍNIOS
+-->
 
+<section class="sponsors-section" id="patrocinadores">
 
-<!-- =====================================================
-     ACHIEVEMENTS
-===================================================== -->
+    <div class="sponsors-container">
 
-<section class="section">
+        <div class="sponsors-heading">
 
-    <div class="container">
+            <span class="section-label">PARCEIROS</span>
 
-        <div class="section-header reveal">
+            <h2>
+                Quem está
+                <span>com a Chennai.</span>
+            </h2>
 
-            <div>
-                <span class="section-kicker">
-                    Hall of Fame
-                </span>
-
-                <h2 class="section-title">
-                    Achievements
-                </h2>
-            </div>
-
-            <p class="section-description">
-                Alguns dos momentos marcantes da história competitiva
-                da Chennai.
+            <p>
+                Empresas e marcas que acreditam no nosso projeto
+                e fazem parte da nossa jornada.
             </p>
 
         </div>
 
 
-        <div class="achievement-list reveal">
+        <div class="sponsors-grid">
 
-            <article class="achievement">
-
-                <div class="achievement-number">
-                    01
-                </div>
-
-                <div class="achievement-title">
-                    Championship Winner
-                </div>
-
-                <div class="achievement-event">
-                    Chennai Invitational
-                </div>
-
-            </article>
-
-
-            <article class="achievement">
-
-                <div class="achievement-number">
-                    02
-                </div>
-
-                <div class="achievement-title">
-                    Grand Final
-                </div>
-
-                <div class="achievement-event">
-                    Regional Masters
-                </div>
-
-            </article>
-
-
-            <article class="achievement">
-
-                <div class="achievement-number">
-                    03
-                </div>
-
-                <div class="achievement-title">
-                    Top 4
-                </div>
-
-                <div class="achievement-event">
-                    Open Championship
-                </div>
-
-            </article>
-
-
-            <article class="achievement">
-
-                <div class="achievement-number">
-                    04
-                </div>
-
-                <div class="achievement-title">
-                    Community Award
-                </div>
-
-                <div class="achievement-event">
-                    Esports Awards
-                </div>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     ABOUT
-===================================================== -->
-
-<section
-    class="section section-light"
-    id="about"
->
-
-    <div class="container">
-
-        <div class="about-grid reveal">
-
-            <div>
-
-                <span class="section-kicker">
-                    About Chennai
-                </span>
-
-                <h2 class="about-big">
-                    More Than<br>
-                    A Team.
-                </h2>
-
+            <div class="sponsor-item">
+                <img
+                    src="images/sponsor-01.png"
+                    alt="Patrocinador Chennai"
+                >
             </div>
 
+            <div class="sponsor-item">
+                <img
+                    src="images/sponsor-02.png"
+                    alt="Patrocinador Chennai"
+                >
+            </div>
 
-            <div class="about-text">
+            <div class="sponsor-item">
+                <img
+                    src="images/sponsor-03.png"
+                    alt="Patrocinador Chennai"
+                >
+            </div>
 
-                <p>
-                    Chennai nasceu com uma ideia simples:
-                    construir uma organização de esports com
-                    identidade forte e ambição competitiva.
-                </p>
-
-                <p>
-                    Nossa missão é reunir jogadores, criadores,
-                    fãs e parceiros em torno de uma cultura baseada
-                    em performance, disciplina e comunidade.
-                </p>
-
-
-                <div class="about-points">
-
-                    <div class="about-point">
-                        Competitive Excellence
-                    </div>
-
-                    <div class="about-point">
-                        Strong Identity
-                    </div>
-
-                    <div class="about-point">
-                        Community First
-                    </div>
-
-                    <div class="about-point">
-                        Long-Term Vision
-                    </div>
-
-                </div>
-
+            <div class="sponsor-item">
+                <img
+                    src="images/sponsor-04.png"
+                    alt="Patrocinador Chennai"
+                >
             </div>
 
         </div>
@@ -3896,204 +4047,520 @@ ul{
 </section>
 
 
+    <!-- =========================
+     CHENNAI STORE
+========================= -->
 
-<!-- =====================================================
-     SPONSORS
-===================================================== -->
+<section class="store-section" id="loja">
 
-<section class="section">
+    <div class="store-container">
 
-    <div class="container">
+        <!-- CABEÇALHO -->
 
-        <div class="section-header reveal">
+        <div class="store-heading">
 
             <div>
-                <span class="section-kicker">
-                    Partners
+
+                <span class="section-label">
+                    CHENNAI STORE
                 </span>
 
-                <h2 class="section-title">
-                    Sponsors
+                <h2>
+                    Vista a
+                    <span>identidade.</span>
                 </h2>
+
             </div>
 
-            <p class="section-description">
-                Marcas e parceiros que fazem parte da nossa jornada.
-            </p>
+            <a href="loja.html" class="store-button">
+                VER LOJA
+                <span>→</span>
+            </a>
 
         </div>
 
 
-        <div class="sponsors-grid reveal">
+        <!-- SLIDER -->
 
-            <div class="sponsor">
-                Partner 01
-            </div>
+        <div class="store-slider">
 
-            <div class="sponsor">
-                Partner 02
-            </div>
-
-            <div class="sponsor">
-                Partner 03
-            </div>
-
-            <div class="sponsor">
-                Partner 04
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     CONTACT
-===================================================== -->
-
-<section
-    class="section"
-    id="contact"
->
-
-    <div class="container">
-
-        <div class="contact-grid reveal">
-
-            <div>
-
-                <span class="section-kicker">
-                    Get In Touch
-                </span>
-
-                <h2 class="contact-title">
-                    Let's<br>
-                    Talk.
-                </h2>
-
-                <p class="contact-description">
-                    Tem uma proposta, oportunidade de parceria,
-                    mídia ou assunto relacionado à Chennai?
-                    Entre em contato com nossa equipe.
-                </p>
-
-            </div>
-
-
-            <form
-                class="contact-form"
-                id="contactForm"
+            <button
+                class="store-arrow store-prev"
+                type="button"
+                aria-label="Produto anterior"
             >
-
-                <!-- Web3Forms -->
-                <input
-                    type="hidden"
-                    name="access_key"
-                    value="YOUR_WEB3FORMS_ACCESS_KEY"
-                >
-
-                <input
-                    type="hidden"
-                    name="subject"
-                    value="Nova mensagem pelo site Chennai Esports"
-                >
-
-                <input
-                    type="hidden"
-                    name="from_name"
-                    value="Chennai Esports Website"
-                >
-
-                <div class="form-group">
-
-                    <label for="name">
-                        Nome
-                    </label>
-
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        placeholder="Seu nome"
-                        required
-                    >
-
-                </div>
+                ←
+            </button>
 
 
-                <div class="form-group">
-
-                    <label for="email">
-                        Email
-                    </label>
-
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="seu@email.com"
-                        required
-                    >
-
-                </div>
+            <div class="store-track">
 
 
-                <div class="form-group">
+                <!-- PRODUTO 01 -->
 
-                    <label for="subject">
-                        Assunto
-                    </label>
+                <a href="loja.html" class="product-card">
 
-                    <input
-                        type="text"
-                        id="subject"
-                        name="subject"
-                        placeholder="Como podemos ajudar?"
-                        required
-                    >
+                    <div class="product-image">
 
-                </div>
+                        <img
+                            src="images/produto-01.png"
+                            alt="Camisa Chennai Home"
+                        >
 
+                    </div>
 
-                <div class="form-group">
+                    <div class="product-info">
 
-                    <label for="message">
-                        Mensagem
-                    </label>
+                        <span>CHENNAI COLLECTION</span>
 
-                    <textarea
-                        id="message"
-                        name="message"
-                        placeholder="Escreva sua mensagem..."
-                        required
-                    ></textarea>
+                        <h3>Camisa Chennai Home</h3>
 
-                </div>
+                        <strong>R$ 149,90</strong>
+
+                    </div>
+
+                </a>
 
 
-                <div class="form-submit">
+                <!-- PRODUTO 02 -->
 
-                    <button
-                        type="submit"
-                        class="btn btn-primary"
-                    >
-                        Send Message
-                    </button>
+                <a href="loja.html" class="product-card">
 
-                </div>
+                    <div class="product-image">
 
-            </form>
+                        <img
+                            src="images/produto-02.png"
+                            alt="Camisa Chennai Away"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <span>CHENNAI COLLECTION</span>
+
+                        <h3>Camisa Chennai Away</h3>
+
+                        <strong>R$ 149,90</strong>
+
+                    </div>
+
+                </a>
+
+
+                <!-- PRODUTO 03 -->
+
+                <a href="loja.html" class="product-card">
+
+                    <div class="product-image">
+
+                        <img
+                            src="images/produto-03.png"
+                            alt="Camisa Chennai Black"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <span>CHENNAI COLLECTION</span>
+
+                        <h3>Camisa Chennai Black</h3>
+
+                        <strong>R$ 159,90</strong>
+
+                    </div>
+
+                </a>
+
+
+                <!-- PRODUTO 04 -->
+
+                <a href="loja.html" class="product-card">
+
+                    <div class="product-image">
+
+                        <img
+                            src="images/produto-04.png"
+                            alt="Camiseta Chennai"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <span>CHENNAI COLLECTION</span>
+
+                        <h3>Camiseta Chennai</h3>
+
+                        <strong>R$ 119,90</strong>
+
+                    </div>
+
+                </a>
+
+
+                <!-- PRODUTO 05 -->
+
+                <a href="loja.html" class="product-card">
+
+                    <div class="product-image">
+
+                        <img
+                            src="images/produto-05.png"
+                            alt="Camiseta Chennai Oversized"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <span>CHENNAI COLLECTION</span>
+
+                        <h3>Camiseta Oversized</h3>
+
+                        <strong>R$ 129,90</strong>
+
+                    </div>
+
+                </a>
+
+
+                <!-- PRODUTO 06 -->
+
+                <a href="loja.html" class="product-card">
+
+                    <div class="product-image">
+
+                        <img
+                            src="images/produto-06.png"
+                            alt="Moletom Chennai"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <span>CHENNAI COLLECTION</span>
+
+                        <h3>Moletom Chennai</h3>
+
+                        <strong>R$ 249,90</strong>
+
+                    </div>
+
+                </a>
+
+
+                <!-- PRODUTO 07 -->
+
+                <a href="loja.html" class="product-card">
+
+                    <div class="product-image">
+
+                        <img
+                            src="images/produto-07.png"
+                            alt="Jaqueta Chennai"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <span>CHENNAI COLLECTION</span>
+
+                        <h3>Jaqueta Chennai</h3>
+
+                        <strong>R$ 299,90</strong>
+
+                    </div>
+
+                </a>
+
+
+                <!-- PRODUTO 08 -->
+
+                <a href="loja.html" class="product-card">
+
+                    <div class="product-image">
+
+                        <img
+                            src="images/produto-08.png"
+                            alt="Boné Chennai"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <span>CHENNAI COLLECTION</span>
+
+                        <h3>Boné Chennai</h3>
+
+                        <strong>R$ 89,90</strong>
+
+                    </div>
+
+                </a>
+
+
+                <!-- PRODUTO 09 -->
+
+                <a href="loja.html" class="product-card">
+
+                    <div class="product-image">
+
+                        <img
+                            src="images/produto-09.png"
+                            alt="Bucket Hat Chennai"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <span>CHENNAI COLLECTION</span>
+
+                        <h3>Bucket Hat Chennai</h3>
+
+                        <strong>R$ 99,90</strong>
+
+                    </div>
+
+                </a>
+
+
+                <!-- PRODUTO 10 -->
+
+                <a href="loja.html" class="product-card">
+
+                    <div class="product-image">
+
+                        <img
+                            src="images/produto-10.png"
+                            alt="Calça Chennai"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <span>CHENNAI COLLECTION</span>
+
+                        <h3>Calça Chennai</h3>
+
+                        <strong>R$ 219,90</strong>
+
+                    </div>
+
+                </a>
+
+
+                <!-- PRODUTO 11 -->
+
+                <a href="loja.html" class="product-card">
+
+                    <div class="product-image">
+
+                        <img
+                            src="images/produto-11.png"
+                            alt="Shorts Chennai"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <span>CHENNAI COLLECTION</span>
+
+                        <h3>Shorts Chennai</h3>
+
+                        <strong>R$ 109,90</strong>
+
+                    </div>
+
+                </a>
+
+
+                <!-- PRODUTO 12 -->
+
+                <a href="loja.html" class="product-card">
+
+                    <div class="product-image">
+
+                        <img
+                            src="images/produto-12.png"
+                            alt="Meias Chennai"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <span>CHENNAI COLLECTION</span>
+
+                        <h3>Meias Chennai</h3>
+
+                        <strong>R$ 39,90</strong>
+
+                    </div>
+
+                </a>
+
+
+                <!-- PRODUTO 13 -->
+
+                <a href="loja.html" class="product-card">
+
+                    <div class="product-image">
+
+                        <img
+                            src="images/produto-13.png"
+                            alt="Caneca Chennai"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <span>CHENNAI COLLECTION</span>
+
+                        <h3>Caneca Chennai</h3>
+
+                        <strong>R$ 49,90</strong>
+
+                    </div>
+
+                </a>
+
+
+                <!-- PRODUTO 14 -->
+
+                <a href="loja.html" class="product-card">
+
+                    <div class="product-image">
+
+                        <img
+                            src="images/produto-14.png"
+                            alt="Garrafa Chennai"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <span>CHENNAI COLLECTION</span>
+
+                        <h3>Garrafa Chennai</h3>
+
+                        <strong>R$ 79,90</strong>
+
+                    </div>
+
+                </a>
+
+
+                <!-- PRODUTO 15 -->
+
+                <a href="loja.html" class="product-card">
+
+                    <div class="product-image">
+
+                        <img
+                            src="images/produto-15.png"
+                            alt="Mousepad Chennai"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <span>CHENNAI COLLECTION</span>
+
+                        <h3>Mousepad Chennai</h3>
+
+                        <strong>R$ 99,90</strong>
+
+                    </div>
+
+                </a>
+
+
+                <!-- PRODUTO 16 -->
+
+                <a href="loja.html" class="product-card">
+
+                    <div class="product-image">
+
+                        <img
+                            src="images/produto-16.png"
+                            alt="Chaveiro Chennai"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <span>CHENNAI COLLECTION</span>
+
+                        <h3>Chaveiro Chennai</h3>
+
+                        <strong>R$ 29,90</strong>
+
+                    </div>
+
+                </a>
+
+
+            </div>
+
+
+            <!-- SETA DIREITA -->
+
+            <button
+                class="store-arrow store-next"
+                type="button"
+                aria-label="Próximo produto"
+            >
+                →
+            </button>
+
+        </div>
+
+
+        <!-- INDICADORES -->
+
+        <div class="store-dots">
+
+            <button
+                class="store-dot active"
+                type="button"
+                aria-label="Ir para produtos 1 a 4"
+            ></button>
+
+            <button
+                class="store-dot"
+                type="button"
+                aria-label="Ir para produtos 5 a 8"
+            ></button>
+
+            <button
+                class="store-dot"
+                type="button"
+                aria-label="Ir para produtos 9 a 12"
+            ></button>
+
+            <button
+                class="store-dot"
+                type="button"
+                aria-label="Ir para produtos 13 a 16"
+            ></button>
 
         </div>
 
     </div>
 
 </section>
-
-
 
 <!-- =====================================================
      FOOTER
@@ -4709,7 +5176,217 @@ document.addEventListener("DOMContentLoaded", () => {
     if(year){
         year.textContent = new Date().getFullYear();
     }
+/* =========================
+   CHENNAI STORE SLIDER
+========================= */
 
+const storeTrack =
+    document.querySelector(".store-track");
+
+const storeProducts =
+    document.querySelectorAll(".product-card");
+
+const storePrev =
+    document.querySelector(".store-prev");
+
+const storeNext =
+    document.querySelector(".store-next");
+
+const storeDots =
+    document.querySelectorAll(".store-dot");
+
+
+let storeIndex = 0;
+
+
+/* =========================
+   PRODUTOS POR PÁGINA
+========================= */
+
+function getProductsPerPage(){
+
+    if(window.innerWidth <= 600){
+        return 1;
+    }
+
+    if(window.innerWidth <= 900){
+        return 2;
+    }
+
+    return 4;
+}
+
+
+/* =========================
+   ATUALIZA SLIDER
+========================= */
+
+function updateStoreSlider(){
+
+    if(!storeTrack || !storeProducts.length){
+        return;
+    }
+
+
+    const productsPerPage =
+        getProductsPerPage();
+
+
+    const totalPages =
+        Math.ceil(
+            storeProducts.length /
+            productsPerPage
+        );
+
+
+    if(storeIndex >= totalPages){
+        storeIndex = totalPages - 1;
+    }
+
+
+    const trackWidth =
+        storeTrack.clientWidth;
+
+
+    storeTrack.scrollTo({
+
+        left:
+            storeIndex *
+            trackWidth,
+
+        behavior:"smooth"
+
+    });
+
+
+    storeDots.forEach(
+        (dot,index)=>{
+
+            dot.classList.toggle(
+                "active",
+                index === storeIndex
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================
+   PRÓXIMO
+========================= */
+
+storeNext?.addEventListener(
+    "click",
+    ()=>{
+
+        const productsPerPage =
+            getProductsPerPage();
+
+
+        const totalPages =
+            Math.ceil(
+                storeProducts.length /
+                productsPerPage
+            );
+
+
+        storeIndex++;
+
+
+        if(storeIndex >= totalPages){
+
+            storeIndex = 0;
+
+        }
+
+
+        updateStoreSlider();
+
+    }
+);
+
+
+/* =========================
+   ANTERIOR
+========================= */
+
+storePrev?.addEventListener(
+    "click",
+    ()=>{
+
+        const productsPerPage =
+            getProductsPerPage();
+
+
+        const totalPages =
+            Math.ceil(
+                storeProducts.length /
+                productsPerPage
+            );
+
+
+        storeIndex--;
+
+
+        if(storeIndex < 0){
+
+            storeIndex =
+                totalPages - 1;
+
+        }
+
+
+        updateStoreSlider();
+
+    }
+);
+
+
+/* =========================
+   DOTS
+========================= */
+
+storeDots.forEach(
+    (dot,index)=>{
+
+        dot.addEventListener(
+            "click",
+            ()=>{
+
+                storeIndex = index;
+
+                updateStoreSlider();
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+window.addEventListener(
+    "resize",
+    ()=>{
+        
+        storeIndex = 0;
+
+        updateStoreSlider();
+
+    }
+);
+
+
+/* =========================
+   INICIALIZA
+========================= */
+
+updateStoreSlider();
 });
 
 </script>
