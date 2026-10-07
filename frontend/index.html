@@ -761,216 +761,6 @@ ul{
 }
 
 /* =========================================================
-   STATS
-========================================================= */
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-
-    border-top:1px solid #ddd;
-    border-left:1px solid #ddd;
-}
-
-.stat{
-    padding:45px 30px;
-
-    border-right:1px solid #ddd;
-    border-bottom:1px solid #ddd;
-}
-
-.stat-number{
-    font-size:clamp(42px,6vw,76px);
-    line-height:1;
-
-    font-weight:950;
-    letter-spacing:-4px;
-}
-
-.stat-label{
-    margin-top:12px;
-
-    font-size:11px;
-    font-weight:800;
-    letter-spacing:2px;
-    text-transform:uppercase;
-
-    color:#777;
-}
-
-
-/* =========================================================
-   RESULTS
-========================================================= */
-
-.results-grid{
-    display:grid;
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:1px;
-
-    background:#1b1b1b;
-}
-
-.result-card{
-    background:#414040;
-
-    padding:35px;
-
-    min-height:290px;
-
-    position:relative;
-
-    transition:
-        background .3s ease,
-        transform .3s var(--ease);
-}
-
-.result-card:hover{
-    background:#151515;
-    transform:translateY(-5px);
-}
-
-.result-date{
-    color:#777;
-
-    font-size:10px;
-    font-weight:800;
-    letter-spacing:2px;
-    text-transform:uppercase;
-}
-
-.result-game{
-    margin-top:12px;
-
-    font-size:11px;
-    font-weight:800;
-    letter-spacing:1px;
-    text-transform:uppercase;
-
-    color:#aaa;
-}
-
-.result-teams{
-    display:flex;
-    flex-direction:column;
-
-    gap:18px;
-
-    margin-top:40px;
-}
-
-.result-team{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    gap:20px;
-}
-
-.team-name{
-    font-size:19px;
-    font-weight:800;
-    text-transform:uppercase;
-}
-
-.score{
-    font-size:32px;
-    font-weight:950;
-}
-
-.result-status{
-    position:absolute;
-    left:35px;
-    bottom:30px;
-
-    font-size:10px;
-    font-weight:800;
-    letter-spacing:2px;
-    text-transform:uppercase;
-
-    color:#aaa;
-}
-
-
-/* =========================================================
-   UPCOMING MATCHES
-========================================================= */
-
-.matches{
-    border-top:1px solid #272727;
-}
-
-.match{
-    display:grid;
-
-    grid-template-columns:
-        150px
-        1fr
-        180px
-        150px;
-
-    align-items:center;
-
-    min-height:130px;
-
-    border-bottom:1px solid #272727;
-
-    transition:
-        background .25s ease,
-        padding .25s var(--ease);
-}
-
-.match:hover{
-    background:#0d0d0d;
-    padding-left:15px;
-    padding-right:15px;
-}
-
-.match-date{
-    font-size:11px;
-    font-weight:800;
-    letter-spacing:2px;
-    text-transform:uppercase;
-
-    color:#777;
-}
-
-.match-opponents{
-    display:flex;
-    align-items:center;
-    gap:30px;
-}
-
-.match-team{
-    font-size:24px;
-    font-weight:900;
-    text-transform:uppercase;
-}
-
-.match-vs{
-    color:#666;
-
-    font-size:11px;
-    font-weight:900;
-}
-
-.match-game{
-    font-size:11px;
-    font-weight:800;
-    letter-spacing:1px;
-    text-transform:uppercase;
-
-    color:#999;
-}
-
-.match-action{
-    text-align:right;
-}
-
-
-/* =========================================================
    TEAMS
 ========================================================= */
 
@@ -1055,96 +845,6 @@ ul{
 
     color:#999;
 }
-
-
-/* =========================================================
-   PLAYERS
-========================================================= */
-
-.players-grid{
-    display:grid;
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap:15px;
-}
-
-.player-card{
-    position:relative;
-
-    min-height:420px;
-
-    background:#f2f2f2;
-
-    overflow:hidden;
-
-    transition:
-        transform .35s var(--ease);
-}
-
-.player-card:hover{
-    transform:translateY(-8px);
-}
-
-.player-image{
-    position:absolute;
-    inset:0;
-
-    display:flex;
-    align-items:flex-end;
-    justify-content:center;
-
-    font-size:110px;
-    font-weight:950;
-
-    color:#ccc;
-
-    background:
-        linear-gradient(
-            180deg,
-            #f3f3f3,
-            #d6d6d6
-        );
-}
-
-.player-overlay{
-    position:absolute;
-    inset:0;
-
-    background:
-        linear-gradient(
-            to top,
-            rgba(0,0,0,.85),
-            transparent 55%
-        );
-}
-
-.player-info{
-    position:absolute;
-    left:24px;
-    right:24px;
-    bottom:22px;
-
-    color:#fff;
-}
-
-.player-role{
-    margin-bottom:5px;
-
-    font-size:10px;
-    font-weight:800;
-    letter-spacing:2px;
-    text-transform:uppercase;
-
-    color:#bbb;
-}
-
-.player-name{
-    font-size:27px;
-    font-weight:900;
-    text-transform:uppercase;
-}
-
 
 /* =========================================================
    NEWS
@@ -1251,67 +951,6 @@ ul{
 .news-card:not(.featured) h3{
     font-size:25px;
 }
-
-
-/* =========================================================
-   ACHIEVEMENTS
-========================================================= */
-
-.achievement-list{
-    border-top:1px solid #ddd;
-}
-
-.achievement{
-    display:grid;
-
-    grid-template-columns:
-        100px
-        1fr
-        180px;
-
-    align-items:center;
-
-    gap:30px;
-
-    min-height:120px;
-
-    border-bottom:1px solid #ddd;
-
-    transition:
-        padding .25s var(--ease),
-        background .25s ease;
-}
-
-.achievement:hover{
-    padding-left:15px;
-    padding-right:15px;
-
-    background:#000000;
-}
-
-.achievement-number{
-    font-size:14px;
-    font-weight:900;
-    color:#aaa;
-}
-
-.achievement-title{
-    font-size:25px;
-    font-weight:900;
-    text-transform:uppercase;
-}
-
-.achievement-event{
-    text-align:right;
-
-    font-size:10px;
-    font-weight:800;
-    letter-spacing:1px;
-    text-transform:uppercase;
-
-    color:#777;
-}
-
 
 /* =========================================================
    ABOUT
@@ -1718,7 +1357,7 @@ ul{
 }
 
 .back-top:hover{
-    background:#fff;
+    background:#ff0000;
     color:#000;
 }
 
@@ -1810,7 +1449,7 @@ ul{
 
         padding:10px 20px 20px;
 
-        background:#fff;
+        background:#1b1b1b;
 
         box-shadow:
             0 20px 40px rgba(0,0,0,.1);
@@ -3513,19 +3152,19 @@ ul{
                 alt=""
             >
 
-            <span>CHENNAI</span>
+            <span>A CASA DOS CAMPEÕES</span>
 
             <span class="ticker-dot"></span>
 
-            <span>COMPETE</span>
+            <span>FRETE GRÁTIS ACIMA DE R$199.99</span>
 
             <span class="ticker-dot"></span>
 
-            <span>CREATE</span>
+            <span>NOVA COLEÇÃO</span>
 
             <span class="ticker-dot"></span>
 
-            <span>CONQUER</span>
+            <span>JERSEY 2026 DISPONÍVEL</span>
         </div>
 
         <div class="ticker-item" aria-hidden="true">
@@ -3535,19 +3174,19 @@ ul{
                 alt=""
             >
 
-            <span>CHENNAI</span>
+            <span>A CASA DOS CAMPEÕES</span>
 
             <span class="ticker-dot"></span>
 
-            <span>COMPETE</span>
+            <span>FRETE GRÁTIS ACIMA DE R$199.99</span>
 
             <span class="ticker-dot"></span>
 
-            <span>CREATE</span>
+            <span>NOVA COLEÇÃO</span>
 
             <span class="ticker-dot"></span>
 
-            <span>CONQUER</span>
+            <span>JERSEY 2026 DISPONÍVEL</span>
         </div>
 
         <div class="ticker-item" aria-hidden="true">
@@ -3557,22 +3196,20 @@ ul{
                 alt=""
             >
 
-            <span>CHENNAI</span>
+            <span>A CASA DOS CAMPEÕES</span>
 
             <span class="ticker-dot"></span>
 
-            <span>COMPETE</span>
+            <span>FRETE GRÁTIS ACIMA DE R$199.99</span>
 
             <span class="ticker-dot"></span>
 
-            <span>CREATE</span>
+            <span>NOVA COLEÇÃO</span>
 
             <span class="ticker-dot"></span>
 
-            <span>CONQUER</span>
+            <span>JERSEY 2026 DISPONÍVEL</span>
         </div>
-
-    </div>
 
 </div>
 
