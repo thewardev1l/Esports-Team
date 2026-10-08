@@ -952,6 +952,30 @@ ul{
     font-size:25px;
 }
 
+.news-button {
+    transition:
+        background-color .3s ease,
+        color .3s ease,
+        border-color .3s ease,
+        transform .3s ease;
+}
+
+.news-button:hover {
+    background: #ff0000;
+    color: #000000;
+    border-color: #ff0000;
+    transform: translateY(-3px);
+}
+
+.news-button span {
+    display: inline-block;
+    transition: transform .3s ease;
+}
+
+.news-button:hover span {
+    transform: translateX(5px);
+}
+
 /* =========================================================
    ABOUT
 ========================================================= */
