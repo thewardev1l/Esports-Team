@@ -1092,10 +1092,14 @@ ul{
     display:grid;
 
     grid-template-columns:
-        1.1fr
-        .9fr;
+        minmax(0, 1.1fr)
+        minmax(0, .9fr);
 
     gap:80px;
+}
+
+.contact-grid > *{
+    min-width:0;
 }
 
 .contact-title{
@@ -1110,8 +1114,8 @@ ul{
 }
 
 .contact-description{
+    width:100%;
     max-width:500px;
-
     margin-top:35px;
 
     color:#777;
@@ -1177,6 +1181,143 @@ ul{
 
 
 /* =========================================================
+   CONTACT — AJUSTE VISUAL
+========================================================= */
+
+#contact{
+    position:relative;
+    background:#1b1b1b;
+    color:#fff;
+    border-top:1px solid rgba(255,255,255,.06);
+    overflow:hidden;
+}
+
+#contact .contact-grid{
+    grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);
+    align-items:start;
+    gap:clamp(45px,7vw,100px);
+}
+
+#contact .section-kicker{
+    color:#ff0000;
+}
+
+#contact .contact-title{
+    color:#fff;
+    width:100%;
+    max-width:100%;
+    font-size:clamp(50px,5.2vw,92px);
+    line-height:.82;
+    letter-spacing:-5px;
+    overflow-wrap:normal;
+    word-break:normal;
+}
+
+#contact .contact-description{
+    display:block !important;
+    box-sizing:border-box;
+    width:500px !important;
+    max-width:500px !important;
+    margin:35px 0 0 0;
+    padding:0;
+    color:#999;
+    line-height:1.7;
+    white-space:normal !important;
+    overflow-wrap:anywhere !important;
+    word-break:normal !important;
+}
+
+@media(max-width:1100px){
+    #contact .contact-description{
+        width:100% !important;
+        max-width:100% !important;
+    }
+}
+
+#contact .contact-form{
+    width:100%;
+    max-width:560px;
+}
+
+#contact .form-group{
+    gap:10px;
+}
+
+#contact .form-group label{
+    color:#aaa;
+}
+
+#contact .form-group input,
+#contact .form-group textarea{
+    color:#fff;
+    border-bottom:1px solid rgba(255,255,255,.28);
+}
+
+#contact .form-group input::placeholder,
+#contact .form-group textarea::placeholder{
+    color:#777;
+    opacity:1;
+}
+
+#contact .form-group input:focus,
+#contact .form-group textarea:focus{
+    border-color:#ff0000;
+}
+
+#contact .form-submit{
+    margin-top:20px;
+}
+
+@media (max-width:900px){
+    #contact .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+    #contact .contact-form{
+        max-width:none;
+    }
+
+    #contact .contact-description{
+        max-width:100%;
+    }
+}
+
+#contact .btn-primary{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:48px;
+    padding:14px 24px;
+    border:1px solid #ff0000;
+    background:#ff0000;
+    color:#000;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:background .25s ease,color .25s ease,border-color .25s ease,transform .25s ease;
+}
+
+#contact .btn-primary:hover{
+    background:#fff;
+    border-color:#fff;
+    color:#000;
+    transform:translateY(-2px);
+}
+
+@media(max-width:900px){
+    #contact .contact-grid{
+        grid-template-columns:1fr;
+        gap:50px;
+    }
+
+    #contact .contact-form{
+        max-width:none;
+    }
+}
+
+/* =========================================================
    FOOTER
 ========================================================= */
 
@@ -1224,10 +1365,10 @@ ul{
     display:grid;
 
     grid-template-columns:
-        1.5fr
-        1fr
-        1fr
-        1fr;
+        minmax(0, 1.5fr)
+        minmax(0, 1fr)
+        minmax(0, 1fr)
+        minmax(0, 1fr);
 
     gap:50px;
 
@@ -1237,6 +1378,7 @@ ul{
 }
 
 .footer-brand{
+    min-width:0;
     max-width:390px;
 }
 
@@ -1250,11 +1392,16 @@ ul{
 }
 
 .footer-description{
+    width:100%;
+    max-width:320px;
+    margin:0;
     color:#888;
 
     line-height:1.7;
 
     font-size:14px;
+    overflow-wrap:anywhere;
+    word-break:normal;
 }
 
 .footer-socials{
@@ -1402,6 +1549,110 @@ ul{
 .reveal.visible{
     opacity:1;
     transform:translateY(0);
+}
+
+
+/* =========================================================
+   AJUSTE VISUAL DO FOOTER
+========================================================= */
+
+.site-footer{
+    padding:100px 0 28px;
+}
+
+.footer-top{
+    align-items:start;
+    gap:70px;
+    padding-bottom:70px;
+}
+
+.footer-brand{
+    min-width:0;
+    max-width:420px;
+}
+
+.footer-logo{
+    width:74px;
+    height:74px;
+    margin-bottom:22px;
+}
+
+.footer-description{
+    width:100%;
+    max-width:320px;
+    margin:0;
+}
+
+.footer-column{
+    min-width:0;
+}
+
+.footer-column h4{
+    color:#fff;
+}
+
+.footer-column a{
+    width:max-content;
+    max-width:100%;
+}
+
+.footer-email{
+    overflow-wrap:anywhere;
+}
+
+.social-link{
+    border:1px solid #333;
+    transition:
+        background .25s ease,
+        border-color .25s ease,
+        color .25s ease,
+        transform .25s ease;
+}
+
+.social-link:hover{
+    transform:translateY(-2px);
+}
+
+.footer-bottom{
+    padding-top:22px;
+}
+
+@media(max-width:700px){
+    .site-footer{
+        padding-top:75px;
+    }
+
+    .footer-top{
+        gap:42px 28px;
+        padding-bottom:55px;
+    }
+
+    .footer-description{
+        width:100%;
+        max-width:360px;
+    }
+}
+
+@media(max-width:520px){
+    .footer-top{
+        grid-template-columns:1fr;
+        gap:36px;
+    }
+
+    .footer-brand{
+        grid-column:1;
+    }
+
+    .footer-column a{
+        width:auto;
+    }
+
+    .footer-watermark{
+        right:-55px;
+        bottom:-35px;
+        font-size:150px;
+        letter-spacing:-10px;
+    }
 }
 
 
@@ -2790,15 +3041,28 @@ ul{
     display:flex;
     gap:20px;
 
-    overflow:hidden;
+    overflow-x:auto;
+    overflow-y:hidden;
 
     scroll-behavior:smooth;
-
+    scroll-snap-type:x mandatory;
     scrollbar-width:none;
+    cursor:grab;
+    user-select:none;
+    -webkit-overflow-scrolling:touch;
 }
 
 .store-track::-webkit-scrollbar{
     display:none;
+}
+
+.store-track.is-dragging{
+    cursor:grabbing;
+    scroll-behavior:auto;
+}
+
+.store-track.is-dragging .product-card{
+    pointer-events:none;
 }
 
 
@@ -2807,6 +3071,7 @@ ul{
 ========================= */
 .product-card{
     flex:0 0 calc((100% - 60px) / 4);
+    scroll-snap-align:start;
 
     display:block;
 
@@ -2893,43 +3158,6 @@ ul{
 
 
 /* =========================
-   SETAS
-========================= */
-
-.store-arrow{
-    flex-shrink:0;
-
-    width:46px;
-    height:46px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border:1px solid rgba(255,255,255,.2);
-
-    background:transparent;
-
-    color:#fff;
-
-    font-size:20px;
-
-    cursor:pointer;
-
-    transition:
-        background .3s ease,
-        color .3s ease,
-        border-color .3s ease;
-}
-
-.store-arrow:hover{
-    background:#fff;
-    color:#000;
-    border-color:#fff;
-}
-
-
-/* =========================
    DOTS
 ========================= */
 
@@ -2999,15 +3227,102 @@ ul{
         flex:0 0 100%;
     }
 
-    .store-arrow{
-        width:40px;
-        height:40px;
-    }
-
     .product-image{
         aspect-ratio:1 / 1;
     }
 
+}
+
+
+/* =========================================================
+   4 MODALIDADES
+========================================================= */
+
+.games-grid{
+    grid-template-columns:repeat(4,1fr);
+}
+
+@media (max-width:1100px){
+    .games-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media (max-width:600px){
+    .games-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+
+/* =========================================================
+   DESCRIÇÃO DO FOOTER
+========================================================= */
+.site-footer .footer-top{
+    grid-template-columns: 300px repeat(3, minmax(0, 1fr));
+    column-gap: 55px;
+}
+
+.site-footer .footer-brand{
+    width: 300px;
+    max-width: 300px;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.site-footer .footer-description{
+    display: block;
+    width: 280px;
+    max-width: 280px;
+    margin: 0;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: normal;
+    box-sizing: border-box;
+}
+
+@media(max-width:1100px){
+    .site-footer .footer-top{
+        grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr);
+        column-gap: 40px;
+    }
+
+    .site-footer .footer-brand{
+        width:auto;
+        max-width:390px;
+        overflow:visible;
+    }
+
+    .site-footer .footer-description{
+        width:100%;
+        max-width:320px;
+    }
+}
+
+@media(max-width:700px){
+    .site-footer .footer-top{
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .site-footer .footer-brand{
+        width:auto;
+        max-width:100%;
+    }
+
+    .site-footer .footer-description{
+        width:100%;
+        max-width:360px;
+    }
+}
+
+@media(max-width:520px){
+    .site-footer .footer-top{
+        grid-template-columns:1fr;
+    }
+
+    .site-footer .footer-description{
+        max-width:100%;
+    }
 }
 
 </style>
@@ -3422,7 +3737,7 @@ ul{
             <a href="times.html" class="game-card">
 
                 <img
-                    src="Imagens/honorofkings.png"
+                    src="Imagens/mobile-legends.png"
                     alt="Chennai Honor of Kings"
                 >
 
@@ -3432,7 +3747,7 @@ ul{
 
                     <span>ESPORTS</span>
 
-                    <h3>HONOR OF KINGS</h3>
+                    <h3>MOBILE LEGENDS</h3>
 
                     <div class="game-card-link">
                         VER TIME
@@ -3447,8 +3762,8 @@ ul{
             <a href="times.html" class="game-card">
 
                 <img
-                    src="Imagens/valorant.png"
-                    alt="Chennai Valorant"
+                    src="Imagens/league-of-legends.png"
+                    alt="Chennai League of Legends"
                 >
 
                 <div class="game-card-overlay"></div>
@@ -3457,7 +3772,7 @@ ul{
 
                     <span>ESPORTS</span>
 
-                    <h3>VALORANT</h3>
+                    <h3>LEAGUE OF LEGENDS</h3>
 
                     <div class="game-card-link">
                         VER TIME
@@ -3483,6 +3798,31 @@ ul{
                     <span>ESPORTS</span>
 
                     <h3>OVERWATCH</h3>
+
+                    <div class="game-card-link">
+                        VER TIME
+                        <strong>→</strong>
+                    </div>
+
+                </div>
+
+            </a>
+
+
+            <a href="times.html" class="game-card">
+
+                <img
+                    src="Imagens/dota2.png"
+                    alt="Chennai Dota 2"
+                >
+
+                <div class="game-card-overlay"></div>
+
+                <div class="game-card-content">
+
+                    <span>ESPORTS</span>
+
+                    <h3>DOTA 2</h3>
 
                     <div class="game-card-link">
                         VER TIME
@@ -3742,16 +4082,6 @@ ul{
         <!-- SLIDER -->
 
         <div class="store-slider">
-
-            <button
-                class="store-arrow store-prev"
-                type="button"
-                aria-label="Produto anterior"
-            >
-                ←
-            </button>
-
-
             <div class="store-track">
 
 
@@ -4172,18 +4502,6 @@ ul{
 
 
             </div>
-
-
-            <!-- SETA DIREITA -->
-
-            <button
-                class="store-arrow store-next"
-                type="button"
-                aria-label="Próximo produto"
-            >
-                →
-            </button>
-
         </div>
 
 
@@ -4222,6 +4540,123 @@ ul{
 </section>
 
 <!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section
+    class="section"
+    id="contact"
+>
+
+    <div class="container">
+
+        <div class="contact-grid reveal">
+
+            <div>
+
+                <span class="section-kicker">
+                    Fale com a Chennai
+                </span>
+
+                <h2 class="contact-title">
+                    Vamos<br>
+                    conversar.
+                </h2>
+
+                <p class="contact-description">
+                    Tem uma proposta, oportunidade de parceria, mídia
+                    ou outro assunto relacionado à Chennai? Entre em
+                    contato com nossa equipe.
+                </p>
+
+            </div>
+
+
+            <form
+                class="contact-form"
+                id="contactForm"
+            >
+
+                <input
+                    type="hidden"
+                    name="access_key"
+                    value="YOUR_WEB3FORMS_ACCESS_KEY"
+                >
+
+                <input
+                    type="hidden"
+                    name="subject"
+                    value="Nova mensagem pelo site Chennai Esports"
+                >
+
+                <input
+                    type="hidden"
+                    name="from_name"
+                    value="Chennai Esports Website"
+                >
+
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Seu nome"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="seu@email.com"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="messageSubject">Assunto</label>
+                    <input
+                        type="text"
+                        id="messageSubject"
+                        name="message_subject"
+                        placeholder="Como podemos ajudar?"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Mensagem</label>
+                    <textarea
+                        id="message"
+                        name="message"
+                        placeholder="Escreva sua mensagem..."
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="form-submit">
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        ENVIAR MENSAGEM
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
      FOOTER
 ===================================================== -->
 
@@ -4239,7 +4674,7 @@ ul{
             <div class="footer-brand">
 
                 <img
-                    src="Imagens/chennailogo-removebg-preview.png"
+                    src="Imagens/chennailogobranca-removebg-preview.png"
                     alt="Logo Chennai"
                     class="footer-logo"
                 >
@@ -4308,23 +4743,23 @@ ul{
             <div class="footer-column">
 
                 <h4>
-                    Explore
+                    Explorar
                 </h4>
 
                 <a href="#home">
                     Home
                 </a>
 
-                <a href="#results">
-                    Results
+                <a href="#sobre">
+                    Sobre a Chennai
                 </a>
 
-                <a href="#matches">
-                    Matches
+                <a href="#modalidades">
+                    Modalidades
                 </a>
 
-                <a href="#news">
-                    News
+                <a href="#noticias">
+                    Notícias
                 </a>
 
             </div>
@@ -4333,23 +4768,23 @@ ul{
             <div class="footer-column">
 
                 <h4>
-                    Organization
+                    Organização
                 </h4>
 
-                <a href="#teams">
-                    Teams
+                <a href="times.html">
+                    Times
                 </a>
 
-                <a href="#players">
-                    Players
+                <a href="#noticias">
+                    Notícias
                 </a>
 
-                <a href="#about">
-                    About
+                <a href="#loja">
+                    Loja
                 </a>
 
                 <a href="#contact">
-                    Contact
+                    Contato
                 </a>
 
             </div>
@@ -4358,7 +4793,7 @@ ul{
             <div class="footer-column">
 
                 <h4>
-                    Get In Touch
+                    Entre em contato
                 </h4>
 
                 <a
@@ -4369,15 +4804,15 @@ ul{
                 </a>
 
                 <a href="#contact">
-                    Partnership
+                    Parcerias
                 </a>
 
                 <a href="#contact">
-                    Media
+                    Mídia
                 </a>
 
                 <a href="#contact">
-                    Business
+                    Negócios
                 </a>
 
             </div>
@@ -4836,7 +5271,7 @@ document.addEventListener("DOMContentLoaded", () => {
         year.textContent = new Date().getFullYear();
     }
 /* =========================
-   CHENNAI STORE SLIDER
+   CHENNAI STORE — ARRASTAR
 ========================= */
 
 const storeTrack =
@@ -4845,17 +5280,14 @@ const storeTrack =
 const storeProducts =
     document.querySelectorAll(".product-card");
 
-const storePrev =
-    document.querySelector(".store-prev");
-
-const storeNext =
-    document.querySelector(".store-next");
-
 const storeDots =
     document.querySelectorAll(".store-dot");
 
-
 let storeIndex = 0;
+let storeDragging = false;
+let storeStartX = 0;
+let storeStartScroll = 0;
+let storeMoved = false;
 
 
 /* =========================
@@ -4877,19 +5309,17 @@ function getProductsPerPage(){
 
 
 /* =========================
-   ATUALIZA SLIDER
+   ATUALIZA INDICADORES
 ========================= */
 
-function updateStoreSlider(){
+function updateStoreDots(){
 
     if(!storeTrack || !storeProducts.length){
         return;
     }
 
-
     const productsPerPage =
         getProductsPerPage();
-
 
     const totalPages =
         Math.ceil(
@@ -4897,26 +5327,22 @@ function updateStoreSlider(){
             productsPerPage
         );
 
-
-    if(storeIndex >= totalPages){
-        storeIndex = totalPages - 1;
-    }
-
-
-    const trackWidth =
+    const pageWidth =
         storeTrack.clientWidth;
 
+    if(pageWidth <= 0){
+        return;
+    }
 
-    storeTrack.scrollTo({
+    storeIndex = Math.round(
+        storeTrack.scrollLeft /
+        pageWidth
+    );
 
-        left:
-            storeIndex *
-            trackWidth,
-
-        behavior:"smooth"
-
-    });
-
+    storeIndex = Math.max(
+        0,
+        Math.min(storeIndex, totalPages - 1)
+    );
 
     storeDots.forEach(
         (dot,index)=>{
@@ -4928,83 +5354,11 @@ function updateStoreSlider(){
 
         }
     );
-
 }
 
 
 /* =========================
-   PRÓXIMO
-========================= */
-
-storeNext?.addEventListener(
-    "click",
-    ()=>{
-
-        const productsPerPage =
-            getProductsPerPage();
-
-
-        const totalPages =
-            Math.ceil(
-                storeProducts.length /
-                productsPerPage
-            );
-
-
-        storeIndex++;
-
-
-        if(storeIndex >= totalPages){
-
-            storeIndex = 0;
-
-        }
-
-
-        updateStoreSlider();
-
-    }
-);
-
-
-/* =========================
-   ANTERIOR
-========================= */
-
-storePrev?.addEventListener(
-    "click",
-    ()=>{
-
-        const productsPerPage =
-            getProductsPerPage();
-
-
-        const totalPages =
-            Math.ceil(
-                storeProducts.length /
-                productsPerPage
-            );
-
-
-        storeIndex--;
-
-
-        if(storeIndex < 0){
-
-            storeIndex =
-                totalPages - 1;
-
-        }
-
-
-        updateStoreSlider();
-
-    }
-);
-
-
-/* =========================
-   DOTS
+   CLIQUE NOS INDICADORES
 ========================= */
 
 storeDots.forEach(
@@ -5014,9 +5368,18 @@ storeDots.forEach(
             "click",
             ()=>{
 
+                if(!storeTrack){
+                    return;
+                }
+
                 storeIndex = index;
 
-                updateStoreSlider();
+                storeTrack.scrollTo({
+                    left:
+                        storeIndex *
+                        storeTrack.clientWidth,
+                    behavior:"smooth"
+                });
 
             }
         );
@@ -5026,16 +5389,110 @@ storeDots.forEach(
 
 
 /* =========================
+   ARRASTAR COM MOUSE / TOUCH
+========================= */
+
+if(storeTrack){
+
+    storeTrack.addEventListener(
+        "pointerdown",
+        (event)=>{
+
+            if(event.pointerType === "mouse" && event.button !== 0){
+                return;
+            }
+
+            storeDragging = true;
+            storeMoved = false;
+            storeStartX = event.clientX;
+            storeStartScroll = storeTrack.scrollLeft;
+
+            storeTrack.classList.add("is-dragging");
+            storeTrack.setPointerCapture?.(event.pointerId);
+
+        }
+    );
+
+    storeTrack.addEventListener(
+        "pointermove",
+        (event)=>{
+
+            if(!storeDragging){
+                return;
+            }
+
+            const distance =
+                event.clientX - storeStartX;
+
+            if(Math.abs(distance) > 5){
+                storeMoved = true;
+            }
+
+            storeTrack.scrollLeft =
+                storeStartScroll - distance;
+
+        }
+    );
+
+    const finishStoreDrag =
+        (event)=>{
+
+            if(!storeDragging){
+                return;
+            }
+
+            storeDragging = false;
+            storeTrack.classList.remove("is-dragging");
+            storeTrack.releasePointerCapture?.(event.pointerId);
+
+            updateStoreDots();
+
+        };
+
+    storeTrack.addEventListener(
+        "pointerup",
+        finishStoreDrag
+    );
+
+    storeTrack.addEventListener(
+        "pointercancel",
+        finishStoreDrag
+    );
+
+    storeTrack.addEventListener(
+        "scroll",
+        ()=>{
+
+            if(!storeDragging){
+                updateStoreDots();
+            }
+
+        },
+        { passive:true }
+    );
+
+}
+
+
+/* =========================
    RESPONSIVO
 ========================= */
 
 window.addEventListener(
     "resize",
     ()=>{
-        
-        storeIndex = 0;
 
-        updateStoreSlider();
+        if(!storeTrack){
+            return;
+        }
+
+        storeIndex = 0;
+        storeTrack.scrollTo({
+            left:0,
+            behavior:"auto"
+        });
+
+        updateStoreDots();
 
     }
 );
@@ -5045,7 +5502,8 @@ window.addEventListener(
    INICIALIZA
 ========================= */
 
-updateStoreSlider();
+updateStoreDots();
+
 });
 
 </script>
