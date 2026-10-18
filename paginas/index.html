@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CHENNAI — Home</title>
+<title>Dread Wyrm Esports</title>
 
 <link
     rel="icon"
@@ -12,7 +12,7 @@
     sizes="32x32"
     href="Imagens/chennailogo-removebg-preview.png"
 >
-
+ 
 <link
     rel="icon"
     type="image/png"
@@ -245,10 +245,20 @@ ul{
 ========================================================= */
 
 .nav-links{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+
     display:flex;
     align-items:center;
     gap:30px;
     margin-left:0;
+}
+.nav-right{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:8px;
 }
 
 /* Todos os links começam brancos */
@@ -389,58 +399,23 @@ ul{
 
 
 /* =========================================================
-   HERO — PRODUCT SLIDER
+   HERO — PRODUTO
 ========================================================= */
 
 .hero{
     position:relative;
-
     width:100%;
-    height:calc(100vh - 90px);
-
+    min-height:100vh;
     overflow:hidden;
-
     background:#000;
 }
 
-
-/* =========================================================
-   SLIDER
-========================================================= */
-
-.hero-slide{
-    position:absolute;
-    inset:0;
+.hero-image{
     width:100%;
     height:100%;
-    opacity:1;
-    visibility:visible;
-    transform:translateX(100%);
-    transition:transform .6s ease;
-    will-change:transform;
-}
-
-.hero-slide.active{
-    transform:translateX(0);
-}
-
-.hero-slide.prev{
-    transform:translateX(-100%);
-}
-
-/* =========================================================
-   IMAGENS
-========================================================= */
-.hero-slide img{
-    width:100%;
-    height:100%;
-
-    display:block;
-
+    min-height:100vh;
     object-fit:cover;
     object-position:center;
-
-    transform:none !important;
 }
 
 
@@ -658,126 +633,6 @@ ul{
 
 }
 
-/* =========================
-   TICKER
-========================= */
-
-.ticker{
-    position:relative;
-    z-index:50;
-
-    display:block;
-    width:100%;
-    min-height:40px;
-
-    margin-top:88px;
-
-    overflow:hidden;
-
-    background:#ff0000;
-    color:#000;
-
-    border-top:1px solid #ff0000;
-    border-bottom:1px solid #ff0000;
-
-    white-space:nowrap;
-}
-
-.ticker-track{
-    display:flex;
-    align-items:center;
-
-    width:max-content;
-    min-height:58px;
-
-    animation:ticker 25s linear infinite;
-    will-change:transform;
-}
-
-.ticker-item{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    flex:0 0 auto;
-
-    gap:20px;
-    padding:1px 20px;
-
-    font-size:11    px;
-    font-weight:900;
-    line-height:1;
-    letter-spacing:2.5px;
-    text-transform:uppercase;
-}
-
-.ticker-logo{
-    display:block;
-
-    width:40px;
-    height:40px;
-
-    object-fit:contain;
-    object-position:center;
-
-    flex:0 0 30px;
-}
-
-.ticker-dot{
-    display:block;
-
-    width:5px;
-    height:5px;
-
-    background:#000;
-
-    flex:0 0 5px;
-}
-
-@keyframes ticker{
-    from{
-        transform:translateX(0);
-    }
-
-    to{
-        transform:translateX(-25%);
-    }
-}
-
-@media (max-width:768px){
-
-    .ticker{
-        min-height:50px;
-        margin-top:80px;
-    }
-
-    .ticker-track{
-        min-height:50px;
-        animation-duration:20s;
-    }
-
-    .ticker-item{
-        gap:16px;
-        padding:12px 20px;
-
-        font-size:10px;
-        letter-spacing:2px;
-    }
-
-    .ticker-logo{
-        width:24px;
-        height:24px;
-        flex-basis:24px;
-    }
-
-    .ticker-dot{
-        width:4px;
-        height:4px;
-        flex-basis:4px;
-    }
-
-}
-
 /* =========================================================
    TEAMS
 ========================================================= */
@@ -862,136 +717,6 @@ ul{
     text-transform:uppercase;
 
     color:#999;
-}
-
-/* =========================================================
-   NEWS
-========================================================= */
-
-.news-grid{
-    display:grid;
-
-    grid-template-columns:
-        1.5fr
-        1fr
-        1fr;
-
-    gap:20px;
-}
-
-.news-card{
-    min-height:390px;
-
-    padding:30px;
-
-    position:relative;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-end;
-
-    background:#fff;
-
-    overflow:hidden;
-
-    transition:
-        transform .35s var(--ease);
-}
-
-.news-card:hover{
-    transform:translateY(-7px);
-}
-
-.news-card.featured{
-    min-height:500px;
-
-    background:#000;
-    color:#fff;
-}
-
-.news-card::before{
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    background:
-        repeating-linear-gradient(
-            135deg,
-            rgba(0,0,0,.035) 0,
-            rgba(0,0,0,.035) 1px,
-            transparent 1px,
-            transparent 10px
-        );
-}
-
-.news-card.featured::before{
-    background:
-        repeating-linear-gradient(
-            135deg,
-            rgba(255,255,255,.035) 0,
-            rgba(255,255,255,.035) 1px,
-            transparent 1px,
-            transparent 10px
-        );
-}
-
-.news-content{
-    position:relative;
-    z-index:1;
-}
-
-.news-date{
-    margin-bottom:12px;
-
-    font-size:10px;
-    font-weight:800;
-    letter-spacing:2px;
-
-    color:#777;
-}
-
-.featured .news-date{
-    color:#888;
-}
-
-.news-card h3{
-    max-width:600px;
-
-    font-size:clamp(26px,3vw,44px);
-    line-height:1;
-
-    letter-spacing:-2px;
-
-    text-transform:uppercase;
-}
-
-.news-card:not(.featured) h3{
-    font-size:25px;
-}
-
-.news-button {
-    transition:
-        background-color .3s ease,
-        color .3s ease,
-        border-color .3s ease,
-        transform .3s ease;
-}
-
-.news-button:hover {
-    background: #ff0000;
-    color: #000000;
-    border-color: #ff0000;
-    transform: translateY(-3px);
-}
-
-.news-button span {
-    display: inline-block;
-    transition: transform .3s ease;
-}
-
-.news-button:hover span {
-    transform: translateX(5px);
 }
 
 /* =========================================================
@@ -1342,8 +1067,8 @@ ul{
 .site-footer{
     position:relative;
 
-    background:#000;
-    color:#fff;
+    background:#ffffff;
+    color:#000000;
 
     padding:90px 0 25px;
 
@@ -1413,7 +1138,7 @@ ul{
     width:100%;
     max-width:320px;
     margin:0;
-    color:#888;
+    color:#2e2e2e;
 
     line-height:1.7;
 
@@ -1434,14 +1159,14 @@ ul{
     width:40px;
     height:40px;
 
-    background:#000;
-    border-color:#333;
+    background:#ffffff;
+    border-color:#000000;
 
-    color:#fff;
+    color:#000000;
 }
 
 .social-link:hover{
-    background:#000000;
+    background:#ffffff;
     border-color:#ff0000;
     color:#ff0000;
 }
@@ -1462,7 +1187,7 @@ ul{
 
     font-size:13px;
 
-    color:#777;
+    color:#5e5e5e;
 
     transition:
         color .25s ease,
@@ -1470,12 +1195,12 @@ ul{
 }
 
 .footer-column a:hover{
-    color:#fff;
+    color:#ff0000;
     transform:translateX(4px);
 }
 
 .footer-email{
-    color:#fff !important;
+    color:#27252577 !important;
 }
 
 .footer-bottom{
@@ -1499,7 +1224,7 @@ ul{
 }
 
 .footer-motto{
-    color:#888;
+    color:#504e4e;
 }
 
 
@@ -1606,7 +1331,7 @@ ul{
 }
 
 .footer-column h4{
-    color:#fff;
+    color:#000;
 }
 
 .footer-column a{
@@ -1692,15 +1417,6 @@ ul{
     .team-grid{
         grid-template-columns:
             repeat(2,1fr);
-    }
-
-    .news-grid{
-        grid-template-columns:
-            1fr 1fr;
-    }
-
-    .news-card.featured{
-        grid-column:1 / -1;
     }
 
     .footer-top{
@@ -3386,10 +3102,6 @@ ul{
                     Times
                 </a>
 
-                <a href="noticias.html">
-                    Notícias
-                </a>
-
                 <a href="loja.html">
                     Loja
                 </a>
@@ -3472,210 +3184,17 @@ ul{
 
 </header>
 
-<!-- =====================================================
-     TICKER
-===================================================== -->
-
-<div class="ticker" aria-label="Chennai">
-
-    <div class="ticker-track">
-
-        <div class="ticker-item">
-            <img
-                class="ticker-logo"
-                src="Imagens/chennailogo-removebg-preview.png"
-                alt="Chennai"
-            >
-
-            <span>A CASA DOS CAMPEÕES</span>
-
-            <span class="ticker-dot"></span>
-
-            <span>FRETE GRÁTIS ACIMA DE R$199.99</span>
-
-            <span class="ticker-dot"></span>
-
-            <span>NOVA COLEÇÃO</span>
-
-            <span class="ticker-dot"></span>
-
-            <span>JERSEY 2026 DISPONÍVEL</span>
-        </div>
-
-        <div class="ticker-item" aria-hidden="true">
-            <img
-                class="ticker-logo"
-                src="Imagens/chennailogo-removebg-preview.png"
-                alt=""
-            >
-
-            <span>A CASA DOS CAMPEÕES</span>
-
-            <span class="ticker-dot"></span>
-
-            <span>FRETE GRÁTIS ACIMA DE R$199.99</span>
-
-            <span class="ticker-dot"></span>
-
-            <span>NOVA COLEÇÃO</span>
-
-            <span class="ticker-dot"></span>
-
-            <span>JERSEY 2026 DISPONÍVEL</span>
-        </div>
-
-        <div class="ticker-item" aria-hidden="true">
-            <img
-                class="ticker-logo"
-                src="Imagens/chennailogo-removebg-preview.png"
-                alt=""
-            >
-
-            <span>A CASA DOS CAMPEÕES</span>
-
-            <span class="ticker-dot"></span>
-
-            <span>FRETE GRÁTIS ACIMA DE R$199.99</span>
-
-            <span class="ticker-dot"></span>
-
-            <span>NOVA COLEÇÃO</span>
-
-            <span class="ticker-dot"></span>
-
-            <span>JERSEY 2026 DISPONÍVEL</span>
-        </div>
-
-        <div class="ticker-item" aria-hidden="true">
-            <img
-                class="ticker-logo"
-                src="Imagens/chennailogo-removebg-preview.png"
-                alt=""
-            >
-
-            <span>A CASA DOS CAMPEÕES</span>
-
-            <span class="ticker-dot"></span>
-
-            <span>FRETE GRÁTIS ACIMA DE R$199.99</span>
-
-            <span class="ticker-dot"></span>
-
-            <span>NOVA COLEÇÃO</span>
-
-            <span class="ticker-dot"></span>
-
-            <span>JERSEY 2026 DISPONÍVEL</span>
-        </div>
-
-</div>
 
 <!-- =====================================================
      HERO
 ===================================================== -->
 
-<!-- =====================================================
-     HERO — PRODUCT SLIDER
-===================================================== -->
-
-<section
-    class="hero"
-    id="home"
-    aria-label="Produtos Chennai"
->
-
-
-    <!-- =================================================
-         SLIDER
-    ================================================== -->
-
-    <div
-        class="hero-slider"
-        id="heroSlider"
+<section class="hero" id="home">
+    <img
+        src="Imagens/herohome.png"
+        alt="Dread Wyrm Esports"
+        class="hero-image"
     >
-
-
-        <!-- =============================================
-             SLIDE 01 — JERSEY
-        ============================================== -->
-
-        <div
-            class="hero-slide active"
-        >
-
-            <img
-                src="Imagens/hero2.png"
-                alt="Jersey Chennai"
-            >
-
-        </div>
-
-
-        <!-- =============================================
-             SLIDE 02 — MOUSE
-        ============================================== -->
-
-        <div
-            class="hero-slide"
-        >
-
-            <img
-                src="Imagens/hero1.png"
-                alt="Mouse Chennai"
-            >
-
-        </div>
-
-
-        <!-- =============================================
-             SLIDE 03 — Moda Streetwear
-        ============================================== -->
-
-        <div
-            class="hero-slide"
-        >
-
-            <img
-                src="Imagens/hero3.png"
-                alt="Produto Chennai"
-            >
-
-        </div>
-
-
-        <!-- =============================================
-             SLIDE 04 — Acessórios
-            
-        ============================================== -->
-
-        <div
-            class="hero-slide"
-        >
-
-            <img
-                src="Imagens/hero4.png"
-                alt="Produto Chennai"
-            >
-
-        </div>
-
-
-    </div>
-
-    <!-- =================================================
-         INDICADORES
-         
-         Os indicadores são criados automaticamente
-         pelo JavaScript.
-    ================================================== -->
-
-    <div
-        class="hero-dots"
-        id="heroDots"
-        aria-label="Selecionar produto"
-    ></div>
-
-
 </section>
 
 <!-- SOBRE NÓS -->
@@ -3685,8 +3204,8 @@ ul{
     <div class="about-preview-container">
 
         <div class="about-preview-content">
-
-            <span class="section-label">SOBRE A CHENNAI</span>
+            
+            <span class="section-label">SÃO PAULO → MUNDO</span>
 
             <h2>
                 Mais que uma organização.
@@ -3694,7 +3213,7 @@ ul{
             </h2>
 
             <p>
-                A Chennai é uma organização de esports criada para
+                A Dread Wyrm Esports é uma organização de esports criada para
                 competir, desenvolver talentos e construir uma comunidade
                 apaixonada pelos jogos eletrônicos.
             </p>
@@ -3716,8 +3235,8 @@ ul{
             <div class="about-preview-glow"></div>
 
             <img
-                src="Imagens/chennailogobranca-removebg-preview.png"
-                alt="Logo Chennai"
+                src="Imagens/mapa.png"
+                alt="Mapa"
             >
 
         </div>
@@ -3755,8 +3274,8 @@ ul{
             <a href="times.html" class="game-card">
 
                 <img
-                    src="Imagens/mobile-legends.png"
-                    alt="Chennai Honor of Kings"
+                    src="Imagens/honorofkings.png"
+                    alt="Honor of Kings"
                 >
 
                 <div class="game-card-overlay"></div>
@@ -3765,7 +3284,7 @@ ul{
 
                     <span>ESPORTS</span>
 
-                    <h3>MOBILE LEGENDS</h3>
+                    <h3>HONOR OF KINGS</h3>
 
                     <div class="game-card-link">
                         VER TIME
@@ -3790,7 +3309,7 @@ ul{
 
                     <span>ESPORTS</span>
 
-                    <h3>LEAGUE OF LEGENDS</h3>
+                    <h3>BRAWL STARS</h3>
 
                     <div class="game-card-link">
                         VER TIME
@@ -3867,142 +3386,6 @@ ul{
 
 </section>
 
-<section class="news-section" id="noticias">
-
-    <div class="news-container">
-
-        <div class="news-heading">
-
-            <div>
-                <span class="section-label">CHENNAI NEWS</span>
-
-                <h2>
-                    Últimas
-                    <span>notícias.</span>
-                </h2>
-            </div>
-
-            <p>
-                Acompanhe as novidades, anúncios e acontecimentos
-                da Chennai dentro e fora dos servidores.
-            </p>
-
-        </div>
-
-
-        <div class="news-grid">
-
-            <!-- NOTÍCIA PRINCIPAL -->
-
-            <a href="#" class="news-featured">
-
-                <img
-                    src="images/news-01.jpg"
-                    alt="Notícia em destaque da Chennai"
-                >
-
-                <div class="news-overlay"></div>
-
-                <div class="news-content">
-
-                    <span class="news-category">
-                        DESTAQUE
-                    </span>
-
-                    <h3>
-                        Chennai anuncia novidades
-                        para a próxima temporada
-                    </h3>
-
-                    <div class="news-meta">
-                        <span>02 OUT 2026</span>
-                        <strong>→</strong>
-                    </div>
-
-                </div>
-
-            </a>
-
-
-            <!-- NOTÍCIA 2 -->
-
-            <a href="#" class="news-card">
-
-                <img
-                    src="images/news-02.jpg"
-                    alt="Notícia da Chennai"
-                >
-
-                <div class="news-overlay"></div>
-
-                <div class="news-content">
-
-                    <span class="news-category">
-                        COMPETIÇÃO
-                    </span>
-
-                    <h3>
-                        Chennai se prepara
-                        para novo desafio
-                    </h3>
-
-                    <div class="news-meta">
-                        <span>28 SET 2026</span>
-                        <strong>→</strong>
-                    </div>
-
-                </div>
-
-            </a>
-
-
-            <!-- NOTÍCIA 3 -->
-
-            <a href="#" class="news-card">
-
-                <img
-                    src="images/news-03.jpg"
-                    alt="Notícia da Chennai"
-                >
-
-                <div class="news-overlay"></div>
-
-                <div class="news-content">
-
-                    <span class="news-category">
-                        ORGANIZAÇÃO
-                    </span>
-
-                    <h3>
-                        Conheça as novidades
-                        da Chennai
-                    </h3>
-
-                    <div class="news-meta">
-                        <span>25 SET 2026</span>
-                        <strong>→</strong>
-                    </div>
-
-                </div>
-
-            </a>
-
-        </div>
-
-
-        <div class="news-footer">
-
-            <a href="noticias.html" class="news-button">
-                VER TODAS AS NOTÍCIAS
-                <span>→</span>
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
 <!-- PATROCÍNIOS
 -->
 
@@ -4016,7 +3399,7 @@ ul{
 
             <h2>
                 Quem está
-                <span>com a Chennai.</span>
+                <span>com a gente.</span>
             </h2>
 
             <p>
@@ -4031,29 +3414,29 @@ ul{
 
             <div class="sponsor-item">
                 <img
-                    src="images/sponsor-01.png"
-                    alt="Patrocinador Chennai"
+                    src="Imagens/patrocinio01.png"
+                    alt="Patrocinador 1"
                 >
             </div>
 
             <div class="sponsor-item">
                 <img
-                    src="images/sponsor-02.png"
-                    alt="Patrocinador Chennai"
+                    src="Imagens/patrocinio02.png"
+                    alt="Patrocinador 2"
                 >
             </div>
 
             <div class="sponsor-item">
                 <img
-                    src="images/sponsor-03.png"
-                    alt="Patrocinador Chennai"
+                    src="Imagens/patrocinio03.png"
+                    alt="Patrocinador 3"
                 >
             </div>
 
             <div class="sponsor-item">
                 <img
-                    src="images/sponsor-04.png"
-                    alt="Patrocinador Chennai"
+                    src="Imagens/patrocinio04.png"
+                    alt="Patrocinador 4"
                 >
             </div>
 
@@ -4065,7 +3448,7 @@ ul{
 
 
     <!-- =========================
-     CHENNAI STORE
+     LOJA
 ========================= -->
 
 <section class="store-section" id="loja">
@@ -4557,122 +3940,6 @@ ul{
 
 </section>
 
-<!-- =====================================================
-     CONTACT
-===================================================== -->
-
-<section
-    class="section"
-    id="contact"
->
-
-    <div class="container">
-
-        <div class="contact-grid reveal">
-
-            <div>
-
-                <span class="section-kicker">
-                    Fale com a Chennai
-                </span>
-
-                <h2 class="contact-title">
-                    Vamos<br>
-                    conversar.
-                </h2>
-
-                <p class="contact-description">
-                    Tem uma proposta, oportunidade de parceria, mídia
-                    ou outro assunto relacionado à Chennai? Entre em
-                    contato com nossa equipe.
-                </p>
-
-            </div>
-
-
-            <form
-                class="contact-form"
-                id="contactForm"
-            >
-
-                <input
-                    type="hidden"
-                    name="access_key"
-                    value="YOUR_WEB3FORMS_ACCESS_KEY"
-                >
-
-                <input
-                    type="hidden"
-                    name="subject"
-                    value="Nova mensagem pelo site Chennai Esports"
-                >
-
-                <input
-                    type="hidden"
-                    name="from_name"
-                    value="Chennai Esports Website"
-                >
-
-                <div class="form-group">
-                    <label for="name">Nome</label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        placeholder="Seu nome"
-                        required
-                    >
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="seu@email.com"
-                        required
-                    >
-                </div>
-
-                <div class="form-group">
-                    <label for="messageSubject">Assunto</label>
-                    <input
-                        type="text"
-                        id="messageSubject"
-                        name="message_subject"
-                        placeholder="Como podemos ajudar?"
-                        required
-                    >
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Mensagem</label>
-                    <textarea
-                        id="message"
-                        name="message"
-                        placeholder="Escreva sua mensagem..."
-                        required
-                    ></textarea>
-                </div>
-
-                <div class="form-submit">
-                    <button
-                        type="submit"
-                        class="btn btn-primary"
-                    >
-                        ENVIAR MENSAGEM
-                    </button>
-                </div>
-
-            </form>
-
-        </div>
-
-    </div>
-
-</section>
-
 
 <!-- =====================================================
      FOOTER
@@ -4692,35 +3959,19 @@ ul{
             <div class="footer-brand">
 
                 <img
-                    src="Imagens/chennailogobranca-removebg-preview.png"
+                    src="Imagens/logo-dragon.png"
                     alt="Logo Chennai"
                     class="footer-logo"
                 >
 
                 <p class="footer-description">
-                    Chennai é uma organização de esports focada
+                    A Dread Wyrm Esports é uma organização de esports focada
                     em competição, performance, identidade e
                     construção de comunidade.
                 </p>
 
 
                 <div class="footer-socials">
-
-                    <!-- Instagram -->
-                    <a
-                        href="#"
-                        class="social-link"
-                        aria-label="Instagram"
-                        title="Instagram"
-                    >
-                        <svg
-                            viewBox="0 0 24 24"
-                            aria-hidden="true"
-                        >
-                            <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5ZM17.75 6a1.25 1.25 0 1 1-1.25 1.25A1.25 1.25 0 0 1 17.75 6Z"/>
-                        </svg>
-                    </a>
-
 
                     <!-- X / Twitter -->
                     <a
@@ -4737,6 +3988,20 @@ ul{
                         </svg>
                     </a>
 
+                    <!-- Instagram -->
+                    <a
+                        href="#"
+                        class="social-link"
+                        aria-label="Instagram"
+                        title="Instagram"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5ZM17.75 6a1.25 1.25 0 1 1-1.25 1.25A1.25 1.25 0 0 1 17.75 6Z"/>
+                        </svg>
+                    </a>
 
                     <!-- Discord -->
                     <a
@@ -4765,19 +4030,23 @@ ul{
                 </h4>
 
                 <a href="#home">
-                    Home
+                    Início
                 </a>
 
                 <a href="#sobre">
-                    Sobre a Chennai
+                    Sobre nós
                 </a>
 
                 <a href="#modalidades">
                     Modalidades
                 </a>
 
-                <a href="#noticias">
-                    Notícias
+                <a href="#parceiros">
+                    Patrocinadores
+                </a>
+
+                <a href="#loja">
+                    Loja
                 </a>
 
             </div>
@@ -4789,19 +4058,23 @@ ul{
                     Organização
                 </h4>
 
+                <a href="index.html">
+                    Início
+                </a>
+
                 <a href="times.html">
-                    Times
+                    Sobre nós
                 </a>
 
                 <a href="#noticias">
-                    Notícias
+                    Times
                 </a>
 
-                <a href="#loja">
+                <a href="loja.html">
                     Loja
                 </a>
 
-                <a href="#contact">
+                <a href="contato.html">
                     Contato
                 </a>
 
@@ -4841,13 +4114,13 @@ ul{
         <div class="footer-bottom">
 
             <span>
-                © <span id="year"></span>
-                Chennai Esports Organization.
-                All Rights Reserved.
+                © 2026 <span id="year"></span>
+                Dread Wyrm Esports.
+                Todos os direitos reservados.
             </span>
 
             <span class="footer-motto">
-                Compete. Create. Conquer.
+                Competir. Criar. Conquistar.
             </span>
 
         </div>
@@ -5020,111 +4293,6 @@ document.addEventListener("DOMContentLoaded", () => {
             element.classList.add("visible");
         });
     }
-
-
-    /* =================================================
-       HERO — SLIDER AUTOMÁTICO
-
-       Não existem botões anterior/próximo.
-       O slider troca automaticamente a cada 3 segundos.
-    ================================================= */
-
-    const heroSlides = document.querySelectorAll(".hero-slide");
-    const heroDotsContainer = document.getElementById("heroDots");
-
-    let heroIndex = 0;
-    let heroTimer = null;
-    const heroInterval = 3000;
-
-    function updateHeroDots(){
-
-        if(!heroDotsContainer) return;
-
-        heroDotsContainer
-            .querySelectorAll(".hero-dot")
-            .forEach((dot, index) => {
-
-                dot.classList.toggle(
-                    "active",
-                    index === heroIndex
-                );
-
-            });
-    }
-
-
-    function showHeroSlide(index){
-
-    if(!heroSlides.length) return;
-
-    const nextIndex =
-        (index + heroSlides.length) % heroSlides.length;
-
-    if(nextIndex === heroIndex) return;
-
-    const currentSlide = heroSlides[heroIndex];
-    const nextSlide = heroSlides[nextIndex];
-
-    // Garante que o próximo slide esteja à direita
-    nextSlide.style.transition = "none";
-    nextSlide.style.transform = "translateX(100%)";
-
-    // Força o navegador a aplicar essa posição antes da animação
-    void nextSlide.offsetWidth;
-
-    // Ativa a transição
-    currentSlide.style.transition = "transform .6s ease";
-    nextSlide.style.transition = "transform .6s ease";
-
-    // Atual: vai para a esquerda
-    currentSlide.style.transform = "translateX(-100%)";
-
-    // Próximo: vem da direita
-    nextSlide.style.transform = "translateX(0)";
-
-    // Atualiza as classes
-    currentSlide.classList.remove("active");
-    currentSlide.classList.add("prev");
-
-    nextSlide.classList.add("active");
-    nextSlide.classList.remove("prev");
-
-    heroIndex = nextIndex;
-
-    updateHeroDots();
-
-    // Depois que terminar, deixa o slide antigo preparado para o próximo ciclo
-    nextSlide.addEventListener("transitionend", function resetOldSlide(){
-
-        currentSlide.style.transition = "none";
-        currentSlide.style.transform = "translateX(100%)";
-        currentSlide.classList.remove("prev");
-
-        currentSlide.offsetWidth;
-
-        currentSlide.style.transition = "";
-
-    }, { once:true });
-}
-
-
-    function nextHeroSlide(){
-        showHeroSlide(heroIndex + 1);
-    }
-
-
-    function restartHeroTimer(){
-
-        if(!heroSlides.length) return;
-
-        clearInterval(heroTimer);
-
-        heroTimer = setInterval(
-            nextHeroSlide,
-            heroInterval
-        );
-    }
-
 
     /* =================================================
        CRIAÇÃO DOS DOTS
