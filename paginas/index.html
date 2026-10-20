@@ -375,19 +375,17 @@ ul{
 .hero{
     position:relative;
     width:100%;
-    min-height:100vh;
     overflow:hidden;
     background:#000;
 }
 
 .hero-image{
+    display:block;
     width:100%;
-    height:100%;
-    min-height:100vh;
-    object-fit:cover;
+    height:auto;
+    object-fit:contain;
     object-position:center;
 }
-
 
 /* =========================================================
    SETAS
@@ -2825,16 +2823,31 @@ ul{
 }
 
 .product-image img{
+    position:absolute;
+    inset:0;
     width:100%;
     height:100%;
-
     object-fit:cover;
-
-    transition:transform .5s ease;
+    transition:transform .5s ease, opacity .2s ease;
 }
 
-.product-card:hover .product-image img{
+.product-image img:first-child{
+    opacity:1;
+    z-index:1;
+}
+
+.product-image img.hover-image{
+    opacity:0;
+    z-index:2;
+}
+
+.product-card:hover .product-image img:first-child,
+.product-card:hover .product-image img.hover-image{
     transform:scale(1.05);
+}
+
+.product-card:hover .product-image img.hover-image{
+    opacity:1;
 }
 
 
@@ -3444,14 +3457,19 @@ ul{
                             src="Imagens/uniformebranco.png"
                             alt="Jersey 2026"
                         >
+                        <img
+                            class="hover-image"
+                            src="Imagens/uniformepreto.png"
+                            alt="Jersey 2026 preto"
+                        >
 
                     </div>
 
                     <div class="product-info">
 
-                        <span>UNIFORME</span>
+                        <span>UNIFORMES / CAMISETAS</span>
 
-                        <h3>Camiseta Oversized</h3>
+                        <h3>Jersey 2026</h3>
 
                         <strong>R$ 219,99</strong>
 
@@ -3470,16 +3488,21 @@ ul{
                             src="Imagens/cortaventobranco.png"
                             alt="Corta vento"
                         >
+                        <img
+                            class="hover-image"
+                            src="Imagens/cortaventopreto.png"
+                            alt="Corta vento preto"
+                        >
 
                     </div>
 
                     <div class="product-info">
 
-                        <span>BLUSA</span>
+                        <span>UNIFORMES / BLUSAS</span>
 
                         <h3>Corta-vento</h3>
 
-                        <strong>R$ 239,99</strong>
+                        <strong>R$ 299,99</strong>
 
                     </div>
 
@@ -3493,19 +3516,24 @@ ul{
                     <div class="product-image">
 
                         <img
-                            src="Imagens/calçamoletompreto.png"
+                            src="Imagens/calcamoletompreto.png"
                             alt="Calça Moletom"
+                        >
+                        <img
+                            class="hover-image"
+                            src="Imagens/calcamoletombranco.png"
+                            alt="Calça Moletom branco"
                         >
 
                     </div>
 
                     <div class="product-info">
 
-                        <span>CALÇA</span>
+                        <span>UNIFORMES / CALÇAS</span>
 
                         <h3>Calça Baggy Moletom</h3>
 
-                        <strong>R$ 149,99</strong>
+                        <strong>R$ 139,99</strong>
 
                     </div>
 
@@ -3518,17 +3546,16 @@ ul{
                     <div class="product-image">
 
                         <img
-                            src="Imagens/cortaventobranco.png"
-                            alt="Corta vento"
-                        >
-
+                            src="Imagens/uniforme2polo.png"
+                            alt="Uniforme 2"
+                            >
                     </div>
 
                     <div class="product-info">
 
-                        <span>BLUSA</span>
+                        <span>UNIFORMES / EDIÇÃO LIMITADA</span>
 
-                        <h3>Corta-vento</h3>
+                        <h3>Uniforme KIC2026</h3>
 
                         <strong>R$ 239,99</strong>
 
@@ -3543,19 +3570,19 @@ ul{
                     <div class="product-image">
 
                         <img
-                            src="images/produto-05.png"
-                            alt="Camiseta Chennai Oversized"
+                            src="Imagens/mousepad.png"
+                            alt="Acessório"
                         >
 
                     </div>
 
                     <div class="product-info">
 
-                        <span>CHENNAI COLLECTION</span>
+                        <span>MEIAS</span>
 
-                        <h3>Camiseta Oversized</h3>
+                        <h3></h3>
 
-                        <strong>R$ 129,90</strong>
+                        <strong>R$ 59,90</strong>
 
                     </div>
 
@@ -3638,215 +3665,6 @@ ul{
                     </div>
 
                 </a>
-
-
-                <!-- PRODUTO 09 -->
-
-                <a href="loja.html" class="product-card">
-
-                    <div class="product-image">
-
-                        <img
-                            src="images/produto-09.png"
-                            alt="Bucket Hat Chennai"
-                        >
-
-                    </div>
-
-                    <div class="product-info">
-
-                        <span>CHENNAI COLLECTION</span>
-
-                        <h3>Bucket Hat Chennai</h3>
-
-                        <strong>R$ 99,90</strong>
-
-                    </div>
-
-                </a>
-
-
-                <!-- PRODUTO 10 -->
-
-                <a href="loja.html" class="product-card">
-
-                    <div class="product-image">
-
-                        <img
-                            src="images/produto-10.png"
-                            alt="Calça Chennai"
-                        >
-
-                    </div>
-
-                    <div class="product-info">
-
-                        <span>CHENNAI COLLECTION</span>
-
-                        <h3>Calça Chennai</h3>
-
-                        <strong>R$ 219,90</strong>
-
-                    </div>
-
-                </a>
-
-
-                <!-- PRODUTO 11 -->
-
-                <a href="loja.html" class="product-card">
-
-                    <div class="product-image">
-
-                        <img
-                            src="images/produto-11.png"
-                            alt="Shorts Chennai"
-                        >
-
-                    </div>
-
-                    <div class="product-info">
-
-                        <span>CHENNAI COLLECTION</span>
-
-                        <h3>Shorts Chennai</h3>
-
-                        <strong>R$ 109,90</strong>
-
-                    </div>
-
-                </a>
-
-
-                <!-- PRODUTO 12 -->
-
-                <a href="loja.html" class="product-card">
-
-                    <div class="product-image">
-
-                        <img
-                            src="images/produto-12.png"
-                            alt="Meias Chennai"
-                        >
-
-                    </div>
-
-                    <div class="product-info">
-
-                        <span>CHENNAI COLLECTION</span>
-
-                        <h3>Meias Chennai</h3>
-
-                        <strong>R$ 39,90</strong>
-
-                    </div>
-
-                </a>
-
-
-                <!-- PRODUTO 13 -->
-
-                <a href="loja.html" class="product-card">
-
-                    <div class="product-image">
-
-                        <img
-                            src="images/produto-13.png"
-                            alt="Caneca Chennai"
-                        >
-
-                    </div>
-
-                    <div class="product-info">
-
-                        <span>CHENNAI COLLECTION</span>
-
-                        <h3>Caneca Chennai</h3>
-
-                        <strong>R$ 49,90</strong>
-
-                    </div>
-
-                </a>
-
-
-                <!-- PRODUTO 14 -->
-
-                <a href="loja.html" class="product-card">
-
-                    <div class="product-image">
-
-                        <img
-                            src="images/produto-14.png"
-                            alt="Garrafa Chennai"
-                        >
-
-                    </div>
-
-                    <div class="product-info">
-
-                        <span>CHENNAI COLLECTION</span>
-
-                        <h3>Garrafa Chennai</h3>
-
-                        <strong>R$ 79,90</strong>
-
-                    </div>
-
-                </a>
-
-
-                <!-- PRODUTO 15 -->
-
-                <a href="loja.html" class="product-card">
-
-                    <div class="product-image">
-
-                        <img
-                            src="Imagens/produto-15.png"
-                            alt="Mousepad Chennai"
-                        >
-
-                    </div>
-
-                    <div class="product-info">
-
-                        <span>CHENNAI COLLECTION</span>
-
-                        <h3>Mousepad Chennai</h3>
-
-                        <strong>R$ 99,90</strong>
-
-                    </div>
-
-                </a>
-
-
-                <!-- PRODUTO 16 -->
-
-                <a href="loja.html" class="product-card">
-
-                    <div class="product-image">
-
-                        <img
-                            src="images/produto-16.png"
-                            alt="Chaveiro Chennai"
-                        >
-
-                    </div>
-
-                    <div class="product-info">
-
-                        <span>CHENNAI COLLECTION</span>
-
-                        <h3>Chaveiro Chennai</h3>
-
-                        <strong>R$ 29,90</strong>
-
-                    </div>
-
-                </a>
-
 
             </div>
         </div>
@@ -4037,7 +3855,7 @@ ul{
                     href="mailto:contact@chennai.gg"
                     class="footer-email"
                 >
-                    contact@chennai.gg
+                    contact@dwyesports.gg
                 </a>
 
                 <a href="#contact">
@@ -4411,6 +4229,12 @@ const storeTrack =
 
 const storeProducts =
     document.querySelectorAll(".product-card");
+
+/* =========================
+   HOVER DAS IMAGENS
+========================= */
+
+/* Hover das imagens feito via CSS para garantir a troca visual sem depender de JavaScript. */
 
 const storeDots =
     document.querySelectorAll(".store-dot");
