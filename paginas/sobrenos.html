@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobre nós — Dread Wyrm Esports</title>
+<meta name="description" content="Conheça a história da Dread Wyrm Esports.">
+<link rel="icon" type="image/png" href="Imagens/favicon.png">
+
+<style>
+:root{
+    --red:#ff0000;
+    --black:#080808;
+    --dark:#111;
+    --white:#fff;
+    --gray:#9a9a9a;
+    --line:rgba(255,255,255,.12);
+    --container:1200px;
+    --ease:cubic-bezier(.2,.8,.2,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+    font-family:Inter,Arial,Helvetica,sans-serif;
+    background:var(--black);
+    color:var(--white);
+    overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit;border:0}
+
+/* =========================================================
+   HEADER / NAVBAR
+========================================================= */
+
+.site-header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:9999;
+
+    background:#fff;
+
+    transition:
+        box-shadow .3s ease,
+        transform .3s ease;
+}
+
+.site-header.scrolled{
+    box-shadow:0 12px 40px rgba(0,0,0,.09);
+}
+
+.navbar{
+    width:min(calc(100% - 60px), var(--container));
+    height:90px;
+    margin:0 auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.brand img{
+    width:72px;
+    height:72px;
+    object-fit:contain;
+}
+
+.nav-links{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+
+    display:flex;
+    align-items:center;
+    gap:30px;
+    margin-left:0;
+}
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:8px;
+}
+
+.nav-links a{
+    position:relative;
+
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:1.3px;
+    text-transform:uppercase;
+
+    color:#000000;
+
+    padding:8px 0;
+
+    text-decoration:none;
+
+    transition:color .25s ease;
+}
+
+.nav-links:hover a{
+    color:#696969;
+}
+
+.nav-links:hover a:hover{
+    color:#ff0000;
+}
+
+.nav-links a::after{
+    display:none !important;
+    content:none !important;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after{
+    width:100%;
+}
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.nav-login{
+    width:38px;
+    height:38px;
+
+    display:grid;
+    place-items:center;
+
+    color:#000;
+    text-decoration:none;
+
+    transition:
+        color .25s var(--ease),
+        transform .25s var(--ease);
+}
+
+.nav-login svg{
+    width:21px;
+    height:21px;
+
+    display:block;
+    fill:currentColor;
+}
+
+.nav-login:hover{
+    color:#ff0000;
+    transform:translateY(-2px);
+}
+
+.menu-toggle{
+    display:none;
+
+    width:42px;
+    height:42px;
+
+    background:#1b1b1b;
+    color:#fff;
+
+    cursor:pointer;
+
+    place-items:center;
+}
+
+.menu-toggle span{
+    display:block;
+
+    width:18px;
+    height:2px;
+
+    background:#1b1b1b;
+
+    margin:3px 0;
+
+    transition:.25s ease;
+}
+
+/* HISTÓRIA */
+.history{
+    min-height:100vh;
+    padding:170px 7% 110px;
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 85% 20%,rgba(255,0,0,.08),transparent 28%),
+        #080808;
+}
+.history::before{
+    content:"DREAD WYRM";
+    position:absolute;
+    right:-55px;
+    bottom:-70px;
+    font-size:clamp(110px,17vw,270px);
+    line-height:1;
+    font-weight:950;
+    letter-spacing:-12px;
+    color:rgba(255,255,255,.025);
+    pointer-events:none;
+    white-space:nowrap;
+}
+.history-inner{max-width:var(--container);margin:0 auto;position:relative;z-index:1}
+.kicker{
+    display:inline-block;
+    margin-bottom:22px;
+    color:var(--red);
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:3px;
+    text-transform:uppercase;
+}
+.history-title{
+    max-width:1050px;
+    font-size:clamp(58px,9vw,130px);
+    line-height:.82;
+    letter-spacing:-7px;
+    font-weight:950;
+    text-transform:uppercase;
+}
+.history-title span{display:block;color:#777}
+.story{
+    display:grid;
+    grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);
+    gap:90px;
+    margin-top:100px;
+    padding-top:45px;
+    border-top:1px solid var(--line);
+}
+.story-label{
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#666;
+}
+.story-copy{max-width:720px}
+.story-copy p{
+    font-size:clamp(18px,2vw,25px);
+    line-height:1.7;
+    color:#ddd;
+}
+.story-copy p+p{margin-top:28px}
+.story-copy strong{color:#fff}
+.story-mark{
+    margin-top:65px;
+    padding:28px 0 0 25px;
+    border-left:2px solid var(--red);
+    color:#fff;
+    font-size:clamp(20px,2.5vw,32px);
+    line-height:1.25;
+    font-weight:800;
+    text-transform:uppercase;
+}
+.story-mark span{display:block;color:#777}
+
+/* FECHO */
+.closing{
+    padding:0 7% 110px;
+    background:#080808;
+}
+.closing-inner{
+    max-width:var(--container);
+    margin:0 auto;
+    padding-top:55px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:40px;
+}
+.closing p{
+    max-width:620px;
+    color:#888;
+    line-height:1.8;
+    font-size:15px;
+}
+.closing strong{color:#fff}
+.closing-tag{
+    color:var(--red);
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    white-space:nowrap;
+}
+
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+.site-footer{
+    position:relative;
+    background:#fff;
+    color:#000;
+    padding:90px 0 25px;
+    overflow:hidden;
+}
+.footer-watermark{
+    position:absolute;
+    right:-40px;
+    bottom:-80px;
+    font-size:clamp(160px,25vw,380px);
+    line-height:1;
+    font-weight:950;
+    letter-spacing:-20px;
+    color:rgba(255,255,255,.035);
+    pointer-events:none;
+    user-select:none;
+}
+.footer-container{
+    width:min(calc(100% - 60px),1440px);
+    margin:0 auto;
+}
+.footer-top{
+    position:relative;
+    z-index:1;
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr 1fr;
+    gap:50px;
+    padding-bottom:80px;
+    border-bottom:1px solid #272727;
+}
+.footer-brand{max-width:390px}
+.footer-logo{
+    width:80px;
+    height:80px;
+    object-fit:contain;
+    margin-bottom:25px;
+}
+.footer-description{
+    color:#888;
+    line-height:1.7;
+    font-size:14px;
+}
+.footer-socials{
+    display:flex;
+    gap:8px;
+    margin-top:25px;
+}
+.social-link{
+    width:40px;
+    height:40px;
+    display:grid;
+    place-items:center;
+    background:#ffffff;
+    border:1px solid #000000;
+    color:#000000;
+    transition:background .25s ease,border-color .25s ease,color .25s ease,transform .25s ease;
+}
+.social-link:hover{
+    background:#fff;
+    border-color:#ff0000;
+    color:#ff0000;
+    transform:translateY(-2px);
+}
+.social-link svg{
+    width:18px;
+    height:18px;
+    display:block;
+    fill:currentColor;
+}
+.footer-column h4{
+    margin-bottom:20px;
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+.footer-column a{
+    display:block;
+    margin-bottom:11px;
+    font-size:13px;
+    color:#777;
+    transition:color .25s ease,transform .25s ease;
+}
+.footer-column a:hover{
+    color:#ff0000;
+    transform:translateX(4px);
+}
+.footer-email{color:#fff !important}
+.footer-bottom{
+    position:relative;
+    z-index:1;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    padding-top:25px;
+    color:#555;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+.footer-motto{color:#888}
+
+@media(max-width:1100px){
+    .footer-top{
+        grid-template-columns:1.3fr 1fr 1fr;
+    }
+    .footer-brand{grid-column:1 / -1}
+}
+
+@media(max-width:700px){
+    .site-footer{padding-top:70px}
+    .footer-container{width:min(calc(100% - 30px),1440px)}
+    .footer-top{
+        grid-template-columns:1fr 1fr;
+        gap:40px 25px;
+        padding-bottom:55px;
+    }
+    .footer-brand{grid-column:1 / -1}
+    .footer-bottom{
+        flex-direction:column;
+        align-items:flex-start;
+        padding-top:20px;
+    }
+}
+
+@media(max-width:450px){
+    .footer-top{grid-template-columns:1fr}
+    .footer-brand{grid-column:auto}
+}
+
+/* BACK TOP */
+.back-top{
+    position:fixed;right:25px;bottom:25px;width:45px;height:45px;
+    display:grid;place-items:center;background:#000;color:#fff;
+    border:1px solid #222;cursor:pointer;opacity:0;visibility:hidden;
+    transform:translateY(15px);transition:.25s ease;z-index:5000;
+}
+.back-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
+.back-top:hover{background:var(--red);color:#000}
+
+@media(max-width:850px){
+
+    .navbar{
+        width:min(calc(100% - 30px), var(--container));
+    }
+
+    .nav-left{
+        gap:15px;
+    }
+
+    .nav-links{
+        display:none;
+
+        position:absolute;
+
+        top:90px;
+        left:15px;
+        right:15px;
+
+        flex-direction:column;
+        align-items:flex-start;
+
+        gap:0;
+
+        padding:10px 20px 20px;
+
+        background:#1b1b1b;
+
+        box-shadow:
+            0 20px 40px rgba(0,0,0,.1);
+
+        border:1px solid #ddd;
+    }
+
+    .nav-links.open{
+        display:flex;
+    }
+
+    .nav-links a{
+        width:100%;
+
+        padding:15px 0;
+
+        border-bottom:1px solid #eee;
+    }
+
+    .menu-toggle{
+        display:grid;
+    }
+
+    .nav-right{
+        margin-left:auto;
+        margin-right:10px;
+    }
+
+}
+
+@media(max-width:520px){
+
+    .nav-right{
+        gap:0;
+    }
+
+    .brand img{
+        width:64px;
+        height:64px;
+    }
+
+    .navbar{
+        height:80px;
+    }
+
+    .nav-links{
+        top:80px;
+    }
+
+}
+
+@media(max-width:850px){
+    .navbar{width:min(calc(100% - 30px),1440px)}
+    .nav-left{gap:15px}
+    .nav-links{
+        display:none;
+        position:absolute;top:90px;left:15px;right:15px;
+        flex-direction:column;align-items:flex-start;gap:0;
+        padding:10px 20px 20px;background:#fff;
+        box-shadow:0 20px 40px rgba(0,0,0,.1);
+        border:1px solid #ddd;
+    }
+    .nav-links.open{display:flex}
+    .nav-links a{width:100%;padding:15px 0;border-bottom:1px solid #eee}
+    .menu-toggle{display:grid}
+    .history{padding-top:145px}
+    .story{grid-template-columns:1fr;gap:25px;margin-top:70px}
+    .story-label{color:var(--red)}
+}
+
+@media(max-width:520px){
+    .navbar{height:80px}
+    .nav-links{top:80px}
+    .brand img{width:64px;height:64px}
+    .history{padding:130px 6% 80px}
+    .history-title{font-size:clamp(52px,16vw,82px);letter-spacing:-4px}
+    .story{margin-top:55px;gap:18px}
+    .story-copy p{font-size:17px}
+    .story-mark{margin-top:45px;padding-left:18px}
+    .closing{padding:0 6% 80px}
+    .closing-inner{display:block}
+    .closing-tag{display:block;margin-top:30px}
+    .nav-login{display:none}
+}
+</style>
+</head>
+
+<body>
+<header class="site-header" id="siteHeader">
+
+    <nav class="navbar">
+
+        <div class="nav-left">
+
+            <a
+                href="index.html"
+                class="brand"
+                aria-label="Chennai"
+            >
+                <img
+                    src="Imagens/logo-dragon.png"
+                    alt="Logo Chennai"
+                >
+            </a>
+
+
+            <div class="nav-links" id="navLinks">
+
+                <a href="index.html">
+                    Início
+                </a>
+
+                <a href="sobrenos.html" class="active">
+                    Sobre nós
+                </a>
+
+                <a href="times.html">
+                    Times
+                </a>
+
+                <a href="loja.html">
+                    Loja
+                </a>
+
+                <a href="index.html#contact">
+                    Contato
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="nav-right">
+
+    <a
+        href="login.html"
+        class="nav-login"
+        aria-label="Login"
+        title="Login"
+    >
+        <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+        >
+            <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-8a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 10c-4.42 0-8 2.24-8 5v3h16v-3c0-2.76-3.58-5-8-5Zm6 6H6v-1c0-1.58 2.75-3 6-3s6 1.42 6 3v1Z"/>
+        </svg>
+    </a>
+
+    <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+    >
+        <div>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </button>
+
+</div>
+
+    </nav>
+
+</header>
+
+<main>
+    <section class="history" id="historia">
+        <div class="history-inner">
+            <span class="kicker">São Paulo → Mundo</span>
+
+            <h1 class="history-title">
+                A história da
+                <span>Dread Wyrm.</span>
+            </h1>
+
+            <div class="story">
+                <div>
+                    <span class="story-label">Nossa história</span>
+                </div>
+
+                <div class="story-copy">
+                    <p>
+                        A <strong>Dread Wyrm Esports</strong> nasceu com um propósito claro:
+                        construir uma organização de esports capaz de competir,
+                        desenvolver talentos e criar uma comunidade apaixonada pelos jogos eletrônicos.
+                    </p>
+
+                    <p>
+                        Desde o início, a equipe foi construída em torno de uma identidade própria.
+                        Mais do que disputar partidas, a Dread Wyrm busca representar uma forma de
+                        viver o competitivo: com <strong>dedicação, disciplina e paixão</strong> pelo cenário.
+                    </p>
+
+                    <p>
+                        A nossa história ainda está sendo escrita. Cada jogador, cada partida e cada pessoa
+                        que acompanha a organização faz parte dessa construção — levando a Dread Wyrm de
+                        <strong>São Paulo para o mundo.</strong>
+                    </p>
+
+                    <div class="story-mark">
+                        Mais que uma organização.
+                        <span>Uma identidade.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="closing">
+        <div class="closing-inner">
+            <p>
+                A Dread Wyrm continua olhando para frente. <strong>A competição é o caminho,
+                a comunidade é a base e a identidade é o que nos torna únicos.</strong>
+            </p>
+            <span class="closing-tag">Dread Wyrm Esports</span>
+        </div>
+    </section>
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+<footer class="site-footer">
+    <div class="footer-watermark">DREAD WYRM</div>
+
+    <div class="footer-container">
+        <div class="footer-top">
+
+            <div class="footer-brand">
+                <img
+                    src="Imagens/logo-dragon.png"
+                    alt="Logo Dread Wyrm Esports"
+                    class="footer-logo"
+                >
+
+                <p class="footer-description">
+                    Dread Wyrm Esports é uma organização focada em competição,
+                    performance, identidade e construção de comunidade.
+                </p>
+
+                <div class="footer-socials">
+                    <a href="#" class="social-link" aria-label="Instagram" title="Instagram">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5ZM17.75 6a1.25 1.25 0 1 1-1.25 1.25A1.25 1.25 0 0 1 17.75 6Z"/>
+                        </svg>
+                    </a>
+
+                    <a href="#" class="social-link" aria-label="X / Twitter" title="X / Twitter">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817-5.963 6.817H1.684l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+                        </svg>
+                    </a>
+
+                    <a href="#" class="social-link" aria-label="Discord" title="Discord">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.077.077 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.042-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.127c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.928 1.794 8.18 1.794 12.061 0a.074.074 0 0 1 .078.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127c-.598.35-1.226.648-1.873.891a.077.077 0 0 0-.041.107c.36.698.771 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.056c.5-5.177-.838-9.674-3.548-13.66a.061.061 0 0 0-.03-.027ZM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.419 0 1.334-.956 2.419-2.157 2.419Zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.419 0 1.334-.947 2.419-2.157 2.419Z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4>Explore</h4>
+                <a href="index.html">Início</a>
+                <a href="sobrenos.html">Sobre nós</a>
+                <a href="times.html">Times</a>
+                <a href="loja.html">Loja</a>
+            </div>
+
+            <div class="footer-column">
+                <h4>Organization</h4>
+                <a href="times.html">Times</a>
+                <a href="sobrenos.html">Nossa história</a>
+                <a href="index.html#contact">Contato</a>
+                <a href="login.html">Login</a>
+            </div>
+
+            <div class="footer-column">
+                <h4>Get In Touch</h4>
+                <a href="index.html#contact" class="footer-email">Contato</a>
+                <a href="index.html#contact">Partnership</a>
+                <a href="index.html#contact">Media</a>
+                <a href="index.html#contact">Business</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>
+                © <span id="year"></span> Dread Wyrm Esports. All Rights Reserved.
+            </span>
+            <span class="footer-motto">Compete. Create. Conquer.</span>
+        </div>
+    </div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="Voltar ao topo">↑</button>
+
+<script>
+const header = document.getElementById('siteHeader');
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+const backTop = document.getElementById('backTop');
+const year = document.getElementById('year');
+if (year) year.textContent = new Date().getFullYear();
+
+function updateScroll(){
+    header.classList.toggle('scrolled', window.scrollY > 10);
+    backTop.classList.toggle('visible', window.scrollY > 500);
+}
+
+window.addEventListener('scroll', updateScroll, {passive:true});
+updateScroll();
+
+menuToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', String(open));
+});
+
+navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+    });
+});
+
+backTop.addEventListener('click', () => {
+    window.scrollTo({top:0,behavior:'smooth'});
+});
+</script>
+</body>
+</html>
