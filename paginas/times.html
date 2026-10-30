@@ -1,0 +1,4028 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Times — Dread Wyrm Esports</title>
+<link rel="icon" type="image/png" sizes="32x32" href="Imagens/favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="Imagens/favicon.png">
+<link rel="apple-touch-icon" href="Imagens/favicon.png">
+<meta name="description" content="Conheça os times da Dread Wyrm Esports e as modalidades que representam a organização.">
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+    background: #1b1b1b;
+    color:#ffffff;
+    overflow-x:hidden;
+}
+
+img{
+    max-width:100%;
+    display:block;
+}
+
+button,
+a{
+    font:inherit;
+}
+
+button{
+    border:0;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+ul{
+    list-style:none;
+}
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+
+    /* BRAND */
+    --brand-red: #ff0000;
+    --brand-black: #1b1b1b;
+    --brand-white: #ffffff;
+
+
+    /* BACKGROUNDS */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f5f5;
+    --bg-tertiary: #eeeeee;
+    --bg-dark: #1b1b1b;
+
+
+    /* TEXT */
+    --text-primary: #1b1b1b;
+    --text-secondary: #555555;
+    --text-muted: #888888;
+    --text-light: #ffffff;
+
+
+    /* BORDERS */
+    --border: #dedede;
+    --border-light: #eeeeee;
+    --border-dark: #1b1b1b;
+
+
+    /* STATES */
+    --hover-red: #e60000;
+    --hover-dark: #111111;
+
+
+    /* LAYOUT */
+    --container: 1440px;
+
+
+    /* TRANSITIONS */
+    --ease: cubic-bezier(.2,.8,.2,1);
+}
+
+
+/* =========================================================
+   UTILITIES
+========================================================= */
+
+.container{
+    width:min(calc(100% - 60px), var(--container));
+    margin:0 auto;
+}
+
+.section{
+    padding:120px 0;
+}
+
+.section-dark{
+    background:#1b1b1b;
+    color:#ffffff;
+}
+
+.section-light{
+    background:#1b1b1b;
+    color:#ffffff;
+}
+
+.section-header{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:30px;
+    margin-bottom:60px;
+}
+
+.section-kicker{
+    display:block;
+    margin-bottom:14px;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:#ff0000;
+}
+
+.section-dark .section-kicker{
+    color:#ff0000;
+}
+
+.section-title{
+    font-size:clamp(42px, 6vw, 82px);
+    line-height:.9;
+    letter-spacing:-4px;
+    font-weight:900;
+    text-transform:uppercase;
+}
+
+.section-description{
+    max-width:520px;
+    color:#cccccc;
+    line-height:1.7;
+}
+
+.section-dark .section-description{
+    color:#e0e0e0;
+}
+
+
+/* =========================================================
+   HEADER / NAVBAR
+========================================================= */
+
+.site-header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:9999;
+
+    background:#fff;
+
+    transition:
+        box-shadow .3s ease,
+        transform .3s ease;
+}
+
+.site-header.scrolled{
+    box-shadow:0 12px 40px rgba(0,0,0,.09);
+}
+
+.navbar{
+    width:min(calc(100% - 60px), var(--container));
+    height:90px;
+    margin:0 auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.brand img{
+    width:72px;
+    height:72px;
+    object-fit:contain;
+}
+
+/* =========================================================
+   NAV LINKS
+========================================================= */
+
+.nav-links{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+
+    display:flex;
+    align-items:center;
+    gap:30px;
+    margin-left:0;
+}
+.nav-right{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:8px;
+}
+
+/* Todos os links começam brancos */
+.nav-links a{
+    position:relative;
+
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:1.3px;
+    text-transform:uppercase;
+
+    color:#000000;
+
+    padding:8px 0;
+
+    text-decoration:none;
+
+    transition:color .25s ease;
+}
+
+/* Ao entrar na área da navbar,
+   todos os links ficam cinza */
+.nav-links:hover a{
+    color:#9c9c9c;
+}
+
+/* O link que está recebendo o cursor
+ */
+.nav-links:hover a:hover{
+    color:#ff0000;
+}
+
+/* Remove completamente a linha antiga */
+.nav-links a::after{
+    display:none !important;
+    content:none !important;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after{
+    width:100%;
+}
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.nav-login{
+    width:38px;
+    height:38px;
+
+    display:grid;
+    place-items:center;
+
+    color:#000;
+    text-decoration:none;
+
+    transition:
+        color .25s var(--ease),
+        transform .25s var(--ease);
+}
+
+.nav-login svg{
+    width:21px;
+    height:21px;
+
+    display:block;
+    fill:currentColor;
+}
+
+.nav-login:hover{
+    color:#ff0000;
+    transform:translateY(-2px);
+}
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+.menu-toggle{
+    display:none;
+
+    width:42px;
+    height:42px;
+
+    background:#1b1b1b;
+    color:#fff;
+
+    cursor:pointer;
+
+    place-items:center;
+}
+
+.menu-toggle span{
+    display:block;
+
+    width:18px;
+    height:2px;
+
+    background:#1b1b1b;
+
+    margin:3px 0;
+
+    transition:.25s ease;
+}
+
+
+/* =========================================================
+   HERO — PRODUTO
+========================================================= */
+
+.hero{
+    position:relative;
+    width:100%;
+    overflow:hidden;
+    background:#000;
+}
+
+.hero-image{
+    display:block;
+    width:100%;
+    height:auto;
+    object-fit:contain;
+    object-position:center;
+}
+
+/* =========================================================
+   SETAS
+========================================================= */
+
+.hero-arrow{
+    position:absolute;
+
+    top:50%;
+
+    z-index:10;
+
+    width:48px;
+    height:48px;
+
+    display:grid;
+    place-items:center;
+
+    transform:translateY(-50%);
+
+    border:1px solid rgba(255,255,255,.45);
+
+    background:rgba(0,0,0,.35);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+    font-size:20px;
+
+    line-height:1;
+
+    transition:
+        background .25s ease,
+        color .25s ease,
+        border-color .25s ease,
+        transform .25s ease;
+}
+
+
+.hero-arrow:hover{
+    background:#1b1b1b;
+
+    color:#5c5c5c;
+
+    border-color:#fff;
+
+    transform:
+        translateY(-50%) scale(1.05);
+}
+
+
+.hero-prev{
+    left:30px;
+}
+
+
+.hero-next{
+    right:30px;
+}
+
+
+/* =========================================================
+   INDICADORES
+========================================================= */
+
+.hero-dots{
+    position:absolute;
+
+    left:50%;
+    bottom:30px;
+
+    z-index:10;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    transform:translateX(-50%);
+}
+
+
+.hero-dot{
+    width:28px;
+    height:3px;
+
+    padding:0;
+
+    border:0;
+
+    background:rgba(255,255,255,.45);
+
+    cursor:pointer;
+
+    transition:
+        width .3s ease,
+        background .3s ease;
+}
+
+
+.hero-dot:hover{
+    background:rgba(255,255,255,.75);
+}
+
+
+.hero-dot.active{
+    width:55px;
+
+    background:#fff;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:850px){
+
+    .hero{
+        height:calc(100vh - 80px);
+    }
+
+
+    .hero-arrow{
+        width:42px;
+        height:42px;
+
+        font-size:18px;
+    }
+
+
+    .hero-prev{
+        left:18px;
+    }
+
+
+    .hero-next{
+        right:18px;
+    }
+
+
+    .hero-dots{
+        bottom:22px;
+    }
+
+
+    .hero-dot{
+        width:22px;
+        height:3px;
+    }
+
+
+    .hero-dot.active{
+        width:42px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE PEQUENO
+========================================================= */
+
+@media(max-width:520px){
+
+    .hero{
+        height:calc(100vh - 80px);
+    }
+
+
+    .hero-slide img{
+        object-position:center;
+    }
+
+
+    .hero-arrow{
+        width:38px;
+        height:38px;
+
+        font-size:16px;
+    }
+
+
+    .hero-prev{
+        left:12px;
+    }
+
+
+    .hero-next{
+        right:12px;
+    }
+
+
+    .hero-dots{
+        bottom:18px;
+
+        gap:6px;
+    }
+
+
+    .hero-dot{
+        width:18px;
+    }
+
+
+    .hero-dot.active{
+        width:34px;
+    }
+
+}
+
+/* =========================================================
+   TEAMS
+========================================================= */
+
+.team-grid{
+    display:grid;
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+}
+
+.team-card{
+    position:relative;
+
+    min-height:410px;
+
+    overflow:hidden;
+
+    background:#080808;
+    color:#fff;
+
+    border:1px solid #222;
+
+    transition:
+        transform .35s var(--ease),
+        border-color .35s ease;
+}
+
+.team-card:hover{
+    transform:translateY(-8px);
+    border-color:#555;
+}
+
+.team-card::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.1),
+            transparent 40%
+        );
+}
+
+.team-card-content{
+    position:absolute;
+    inset:auto 30px 30px 30px;
+}
+
+.team-number{
+    position:absolute;
+
+    top:25px;
+    right:25px;
+
+    font-size:11px;
+    font-weight:900;
+
+    color:#666;
+}
+
+.team-card h3{
+    font-size:44px;
+    line-height:.9;
+
+    letter-spacing:-2px;
+
+    text-transform:uppercase;
+}
+
+.team-card p{
+    margin-top:12px;
+
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    color:#999;
+}
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about-grid{
+    display:grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap:80px;
+
+    align-items:center;
+}
+
+.about-big{
+    font-size:clamp(42px,6vw,80px);
+    line-height:.95;
+
+    font-weight:950;
+    letter-spacing:-4px;
+
+    text-transform:uppercase;
+}
+
+.about-text{
+    color:#777;
+
+    line-height:1.8;
+}
+
+.about-text p + p{
+    margin-top:20px;
+}
+
+.about-points{
+    margin-top:35px;
+
+    display:grid;
+    gap:12px;
+}
+
+.about-point{
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+.about-point::before{
+    content:"";
+
+    width:7px;
+    height:7px;
+
+    background:#000;
+}
+
+
+/* =========================================================
+   SPONSORS
+========================================================= */
+
+.sponsors-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    border-top:1px solid #ddd;
+    border-left:1px solid #ddd;
+}
+
+.sponsor{
+    min-height:160px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    border-right:1px solid #ddd;
+    border-bottom:1px solid #ddd;
+
+    color:#aaa;
+
+    font-size:18px;
+    font-weight:900;
+    letter-spacing:2px;
+    text-transform:uppercase;
+
+    transition:
+        background .25s ease,
+        color .25s ease;
+}
+
+.sponsor:hover{
+    background:#000;
+    color:#fff;
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact-grid{
+    display:grid;
+
+    grid-template-columns:
+        minmax(0, 1.1fr)
+        minmax(0, .9fr);
+
+    gap:80px;
+}
+
+.contact-grid > *{
+    min-width:0;
+}
+
+.contact-title{
+    font-size:clamp(55px,8vw,115px);
+    line-height:.8;
+
+    letter-spacing:-7px;
+
+    font-weight:950;
+
+    text-transform:uppercase;
+}
+
+.contact-description{
+    width:100%;
+    max-width:500px;
+    margin-top:35px;
+
+    color:#777;
+
+    line-height:1.7;
+}
+
+.contact-form{
+    display:grid;
+    gap:15px;
+}
+
+.form-group{
+    display:grid;
+    gap:8px;
+}
+
+.form-group label{
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:2px;
+    text-transform:uppercase;
+
+    color:#777;
+}
+
+.form-group input,
+.form-group textarea{
+    width:100%;
+
+    padding:16px 0;
+
+    border:0;
+    border-bottom:1px solid #ccc;
+
+    outline:none;
+
+    background:transparent;
+
+    color:#000;
+
+    resize:vertical;
+
+    transition:
+        border-color .25s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+    border-color:#000;
+}
+
+.form-group textarea{
+    min-height:130px;
+}
+
+.form-submit{
+    margin-top:15px;
+
+    display:flex;
+    justify-content:flex-start;
+}
+
+
+/* =========================================================
+   CONTACT — AJUSTE VISUAL
+========================================================= */
+
+#contact{
+    position:relative;
+    background:#1b1b1b;
+    color:#fff;
+    border-top:1px solid rgba(255,255,255,.06);
+    overflow:hidden;
+}
+
+#contact .contact-grid{
+    grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);
+    align-items:start;
+    gap:clamp(45px,7vw,100px);
+}
+
+#contact .section-kicker{
+    color:#ff0000;
+}
+
+#contact .contact-title{
+    color:#fff;
+    width:100%;
+    max-width:100%;
+    font-size:clamp(50px,5.2vw,92px);
+    line-height:.82;
+    letter-spacing:-5px;
+    overflow-wrap:normal;
+    word-break:normal;
+}
+
+#contact .contact-description{
+    display:block !important;
+    box-sizing:border-box;
+    width:500px !important;
+    max-width:500px !important;
+    margin:35px 0 0 0;
+    padding:0;
+    color:#999;
+    line-height:1.7;
+    white-space:normal !important;
+    overflow-wrap:anywhere !important;
+    word-break:normal !important;
+}
+
+@media(max-width:1100px){
+    #contact .contact-description{
+        width:100% !important;
+        max-width:100% !important;
+    }
+}
+
+#contact .contact-form{
+    width:100%;
+    max-width:560px;
+}
+
+#contact .form-group{
+    gap:10px;
+}
+
+#contact .form-group label{
+    color:#aaa;
+}
+
+#contact .form-group input,
+#contact .form-group textarea{
+    color:#fff;
+    border-bottom:1px solid rgba(255,255,255,.28);
+}
+
+#contact .form-group input::placeholder,
+#contact .form-group textarea::placeholder{
+    color:#777;
+    opacity:1;
+}
+
+#contact .form-group input:focus,
+#contact .form-group textarea:focus{
+    border-color:#ff0000;
+}
+
+#contact .form-submit{
+    margin-top:20px;
+}
+
+@media (max-width:900px){
+    #contact .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+    #contact .contact-form{
+        max-width:none;
+    }
+
+    #contact .contact-description{
+        max-width:100%;
+    }
+}
+
+#contact .btn-primary{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:48px;
+    padding:14px 24px;
+    border:1px solid #fff;
+    background:#000000;
+    color:#fff;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:background .25s ease,color .25s ease,border-color .25s ease,transform .25s ease;
+}
+
+#contact .btn-primary:hover{
+    background:rgb(255, 0, 0)000;
+    border-color:#000;
+    color:#000000;
+    transform:translateY(-2px);
+}
+
+@media(max-width:900px){
+    #contact .contact-grid{
+        grid-template-columns:1fr;
+        gap:50px;
+    }
+
+    #contact .contact-form{
+        max-width:none;
+    }
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.site-footer{
+    position:relative;
+
+    background:#ffffff;
+    color:#000000;
+
+    padding:90px 0 25px;
+
+    overflow:hidden;
+}
+
+.footer-watermark{
+    position:absolute;
+
+    right:-40px;
+    bottom:-80px;
+
+    font-size:
+        clamp(
+            160px,
+            25vw,
+            380px
+        );
+
+    line-height:1;
+
+    font-weight:950;
+
+    letter-spacing:-20px;
+
+    color:rgba(255,255,255,.035);
+
+    pointer-events:none;
+
+    user-select:none;
+}
+
+.footer-top{
+    position:relative;
+    z-index:1;
+
+    display:grid;
+
+    grid-template-columns:
+        minmax(0, 1.5fr)
+        minmax(0, 1fr)
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    gap:50px;
+
+    padding-bottom:80px;
+
+    border-bottom:1px solid #272727;
+}
+
+.footer-brand{
+    min-width:0;
+    max-width:390px;
+}
+
+.footer-logo{
+    width:80px;
+    height:80px;
+
+    object-fit:contain;
+
+    margin-bottom:25px;
+}
+
+.footer-description{
+    width:100%;
+    max-width:320px;
+    margin:0;
+    color:#2e2e2e;
+
+    line-height:1.7;
+
+    font-size:14px;
+    overflow-wrap:anywhere;
+    word-break:normal;
+}
+
+.footer-socials{
+    display:flex;
+
+    gap:8px;
+
+    margin-top:25px;
+}
+
+.social-link{
+    width:34px;
+    height:34px;
+
+    display:grid;
+    place-items:center;
+
+    background:transparent;
+    border:1px solid transparent;
+
+    color:#000;
+    text-decoration:none;
+
+    transition:
+        color .25s ease,
+        border-color .25s ease,
+        transform .25s ease;
+}
+
+.social-link svg{
+    width:20px;
+    height:20px;
+    display:block;
+    fill:currentColor;
+}
+
+.social-link:hover{
+    background:transparent;
+    border-color:#ff0000;
+    color:#ff0000;
+    transform:translateY(-2px);
+}
+
+.footer-column h4{
+    margin-bottom:20px;
+
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.footer-column a{
+    display:block;
+
+    margin-bottom:11px;
+
+    font-size:13px;
+
+    color:#5e5e5e;
+
+    transition:
+        color .25s ease,
+        transform .25s ease;
+}
+
+.footer-column a:hover{
+    color:#ff0000;
+    transform:translateX(4px);
+}
+
+.footer-email{
+    color:#00000077;
+}
+
+.footer-bottom{
+    position:relative;
+    z-index:1;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:20px;
+
+    padding-top:25px;
+
+    color:#555;
+
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+.footer-motto{
+    color:#555;
+}
+
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+
+.back-top{
+    position:fixed;
+
+    right:25px;
+    bottom:25px;
+
+    width:45px;
+    height:45px;
+
+    display:grid;
+    place-items:center;
+
+    background:#000;
+    color:#fff;
+
+    border:1px solid #222;
+
+    cursor:pointer;
+
+    opacity:0;
+    visibility:hidden;
+
+    transform:translateY(15px);
+
+    transition:
+        opacity .25s ease,
+        visibility .25s ease,
+        transform .25s ease;
+    
+    z-index:5000;
+}
+
+.back-top.visible{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+.back-top:hover{
+    background:#ff0000;
+    color:#000;
+}
+
+
+/* =========================================================
+   REVEAL ANIMATION
+========================================================= */
+
+.reveal{
+    opacity:0;
+    transform:translateY(35px);
+
+    transition:
+        opacity .8s var(--ease),
+        transform .8s var(--ease);
+}
+
+.reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+
+/* =========================================================
+   AJUSTE VISUAL DO FOOTER
+========================================================= */
+
+.site-footer{
+    padding:100px 0 28px;
+}
+
+.footer-top{
+    align-items:start;
+    gap:70px;
+    padding-bottom:70px;
+}
+
+.footer-brand{
+    min-width:0;
+    max-width:420px;
+}
+
+.footer-logo{
+    width:74px;
+    height:74px;
+    margin-bottom:22px;
+}
+
+.footer-description{
+    width:100%;
+    max-width:320px;
+    margin:0;
+}
+
+.footer-column{
+    min-width:0;
+}
+
+.footer-column h4{
+    color:#000;
+}
+
+.footer-column a{
+    width:max-content;
+    max-width:100%;
+}
+
+.footer-email{
+    overflow-wrap:anywhere;
+}
+
+.social-link{
+    border:1px solid #333;
+    transition:
+        background .25s ease,
+        border-color .25s ease,
+        color .25s ease,
+        transform .25s ease;
+}
+
+.social-link:hover{
+    transform:translateY(-2px);
+}
+
+.footer-bottom{
+    padding-top:22px;
+}
+
+@media(max-width:700px){
+    .site-footer{
+        padding-top:75px;
+    }
+
+    .footer-top{
+        gap:42px 28px;
+        padding-bottom:55px;
+    }
+
+    .footer-description{
+        width:100%;
+        max-width:360px;
+    }
+}
+
+@media(max-width:520px){
+    .footer-top{
+        grid-template-columns:1fr;
+        gap:36px;
+    }
+
+    .footer-brand{
+        grid-column:1;
+    }
+
+    .footer-column a{
+        width:auto;
+    }
+
+    .footer-watermark{
+        right:-55px;
+        bottom:-35px;
+        font-size:150px;
+        letter-spacing:-10px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1100px){
+
+    .nav-links{
+        gap:20px;
+    }
+
+    .players-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .team-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .footer-top{
+        grid-template-columns:
+            1.3fr
+            1fr
+            1fr;
+    }
+
+    .footer-brand{
+        grid-column:1 / -1;
+    }
+}
+
+
+@media(max-width:850px){
+
+    .navbar{
+        width:min(calc(100% - 30px), var(--container));
+    }
+
+    .nav-left{
+        gap:15px;
+    }
+
+    .nav-links{
+        display:none;
+
+        position:absolute;
+
+        top:90px;
+        left:15px;
+        right:15px;
+
+        flex-direction:column;
+        align-items:flex-start;
+
+        gap:0;
+
+        padding:10px 20px 20px;
+
+        background:#1b1b1b;
+
+        box-shadow:
+            0 20px 40px rgba(0,0,0,.1);
+
+        border:1px solid #ddd;
+    }
+
+    .nav-links.open{
+        display:flex;
+    }
+
+    .nav-links a{
+        width:100%;
+
+        padding:15px 0;
+
+        border-bottom:1px solid #eee;
+    }
+
+    .menu-toggle{
+        display:grid;
+    }
+
+    .nav-right{
+        margin-left:auto;
+        margin-right:10px;
+    }
+
+    .nav-social{
+        width:34px;
+        height:34px;
+    }
+
+    .stats{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .results-grid{
+        grid-template-columns:1fr;
+    }
+
+    .match{
+        grid-template-columns:
+            1fr;
+
+        gap:12px;
+
+        padding:25px 0;
+    }
+
+    .match-action{
+        text-align:left;
+    }
+
+    .match-opponents{
+        flex-wrap:wrap;
+        gap:15px;
+    }
+
+    .about-grid,
+    .contact-grid{
+        grid-template-columns:1fr;
+        gap:50px;
+    }
+
+    .sponsors-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+}
+
+
+@media(max-width:700px){
+
+    .container{
+        width:calc(100% - 30px);
+    }
+
+    .section{
+        padding:80px 0;
+    }
+
+    .section-header{
+        display:block;
+        margin-bottom:40px;
+    }
+
+    .section-description{
+        margin-top:20px;
+    }
+
+    .hero{
+        min-height:900px;
+    }
+
+    .hero-content{
+        width:calc(100% - 30px);
+        min-height:900px;
+        padding:125px 0 70px;
+        grid-template-columns:1fr;
+        gap:35px;
+        align-content:center;
+    }
+
+    .hero-copy{
+        max-width:none;
+    }
+
+    .hero-title{
+        font-size:clamp(60px, 17vw, 120px);
+        letter-spacing:-6px;
+    }
+
+    .hero-title .outline{
+        -webkit-text-stroke:1px rgba(255,255,255,.9);
+    }
+
+    .hero-description{
+        font-size:14px;
+        max-width:560px;
+    }
+
+    .hero-side{
+        position:absolute;
+        right:-100px;
+        bottom:-20px;
+        width:390px;
+        min-height:390px;
+        opacity:.32;
+        pointer-events:none;
+    }
+
+    .hero-orbit{
+        width:360px;
+    }
+
+    .hero-logo-wrap{
+        width:220px;
+    }
+
+    .hero-side-label{
+        display:none;
+    }
+
+    .hero-meta{
+        display:none;
+    }
+
+    .hero-scroll{
+        display:none;
+    }
+
+    .team-grid,
+    .players-grid,
+    .news-grid{
+        grid-template-columns:1fr;
+    }
+
+    .news-card.featured{
+        grid-column:auto;
+    }
+
+    .achievement{
+        grid-template-columns:
+            50px
+            1fr;
+
+        gap:15px;
+
+        padding:25px 0;
+    }
+
+    .achievement-event{
+        grid-column:2;
+
+        text-align:left;
+    }
+
+    .footer-top{
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .footer-brand{
+        grid-column:1 / -1;
+    }
+
+    .footer-bottom{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}
+
+
+@media(max-width:520px){
+
+    .nav-right{
+        gap:0;
+    }
+
+    .brand img{
+        width:64px;
+        height:64px;
+    }
+
+    .navbar{
+        height:80px;
+    }
+
+    .nav-links{
+        top:80px;
+    }
+
+    .hero{
+        min-height:820px;
+    }
+
+    .hero-content{
+        min-height:820px;
+        padding:115px 0 55px;
+    }
+
+    .hero-side{
+        right:-155px;
+        bottom:-35px;
+        transform:scale(.82);
+        transform-origin:center;
+    }
+
+    .hero-kicker{
+        font-size:9px;
+        letter-spacing:2px;
+    }
+
+    .hero-description{
+        margin-top:28px;
+    }
+
+    .hero-actions{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .btn{
+        width:100%;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .sponsors-grid{
+        grid-template-columns:1fr;
+    }
+
+    .footer-top{
+        grid-template-columns:1fr;
+    }
+
+    .footer-brand{
+        grid-column:auto;
+    }
+}
+
+
+@media(max-width:420px){
+
+    .section-title{
+        letter-spacing:-2px;
+    }
+
+    .hero-title{
+        font-size:54px;
+        letter-spacing:-3.5px;
+    }
+
+    .hero-side{
+        right:-175px;
+        bottom:-55px;
+        transform:scale(.7);
+    }
+
+    .hero-kicker{
+        margin-bottom:18px;
+    }
+
+    .stat{
+        padding:30px 20px;
+    }
+
+    .team-card{
+        min-height:340px;
+    }
+
+    .player-card{
+        min-height:360px;
+    }
+
+    .contact-title{
+        letter-spacing:-4px;
+    }
+}
+/* =========================
+   NOSSAS MODALIDADES
+========================= */
+
+.games-section{
+    position:relative;
+
+    width:100%;
+    padding:110px 7%;
+
+    background:#0b0b0b;
+
+    overflow:hidden;
+}
+
+.games-container{
+    max-width:1200px;
+    margin:0 auto;
+}
+
+.games-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+
+    gap:50px;
+
+    margin-bottom:50px;
+}
+
+.games-heading h2{
+    margin:0;
+
+    font-size:clamp(38px, 5vw, 62px);
+    line-height:1.05;
+    font-weight:800;
+
+    color:#fff;
+}
+
+.games-heading h2 span{
+    display:block;
+    color:#fff;
+}
+
+.games-heading p{
+    max-width:400px;
+
+    margin:0;
+
+    font-size:15px;
+    line-height:1.7;
+
+    color:#969696;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.games-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:20px;
+}
+
+.game-card{
+    position:relative;
+
+    height:420px;
+
+    display:flex;
+    align-items:flex-end;
+
+    overflow:hidden;
+
+    text-decoration:none;
+
+    background:#151515;
+}
+
+.game-card img{
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    transition:
+        transform .6s ease;
+}
+
+.game-card-overlay{
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,.95) 0%,
+            rgba(0,0,0,.5) 45%,
+            rgba(0,0,0,.05) 100%
+        );
+}
+
+.game-card-content{
+    position:relative;
+
+    z-index:2;
+
+    width:100%;
+
+    padding:30px;
+}
+
+.game-card-content > span{
+    display:block;
+
+    margin-bottom:8px;
+
+    font-size:11px;
+    font-weight:700;
+
+    letter-spacing:3px;
+
+    color:#bdbdbd;
+}
+
+.game-card h3{
+    margin:0;
+
+    font-size:28px;
+    line-height:1.1;
+
+    font-weight:800;
+
+    color:#fff;
+}
+
+.game-card-link{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    margin-top:22px;
+
+    font-size:12px;
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    color:#fff;
+}
+
+.game-card-link strong{
+    font-size:18px;
+
+    transition:
+        transform .3s ease;
+}
+
+
+/* =========================
+   HOVER
+========================= */
+
+.game-card:hover img{
+    transform:scale(1.06);
+}
+
+.game-card:hover .game-card-link strong{
+    transform:translateX(6px);
+}
+
+
+/* =========================
+   BOTÃO
+========================= */
+
+.games-footer{
+    display:flex;
+    justify-content:center;
+
+    margin-top:45px;
+}
+
+.games-button{
+    display:inline-flex;
+    align-items:center;
+    gap:18px;
+
+    padding:15px 24px;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-size:12px;
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    border:1px solid rgba(255,255,255,.25);
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        border-color .3s ease;
+}
+
+.games-button span{
+    font-size:19px;
+}
+
+.games-button:hover{
+    background:#ff0000;
+    color:#000;
+
+    border-color:#000000;
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width:900px){
+
+    .games-heading{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .games-heading p{
+        max-width:600px;
+    }
+
+    .games-grid{
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width:600px){
+
+    .games-section{
+        padding:80px 6%;
+    }
+
+    .games-grid{
+        grid-template-columns:1fr;
+    }
+
+    .game-card{
+        height:380px;
+    }
+
+}
+
+/* =========================
+   SOBRE A CHENNAI
+========================= */
+
+.about-preview{
+    position:relative;
+    width:100%;
+    padding:110px 7%;
+    background:#080808;
+    overflow:hidden;
+}
+
+.about-preview-container{
+    max-width:1200px;
+    margin:0 auto;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:80px;
+}
+
+.about-preview-content{
+    position:relative;
+    z-index:2;
+}
+
+.section-label{
+    display:inline-block;
+    margin-bottom:18px;
+
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:3px;
+
+    color:#ff0000;
+}
+
+.about-preview h2{
+    margin:0 0 25px;
+
+    font-size:clamp(38px, 5vw, 64px);
+    line-height:1.05;
+    font-weight:800;
+
+    color:#fff;
+}
+
+.about-preview h2 span{
+    display:block;
+    color:#ffffff;
+}
+
+.about-preview p{
+    max-width:570px;
+    margin:0 0 16px;
+
+    font-size:16px;
+    line-height:1.8;
+
+    color:#ffffff;
+}
+
+.about-preview-button{
+    display:inline-flex;
+    align-items:center;
+    gap:18px;
+
+    margin-top:25px;
+    padding:14px 22px;
+
+    color:#ffffff;
+    text-decoration:none;
+
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:1px;
+
+    border:1px solid rgba(255,255,255,.25);
+
+    transition:
+        background .3s ease,
+        border-color .3s ease,
+        transform .3s ease;
+}
+
+.about-preview-button span{
+    font-size:20px;
+    line-height:1;
+}
+
+.about-preview-button:hover{
+    background:#ff0000;
+    color:#000;
+    border-color:#000000;
+
+    transform:translateX(4px);
+}
+
+
+/* =========================
+   VISUAL DO LOGO
+========================= */
+
+.about-preview-visual{
+    position:relative;
+
+    min-height:420px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.about-preview-visual img{
+    position:relative;
+    z-index:2;
+
+    width:min(330px, 70%);
+    height:auto;
+
+    object-fit:contain;
+
+    filter:drop-shadow(
+        0 0 35px rgba(255,255,255,.08)
+    );
+
+    transition:transform .5s ease;
+}
+
+.about-preview-visual:hover img{
+    transform:scale(1.04);
+}
+
+.about-preview-glow{
+    position:absolute;
+
+    width:320px;
+    height:320px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.035);
+
+    filter:blur(70px);
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width:800px){
+
+    .about-preview{
+        padding:80px 6%;
+    }
+
+    .about-preview-container{
+        grid-template-columns:1fr;
+        gap:45px;
+    }
+
+    .about-preview-content{
+        text-align:center;
+    }
+
+    .about-preview p{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .about-preview-button{
+        justify-content:center;
+    }
+
+    .about-preview-visual{
+        min-height:300px;
+    }
+
+    .about-preview-visual img{
+        width:240px;
+    }
+
+}
+/* =========================
+   ÚLTIMAS NOTÍCIAS
+========================= */
+
+.news-section{
+    position:relative;
+
+    width:100%;
+    padding:110px 7%;
+
+    background:#080808;
+
+    overflow:hidden;
+}
+
+.news-container{
+    max-width:1200px;
+    margin:0 auto;
+}
+
+.news-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+
+    gap:50px;
+
+    margin-bottom:50px;
+}
+
+.news-heading h2{
+    margin:0;
+
+    font-size:clamp(42px, 5vw, 64px);
+    line-height:1;
+
+    font-weight:800;
+
+    color:#fff;
+}
+
+.news-heading h2 span{
+    display:block;
+    color:#cfcfcf;
+}
+
+.news-heading p{
+    max-width:410px;
+
+    margin:0;
+
+    font-size:15px;
+    line-height:1.7;
+
+    color:#969696;
+}
+
+
+/* =========================
+   GRID
+========================= */
+
+.news-grid{
+    display:grid;
+
+    grid-template-columns:
+        1.6fr 1fr;
+
+    grid-template-rows:
+        1fr 1fr;
+
+    gap:20px;
+}
+
+.news-featured{
+    position:relative;
+
+    grid-row:span 2;
+
+    min-height:600px;
+
+    overflow:hidden;
+
+    text-decoration:none;
+
+    background:#151515;
+}
+
+.news-card{
+    position:relative;
+
+    min-height:290px;
+
+    overflow:hidden;
+
+    text-decoration:none;
+
+    background:#151515;
+}
+
+
+/* =========================
+   IMAGENS
+========================= */
+
+.news-featured img,
+.news-card img{
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    transition:
+        transform .6s ease;
+}
+
+.news-overlay{
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,.95) 0%,
+            rgba(0,0,0,.55) 50%,
+            rgba(0,0,0,.05) 100%
+        );
+}
+
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+.news-content{
+    position:absolute;
+
+    z-index:2;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    padding:30px;
+}
+
+.news-category{
+    display:block;
+
+    margin-bottom:10px;
+
+    font-size:10px;
+    font-weight:700;
+
+    letter-spacing:3px;
+
+    color:#c5c5c5;
+}
+
+.news-content h3{
+    max-width:650px;
+
+    margin:0;
+
+    font-size:28px;
+    line-height:1.15;
+
+    font-weight:800;
+
+    color:#fff;
+}
+
+.news-card .news-content h3{
+    font-size:21px;
+}
+
+.news-meta{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-top:20px;
+
+    font-size:11px;
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    color:#aaa;
+}
+
+.news-meta strong{
+    font-size:20px;
+
+    color:#fff;
+
+    transition:
+        transform .3s ease;
+}
+
+
+/* =========================
+   HOVER
+========================= */
+
+.news-featured:hover img,
+.news-card:hover img{
+    transform:scale(1.05);
+}
+
+.news-featured:hover .news-meta strong,
+.news-card:hover .news-meta strong{
+    transform:translateX(6px);
+}
+
+
+/* =========================
+   BOTÃO
+========================= */
+
+.news-footer{
+    display:flex;
+    justify-content:center;
+
+    margin-top:45px;
+}
+
+.news-button{
+    display:inline-flex;
+    align-items:center;
+
+    gap:18px;
+
+    padding:15px 24px;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-size:12px;
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    border:1px solid rgba(255,255,255,.25);
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        border-color .3s ease;
+}
+
+.news-button span{
+    font-size:19px;
+}
+
+.news-button:hover{
+    background:#fff;
+    color:#000;
+    border-color:#fff;
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width:900px){
+
+    .news-heading{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .news-grid{
+        grid-template-columns:1fr 1fr;
+        grid-template-rows:auto;
+    }
+
+    .news-featured{
+        grid-column:span 2;
+        grid-row:auto;
+
+        min-height:500px;
+    }
+
+}
+
+
+@media (max-width:600px){
+
+    .news-section{
+        padding:80px 6%;
+    }
+
+    .news-grid{
+        grid-template-columns:1fr;
+    }
+
+    .news-featured{
+        grid-column:auto;
+
+        min-height:420px;
+    }
+
+    .news-card{
+        min-height:320px;
+    }
+
+}
+
+/* =========================
+   PATROCINADORES
+========================= */
+
+.sponsors-section{
+    width:100%;
+    padding:100px 7%;
+
+    background:#0b0b0b;
+
+    border-top:1px solid rgba(255,255,255,.06);
+}
+
+.sponsors-container{
+    max-width:1200px;
+    margin:0 auto;
+}
+
+.sponsors-heading{
+    text-align:center;
+
+    max-width:650px;
+    margin:0 auto 55px;
+}
+
+.sponsors-heading .section-label{
+    margin-bottom:16px;
+}
+
+.sponsors-heading h2{
+    margin:0 0 20px;
+
+    font-size:clamp(38px, 5vw, 58px);
+    line-height:1.05;
+
+    font-weight:800;
+
+    color:#fff;
+}
+
+.sponsors-heading h2 span{
+    display:block;
+    color:#fff;
+}
+
+.sponsors-heading p{
+    max-width:550px;
+    margin:0 auto;
+
+    font-size:15px;
+    line-height:1.7;
+
+    color:#929292;
+}
+
+
+/* =========================
+   LOGOS
+========================= */
+
+/* =========================
+   GRID DE PATROCINADORES
+========================= */
+
+.sponsors-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    align-items:center;
+
+    border-top:1px solid rgba(255,255,255,.08);
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.sponsor-item{
+    min-height:150px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:30px 35px;
+
+    position:relative;
+
+    transition:
+        background .3s ease;
+}
+
+/* Divisórias entre os patrocinadores */
+
+.sponsor-item:not(:last-child)::after{
+    content:"";
+
+    position:absolute;
+
+    top:25%;
+    right:0;
+
+    width:1px;
+    height:50%;
+
+    background:rgba(255,255,255,.08);
+}
+
+
+/* LOGOS */
+
+.sponsor-item img{
+    max-width:170px;
+    max-height:65px;
+
+    width:auto;
+    height:auto;
+
+    object-fit:contain;
+
+    opacity:.55;
+
+    filter:grayscale(100%);
+
+    transition:
+        opacity .35s ease,
+        filter .35s ease,
+        transform .35s ease;
+}
+
+
+/* HOVER */
+
+.sponsor-item:hover{
+    background:rgba(255,255,255,.025);
+}
+
+.sponsor-item:hover img{
+    opacity:1;
+
+    filter:grayscale(0%);
+
+    transform:scale(1.05);
+}
+
+/* =========================
+   STORE
+========================= */
+
+.store-section{
+    position:relative;
+    width:100%;
+    padding:110px 7%;
+    background:#080808;
+    overflow:hidden;
+}
+
+.store-container{
+    max-width:1200px;
+    margin:0 auto;
+}
+
+
+/* =========================
+   CABEÇALHO
+========================= */
+
+.store-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:40px;
+    margin-bottom:50px;
+}
+
+.store-heading h2{
+    margin:0;
+    font-size:clamp(42px,5vw,64px);
+    line-height:1;
+    font-weight:800;
+    color:#fff;
+}
+
+.store-heading h2 span{
+    display:block;
+    color:#fff;
+}
+
+
+/* BOTÃO */
+
+.store-button{
+    display:inline-flex;
+    align-items:center;
+    gap:18px;
+
+    padding:15px 24px;
+
+    color:#fff;
+    text-decoration:none;
+
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:1px;
+
+    border:1px solid rgba(255,255,255,.25);
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        border-color .3s ease;
+}
+
+.store-button span{
+    font-size:19px;
+}
+
+.store-button:hover{
+    background:#ff0000;
+    color:#000;
+    border-color:#000;
+}
+
+
+/* =========================
+   SLIDER
+========================= */
+
+.store-slider{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+
+/* ÁREA DOS PRODUTOS */
+
+.store-track{
+    width:100%;
+
+    display:flex;
+    gap:20px;
+
+    overflow-x:auto;
+    overflow-y:hidden;
+
+    scroll-behavior:smooth;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+    cursor:grab;
+    user-select:none;
+    -webkit-overflow-scrolling:touch;
+}
+
+.store-track::-webkit-scrollbar{
+    display:none;
+}
+
+.store-track.is-dragging{
+    cursor:grabbing;
+    scroll-behavior:auto;
+}
+
+.store-track.is-dragging .product-card{
+    pointer-events:none;
+}
+
+
+/* =========================
+   CARD
+========================= */
+.product-card{
+    flex:0 0 calc((100% - 60px) / 4);
+    scroll-snap-align:start;
+
+    display:block;
+
+    color:#fff;
+    text-decoration:none;
+
+    background:#111;
+
+    transition:
+        transform .35s ease,
+        background .35s ease;
+}
+
+.product-card:hover{
+    transform:translateY(-6px);
+    background:#151515;
+}
+
+/* IMAGEM */
+
+.product-image{
+    position:relative;
+
+    width:100%;
+    aspect-ratio:1 / 1.15;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+
+    background:#151515;
+}
+
+.product-image img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .5s ease, opacity .2s ease;
+}
+
+.product-image img:first-child{
+    opacity:1;
+    z-index:1;
+}
+
+.product-image img.hover-image{
+    opacity:0;
+    z-index:2;
+}
+
+.product-card:hover .product-image img:first-child,
+.product-card:hover .product-image img.hover-image{
+    transform:scale(1.05);
+}
+
+.product-card:hover .product-image img.hover-image{
+    opacity:1;
+}
+
+
+/* INFORMAÇÕES */
+
+.product-info{
+    padding:22px;
+}
+
+.product-info span{
+    display:block;
+
+    margin-bottom:8px;
+
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:2px;
+
+    color:#888;
+}
+
+.product-info h3{
+    margin:0 0 12px;
+
+    font-size:19px;
+    line-height:1.2;
+    font-weight:700;
+
+    color:#fff;
+}
+
+.product-info strong{
+    font-size:15px;
+    font-weight:600;
+
+    color:#cfcfcf;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width:900px){
+
+    .store-heading{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .product-card{
+        flex:0 0 calc((100% - 20px) / 2);
+    }
+
+}
+
+
+@media (max-width:600px){
+
+    .store-section{
+        padding:80px 6%;
+    }
+
+    .store-slider{
+        gap:10px;
+    }
+
+    .product-card{
+        flex:0 0 100%;
+    }
+
+    .product-image{
+        aspect-ratio:1 / 1;
+    }
+
+}
+
+
+/* =========================================================
+   4 MODALIDADES
+========================================================= */
+
+.games-grid{
+    grid-template-columns:repeat(4,1fr);
+}
+
+@media (max-width:1100px){
+    .games-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media (max-width:600px){
+    .games-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+
+/* =========================================================
+   DESCRIÇÃO DO FOOTER
+========================================================= */
+.site-footer .footer-top{
+    grid-template-columns: 300px repeat(3, minmax(0, 1fr));
+    column-gap: 55px;
+}
+
+.site-footer .footer-brand{
+    width: 300px;
+    max-width: 300px;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.site-footer .footer-description{
+    display: block;
+    width: 280px;
+    max-width: 280px;
+    margin: 0;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: normal;
+    box-sizing: border-box;
+}
+
+@media(max-width:1100px){
+    .site-footer .footer-top{
+        grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr);
+        column-gap: 40px;
+    }
+
+    .site-footer .footer-brand{
+        width:auto;
+        max-width:390px;
+        overflow:visible;
+    }
+
+    .site-footer .footer-description{
+        width:100%;
+        max-width:320px;
+    }
+}
+
+@media(max-width:700px){
+    .site-footer .footer-top{
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .site-footer .footer-brand{
+        width:auto;
+        max-width:100%;
+    }
+
+    .site-footer .footer-description{
+        width:100%;
+        max-width:360px;
+    }
+}
+
+@media(max-width:520px){
+    .site-footer .footer-top{
+        grid-template-columns:1fr;
+    }
+
+    .site-footer .footer-description{
+        max-width:100%;
+    }
+}
+
+
+
+
+/* =========================================================
+   TIMES — PÁGINA
+========================================================= */
+
+body.times-page{
+    background:#080808;
+    color:#fff;
+}
+
+.times-hero{
+    position:relative;
+    min-height:620px;
+    padding:165px 7% 100px;
+    display:flex;
+    align-items:flex-end;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 78% 38%, rgba(255,0,0,.13), transparent 28%),
+        linear-gradient(120deg,#080808 0%,#111 55%,#080808 100%);
+}
+
+.times-hero::after{
+    content:"TIMES";
+    position:absolute;
+    right:-30px;
+    bottom:-70px;
+    font-size:clamp(170px,27vw,390px);
+    line-height:.8;
+    font-weight:950;
+    letter-spacing:-22px;
+    color:rgba(255,255,255,.025);
+    pointer-events:none;
+}
+
+.times-hero-container{
+    position:relative;
+    z-index:2;
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+}
+
+.times-label{
+    display:inline-block;
+    margin-bottom:22px;
+    color:#ff0000;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:4px;
+    text-transform:uppercase;
+}
+
+.times-hero h1{
+    max-width:950px;
+    margin:0;
+    font-size:clamp(58px,9vw,128px);
+    line-height:.84;
+    letter-spacing:-7px;
+    font-weight:950;
+    text-transform:uppercase;
+}
+
+.times-hero h1 span{
+    display:block;
+    color:#ff0000;
+}
+
+.times-hero p{
+    max-width:650px;
+    margin-top:34px;
+    color:#aaa;
+    font-size:17px;
+    line-height:1.8;
+}
+
+.times-section{
+    padding:115px 7%;
+    background:#0b0b0b;
+}
+
+.times-container{
+    max-width:1200px;
+    margin:0 auto;
+}
+
+.times-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:50px;
+    margin-bottom:55px;
+}
+
+.times-heading > div{
+    min-width:0;
+}
+
+.times-heading .section-label{
+    display:inline-block;
+    margin-bottom:16px;
+    color:#ff0000;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:3px;
+    text-transform:uppercase;
+}
+
+.times-heading h2{
+    margin:0;
+    color:#fff;
+    font-size:clamp(42px,5.5vw,72px);
+    line-height:.92;
+    letter-spacing:-4px;
+    font-weight:900;
+    text-transform:uppercase;
+}
+
+.times-heading h2 span{
+    display:block;
+    color:#aaa;
+}
+
+.times-heading p{
+    max-width:420px;
+    margin:0;
+    color:#888;
+    font-size:15px;
+    line-height:1.7;
+}
+
+.team-list{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.team-entry{
+    position:relative;
+    min-height:470px;
+    overflow:hidden;
+    display:flex;
+    align-items:flex-end;
+    background:#151515;
+    border:1px solid #252525;
+    isolation:isolate;
+    transition:transform .35s var(--ease),border-color .35s ease;
+}
+
+.team-entry:hover{
+    transform:translateY(-7px);
+    border-color:#555;
+}
+
+.team-entry::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:1;
+    background:
+        linear-gradient(180deg,rgba(0,0,0,.05) 25%,rgba(0,0,0,.86) 100%);
+}
+
+.team-entry-image{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:0;
+    opacity:.8;
+    transition:transform .6s ease,opacity .4s ease;
+}
+
+.team-entry:hover .team-entry-image{
+    transform:scale(1.045);
+    opacity:1;
+}
+
+.team-entry-content{
+    position:relative;
+    z-index:2;
+    width:100%;
+    padding:32px;
+}
+
+.team-entry-number{
+    position:absolute;
+    top:25px;
+    right:25px;
+    color:rgba(255,255,255,.55);
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.team-entry-type{
+    display:block;
+    margin-bottom:10px;
+    color:#ff0000;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:3px;
+    text-transform:uppercase;
+}
+
+.team-entry h3{
+    margin:0;
+    color:#fff;
+    font-size:clamp(34px,4vw,58px);
+    line-height:.9;
+    letter-spacing:-3px;
+    font-weight:950;
+    text-transform:uppercase;
+}
+
+.team-entry-meta{
+    margin-top:18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    padding-top:16px;
+    border-top:1px solid rgba(255,255,255,.18);
+    color:#aaa;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.team-entry-arrow{
+    color:#fff;
+    font-size:22px;
+    transition:transform .25s ease,color .25s ease;
+}
+
+.team-entry:hover .team-entry-arrow{
+    color:#ff0000;
+    transform:translateX(5px);
+}
+
+.times-note{
+    margin-top:55px;
+    padding:28px 30px;
+    border-left:2px solid #ff0000;
+    background:#101010;
+    color:#888;
+    line-height:1.7;
+}
+
+.times-note strong{
+    color:#fff;
+}
+
+.times-cta{
+    padding:105px 7%;
+    background:#ff0000;
+    color:#000;
+}
+
+.times-cta-container{
+    max-width:1200px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:50px;
+}
+
+.times-cta h2{
+    max-width:780px;
+    margin:0;
+    font-size:clamp(42px,6vw,78px);
+    line-height:.9;
+    letter-spacing:-4px;
+    font-weight:950;
+    text-transform:uppercase;
+}
+
+.times-cta a{
+    flex:0 0 auto;
+    display:inline-flex;
+    align-items:center;
+    gap:18px;
+    padding:17px 25px;
+    border:1px solid #000;
+    color:#000;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    transition:background .25s ease,color .25s ease,transform .25s ease;
+}
+
+.times-cta a span{
+    font-size:20px;
+}
+
+.times-cta a:hover{
+    background:#000;
+    color:#fff;
+    transform:translateX(5px);
+}
+
+@media(max-width:900px){
+    .times-hero{
+        min-height:570px;
+        padding:145px 6% 85px;
+    }
+
+    .times-section,
+    .times-cta{
+        padding:85px 6%;
+    }
+
+    .times-heading,
+    .times-cta-container{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .team-list{
+        grid-template-columns:1fr;
+    }
+
+    .team-entry{
+        min-height:430px;
+    }
+}
+
+@media(max-width:600px){
+    .times-hero{
+        min-height:590px;
+        padding:125px 6% 75px;
+    }
+
+    .times-hero h1{
+        letter-spacing:-4px;
+    }
+
+    .times-hero p{
+        font-size:15px;
+    }
+
+    .times-heading h2,
+    .times-cta h2{
+        letter-spacing:-2px;
+    }
+
+    .team-entry{
+        min-height:380px;
+    }
+
+    .team-entry-content{
+        padding:24px;
+    }
+}
+
+
+
+/* Página Times: menu mobile */
+@media(max-width:900px){
+    .nav-links{
+        position:fixed;
+        top:90px;
+        left:0;
+        right:0;
+        transform:none;
+        width:100%;
+        margin:0;
+        padding:25px 30px;
+        display:none;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:18px;
+        background:#fff;
+        box-shadow:0 18px 35px rgba(0,0,0,.12);
+    }
+
+    .nav-links.open{
+        display:flex;
+    }
+}
+
+@media(max-width:520px){
+    .nav-links{
+        top:80px;
+        padding:22px 20px;
+    }
+}
+
+
+
+/* =========================================================
+   JOGADORES + FILTROS
+========================================================= */
+.team-filters{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+    margin:0 auto 45px;
+}
+
+.team-filter{
+    border:1px solid #2a2a2a;
+    border-radius:0;
+    background:#111;
+    color:#aaa;
+    padding:13px 22px;
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:all .25s ease;
+}
+
+.team-filter:hover{
+    border-color:#ff0000;
+    color:#fff;
+    transform:translateY(-2px);
+}
+
+.team-filter.active{
+    background:#ff0000;
+    border-color:#ff0000;
+    color:#fff;
+    box-shadow:0 8px 22px rgba(255,0,0,.18);
+}
+
+.players-grid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:30px;
+}
+
+.player-card{
+    min-width:0;
+    text-align:center;
+    transition:transform .3s ease, opacity .3s ease;
+}
+
+.player-card:hover{
+    transform:translateY(-7px);
+}
+
+.player-card.filter-hidden{
+    display:none!important;
+}
+
+.player-photo{
+    position:relative;
+    aspect-ratio:4/5;
+    overflow:hidden;
+    background:#111;
+    border:1px solid #242424;
+}
+
+.player-photo-placeholder{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#444;
+    font-size:12px;
+    font-weight:900;
+    letter-spacing:3px;
+    background:
+        linear-gradient(135deg,rgba(255,255,255,.045),transparent 45%),
+        #0b0b0b;
+}
+
+/* Quando tiver as fotos, troque o placeholder por:
+   <img src="Imagens/nome-da-foto.jpg" alt="Nome do jogador">
+*/
+.player-photo img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    transition:transform .4s ease;
+}
+
+.player-card:hover .player-photo img{
+    transform:scale(1.04);
+}
+
+.player-card h3{
+    margin:15px 0 0;
+    color:#111;
+    font-size:18px;
+    line-height:1;
+    font-weight:900;
+    letter-spacing:-.5px;
+    text-transform:uppercase;
+}
+
+.players-empty{
+    padding:55px 20px;
+    text-align:center;
+    color:#777;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+@media(max-width:900px){
+    .players-grid{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+    }
+}
+
+@media(max-width:650px){
+    .team-filters{
+        justify-content:flex-start;
+        flex-wrap:nowrap;
+        overflow-x:auto;
+        padding-bottom:5px;
+    }
+
+    .team-filter{
+        flex:0 0 auto;
+        padding:12px 15px;
+        font-size:9px;
+    }
+
+    .players-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:22px 16px;
+    }
+}
+
+@media(max-width:400px){
+    .players-grid{
+        grid-template-columns:1fr 1fr;
+        gap:18px 12px;
+    }
+
+    .player-card h3{
+        font-size:15px;
+    }
+}
+
+</style>
+</head>
+
+<body class="times-page">
+
+<header class="site-header" id="siteHeader">
+
+    <nav class="navbar">
+
+        <div class="nav-left">
+
+            <a
+                href="#home"
+                class="brand"
+                aria-label="Chennai"
+            >
+                <img
+                    src="Imagens/logo-dragon.png"
+                    alt="Logo Chennai"
+                >
+            </a>
+
+
+            <div class="nav-links" id="navLinks">
+
+                <a href="#home" class="active">
+                    Início
+                </a>
+
+                <a href="sobrenos.html">
+                    Sobre nós
+                </a>
+
+                <a href="times.html" class="active">
+                    Times
+                </a>
+
+                <a href="loja.html">
+                    Loja
+                </a>
+
+                <a href="#contact">
+                    Contato
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="nav-right">
+
+    <a
+        href="login.html"
+        class="nav-login"
+        aria-label="Login"
+        title="Login"
+    >
+        <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+        >
+            <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-8a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 10c-4.42 0-8 2.24-8 5v3h16v-3c0-2.76-3.58-5-8-5Zm6 6H6v-1c0-1.58 2.75-3 6-3s6 1.42 6 3v1Z"/>
+        </svg>
+    </a>
+
+    <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+    >
+        <div>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </button>
+
+</div>
+
+    </nav>
+
+</header>
+
+<main>
+    <section class="times-hero" id="home">
+        <div class="times-hero-container reveal">
+            <span class="times-label">DREAD WYRM ESPORTS → COMPETIÇÃO</span>
+            <h1>Nossos <span>times.</span></h1>
+            <p>
+                Diferentes jogos. A mesma identidade.
+                Conheça as modalidades que representam a Dread Wyrm Esports
+                e acompanhe a nossa jornada competitiva.
+            </p>
+        </div>
+    </section>
+
+    <section class="times-section" id="times">
+        <div class="times-container">
+            <div class="times-heading reveal">
+                <div>
+                    <span class="section-label">NOSSOS JOGADORES</span>
+                    <h2>Quem <span>representa.</span></h2>
+                </div>
+                <p>
+                    Conheça os jogadores que representam a Dread Wyrm Esports
+                    em cada uma das nossas modalidades.
+                </p>
+            </div>
+
+            <div class="team-filters" role="group" aria-label="Filtrar jogadores por modalidade">
+                <button class="team-filter active" type="button" data-filter="all" aria-pressed="true">TODOS</button>
+                <button class="team-filter" type="button" data-filter="honor-of-kings" aria-pressed="false">HONOR OF KINGS</button>
+                <button class="team-filter" type="button" data-filter="valorant" aria-pressed="false">VALORANT</button>
+                <button class="team-filter" type="button" data-filter="overwatch" aria-pressed="false">OVERWATCH</button>
+                <button class="team-filter" type="button" data-filter="dota-2" aria-pressed="false">DOTA 2</button>
+            </div>
+
+            <div class="players-grid">
+                <!--
+                    MODELO DE JOGADOR
+                    Para adicionar um jogador, duplique um .player-card e altere:
+                    - data-game: honor-of-kings | valorant | overwatch | dota-2
+                    - src: caminho da foto do jogador
+                    - alt: nome do jogador
+                    - h3: nome que aparecerá abaixo da foto
+                -->
+
+                <article class="player-card reveal" data-game="honor-of-kings">
+                    <div class="player-photo">
+                        <div class="player-photo-placeholder">FOTO</div>
+                    </div>
+                    <h3>Kiin</h3>
+                </article>
+
+                <article class="player-card reveal" data-game="honor-of-kings">
+                    <div class="player-photo">
+                        <div class="player-photo-placeholder">FOTO</div>
+                    </div>
+                    <h3>Karsa</h3>
+                </article>
+
+                <article class="player-card reveal" data-game="honor-of-kings">
+                    <div class="player-photo">
+                        <div class="player-photo-placeholder">FOTO</div>
+                    </div>
+                    <h3>Chovy</h3>
+                </article>
+
+                <article class="player-card reveal" data-game="honor-of-kings">
+                    <div class="player-photo">
+                        <div class="player-photo-placeholder">FOTO</div>
+                    </div>
+                    <h3>aizeN</h3>
+                </article>
+
+                <article class="player-card reveal" data-game="honor-of-kings">
+                    <div class="player-photo">
+                        <div class="player-photo-placeholder">FOTO</div>
+                    </div>
+                    <h3>Lehends</h3>
+                </article>
+
+                <article class="player-card reveal" data-game="valorant">
+                    <div class="player-photo">
+                        <div class="player-photo-placeholder">FOTO</div>
+                    </div>
+                    <h3>Nome do jogador</h3>
+                </article>
+
+                <article class="player-card reveal" data-game="overwatch">
+                    <div class="player-photo">
+                        <div class="player-photo-placeholder">FOTO</div>
+                    </div>
+                    <h3>Nome do jogador</h3>
+                </article>
+
+                <article class="player-card reveal" data-game="dota-2">
+                    <div class="player-photo">
+                        <div class="player-photo-placeholder">FOTO</div>
+                    </div>
+                    <h3>Nome do jogador</h3>
+                </article>
+            </div>
+
+            <div class="players-empty" hidden>
+                Nenhum jogador encontrado nesta modalidade.
+            </div>
+
+            <div class="times-note reveal">
+                <strong>Como adicionar:</strong>
+                substitua o bloco de foto e o nome de cada jogador pelos seus dados.
+                Você também pode duplicar os cards para adicionar quantos membros quiser.
+            </div>
+        </div>
+    </section>
+
+    <section class="times-cta">
+        <div class="times-cta-container reveal">
+            <h2>Faça parte da nossa jornada competitiva.</h2>
+            <a href="index.html#contact">
+                ENTRE EM CONTATO <span>→</span>
+            </a>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+
+    <div class="footer-watermark">
+        CHENNAI
+    </div>
+
+
+    <div class="container">
+
+        <div class="footer-top">
+
+            <div class="footer-brand">
+
+                <img
+                    src="Imagens/logo-dragon.png"
+                    alt="Logo Chennai"
+                    class="footer-logo"
+                >
+
+                <p class="footer-description">
+                    A Dread Wyrm Esports é uma organização de esports focada
+                    em competição, performance, identidade e
+                    construção de comunidade.
+                </p>
+
+
+                <div class="footer-socials">
+
+                    <!-- X / Twitter -->
+                    <a
+                        href="#"
+                        class="social-link"
+                        aria-label="X / Twitter"
+                        title="X / Twitter"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817-5.963 6.817H1.684l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+                        </svg>
+                    </a>
+
+                    <!-- Instagram -->
+                    <a
+                        href="#"
+                        class="social-link"
+                        aria-label="Instagram"
+                        title="Instagram"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5ZM17.75 6a1.25 1.25 0 1 1-1.25 1.25A1.25 1.25 0 0 1 17.75 6Z"/>
+                        </svg>
+                    </a>
+
+                    <!-- Discord -->
+                    <a
+                        href="#"
+                        class="social-link"
+                        aria-label="Discord"
+                        title="Discord"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.077.077 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.042-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.127c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.928 1.794 8.18 1.794 12.061 0a.074.074 0 0 1 .078.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127c-.598.35-1.226.648-1.873.891a.077.077 0 0 0-.041.107c.36.698.771 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.056c.5-5.177-.838-9.674-3.548-13.66a.061.061 0 0 0-.03-.027ZM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.419 0 1.334-.956 2.419-2.157 2.419Zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.419 0 1.334-.947 2.419-2.157 2.419Z"/>
+                        </svg>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Explorar
+                </h4>
+
+                <a href="#home">
+                    Início
+                </a>
+
+                <a href="#sobre">
+                    Sobre nós
+                </a>
+
+                <a href="#modalidades">
+                    Modalidades
+                </a>
+
+                <a href="#patrocinadores">
+                    Patrocinadores
+                </a>
+
+                <a href="#loja">
+                    Loja
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Organização
+                </h4>
+
+                <a href="index.html">
+                    Início
+                </a>
+
+                <a href="sobrenos.html">
+                    Sobre nós
+                </a>
+
+                <a href="times.html">
+                    Times
+                </a>
+
+                <a href="loja.html">
+                    Loja
+                </a>
+
+                <a href="contato.html">
+                    Contato
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Entre em contato
+                </h4>
+
+                <a
+                    href="mailto:contact@chennai.gg"
+                    class="footer-email"
+                >
+                    contact@dwyesports.gg
+                </a>
+
+                <a href="#contact">
+                    Parcerias
+                </a>
+
+                <a href="#contact">
+                    Mídia
+                </a>
+
+                <a href="#contact">
+                    Negócios
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 <span id="year"></span>
+                Dread Wyrm Esports.
+                Todos os direitos reservados.
+            </span>
+
+            <span class="footer-motto">
+                Competir. Criar. Conquistar.
+            </span>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<button class="back-top" id="backTop" aria-label="Voltar ao topo" title="Voltar ao topo">↑</button>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const header = document.getElementById("siteHeader");
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    const backTop = document.getElementById("backTop");
+
+    function updateScrollUI(){
+        if(header) header.classList.toggle("scrolled", window.scrollY > 20);
+        if(backTop) backTop.classList.toggle("visible", window.scrollY > 600);
+    }
+
+    window.addEventListener("scroll", updateScrollUI, { passive:true });
+    updateScrollUI();
+
+    if(menuToggle && navLinks){
+        menuToggle.addEventListener("click", () => {
+            const open = navLinks.classList.toggle("open");
+            menuToggle.setAttribute("aria-expanded", String(open));
+        });
+
+        navLinks.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("open");
+                menuToggle.setAttribute("aria-expanded", "false");
+            });
+        });
+    }
+
+    if(backTop){
+        backTop.addEventListener("click", () => {
+            window.scrollTo({ top:0, behavior:"smooth" });
+        });
+    }
+
+    const revealElements = document.querySelectorAll(".reveal");
+
+    if("IntersectionObserver" in window){
+        const revealObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if(!entry.isIntersecting) return;
+                entry.target.classList.add("visible");
+                revealObserver.unobserve(entry.target);
+            });
+        }, { threshold:.12 });
+
+        revealElements.forEach(element => revealObserver.observe(element));
+    }else{
+        revealElements.forEach(element => element.classList.add("visible"));
+    }
+
+    const year = document.getElementById("year");
+    if(year) year.textContent = new Date().getFullYear();
+});
+
+
+    // FILTRO DE JOGADORES POR MODALIDADE
+    const teamFilters = document.querySelectorAll(".team-filter");
+    const playerCards = document.querySelectorAll(".player-card[data-game]");
+    const playersEmpty = document.querySelector(".players-empty");
+
+    teamFilters.forEach(filter => {
+        filter.addEventListener("click", () => {
+            const selected = filter.dataset.filter;
+            let visible = 0;
+
+            teamFilters.forEach(btn => {
+                const active = btn === filter;
+                btn.classList.toggle("active", active);
+                btn.setAttribute("aria-pressed", String(active));
+            });
+
+            playerCards.forEach(card => {
+                const show = selected === "all" || card.dataset.game === selected;
+                card.classList.toggle("filter-hidden", !show);
+                if(show) visible++;
+            });
+
+            if(playersEmpty){
+                playersEmpty.hidden = visible !== 0;
+            }
+        });
+    });
+
+</script>
+
+</body>
+</html>
