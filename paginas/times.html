@@ -3009,68 +3009,100 @@ body.times-page{
 
 .times-hero{
     position:relative;
-    min-height:620px;
-    padding:165px 7% 100px;
-    display:flex;
-    align-items:flex-end;
+    width:100%;
+    margin-top:90px;
+    aspect-ratio:16 / 9;
+    min-height:0;
+    padding:0;
     overflow:hidden;
-    background:
-        radial-gradient(circle at 78% 38%, rgba(255,0,0,.13), transparent 28%),
-        linear-gradient(120deg,#080808 0%,#111 55%,#080808 100%);
+    background:#000;
 }
 
-.times-hero::after{
-    content:"TIMES";
+.times-hero-slider{
     position:absolute;
-    right:-30px;
-    bottom:-70px;
-    font-size:clamp(170px,27vw,390px);
-    line-height:.8;
-    font-weight:950;
-    letter-spacing:-22px;
-    color:rgba(255,255,255,.025);
-    pointer-events:none;
+    inset:0;
+    overflow:hidden;
+}
+
+.times-hero-track{
+    display:flex;
+    width:100%;
+    height:100%;
+    transition:transform .65s cubic-bezier(.2,.8,.2,1);
+}
+
+.times-hero-slide{
+    position:relative;
+    flex:0 0 100%;
+    width:100%;
+    height:100%;
+    background:#000;
+}
+
+.times-hero-slide img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    object-position:center;
+}
+
+.times-hero-arrow{
+    position:absolute;
+    top:50%;
+    z-index:5;
+    width:48px;
+    height:48px;
+    display:grid;
+    place-items:center;
+    transform:translateY(-50%);
+    border:1px solid rgba(255,255,255,.45);
+    background:rgba(0,0,0,.38);
+    color:#fff;
+    cursor:pointer;
+    font-size:22px;
+    line-height:1;
+    transition:background .25s ease,border-color .25s ease,transform .25s ease;
+}
+
+.times-hero-arrow:hover{
+    background:#ff0000;
+    border-color:#ff0000;
+    color:#000;
+    transform:translateY(-50%) scale(1.05);
+}
+
+.times-hero-prev{left:24px;}
+.times-hero-next{right:24px;}
+
+.times-hero-dots{
+    position:absolute;
+    left:50%;
+    bottom:24px;
+    z-index:5;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    transform:translateX(-50%);
+}
+
+.times-hero-dot{
+    width:28px;
+    height:3px;
+    padding:0;
+    border:0;
+    background:rgba(255,255,255,.45);
+    cursor:pointer;
+    transition:width .3s ease,background .3s ease;
+}
+
+.times-hero-dot.active{
+    width:52px;
+    background:#fff;
 }
 
 .times-hero-container{
-    position:relative;
-    z-index:2;
-    width:100%;
-    max-width:1200px;
-    margin:0 auto;
-}
-
-.times-label{
-    display:inline-block;
-    margin-bottom:22px;
-    color:#ff0000;
-    font-size:12px;
-    font-weight:800;
-    letter-spacing:4px;
-    text-transform:uppercase;
-}
-
-.times-hero h1{
-    max-width:950px;
-    margin:0;
-    font-size:clamp(58px,9vw,128px);
-    line-height:.84;
-    letter-spacing:-7px;
-    font-weight:950;
-    text-transform:uppercase;
-}
-
-.times-hero h1 span{
-    display:block;
-    color:#ff0000;
-}
-
-.times-hero p{
-    max-width:650px;
-    margin-top:34px;
-    color:#aaa;
-    font-size:17px;
-    line-height:1.8;
+    display:none;
 }
 
 .times-section{
@@ -3117,7 +3149,7 @@ body.times-page{
 
 .times-heading h2 span{
     display:block;
-    color:#aaa;
+    color:#fff;
 }
 
 .times-heading p{
@@ -3304,8 +3336,7 @@ body.times-page{
 
 @media(max-width:900px){
     .times-hero{
-        min-height:570px;
-        padding:145px 6% 85px;
+        margin-top:90px;
     }
 
     .times-section,
@@ -3330,8 +3361,7 @@ body.times-page{
 
 @media(max-width:600px){
     .times-hero{
-        min-height:590px;
-        padding:125px 6% 75px;
+        margin-top:90px;
     }
 
     .times-hero h1{
@@ -3394,6 +3424,25 @@ body.times-page{
 /* =========================================================
    JOGADORES + FILTROS
 ========================================================= */
+@media(max-width:700px){
+    .times-hero-arrow{
+        width:38px;
+        height:38px;
+        font-size:18px;
+    }
+
+    .times-hero-prev{left:12px;}
+    .times-hero-next{right:12px;}
+
+    .times-hero-dots{
+        bottom:14px;
+        gap:6px;
+    }
+
+    .times-hero-dot{width:20px;}
+    .times-hero-dot.active{width:36px;}
+}
+
 .team-filters{
     display:flex;
     flex-wrap:wrap;
@@ -3630,15 +3679,44 @@ body.times-page{
 </header>
 
 <main>
-    <section class="times-hero" id="home">
-        <div class="times-hero-container reveal">
-            <span class="times-label">DREAD WYRM ESPORTS → COMPETIÇÃO</span>
-            <h1>Nossos <span>times.</span></h1>
-            <p>
-                Diferentes jogos. A mesma identidade.
-                Conheça as modalidades que representam a Dread Wyrm Esports
-                e acompanhe a nossa jornada competitiva.
-            </p>
+    <section class="times-hero" id="home" aria-label="Dread Wyrm Esports — destaque">
+        <div class="times-hero-slider">
+            <div class="times-hero-track" id="timesHeroTrack">
+                <!-- SLIDE 1 — imagem principal -->
+                <div class="times-hero-slide">
+                    <img
+                        src="Imagens/campeoesdota2.png"
+                        alt="Equipe campeã de Dota 2 da Dread Wyrm Esports"
+                    >
+                </div>
+
+                <!-- SLIDE 2 — Imagem 2 -->
+                <div class="times-hero-slide">
+                    <img
+                        src="Imagens/timedehok.png"
+                        alt=""
+                        loading="lazy"
+                    >
+                </div>
+
+                <!-- SLIDE 3 — Imagem 3 -->
+                <div class="times-hero-slide">
+                    <img
+                        src="Imagens/anunciotimevalorant.png"
+                        alt=""
+                        loading="lazy"
+                    >
+                </div>
+            </div>
+        </div>
+
+        <button class="times-hero-arrow times-hero-prev" id="timesHeroPrev" type="button" aria-label="Imagem anterior">‹</button>
+        <button class="times-hero-arrow times-hero-next" id="timesHeroNext" type="button" aria-label="Próxima imagem">›</button>
+
+        <div class="times-hero-dots" role="tablist" aria-label="Selecionar imagem">
+            <button class="times-hero-dot active" type="button" data-slide="0" aria-label="Imagem 1" aria-selected="true"></button>
+            <button class="times-hero-dot" type="button" data-slide="1" aria-label="Imagem 2" aria-selected="false"></button>
+            <button class="times-hero-dot" type="button" data-slide="2" aria-label="Imagem 3" aria-selected="false"></button>
         </div>
     </section>
 
@@ -3676,7 +3754,7 @@ body.times-page{
                 <!-- Honor of Kings -->
                 <article class="player-card reveal" data-game="honor-of-kings">
                     <div class="player-photo">
-                        <div class="player-photo-placeholder">FOTO</div>
+                        <div class="player-photo-placeholder">FOTO  </div>
                     </div>
                     <h3>Kiin</h3>
                 </article>
@@ -4049,6 +4127,42 @@ document.addEventListener("DOMContentLoaded", () => {
         backTop.addEventListener("click", () => {
             window.scrollTo({ top:0, behavior:"smooth" });
         });
+    }
+
+    // SLIDER DO HERO
+    const heroTrack = document.getElementById("timesHeroTrack");
+    const heroDots = document.querySelectorAll(".times-hero-dot");
+    const heroPrev = document.getElementById("timesHeroPrev");
+    const heroNext = document.getElementById("timesHeroNext");
+    let heroIndex = 0;
+
+    function updateHeroSlider(index){
+        if(!heroTrack || !heroDots.length) return;
+
+        heroIndex = (index + heroDots.length) % heroDots.length;
+        heroTrack.style.transform = `translateX(-${heroIndex * 100}%)`;
+
+        heroDots.forEach((dot, i) => {
+            const active = i === heroIndex;
+            dot.classList.toggle("active", active);
+            dot.setAttribute("aria-selected", String(active));
+        });
+    }
+
+    if(heroTrack && heroDots.length){
+        heroDots.forEach(dot => {
+            dot.addEventListener("click", () => {
+                updateHeroSlider(Number(dot.dataset.slide));
+            });
+        });
+
+        if(heroPrev){
+            heroPrev.addEventListener("click", () => updateHeroSlider(heroIndex - 1));
+        }
+
+        if(heroNext){
+            heroNext.addEventListener("click", () => updateHeroSlider(heroIndex + 1));
+        }
     }
 
     const revealElements = document.querySelectorAll(".reveal");
