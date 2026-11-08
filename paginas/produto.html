@@ -1,0 +1,490 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#1b1b1b">
+<title>Produto | Dread Wyrm Esports</title>
+
+<style>
+:root{
+ --preto:#1b1b1b;--vermelho:#ff0000;--branco:#fff;
+ --cinza:#f4f4f4;--cinza-texto:#777;--borda:#ddd;
+ --largura:1400px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;color:var(--preto);background:#fff;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:0}
+img{max-width:100%;display:block}
+.container{width:min(90%,var(--largura));margin:auto}
+
+/* CABEÇALHO */
+header{width:100%;height:90px;background:#fff;position:fixed;top:0;left:0;z-index:1000;transition:.3s}
+header.scrolled{box-shadow:0 5px 25px #0002}
+.navbar{width:90%;max-width:var(--largura);height:100%;margin:auto;display:flex;align-items:center;justify-content:space-between}
+.logo img{width:75px;height:75px;object-fit:contain}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-links a{color:#111;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;transition:.3s}
+.nav-links a:hover,.nav-links a.active{color:var(--vermelho)}
+.nav-actions{display:flex;align-items:center;gap:15px}
+.nav-actions button,.nav-actions a{background:none;color:var(--preto);font-size:19px;position:relative}
+.cart-count{position:absolute;top:-9px;right:-10px;width:17px;height:17px;border-radius:50%;background:var(--vermelho);color:#fff;display:flex;justify-content:center;align-items:center;font-size:10px;font-weight:bold}
+.menu-toggle{display:none;background:var(--preto);color:#fff;padding:10px 13px;font-size:18px}
+main{padding-top:90px}
+.breadcrumb{padding:25px 0;font-size:11px;color:var(--cinza-texto)}
+.breadcrumb a:hover{color:var(--vermelho)}
+
+/* PRODUTO */
+.product-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:65px;align-items:start;padding-bottom:90px}
+.gallery{display:grid;grid-template-columns:85px 1fr;gap:18px;position:sticky;top:110px}
+.thumbnails{display:flex;flex-direction:column;gap:12px}
+.thumbnail{width:85px;height:95px;object-fit:contain;background:var(--cinza);border:1px solid transparent;cursor:pointer;transition:.2s}
+.thumbnail:hover,.thumbnail.active{border-color:var(--vermelho)}
+.main-image{width:100%;height:590px;background:var(--cinza);display:flex;justify-content:center;align-items:center;overflow:hidden}
+.main-image img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
+.product-info{padding-top:8px}
+.product-category{color:var(--vermelho);font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+.product-info h1{font-size:clamp(30px,3.5vw,48px);font-weight:950;text-transform:uppercase;line-height:1;letter-spacing:-2px;margin-bottom:18px}
+.product-price{font-size:26px;font-weight:900;margin-bottom:8px}
+.payment-info{color:var(--cinza-texto);font-size:12px;line-height:1.8}
+.details-link{display:inline-block;margin:18px 0 25px;font-size:12px;text-decoration:underline}
+.field-label{font-size:12px;font-weight:800;margin-bottom:10px}
+.sizes{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.size-button{min-width:42px;height:38px;padding:0 10px;border:1px solid #ccc;background:white;font-size:11px;font-weight:800;transition:.2s}
+.size-button:hover,.size-button.active{background:var(--preto);color:white;border-color:var(--preto)}
+.stock-warning{color:var(--vermelho);font-size:11px;font-weight:bold;margin-bottom:12px}
+.buy-row{display:grid;grid-template-columns:130px 1fr;gap:10px;height:50px;margin-bottom:25px}
+.quantity{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--borda);padding:0 10px}
+.quantity button{background:none;font-size:20px;width:25px}
+.quantity span{font-size:13px;font-weight:bold}
+.buy-button{background:var(--vermelho);color:white;font-size:11px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;transition:.3s}
+.buy-button:hover{background:var(--preto)}
+.shipping{border-block:1px solid var(--borda);margin-bottom:25px}
+.shipping summary{padding:18px 0;cursor:pointer;list-style:none;font-size:12px;font-weight:800}
+.shipping summary::-webkit-details-marker{display:none}
+.shipping summary:after{content:"+";float:right;font-size:17px}
+.shipping[open] summary:after{content:"−"}
+.shipping-content{padding-bottom:18px;color:var(--cinza-texto);font-size:12px;line-height:1.7}
+.description h2{font-size:15px;font-weight:900;text-transform:uppercase;margin-bottom:18px}
+.description p{font-size:12px;color:#444;line-height:1.8;margin-bottom:13px}
+.description strong{color:var(--preto)}
+.measurements{width:100%;max-width:650px;border-collapse:collapse;margin:25px 0;font-size:11px}
+.measurements th,.measurements td{border:1px solid #ccc;padding:10px;text-align:left}
+.measurements th{background:var(--cinza);font-weight:900}
+.measure-note{font-size:11px;font-weight:bold;margin:20px 0}
+.share-button{background:none;color:#555;font-size:12px;font-weight:bold}
+
+/* RELACIONADOS */
+.related{background:var(--cinza);padding:75px 0}
+.section-label{color:var(--vermelho);font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+.section-title{font-size:clamp(30px,5vw,55px);font-weight:950;letter-spacing:-2px;text-transform:uppercase;margin-bottom:30px}
+.section-title span{color:var(--vermelho)}
+.products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.product-card{background:white;border:1px solid #e5e5e5;transition:.3s}
+.product-card:hover{transform:translateY(-5px);border-color:#aaa}
+.product-card img{width:100%;height:250px;object-fit:cover;background:#eee}
+.card-info{padding:16px}
+.card-name{font-size:12px;font-weight:800;line-height:1.5;min-height:36px}
+.card-price{font-size:14px;font-weight:900;margin:10px 0 15px}
+.card-button{display:block;background:var(--preto);color:white;text-align:center;padding:12px;font-size:10px;font-weight:900;letter-spacing:1px;text-transform:uppercase;transition:.3s}
+.card-button:hover{background:var(--vermelho)}
+
+/* RODAPÉ */
+footer{background:white;padding:80px 0 25px;border-top:1px solid #eee;position:relative;overflow:hidden}
+.footer-watermark{position:absolute;right:-30px;bottom:-70px;font-size:clamp(150px,25vw,350px);font-weight:950;line-height:1;letter-spacing:-15px;color:#00000009;pointer-events:none}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:45px;padding-bottom:60px;border-bottom:1px solid #ddd;position:relative;z-index:1}
+.footer-logo{width:75px;height:75px;object-fit:contain;margin-bottom:20px}
+.footer-description{max-width:320px;color:#555;font-size:13px;line-height:1.7}
+.footer-column h4{font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+.footer-column a{display:block;color:#666;font-size:12px;margin-bottom:13px;transition:.2s}
+.footer-column a:hover{color:var(--vermelho);transform:translateX(4px)}
+.footer-bottom{position:relative;z-index:1;display:flex;justify-content:space-between;gap:20px;padding-top:22px;color:#666;font-size:10px;font-weight:bold;letter-spacing:1px;text-transform:uppercase}
+
+/* NOTIFICAÇÃO */
+.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,20px);opacity:0;padding:15px 22px;background:var(--preto);color:white;border-left:4px solid var(--vermelho);font-size:12px;z-index:2000;transition:.3s;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* RESPONSIVIDADE */
+@media(max-width:1050px){
+ .nav-links{gap:17px}.nav-links a{font-size:10px}
+ .product-layout{gap:35px}.main-image{height:500px}
+ .products-grid{grid-template-columns:repeat(2,1fr)}
+ .footer-top{grid-template-columns:1fr 1fr 1fr}
+ .footer-brand{grid-column:1/-1}
+}
+@media(max-width:850px){
+ .menu-toggle{display:block}
+ .nav-links{display:none;position:absolute;top:90px;left:15px;right:15px;background:var(--preto);padding:15px 20px;flex-direction:column;align-items:flex-start;gap:0}
+ .nav-links.open{display:flex}
+ .nav-links a{width:100%;color:white;padding:15px 0;border-bottom:1px solid #444}
+}
+@media(max-width:650px){
+ .container{width:92%}.navbar{width:92%;height:80px}
+ header{height:80px}.logo img{width:65px;height:65px}
+ .nav-links{top:80px}main{padding-top:80px}
+ .product-layout{grid-template-columns:1fr;gap:25px;padding-bottom:60px}
+ .gallery{position:static;grid-template-columns:62px 1fr;gap:10px}
+ .thumbnail{width:62px;height:72px}
+ .main-image{height:95vw;max-height:480px}
+ .product-info h1{font-size:34px}
+ .buy-row{grid-template-columns:115px 1fr}
+ .related{padding:60px 0}.products-grid{gap:12px}
+ .product-card img{height:190px}.card-info{padding:12px}
+ .footer-top{grid-template-columns:1fr 1fr;gap:35px 25px}
+ .footer-brand{grid-column:1/-1}.footer-bottom{flex-direction:column}
+ .footer-watermark{font-size:145px;right:-35px;bottom:-25px}
+}
+
+/* =========================================================
+   MENU DE CONTA — AUTENTICAÇÃO
+========================================================= */
+.account-wrapper{position:relative;display:flex;align-items:center;}
+.account-button{appearance:none;border:0;background:transparent;cursor:pointer;}
+.account-menu{position:absolute;top:calc(100% + 14px);right:0;width:min(320px,calc(100vw - 30px));padding:22px;background:#fff;color:#111;border:1px solid #e5e5e5;box-shadow:0 20px 55px rgba(0,0,0,.16);z-index:10000;animation:accountMenuIn .2s ease both;}
+.account-menu::before{content:"";position:absolute;top:-6px;right:17px;width:11px;height:11px;background:#fff;border-left:1px solid #e5e5e5;border-top:1px solid #e5e5e5;transform:rotate(45deg);}
+.account-menu-header{display:grid;gap:5px;padding-bottom:17px;border-bottom:1px solid #ededed;}
+.account-menu-kicker{color:#ff0000;font-size:10px;font-weight:900;letter-spacing:2px;}
+.account-menu-header strong{font-size:20px;line-height:1.15;letter-spacing:-.5px;overflow-wrap:anywhere;}
+.account-menu-header>span:last-child{color:#777;font-size:12px;overflow-wrap:anywhere;}
+.account-menu-status{margin:16px 0;padding:10px 12px;background:#f5f5f5;color:#555;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;}
+.account-menu-status.verified{color:#111;}
+.account-menu-actions{display:grid;gap:8px;}
+.account-menu-action{width:100%;min-height:42px;display:flex;align-items:center;justify-content:center;padding:11px 15px;border:1px solid #111;background:#111;color:#fff;font-size:10px;font-weight:900;letter-spacing:1.5px;text-decoration:none;cursor:pointer;transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease;}
+.account-menu-action:hover{background:#ff0000;border-color:#ff0000;color:#000;transform:translateY(-1px);}
+.account-menu-logout{background:#fff;color:#111;}
+.account-menu-action:disabled{opacity:.6;cursor:wait;transform:none;}
+@keyframes accountMenuIn{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
+@media(max-width:520px){.account-menu{right:-8px;}}
+
+</style>
+</head>
+
+<body>
+<header id="header">
+<nav class="navbar">
+ <div style="display:flex;align-items:center;gap:20px">
+  <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">☰</button>
+  <a href="index.html" class="logo"><img src="Imagens/logo-dragon.png" alt="Dread Wyrm Esports"></a>
+ </div>
+ <div class="nav-links" id="navLinks">
+  <a href="index.html">Início</a><a href="sobrenos.html">Sobre nós</a>
+  <a href="times.html">Times</a><a href="loja.html" class="active">Loja</a>
+  <a href="index.html#contact">Contato</a>
+ </div>
+ <div class="nav-actions">
+  <div class="account-wrapper" id="accountWrapper">
+  <button
+    type="button"
+    class="nav-account-icon account-button"
+    id="accountButton"
+    aria-label="Entrar ou criar conta"
+    title="Entrar ou criar conta"
+    aria-expanded="false"
+    aria-controls="accountMenu"
+  >
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-8a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 10c-4.42 0-8 2.24-8 5v3h16v-3c0-2.76-3.58-5-8-5Zm6 6H6v-1c0-1.58 2.75-3 6-3s6 1.42 6 3v1Z"/>
+    </svg>
+  </button>
+
+  <div class="account-menu" id="accountMenu" hidden>
+    <div class="account-menu-header">
+      <span class="account-menu-kicker">MINHA CONTA</span>
+      <strong id="accountMenuName">Verificando conta...</strong>
+      <span id="accountMenuEmail">Aguarde um momento.</span>
+    </div>
+
+    <div class="account-menu-status" id="accountMenuStatus">VERIFICANDO SESSÃO</div>
+
+    <div class="account-menu-actions">
+      <a href="login.html" class="account-menu-action" id="accountMenuLogin">ENTRAR</a>
+      <a href="login.html" class="account-menu-action" id="accountMenuAccount" hidden>MINHA CONTA</a>
+      <button type="button" class="account-menu-action account-menu-logout" id="accountMenuLogout" hidden>SAIR</button>
+    </div>
+  </div>
+</div>
+  <button id="cartButton" aria-label="Carrinho">🛒 <span class="cart-count" id="cartCount">0</span></button>
+ </div>
+</nav>
+</header>
+
+<main>
+<div class="container">
+ <div class="breadcrumb">
+  <a href="index.html">Início</a> &nbsp; › &nbsp;
+  <a href="loja.html">Loja</a> &nbsp; › &nbsp;
+  <span id="breadcrumbProduct">Camisa Oficial Dread Wyrm</span>
+ </div>
+
+ <section class="product-layout">
+  <div class="gallery">
+   <div class="thumbnails">
+    <img class="thumbnail active" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=500&q=85" data-large="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=90" alt="Frente do produto">
+    <img class="thumbnail" src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=500&q=85" data-large="https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=1200&q=90" alt="Detalhe do produto">
+   </div>
+   <div class="main-image"><img id="mainImage" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=90" alt="Produto Dread Wyrm"></div>
+  </div>
+
+  <div class="product-info">
+   <div class="product-category" id="productCategory">Dread Wyrm Esports / Coleção oficial</div>
+   <h1 id="productName">Camisa Oficial Dread Wyrm</h1>
+   <div class="product-price" id="productPrice">R$ 129,90</div>
+   <div class="payment-info" id="paymentInfo">Até 2x de R$ 64,95 sem juros<br>Consulte as condições de pagamento no checkout.</div>
+   <a href="#descricao" class="details-link">↓ Ver descrição e detalhes</a>
+
+   <div class="field-label">Tamanho: <span id="selectedSize">M</span></div>
+   <div class="sizes">
+    <button class="size-button" data-size="P">P</button>
+    <button class="size-button active" data-size="M">M</button>
+    <button class="size-button" data-size="G">G</button>
+    <button class="size-button" data-size="GG">GG</button>
+    <button class="size-button" data-size="XG">XG</button>
+   </div>
+   <div class="stock-warning">Produto demonstrativo — disponibilidade a confirmar.</div>
+
+   <div class="buy-row">
+    <div class="quantity">
+     <button id="minus">−</button><span id="quantity">1</span><button id="plus">+</button>
+    </div>
+    <button class="buy-button" id="buyButton">Adicionar ao carrinho</button>
+   </div>
+
+   <details class="shipping">
+    <summary>♧ &nbsp; Meios de envio</summary>
+    <div class="shipping-content">As opções de entrega e os prazos deverão ser calculados na integração com o sistema de pedidos da loja.</div>
+   </details>
+
+   <div class="description" id="descricao">
+    <h2>Descrição do produto</h2>
+    <p id="descriptionIntro"><strong>Vista as cores da Dread Wyrm Esports.</strong> Uma peça para representar a equipe dentro e fora dos servidores.</p>
+    <p><strong>Características:</strong></p>
+    <p id="descriptionSpecs">Modelagem: camiseta clássica.<br>Cor: conforme variação apresentada nas imagens.<br>Estampa: identidade visual Dread Wyrm.<br>Composição e gramatura: confirmar com o fornecedor antes da publicação final.</p>
+    <p><strong>Cuidados:</strong> seguir as instruções de lavagem da etiqueta para preservar o tecido e a estampa.</p>
+
+    <h2 style="margin-top:30px">Guia de tamanhos</h2>
+    <table class="measurements">
+     <thead><tr><th>Tamanho</th><th>Tórax</th><th>Comprimento</th></tr></thead>
+     <tbody>
+      <tr><td>P</td><td>A confirmar</td><td>A confirmar</td></tr>
+      <tr><td>M</td><td>A confirmar</td><td>A confirmar</td></tr>
+      <tr><td>G</td><td>A confirmar</td><td>A confirmar</td></tr>
+      <tr><td>GG</td><td>A confirmar</td><td>A confirmar</td></tr>
+      <tr><td>XG</td><td>A confirmar</td><td>A confirmar</td></tr>
+     </tbody>
+    </table>
+    <p class="measure-note">Confira as medidas com atenção antes de concluir seu pedido.</p>
+    <button class="share-button" id="shareButton">↗ Compartilhar produto</button>
+   </div>
+  </div>
+ </section>
+</div>
+
+<section class="related">
+<div class="container">
+ <div class="section-label">Complete seu kit</div>
+ <h2 class="section-title">Produtos relacionados<span>.</span></h2>
+ <div class="products-grid">
+  <article class="product-card" data-product-id="camisa-pro-player">
+   <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=700&q=85" alt="Camisa Pro Player">
+   <div class="card-info"><div class="card-name">Camisa DWY Pro Player</div><div class="card-price">R$ 149,90</div><a href="produto.html?id=camisa-pro-player" class="card-button">Ver produto</a></div>
+  </article>
+  <article class="product-card" data-product-id="moletom-dwy">
+   <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=85" alt="Moletom Dread Wyrm">
+   <div class="card-info"><div class="card-name">Moletom Dread Wyrm</div><div class="card-price">R$ 229,90</div><a href="produto.html?id=moletom-dwy" class="card-button">Ver produto</a></div>
+  </article>
+  <article class="product-card" data-product-id="mousepad-dwy">
+   <img src="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=700&q=85" alt="Mousepad gamer">
+   <div class="card-info"><div class="card-name">Mousepad DWY</div><div class="card-price">R$ 54,99</div><a href="produto.html?id=mousepad-dwy" class="card-button">Ver produto</a></div>
+  </article>
+  <article class="product-card" data-product-id="bone-dwy">
+   <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=700&q=85" alt="Boné DWY">
+   <div class="card-info"><div class="card-name">Boné DWY</div><div class="card-price">R$ 69,90</div><a href="produto.html?id=bone-dwy" class="card-button">Ver produto</a></div>
+  </article>
+ </div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="footer-watermark">DWY</div>
+<div class="container">
+ <div class="footer-top">
+  <div class="footer-brand"><img src="Imagens/logo-dragon.png" class="footer-logo" alt="Dread Wyrm Esports"><p class="footer-description">A Dread Wyrm Esports é uma organização de esports focada em competição, performance, identidade e construção de comunidade.</p></div>
+  <div class="footer-column"><h4>Navegação</h4><a href="index.html">Início</a><a href="sobrenos.html">Sobre nós</a><a href="times.html">Times</a><a href="loja.html">Loja</a></div>
+  <div class="footer-column"><h4>Loja</h4><a href="loja.html">Todos os produtos</a><a href="loja.html">Vestuário</a><a href="loja.html">Acessórios</a></div>
+  <div class="footer-column"><h4>Atendimento</h4><a href="index.html#contact">Contato</a></div>
+ </div>
+ <div class="footer-bottom"><span>© 2026 Dread Wyrm Esports. Todos os direitos reservados.</span><span>Competição · Comunidade · Performance</span></div>
+</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* CATÁLOGO COMPARTILHADO COM loja.html */
+const CART_KEY='dwy_cart';
+const products={
+ 'camisa-oficial':{name:'Camisa Oficial Dread Wyrm',price:129.90,category:'Camisas / Coleção oficial',image:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=90',thumb:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=500&q=85',sizes:['P','M','G','GG','XG']},
+ 'camisa-pro-player':{name:'Camisa DWY Pro Player',price:149.90,category:'Camisas / Linha Pro Player',image:'https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=1200&q=90',thumb:'https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=500&q=85',sizes:['P','M','G','GG','XG']},
+ 'moletom-dwy':{name:'Moletom Dread Wyrm',price:229.90,category:'Vestuário / Coleção oficial',image:'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1200&q=90',thumb:'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=500&q=85',sizes:['P','M','G','GG','XG']},
+ 'mousepad-dwy':{name:'Mousepad DWY',price:54.99,category:'Acessórios / Setup gamer',image:'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=1200&q=90',thumb:'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=500&q=85',sizes:[]},
+ 'caneca-dwy':{name:'Caneca Dread Wyrm',price:39.90,category:'Acessórios / Coleção oficial',image:'https://images.unsplash.com/photo-1514228742587-6b1558f67993?auto=format&fit=crop&w=1200&q=90',thumb:'https://images.unsplash.com/photo-1514228742587-6b1558f67993?auto=format&fit=crop&w=500&q=85',sizes:[]},
+ 'bone-dwy':{name:'Boné DWY',price:69.90,category:'Acessórios / Coleção oficial',image:'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=1200&q=90',thumb:'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=500&q=85',sizes:['Único']},
+ 'chaveiro-dwy':{name:'Chaveiro Dread Wyrm',price:19.90,category:'Colecionáveis / Coleção oficial',image:'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&w=1200&q=90',thumb:'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&w=500&q=85',sizes:[]},
+ 'poster-dwy':{name:'Pôster Dread Wyrm',price:29.90,category:'Colecionáveis / Coleção oficial',image:'https://images.unsplash.com/photo-1580136579312-94651dfd596d?auto=format&fit=crop&w=1200&q=90',thumb:'https://images.unsplash.com/photo-1580136579312-94651dfd596d?auto=format&fit=crop&w=500&q=85',sizes:[]}
+};
+
+const money=value=>Number(value).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+function readCart(){try{return JSON.parse(localStorage.getItem(CART_KEY)||'[]')}catch(e){return[]}}
+function writeCart(cart){localStorage.setItem(CART_KEY,JSON.stringify(cart));updateCartCount()}
+function updateCartCount(){
+ const count=readCart().reduce((sum,item)=>sum+(Number(item.qty)||0),0);
+ const badge=document.getElementById('cartCount');
+ if(badge)badge.textContent=count;
+}
+function showToast(message){
+ const toast=document.getElementById('toast');
+ toast.textContent=message;toast.classList.add('show');
+ clearTimeout(window.dwyToastTimer);
+ window.dwyToastTimer=setTimeout(()=>toast.classList.remove('show'),2600);
+}
+
+/* PRODUTO SELECIONADO */
+const params=new URLSearchParams(window.location.search);
+const requestedId=params.get('id')||'camisa-oficial';
+const productId=products[requestedId]?requestedId:'camisa-oficial';
+const currentProduct=products[productId];
+
+document.title=currentProduct.name+' | Dread Wyrm Esports';
+document.getElementById('productName').textContent=currentProduct.name;
+document.getElementById('productPrice').textContent=money(currentProduct.price);
+document.getElementById('productCategory').textContent='Dread Wyrm Esports / '+currentProduct.category;
+document.getElementById('breadcrumbProduct').textContent=currentProduct.name;
+document.getElementById('paymentInfo').innerHTML='Até 2x de '+money(currentProduct.price/2)+' sem juros<br>Consulte as condições de pagamento no checkout.';
+
+const mainImage=document.getElementById('mainImage');
+mainImage.src=currentProduct.image;
+mainImage.alt=currentProduct.name;
+
+/* GALERIA */
+const thumbnails=[...document.querySelectorAll('.thumbnail')];
+if(thumbnails.length){
+ thumbnails[0].src=currentProduct.thumb;
+ thumbnails[0].dataset.large=currentProduct.image;
+ thumbnails[0].alt=currentProduct.name;
+ thumbnails[0].classList.add('active');
+ if(thumbnails[1]){
+  thumbnails[1].src=currentProduct.thumb;
+  thumbnails[1].dataset.large=currentProduct.image;
+  thumbnails[1].alt=currentProduct.name;
+ }
+}
+thumbnails.forEach(image=>image.addEventListener('click',()=>{
+ thumbnails.forEach(item=>item.classList.remove('active'));
+ image.classList.add('active');
+ mainImage.src=image.dataset.large;
+}));
+
+/* TAMANHOS */
+const sizesContainer=document.querySelector('.sizes');
+const sizeLabel=document.querySelector('.field-label');
+let selectedSize='';
+if(currentProduct.sizes.length){
+ sizesContainer.innerHTML=currentProduct.sizes.map((size,index)=>`<button class="size-button ${index===0?'active':''}" data-size="${size}">${size}</button>`).join('');
+ selectedSize=currentProduct.sizes[0];
+ document.getElementById('selectedSize').textContent=selectedSize;
+ sizesContainer.querySelectorAll('.size-button').forEach(button=>button.addEventListener('click',()=>{
+  sizesContainer.querySelectorAll('.size-button').forEach(item=>item.classList.remove('active'));
+  button.classList.add('active');
+  selectedSize=button.dataset.size;
+  document.getElementById('selectedSize').textContent=selectedSize;
+ }));
+}else{
+ sizesContainer.style.display='none';
+ sizeLabel.style.display='none';
+}
+
+/* DESCRIÇÃO DINÂMICA */
+const apparel=['camisa-oficial','camisa-pro-player','moletom-dwy'];
+if(apparel.includes(productId)){
+ document.getElementById('descriptionIntro').innerHTML='<strong>Vista as cores da Dread Wyrm Esports.</strong> Uma peça para representar a equipe dentro e fora dos servidores.';
+ document.getElementById('descriptionSpecs').innerHTML='Modelagem: conforme o produto.<br>Cor: conforme variação apresentada nas imagens.<br>Estampa: identidade visual Dread Wyrm.<br>Composição e gramatura: confirmar com o fornecedor antes da publicação final.';
+}else{
+ document.getElementById('descriptionIntro').innerHTML='<strong>Leve a identidade Dread Wyrm Esports com você.</strong> Um item da coleção oficial para completar sua experiência com a equipe.';
+ document.getElementById('descriptionSpecs').innerHTML='Produto: '+currentProduct.name+'.<br>Coleção: Dread Wyrm Esports.<br>Acabamento e materiais: confirmar com o fornecedor antes da publicação final.';
+ document.querySelector('.measurements').style.display='none';
+ document.querySelector('.measure-note').style.display='none';
+ const sizeHeading=document.querySelector('.measurements').previousElementSibling;
+ if(sizeHeading)sizeHeading.style.display='none';
+}
+
+/* QUANTIDADE */
+let quantity=1;
+const quantityLabel=document.getElementById('quantity');
+document.getElementById('minus').addEventListener('click',()=>{
+ quantity=Math.max(1,quantity-1);quantityLabel.textContent=quantity;
+});
+document.getElementById('plus').addEventListener('click',()=>{
+ quantity=Math.min(10,quantity+1);quantityLabel.textContent=quantity;
+});
+
+/* CARRINHO COMPARTILHADO */
+document.getElementById('buyButton').addEventListener('click',()=>{
+ const cart=readCart();
+ const item=cart.find(entry=>entry.id===productId&&entry.size===(selectedSize||''));
+ if(item)item.qty+=quantity;
+ else cart.push({id:productId,name:currentProduct.name,price:currentProduct.price,img:currentProduct.image,qty:quantity,size:selectedSize||''});
+ writeCart(cart);
+ showToast(quantity+' unidade(s) adicionada(s) ao carrinho'+(selectedSize?' — tamanho '+selectedSize:'')+'.');
+});
+document.getElementById('cartButton').addEventListener('click',()=>{
+ window.location.href='loja.html#carrinho';
+});
+updateCartCount();
+
+/* MENU */
+document.getElementById('menuToggle').addEventListener('click',()=>{
+ document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(link=>link.addEventListener('click',()=>{
+ document.getElementById('navLinks').classList.remove('open');
+}));
+
+/* CABEÇALHO */
+window.addEventListener('scroll',()=>{
+ document.getElementById('header').classList.toggle('scrolled',window.scrollY>20);
+});
+
+/* COMPARTILHAR */
+document.getElementById('shareButton').addEventListener('click',()=>{
+ if(navigator.share){
+  navigator.share({title:document.title,url:window.location.href}).catch(()=>{});
+ }else if(navigator.clipboard){
+  navigator.clipboard.writeText(window.location.href).then(()=>showToast('Link copiado!'));
+ }else showToast('Copie o endereço desta página para compartilhar.');
+});
+
+/* PRODUTOS RELACIONADOS */
+document.querySelectorAll('.product-card[data-product-id]').forEach(card=>{
+ const id=card.dataset.productId;
+ const item=products[id];
+ if(!item)return;
+ const img=card.querySelector('img');
+ const title=card.querySelector('.card-name');
+ const price=card.querySelector('.card-price');
+ const link=card.querySelector('.card-button');
+ img.src=item.thumb;
+ img.alt=item.name;
+ title.textContent=item.name;
+ price.textContent=money(item.price);
+ link.href='produto.html?id='+encodeURIComponent(id);
+});
+</script>
+
+<script type="module" src="autenticacao/auth-state.js"></script>
+<script src="autenticacao/account-menu.js"></script>
+</body>
+</html>

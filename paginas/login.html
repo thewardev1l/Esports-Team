@@ -1,0 +1,1067 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111111">
+<meta name="description" content="Entre ou crie sua conta na loja oficial Dread Wyrm Esports.">
+<title>Minha conta | Dread Wyrm Esports</title>
+
+<style>
+:root{
+  --black:#111;
+  --black2:#1b1b1b;
+  --red:#ff0000;
+  --white:#fff;
+  --gray:#f4f4f4;
+  --muted:#888;
+  --line:#dedede;
+  --container:1200px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,Arial,Helvetica,sans-serif;
+  background:var(--black);
+  color:var(--white);
+  min-height:100vh;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+
+/* CABEÇALHO */
+.header{
+  height:85px;
+  background:#fff;
+  color:#111;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 max(5%,calc((100% - var(--container))/2));
+  position:relative;
+  z-index:5;
+}
+.logo img{
+  width:70px;
+  height:70px;
+  object-fit:contain;
+}
+.back-link{
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  transition:.25s;
+}
+.back-link:hover{color:var(--red)}
+.back-link span{color:var(--red);margin-right:7px}
+
+/* LAYOUT PRINCIPAL */
+main{
+  min-height:calc(100vh - 85px);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+.visual{
+  min-height:750px;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse at 50% 45%,#4a0000 0%,#190000 36%,#080808 75%);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:65px 8%;
+}
+.visual:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:.12;
+  background-image:
+    linear-gradient(45deg,transparent 48%,#fff 49%,transparent 50%),
+    linear-gradient(-45deg,transparent 48%,#fff 49%,transparent 50%);
+  background-size:65px 65px;
+  mask-image:linear-gradient(to bottom,black,transparent 90%);
+}
+.visual:after{
+  content:"DWY";
+  position:absolute;
+  left:-35px;
+  bottom:30px;
+  color:#ffffff09;
+  font-size:clamp(160px,22vw,310px);
+  font-weight:1000;
+  letter-spacing:-.12em;
+  line-height:1;
+  pointer-events:none;
+}
+.visual-top,.visual-bottom{
+  position:relative;
+  z-index:1;
+}
+.visual-label{
+  color:var(--red);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:4px;
+  text-transform:uppercase;
+}
+.visual h1{
+  margin-top:35px;
+  font-size:clamp(48px,6vw,85px);
+  line-height:.88;
+  letter-spacing:-5px;
+  font-weight:1000;
+  text-transform:uppercase;
+  max-width:600px;
+}
+.visual h1 span{color:var(--red)}
+.visual-description{
+  max-width:390px;
+  margin-top:25px;
+  color:#aaa;
+  font-size:13px;
+  line-height:1.9;
+}
+.visual-bottom{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  color:#888;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+.visual-bottom:before{
+  content:"";
+  display:block;
+  width:35px;
+  height:2px;
+  background:var(--red);
+}
+
+/* PAINEL DE AUTENTICAÇÃO */
+.auth-area{
+  background:#f7f7f7;
+  color:#111;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:55px 30px;
+}
+.auth-box{
+  width:100%;
+  max-width:440px;
+}
+.auth-kicker{
+  color:var(--red);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  margin-bottom:15px;
+}
+.auth-title{
+  font-size:clamp(35px,4vw,49px);
+  font-weight:1000;
+  line-height:.95;
+  letter-spacing:-2px;
+  text-transform:uppercase;
+}
+.auth-title span{color:var(--red)}
+.auth-subtitle{
+  margin-top:16px;
+  color:#777;
+  font-size:13px;
+  line-height:1.7;
+}
+.auth-tabs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5px;
+  padding:5px;
+  margin:30px 0;
+  background:#e9e9e9;
+}
+.tab{
+  padding:13px 10px;
+  background:transparent;
+  color:#777;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  transition:.2s;
+}
+.tab.active{
+  background:#111;
+  color:#fff;
+}
+.form-group{margin-bottom:17px}
+.form-group label{
+  display:block;
+  margin-bottom:9px;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+.input-wrap{position:relative}
+.form-group input{
+  width:100%;
+  height:51px;
+  padding:0 15px;
+  border:1px solid #ddd;
+  outline:none;
+  background:#fff;
+  color:#111;
+  font-size:13px;
+  transition:border-color .2s,box-shadow .2s;
+}
+.form-group input:focus{
+  border-color:#111;
+  box-shadow:0 0 0 3px #1111;
+}
+.form-group input::placeholder{color:#aaa}
+.password-input{padding-right:75px!important}
+.toggle-password{
+  position:absolute;
+  top:50%;
+  right:13px;
+  transform:translateY(-50%);
+  background:none;
+  color:#777;
+  font-size:10px;
+  font-weight:900;
+  text-transform:uppercase;
+}
+.form-options{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin:7px 0 23px;
+}
+.remember{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:11px;
+  color:#666;
+  cursor:pointer;
+}
+.remember input{
+  accent-color:var(--red);
+  width:14px;
+  height:14px;
+}
+.text-button{
+  background:none;
+  color:var(--red);
+  font-size:11px;
+  font-weight:800;
+}
+.text-button:hover{text-decoration:underline}
+.submit-button{
+  width:100%;
+  min-height:53px;
+  background:var(--red);
+  color:#fff;
+  font-size:11px;
+  font-weight:1000;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  transition:.25s;
+}
+.submit-button:hover{
+  background:#d90000;
+  transform:translateY(-2px);
+}
+.submit-button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+  transform:none;
+}
+.terms{
+  margin-top:19px;
+  color:#999;
+  font-size:10px;
+  line-height:1.7;
+  text-align:center;
+}
+.terms a{color:#111;text-decoration:underline}
+.message{
+  display:none;
+  padding:13px 15px;
+  margin:0 0 20px;
+  font-size:12px;
+  line-height:1.6;
+  border-left:3px solid var(--red);
+  background:#ffe9e9;
+  color:#8b0000;
+}
+.message.show{display:block}
+.message.success{
+  border-color:#18854a;
+  background:#e8f7ee;
+  color:#176b3d;
+}
+.hidden{display:none!important}
+
+/* ÁREA DO CLIENTE */
+.account-card{
+  padding:25px;
+  margin-top:28px;
+  background:#fff;
+  border:1px solid #e5e5e5;
+}
+.account-avatar{
+  width:58px;
+  height:58px;
+  display:grid;
+  place-items:center;
+  background:#111;
+  color:#fff;
+  font-size:25px;
+  font-weight:900;
+  margin-bottom:18px;
+}
+.account-card h3{
+  font-size:20px;
+  font-weight:1000;
+  text-transform:uppercase;
+}
+.account-card p{
+  color:#777;
+  font-size:12px;
+  margin-top:8px;
+  line-height:1.7;
+  word-break:break-word;
+}
+.account-actions{
+  display:grid;
+  gap:10px;
+  margin-top:25px;
+}
+.account-link{
+  padding:15px;
+  text-align:center;
+  background:#111;
+  color:#fff;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  transition:.2s;
+}
+.account-link:hover{background:var(--red)}
+.logout-button{
+  padding:14px;
+  background:#eee;
+  color:#111;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+.logout-button:hover{background:#ddd}
+
+/* RODAPÉ */
+.footer{
+  background:#080808;
+  border-top:1px solid #292929;
+  padding:23px 5%;
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  color:#777;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+/* RESPONSIVIDADE */
+@media(max-width:850px){
+  main{grid-template-columns:1fr}
+  .visual{
+    min-height:350px;
+    padding:45px 7%;
+  }
+  .visual h1{
+    font-size:clamp(45px,10vw,70px);
+    letter-spacing:-3px;
+    margin-top:25px;
+  }
+  .visual-description{margin-top:15px}
+  .visual-bottom{margin-top:45px}
+  .auth-area{padding:55px 25px 70px}
+}
+@media(max-width:480px){
+  .header{height:72px;padding:0 5%}
+  .logo img{width:60px;height:60px}
+  .back-link{font-size:9px}
+  .visual{min-height:315px}
+  .visual h1{font-size:47px}
+  .visual-description{font-size:12px}
+  .auth-area{padding:45px 20px 60px}
+  .auth-title{font-size:37px}
+  .footer{flex-direction:column;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{
+    scroll-behavior:auto!important;
+    transition:none!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <a href="loja.html" class="logo">
+    <img src="Imagens/logo-dragon.png" alt="Dread Wyrm Esports">
+  </a>
+  <a href="loja.html" class="back-link">
+    <span>←</span> Voltar à loja
+  </a>
+</header>
+
+<main>
+
+  <section class="visual">
+    <div class="visual-top">
+      <div class="visual-label">Dread Wyrm Esports / Store</div>
+      <h1>
+        SUA<br>
+        JORNADA<br>
+        <span>COMEÇA.</span>
+      </h1>
+      <p class="visual-description">
+        Entre para sua conta e acompanhe sua experiência na loja oficial
+        Dread Wyrm. Seus produtos, seus pedidos, sua identidade.
+      </p>
+    </div>
+
+    <div class="visual-bottom">
+      Competição · Comunidade · Performance
+    </div>
+  </section>
+
+  <section class="auth-area">
+    <div class="auth-box">
+
+      <!-- FORMULÁRIOS -->
+      <div id="authView">
+
+        <div class="auth-kicker">Área do cliente</div>
+        <h2 class="auth-title" id="formTitle">
+          Bem-vindo<br>de volta<span>.</span>
+        </h2>
+        <p class="auth-subtitle" id="formSubtitle">
+          Entre na sua conta para continuar sua experiência.
+        </p>
+
+        <div class="auth-tabs">
+          <button class="tab active" id="loginTab" type="button">
+            Entrar
+          </button>
+          <button class="tab" id="registerTab" type="button">
+            Criar conta
+          </button>
+        </div>
+
+        <div class="message" id="message" role="status" aria-live="polite"></div>
+
+        <form id="authForm">
+
+          <div class="form-group hidden" id="nameGroup">
+            <label for="name">Nome completo</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="Digite seu nome"
+              autocomplete="name"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="seuemail@exemplo.com"
+              autocomplete="email"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="password">Senha</label>
+            <div class="input-wrap">
+              <input
+                type="password"
+                id="password"
+                class="password-input"
+                placeholder="Digite sua senha"
+                autocomplete="current-password"
+                minlength="6"
+                required
+              >
+              <button
+                type="button"
+                class="toggle-password"
+                data-target="password"
+              >Mostrar</button>
+            </div>
+          </div>
+
+          <div class="form-group hidden" id="confirmGroup">
+            <label for="confirmPassword">Confirmar senha</label>
+            <div class="input-wrap">
+              <input
+                type="password"
+                id="confirmPassword"
+                class="password-input"
+                placeholder="Digite a senha novamente"
+                autocomplete="new-password"
+                minlength="6"
+              >
+              <button
+                type="button"
+                class="toggle-password"
+                data-target="confirmPassword"
+              >Mostrar</button>
+            </div>
+          </div>
+
+          <div class="form-options" id="loginOptions">
+            <label class="remember">
+              <input type="checkbox" id="remember" checked>
+              Manter conectado
+            </label>
+            <button
+              type="button"
+              class="text-button"
+              id="forgotPassword"
+            >
+              Esqueci minha senha
+            </button>
+          </div>
+
+          <button class="submit-button" id="submitButton" type="submit">
+            Entrar na minha conta
+          </button>
+
+        </form>
+
+        <p class="terms" id="termsText">
+          Ao continuar, você concorda com nossos
+          <a href="#">Termos de Uso</a> e
+          <a href="#">Política de Privacidade</a>.
+        </p>
+
+      </div>
+
+      <!-- CONTA AUTENTICADA -->
+      <div id="accountView" class="hidden">
+
+        <div class="auth-kicker">Área do cliente</div>
+        <h2 class="auth-title">
+          Sua conta<span>.</span>
+        </h2>
+        <p class="auth-subtitle">
+          Você está conectado à loja oficial Dread Wyrm.
+        </p>
+
+        <div class="account-card">
+          <div class="account-avatar" id="accountAvatar">D</div>
+          <h3 id="accountName">Cliente Dread Wyrm</h3>
+          <p id="accountEmail"></p>
+          <p id="verificationStatus"></p>
+
+          <div class="account-actions">
+            <a href="loja.html" class="account-link">
+              Ir para a loja
+            </a>
+            <button
+              type="button"
+              class="account-link"
+              id="resendVerification"
+            >
+              Reenviar verificação de e-mail
+            </button>
+            <button
+              type="button"
+              class="logout-button"
+              id="logoutButton"
+            >
+              Sair da conta
+            </button>
+          </div>
+        </div>
+
+        <div class="message" id="accountMessage" role="status" aria-live="polite"></div>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <span>© 2026 Dread Wyrm Esports</span>
+  <span>Competição · Comunidade · Performance</span>
+</footer>
+
+<script type="module">
+
+/*
+====================================================
+ FIREBASE CONFIGURATION
+====================================================
+
+1. Acesse https://console.firebase.google.com/
+2. Abra seu projeto.
+3. Vá em Configurações do projeto.
+4. Na seção "Seus apps", selecione o aplicativo Web.
+5. Copie os dados do objeto firebaseConfig.
+6. Substitua os valores abaixo pelos dados do seu projeto.
+
+Não coloque senhas de administrador ou chaves privadas aqui.
+====================================================
+*/
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+  updateProfile,
+  sendEmailVerification,
+  onAuthStateChanged,
+  signOut,
+  setPersistence,
+  browserLocalPersistence,
+  browserSessionPersistence
+} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBdhLso_vhEZeRAD25fEx91aJszkX4gnk4",
+    authDomain: "dread-wyrm-store.firebaseapp.com",
+    projectId: "dread-wyrm-store",
+    storageBucket: "dread-wyrm-store.firebasestorage.app",
+    messagingSenderId: "215207618467",
+    appId: "1:215207618467:web:5b3af43da6fe44bca95c16",
+    measurementId: "G-K4P0YJ92N0"
+  };
+
+
+const isConfigured =
+  firebaseConfig.apiKey !== "SUA_API_KEY" &&
+  firebaseConfig.projectId !== "SEU_PROJECT_ID" &&
+  firebaseConfig.appId !== "SEU_APP_ID";
+
+let auth = null;
+
+if (isConfigured) {
+  const app = initializeApp(firebaseConfig);
+  auth = getAuth(app);
+  auth.languageCode = "pt-BR";
+}
+
+
+/* ELEMENTOS */
+const redirectParam = new URLSearchParams(window.location.search).get("redirect");
+if (redirectParam) {
+  try { sessionStorage.setItem("dwyRedirectAfterLogin", redirectParam); } catch (e) {}
+}
+
+const authView = document.getElementById("authView");
+const accountView = document.getElementById("accountView");
+
+const authForm = document.getElementById("authForm");
+const loginTab = document.getElementById("loginTab");
+const registerTab = document.getElementById("registerTab");
+
+const formTitle = document.getElementById("formTitle");
+const formSubtitle = document.getElementById("formSubtitle");
+
+const nameGroup = document.getElementById("nameGroup");
+const confirmGroup = document.getElementById("confirmGroup");
+const loginOptions = document.getElementById("loginOptions");
+
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const confirmInput = document.getElementById("confirmPassword");
+
+const submitButton = document.getElementById("submitButton");
+const messageBox = document.getElementById("message");
+
+let currentMode = "login";
+
+
+/* MENSAGENS */
+function showMessage(message, type = "error") {
+  messageBox.textContent = message;
+  messageBox.className = "message show";
+
+  if (type === "success") {
+    messageBox.classList.add("success");
+  }
+}
+
+function clearMessage() {
+  messageBox.textContent = "";
+  messageBox.className = "message";
+}
+
+function showAccountMessage(message, type = "error") {
+  const box = document.getElementById("accountMessage");
+  box.textContent = message;
+  box.className = "message show";
+
+  if (type === "success") {
+    box.classList.add("success");
+  }
+}
+
+
+/* TRADUÇÃO DE ERROS */
+function translateError(error) {
+  const messages = {
+    "auth/email-already-in-use":
+      "Este e-mail já possui uma conta cadastrada.",
+
+    "auth/invalid-email":
+      "Digite um endereço de e-mail válido.",
+
+    "auth/weak-password":
+      "Sua senha precisa ter pelo menos 6 caracteres.",
+
+    "auth/invalid-credential":
+      "E-mail ou senha incorretos.",
+
+    "auth/user-disabled":
+      "Esta conta foi desativada.",
+
+    "auth/too-many-requests":
+      "Muitas tentativas. Aguarde um pouco e tente novamente.",
+
+    "auth/network-request-failed":
+      "Falha de conexão. Verifique sua internet.",
+
+    "auth/operation-not-allowed":
+      "O login por e-mail e senha ainda não foi habilitado no Firebase.",
+
+    "auth/unauthorized-domain":
+      "Este domínio ainda não foi autorizado no Firebase.",
+
+    "auth/missing-password":
+      "Digite sua senha.",
+
+    "auth/invalid-api-key":
+      "A configuração do Firebase está incorreta."
+  };
+
+  return messages[error.code] ||
+    "Não foi possível concluir a operação. Tente novamente.";
+}
+
+
+/* ALTERNAR ENTRE LOGIN E CADASTRO */
+function setMode(mode) {
+  currentMode = mode;
+  clearMessage();
+
+  const registering = mode === "register";
+
+  loginTab.classList.toggle("active", !registering);
+  registerTab.classList.toggle("active", registering);
+
+  nameGroup.classList.toggle("hidden", !registering);
+  confirmGroup.classList.toggle("hidden", !registering);
+  loginOptions.classList.toggle("hidden", registering);
+
+  nameInput.required = registering;
+  confirmInput.required = registering;
+
+  passwordInput.autocomplete = registering
+    ? "new-password"
+    : "current-password";
+
+  if (registering) {
+    formTitle.innerHTML = "Crie sua<br>conta<span>.</span>";
+    formSubtitle.textContent =
+      "Faça parte da comunidade Dread Wyrm e tenha sua própria conta na loja.";
+    submitButton.textContent = "Criar minha conta";
+  } else {
+    formTitle.innerHTML = "Bem-vindo<br>de volta<span>.</span>";
+    formSubtitle.textContent =
+      "Entre na sua conta para continuar sua experiência.";
+    submitButton.textContent = "Entrar na minha conta";
+  }
+}
+
+loginTab.addEventListener("click", () => setMode("login"));
+registerTab.addEventListener("click", () => setMode("register"));
+
+
+/* MOSTRAR E OCULTAR SENHA */
+document.querySelectorAll(".toggle-password").forEach(button => {
+  button.addEventListener("click", () => {
+    const input = document.getElementById(button.dataset.target);
+
+    if (input.type === "password") {
+      input.type = "text";
+      button.textContent = "Ocultar";
+    } else {
+      input.type = "password";
+      button.textContent = "Mostrar";
+    }
+  });
+});
+
+
+/* ESTADO DE CARREGAMENTO */
+function setLoading(loading) {
+  submitButton.disabled = loading;
+
+  if (loading) {
+    submitButton.textContent = "Aguarde...";
+  } else {
+    submitButton.textContent =
+      currentMode === "register"
+        ? "Criar minha conta"
+        : "Entrar na minha conta";
+  }
+}
+
+
+/* CADASTRO */
+async function registerUser() {
+  const name = nameInput.value.trim();
+  const email = emailInput.value.trim();
+  const password = passwordInput.value;
+  const confirmation = confirmInput.value;
+
+  if (name.length < 3) {
+    showMessage("Digite seu nome completo.");
+    return;
+  }
+
+  if (password.length < 6) {
+    showMessage("A senha precisa ter pelo menos 6 caracteres.");
+    return;
+  }
+
+  if (password !== confirmation) {
+    showMessage("As senhas não são iguais.");
+    return;
+  }
+
+  const credential = await createUserWithEmailAndPassword(
+    auth,
+    email,
+    password
+  );
+
+  await updateProfile(credential.user, {
+    displayName: name
+  });
+
+  await sendEmailVerification(credential.user);
+
+  showAccountMessage(
+    "Conta criada! Enviamos um e-mail para confirmar seu endereço.",
+    "success"
+  );
+}
+
+
+/* LOGIN */
+async function loginUser() {
+  const email = emailInput.value.trim();
+  const password = passwordInput.value;
+
+  const persistence = document.getElementById("remember").checked
+    ? browserLocalPersistence
+    : browserSessionPersistence;
+
+  await setPersistence(auth, persistence);
+
+  await signInWithEmailAndPassword(
+    auth,
+    email,
+    password
+  );
+}
+
+
+/* ENVIO DO FORMULÁRIO */
+authForm.addEventListener("submit", async event => {
+  event.preventDefault();
+  clearMessage();
+
+  if (!isConfigured || !auth) {
+    showMessage(
+      "Antes de usar o login, configure as credenciais do seu projeto Firebase no código."
+    );
+    return;
+  }
+
+  setLoading(true);
+
+  try {
+    if (currentMode === "register") {
+      await registerUser();
+    } else {
+      await loginUser();
+    }
+
+  } catch (error) {
+    console.error("Erro de autenticação:", error);
+    showMessage(translateError(error));
+
+  } finally {
+    setLoading(false);
+  }
+});
+
+
+/* RECUPERAÇÃO DE SENHA */
+document.getElementById("forgotPassword").addEventListener("click", async () => {
+  clearMessage();
+
+  if (!isConfigured || !auth) {
+    showMessage("Configure o Firebase antes de utilizar a recuperação de senha.");
+    return;
+  }
+
+  const email = emailInput.value.trim();
+
+  if (!email) {
+    showMessage("Digite seu e-mail no campo acima para recuperar sua senha.");
+    emailInput.focus();
+    return;
+  }
+
+  try {
+    await sendPasswordResetEmail(auth, email);
+
+    showMessage(
+      "Se o endereço estiver cadastrado, você receberá um e-mail com as instruções para redefinir sua senha.",
+      "success"
+    );
+
+  } catch (error) {
+    console.error(error);
+    showMessage(translateError(error));
+  }
+});
+
+
+/* ATUALIZAÇÃO DA INTERFACE QUANDO O USUÁRIO ENTRA OU SAI */
+function updateAccountView(user) {
+  if (user) {
+    authView.classList.add("hidden");
+    accountView.classList.remove("hidden");
+
+    const name = user.displayName || "Cliente Dread Wyrm";
+
+    document.getElementById("accountName").textContent = name;
+    document.getElementById("accountEmail").textContent = user.email || "";
+    document.getElementById("accountAvatar").textContent =
+      name.charAt(0).toUpperCase();
+
+    document.getElementById("verificationStatus").textContent =
+      user.emailVerified
+        ? "E-mail verificado ✓"
+        : "E-mail ainda não verificado.";
+
+  } else {
+    accountView.classList.add("hidden");
+    authView.classList.remove("hidden");
+  }
+}
+
+
+/* OBSERVADOR DE AUTENTICAÇÃO */
+if (auth) {
+  onAuthStateChanged(auth, user => {
+    updateAccountView(user);
+
+    if (user) {
+      let redirect = null;
+      try { redirect = sessionStorage.getItem("dwyRedirectAfterLogin"); } catch (e) {}
+      if (redirect) {
+        try { sessionStorage.removeItem("dwyRedirectAfterLogin"); } catch (e) {}
+        window.setTimeout(() => { window.location.href = redirect; }, 450);
+      }
+    }
+  });
+}
+
+
+/* REENVIAR VERIFICAÇÃO DE E-MAIL */
+document.getElementById("resendVerification").addEventListener("click", async () => {
+  const user = auth?.currentUser;
+
+  if (!user) return;
+
+  if (user.emailVerified) {
+    showAccountMessage("Seu e-mail já está verificado.", "success");
+    return;
+  }
+
+  try {
+    await sendEmailVerification(user);
+
+    showAccountMessage(
+      "Novo e-mail de verificação enviado. Confira sua caixa de entrada.",
+      "success"
+    );
+
+  } catch (error) {
+    console.error(error);
+    showAccountMessage(translateError(error));
+  }
+});
+
+
+/* SAIR DA CONTA */
+document.getElementById("logoutButton").addEventListener("click", async () => {
+  if (!auth) return;
+
+  try {
+    await signOut(auth);
+    showMessage("Você saiu da sua conta.", "success");
+  } catch (error) {
+    console.error(error);
+    showAccountMessage(translateError(error));
+  }
+});
+
+
+/* AVISO DE CONFIGURAÇÃO */
+if (!isConfigured) {
+  showMessage(
+    "A interface está pronta. Para ativar o login, cadastre as credenciais do seu projeto Firebase no código."
+  );
+}
+
+</script>
+
+</body>
+</html>
