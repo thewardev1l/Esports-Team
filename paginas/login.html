@@ -682,6 +682,11 @@ if (isConfigured) {
 
 
 /* ELEMENTOS */
+const redirectParam = new URLSearchParams(window.location.search).get("redirect");
+if (redirectParam) {
+  try { sessionStorage.setItem("dwyRedirectAfterLogin", redirectParam); } catch (e) {}
+}
+
 const authView = document.getElementById("authView");
 const accountView = document.getElementById("accountView");
 
@@ -996,6 +1001,15 @@ function updateAccountView(user) {
 if (auth) {
   onAuthStateChanged(auth, user => {
     updateAccountView(user);
+
+    if (user) {
+      let redirect = null;
+      try { redirect = sessionStorage.getItem("dwyRedirectAfterLogin"); } catch (e) {}
+      if (redirect) {
+        try { sessionStorage.removeItem("dwyRedirectAfterLogin"); } catch (e) {}
+        window.setTimeout(() => { window.location.href = redirect; }, 450);
+      }
+    }
   });
 }
 

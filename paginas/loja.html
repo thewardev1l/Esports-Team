@@ -1,455 +1,2971 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#1b1b1b">
-<meta name="description" content="Loja oficial Dread Wyrm Esports.">
-<title>Loja | Dread Wyrm Esports</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#1b1b1b">
+    <meta name="description" content="Loja oficial Dread Wyrm Esports.">
 
-<style>
-:root{
- --red:#ff0000;--black:#1b1b1b;--white:#fff;
- --gray:#f5f5f5;--line:#dedede;
- --container:1440px;
- --ease:cubic-bezier(.2,.8,.2,1)
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:Inter,Arial,Helvetica,sans-serif;background:var(--black);color:#fff;overflow-x:hidden}
-img{max-width:100%;display:block}
-a{color:inherit;text-decoration:none}
-button{font:inherit;border:0;cursor:pointer}
-.container{width:min(calc(100% - 60px),var(--container));margin:auto}
+    <title>Loja | Dread Wyrm Esports</title>
 
-/* CABEÇALHO */
-.site-header{position:fixed;inset:0 0 auto;width:100%;z-index:999;background:#fff;color:#000;transition:box-shadow .3s}
-.site-header.scrolled{box-shadow:0 12px 40px #0002}
-.navbar{width:min(calc(100% - 60px),var(--container));height:90px;margin:auto;display:flex;align-items:center;justify-content:space-between}
-.nav-left{display:flex;align-items:center;gap:25px}
-.brand{display:flex;align-items:center}
-.brand img{width:72px;height:72px;object-fit:contain}
-.nav-links{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:30px}
-.nav-links a{font-size:12px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase;color:#000;padding:8px 0;transition:color .25s}
-.nav-links:hover a{color:#999}
-.nav-links:hover a:hover{color:var(--red)}
-.nav-right{display:flex;align-items:center;gap:8px}
-.nav-icon{width:38px;height:38px;display:grid;place-items:center;background:transparent;color:#000;position:relative;transition:.25s}
-.nav-icon svg{width:21px;height:21px;fill:currentColor}
-.nav-icon:hover{color:var(--red);transform:translateY(-2px)}
-.cart-count{position:absolute;right:-2px;top:-1px;background:var(--red);color:#fff;border-radius:50%;font-size:10px;font-weight:900;width:17px;height:17px;display:grid;place-items:center}
-.menu-toggle{display:none;width:42px;height:42px;background:#1b1b1b;color:#fff;place-items:center;font-size:19px}
-main{padding-top:90px}
+    <style>
+        :root {
+            --red: #ff0000;
+            --black: #1b1b1b;
+            --white: #fff;
+            --gray: #f5f5f5;
+            --line: #dedede;
+            --container: 1440px;
+            --ease: cubic-bezier(.2, .8, .2, 1);
+        }
 
-/* HERO */
-.hero{position:relative;width:100%;background:#fff;overflow:hidden;border-bottom:1px solid #222;isolation:isolate}
-.hero-slides{position:relative;width:100%;aspect-ratio:16/9;background:#050505}
-.hero-slide{position:absolute;inset:0;width:100%;height:100%;opacity:0;visibility:hidden;transition:opacity .8s ease,visibility .8s ease}
-.hero-slide.active{opacity:1;visibility:visible;z-index:1}
-.hero-slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
-.hero-pagination{position:relative;z-index:3;display:flex;align-items:center;justify-content:center;gap:7px;width:100%;min-height:28px;background:#fff}
-.hero-dot{display:block;flex:0 0 6px;width:6px;height:6px;padding:0;border:1px solid #111;border-radius:50%;background:transparent;transition:.2s}
-.hero-dot.active{flex-basis:12px;width:12px;height:5px;border:0;border-radius:999px;background:#111}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-/* SEÇÕES */
-.section{padding:100px 0}
-.section-light{background:#fff;color:#1b1b1b}
-.section-dark{background:#1b1b1b;color:#fff}
-.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:45px}
-.section-kicker{display:block;color:var(--red);font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px}
-.section-title{font-size:clamp(42px,6vw,82px);line-height:.9;letter-spacing:-4px;font-weight:950;text-transform:uppercase}
-.section-description{max-width:440px;color:#777;line-height:1.7;font-size:14px}
+        html {
+            scroll-behavior: smooth;
+        }
 
-/* FILTROS */
-.filterbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
-.filter{padding:10px 16px;border:1px solid #ccc;background:transparent;color:#222;font-size:10px;font-weight:900;letter-spacing:1px;text-transform:uppercase;transition:.2s}
-.filter.active,.filter:hover{background:#111;border-color:#111;color:#fff}
+        body {
+            font-family: Inter, Arial, Helvetica, sans-serif;
+            background: var(--black);
+            color: #fff;
+            overflow-x: hidden;
+        }
 
-/* PRODUTOS */
-.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
-.product{min-width:0;background:#f5f5f5;color:#1b1b1b;position:relative;border:1px solid #e6e6e6;transition:transform .3s var(--ease),border-color .3s;cursor:pointer}
-.product:hover{transform:translateY(-6px);border-color:#aaa}
-.product-image{height:290px;background:#eee;display:grid;place-items:center;overflow:hidden;position:relative}
-.product-image img{width:100%;height:100%;object-fit:cover;transition:transform .45s}
-.product:hover .product-image img{transform:scale(1.05)}
-.tag{position:absolute;top:13px;left:13px;background:var(--red);color:#fff;padding:7px 10px;font-size:9px;font-weight:900;letter-spacing:1px;text-transform:uppercase}
-.product-info{padding:18px}
-.product-name{font-size:13px;line-height:1.5;min-height:39px;font-weight:700}
-.price{font-size:15px;font-weight:900;margin-top:10px}
-.add{margin-top:16px;width:100%;min-height:43px;background:#111;color:#fff;border:1px solid #111;font-size:10px;font-weight:900;letter-spacing:1px;text-transform:uppercase;transition:.2s}
-.add:hover{background:var(--red);border-color:var(--red)}
+        img {
+            max-width: 100%;
+            display: block;
+        }
 
-/* CATEGORIAS */
-.categories{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.category{position:relative;min-height:300px;background:#080808;overflow:hidden;border:1px solid #292929}
-.category img{width:100%;height:300px;object-fit:cover;opacity:.62;transition:transform .45s,opacity .3s}
-.category:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#000c,transparent 65%)}
-.category strong{position:absolute;z-index:1;left:25px;bottom:25px;font-size:clamp(23px,3vw,36px);font-weight:950;letter-spacing:-1px;text-transform:uppercase}
-.category strong:after{content:" ↗";color:var(--red)}
-.category:hover img{transform:scale(1.05);opacity:.85}
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-/* FAIXA INSTITUCIONAL */
-.statement{background:#080808;border-block:1px solid #292929;padding:65px 0}
-.statement-inner{display:flex;align-items:center;justify-content:space-between;gap:35px}
-.statement h2{font-size:clamp(30px,4.8vw,65px);line-height:.92;letter-spacing:-3px;text-transform:uppercase}
-.statement h2 span{color:var(--red)}
-.statement p{max-width:370px;color:#999;line-height:1.8;font-size:13px;margin-bottom:20px}
-.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;background:#fff;color:#111;font-size:10px;font-weight:900;letter-spacing:1px;text-transform:uppercase;transition:.25s}
-.btn:hover{background:var(--red);color:#fff;transform:translateY(-3px)}
+        button {
+            font: inherit;
+            border: 0;
+            cursor: pointer;
+        }
 
-/* RODAPÉ */
-.site-footer{background:#fff;color:#000;padding:85px 0 25px;position:relative;overflow:hidden}
-.footer-watermark{position:absolute;right:-35px;bottom:-80px;font-size:clamp(150px,24vw,350px);font-weight:950;letter-spacing:-.09em;line-height:1;color:#00000008;pointer-events:none}
-.footer-top{position:relative;z-index:1;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:50px;padding-bottom:65px;border-bottom:1px solid #ddd}
-.footer-logo{width:74px;height:74px;object-fit:contain;margin-bottom:22px}
-.footer-description{max-width:320px;color:#555;line-height:1.7;font-size:13px}
-.footer-column h4{font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
-.footer-column a{display:block;margin-bottom:12px;font-size:12px;color:#666;transition:.2s}
-.footer-column a:hover{color:var(--red);transform:translateX(4px)}
-.footer-bottom{position:relative;z-index:1;display:flex;justify-content:space-between;gap:20px;padding-top:22px;color:#666;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase}
+        .container {
+            width: min(calc(100% - 60px), var(--container));
+            margin: auto;
+        }
 
-/* CARRINHO */
-.overlay{position:fixed;inset:0;background:#0009;z-index:1000;opacity:0;visibility:hidden;transition:.25s}
-.overlay.open{opacity:1;visibility:visible}
-.drawer{position:fixed;right:0;top:0;height:100%;width:min(430px,100%);background:#fff;color:#1b1b1b;z-index:1001;padding:25px;transform:translateX(100%);transition:.3s;display:flex;flex-direction:column}
-.drawer.open{transform:translateX(0)}
-.drawer-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ddd;padding-bottom:18px}
-.drawer-head h3{font-size:16px;font-weight:900;text-transform:uppercase}
-.close{background:none;color:#111;font-size:27px}
-.cart-items{overflow:auto;flex:1}
-.cart-row{display:grid;grid-template-columns:70px 1fr auto;gap:13px;padding:17px 0;border-bottom:1px solid #eee;font-size:12px}
-.cart-row img{width:70px;height:78px;object-fit:cover;background:#eee}
-.cart-row strong{display:block;margin:6px 0}
-.qty{display:flex;align-items:center;gap:8px;margin-top:8px}
-.qty button{border:1px solid #ddd;background:#fff;width:24px;height:24px}
-.cart-total{border-top:1px solid #ddd;padding-top:18px}
-.total-line{display:flex;justify-content:space-between;font-weight:900;margin-bottom:15px}
-.checkout{width:100%;background:var(--red);color:#fff;padding:15px;font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase}
-.checkout:hover{background:#e60000}
-.empty{color:#777;text-align:center;padding:45px 0;font-size:13px}
+        /* =========================================================
+           CABEÇALHO
+        ========================================================= */
 
-/* ANIMAÇÕES */
-.reveal{opacity:0;transform:translateY(35px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-stagger>*{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
-.reveal-stagger.visible>*{opacity:1;transform:translateY(0)}
-.reveal-stagger.visible>*:nth-child(1){transition-delay:.05s}
-.reveal-stagger.visible>*:nth-child(2){transition-delay:.12s}
-.reveal-stagger.visible>*:nth-child(3){transition-delay:.19s}
-.reveal-stagger.visible>*:nth-child(4){transition-delay:.26s}
-.reveal-stagger.visible>*:nth-child(5){transition-delay:.33s}
-.reveal-stagger.visible>*:nth-child(6){transition-delay:.40s}
-.reveal-stagger.visible>*:nth-child(7){transition-delay:.47s}
-.reveal-stagger.visible>*:nth-child(8){transition-delay:.54s}
-@media(prefers-reduced-motion:reduce){.reveal,.reveal-stagger>*{opacity:1!important;transform:none!important;transition:none!important}}
+        .site-header {
+            position: fixed;
+            inset: 0 0 auto;
+            width: 100%;
+            z-index: 999;
+            background: #fff;
+            color: #000;
+            transition: box-shadow .3s;
+        }
 
-/* RESPONSIVIDADE */
-@media(max-width:1050px){
- .nav-links{gap:17px}.nav-links a{font-size:10px}
- .products{grid-template-columns:repeat(3,1fr)}
- .footer-top{grid-template-columns:1.3fr 1fr 1fr}
- .footer-brand{grid-column:1/-1}
-}
-@media(max-width:850px){
- .navbar{width:calc(100% - 30px)}
- .menu-toggle{display:grid}
- .nav-links{display:none;position:absolute;top:90px;left:15px;right:15px;transform:none;background:#1b1b1b;color:#fff;border:1px solid #333;padding:12px 20px;flex-direction:column;align-items:flex-start;gap:0}
- .nav-links.open{display:flex}
- .nav-links a,.nav-links:hover a{width:100%;padding:15px 0;border-bottom:1px solid #333;color:#fff}
- .nav-links:hover a:hover{color:var(--red)}
- .section{padding:80px 0}
-}
-@media(max-width:650px){
- .container{width:calc(100% - 30px)}
- main{padding-top:80px}.navbar{height:80px}.brand img{width:64px;height:64px}
- .nav-links{top:80px}.section{padding:70px 0}
- .section-head{display:block;margin-bottom:30px}
- .section-description{margin-top:20px}.section-title{letter-spacing:-2px}
- .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
- .product-image{height:205px}.product-info{padding:13px}
- .product-name{font-size:11px}.price{font-size:13px}.add{font-size:9px;padding:8px}
- .categories{grid-template-columns:1fr;gap:12px}
- .category,.category img{height:220px;min-height:220px}
- .statement-inner{display:block}.statement p{margin:22px 0}
- .footer-top{grid-template-columns:1fr 1fr;gap:35px 25px}
- .footer-brand{grid-column:1/-1}.footer-bottom{flex-direction:column}
- .footer-watermark{font-size:145px;right:-35px;bottom:-25px}
-}
-@media(max-width:420px){
- .products{gap:9px}.product-image{height:170px}.product-info{padding:10px}
- .filter{padding:9px 11px;font-size:9px}.nav-right{gap:0}
-}
-@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
-</style>
+        .site-header.scrolled {
+            box-shadow: 0 12px 40px #0002;
+        }
+
+        .navbar {
+            width: min(calc(100% - 60px), var(--container));
+            height: 90px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .brand img {
+            width: 72px;
+            height: 72px;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+            color: #000;
+            padding: 8px 0;
+            transition: color .25s;
+        }
+
+        .nav-links:hover a {
+            color: #999;
+        }
+
+        .nav-links:hover a:hover {
+            color: var(--red);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-icon {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            background: transparent;
+            color: #000;
+            position: relative;
+            transition: .25s;
+        }
+
+        .nav-icon svg {
+            width: 21px;
+            height: 21px;
+            fill: currentColor;
+        }
+
+        .nav-icon:hover {
+            color: var(--red);
+            transform: translateY(-2px);
+        }
+
+        .cart-count {
+            position: absolute;
+            right: -2px;
+            top: -1px;
+            background: var(--red);
+            color: #fff;
+            border-radius: 50%;
+            font-size: 10px;
+            font-weight: 900;
+            width: 17px;
+            height: 17px;
+            display: grid;
+            place-items: center;
+        }
+
+        .menu-toggle {
+            display: none;
+            width: 42px;
+            height: 42px;
+            background: #1b1b1b;
+            color: #fff;
+            place-items: center;
+            font-size: 19px;
+        }
+
+        main {
+            padding-top: 90px;
+        }
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            position: relative;
+            width: 100%;
+            background: #fff;
+            overflow: hidden;
+            border-bottom: 1px solid #222;
+            isolation: isolate;
+        }
+
+        .hero-slides {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #050505;
+        }
+
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .8s ease, visibility .8s ease;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            visibility: visible;
+            z-index: 1;
+        }
+
+        .hero-slide img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .hero-pagination {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            width: 100%;
+            min-height: 28px;
+            background: #fff;
+        }
+
+        .hero-dot {
+            display: block;
+            flex: 0 0 6px;
+            width: 6px;
+            height: 6px;
+            padding: 0;
+            border: 1px solid #111;
+            border-radius: 50%;
+            background: transparent;
+            transition: .2s;
+        }
+
+        .hero-dot.active {
+            flex-basis: 12px;
+            width: 12px;
+            height: 5px;
+            border: 0;
+            border-radius: 999px;
+            background: #111;
+        }
+
+        /* =========================================================
+           SEÇÕES
+        ========================================================= */
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-light {
+            background: #fff;
+            color: #1b1b1b;
+        }
+
+        .section-dark {
+            background: #1b1b1b;
+            color: #fff;
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 30px;
+            margin-bottom: 45px;
+        }
+
+        .section-kicker {
+            display: block;
+            color: var(--red);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-size: clamp(42px, 6vw, 82px);
+            line-height: .9;
+            letter-spacing: -4px;
+            font-weight: 950;
+            text-transform: uppercase;
+        }
+
+        .section-description {
+            max-width: 440px;
+            color: #777;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        /* =========================================================
+           FILTROS
+        ========================================================= */
+
+        .filterbar {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .filter {
+            padding: 10px 16px;
+            border: 1px solid #ccc;
+            background: transparent;
+            color: #222;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: .2s;
+        }
+
+        .filter.active,
+        .filter:hover {
+            background: #111;
+            border-color: #111;
+            color: #fff;
+        }
+
+        /* =========================================================
+           PRODUTOS
+        ========================================================= */
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .product {
+            min-width: 0;
+            background: #f5f5f5;
+            color: #1b1b1b;
+            position: relative;
+            border: 1px solid #e6e6e6;
+            transition: transform .3s var(--ease), border-color .3s;
+            cursor: pointer;
+        }
+
+        .product:hover {
+            transform: translateY(-6px);
+            border-color: #aaa;
+        }
+
+        .product-image {
+            height: 290px;
+            background: #eee;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .45s;
+        }
+
+        .product:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .tag {
+            position: absolute;
+            top: 13px;
+            left: 13px;
+            background: var(--red);
+            color: #fff;
+            padding: 7px 10px;
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .product-info {
+            padding: 18px;
+        }
+
+        .product-name {
+            font-size: 13px;
+            line-height: 1.5;
+            min-height: 39px;
+            font-weight: 700;
+        }
+
+        .price {
+            font-size: 15px;
+            font-weight: 900;
+            margin-top: 10px;
+        }
+
+        .add {
+            margin-top: 16px;
+            width: 100%;
+            min-height: 43px;
+            background: #111;
+            color: #fff;
+            border: 1px solid #111;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: .2s;
+        }
+
+        .add:hover {
+            background: var(--red);
+            border-color: var(--red);
+        }
+
+        /* =========================================================
+           CATEGORIAS
+        ========================================================= */
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .category {
+            position: relative;
+            min-height: 300px;
+            background: #080808;
+            overflow: hidden;
+            border: 1px solid #292929;
+        }
+
+        .category img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            opacity: .62;
+            transition: transform .45s, opacity .3s;
+        }
+
+        .category:after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, #000c, transparent 65%);
+        }
+
+        .category strong {
+            position: absolute;
+            z-index: 1;
+            left: 25px;
+            bottom: 25px;
+            font-size: clamp(23px, 3vw, 36px);
+            font-weight: 950;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .category strong:after {
+            content: " ↗";
+            color: var(--red);
+        }
+
+        .category:hover img {
+            transform: scale(1.05);
+            opacity: .85;
+        }
+
+        /* =========================================================
+           FAIXA INSTITUCIONAL
+        ========================================================= */
+
+        .statement {
+            background: #080808;
+            border-block: 1px solid #292929;
+            padding: 65px 0;
+        }
+
+        .statement-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 35px;
+        }
+
+        .statement h2 {
+            font-size: clamp(30px, 4.8vw, 65px);
+            line-height: .92;
+            letter-spacing: -3px;
+            text-transform: uppercase;
+        }
+
+        .statement h2 span {
+            color: var(--red);
+        }
+
+        .statement p {
+            max-width: 370px;
+            color: #999;
+            line-height: 1.8;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 22px;
+            background: #fff;
+            color: #111;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: .25s;
+        }
+
+        .btn:hover {
+            background: var(--red);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        /* =========================================================
+           RODAPÉ
+        ========================================================= */
+
+        .site-footer {
+            background: #fff;
+            color: #000;
+            padding: 85px 0 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-watermark {
+            position: absolute;
+            right: -35px;
+            bottom: -80px;
+            font-size: clamp(150px, 24vw, 350px);
+            font-weight: 950;
+            letter-spacing: -.09em;
+            line-height: 1;
+            color: #00000008;
+            pointer-events: none;
+        }
+
+        .footer-top {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 50px;
+            padding-bottom: 65px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .footer-logo {
+            width: 74px;
+            height: 74px;
+            object-fit: contain;
+            margin-bottom: 22px;
+        }
+
+        .footer-description {
+            max-width: 320px;
+            color: #555;
+            line-height: 1.7;
+            font-size: 13px;
+        }
+
+        .footer-column h4 {
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .footer-column a {
+            display: block;
+            margin-bottom: 12px;
+            font-size: 12px;
+            color: #666;
+            transition: .2s;
+        }
+
+        .footer-column a:hover {
+            color: var(--red);
+            transform: translateX(4px);
+        }
+
+        .footer-bottom {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding-top: 22px;
+            color: #666;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+        }
+
+        /* =========================================================
+           CARRINHO
+        ========================================================= */
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: #0009;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: .25s;
+        }
+
+        .overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .drawer {
+            position: fixed;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: min(430px, 100%);
+            background: #fff;
+            color: #1b1b1b;
+            z-index: 1001;
+            padding: 25px;
+            transform: translateX(100%);
+            transition: .3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .drawer.open {
+            transform: translateX(0);
+        }
+
+        .drawer-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 18px;
+        }
+
+        .drawer-head h3 {
+            font-size: 16px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .close {
+            background: none;
+            color: #111;
+            font-size: 27px;
+        }
+
+        .cart-items {
+            overflow: auto;
+            flex: 1;
+        }
+
+        .cart-row {
+            display: grid;
+            grid-template-columns: 70px 1fr auto;
+            gap: 13px;
+            padding: 17px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 12px;
+        }
+
+        .cart-row img {
+            width: 70px;
+            height: 78px;
+            object-fit: cover;
+            background: #eee;
+        }
+
+        .cart-row strong {
+            display: block;
+            margin: 6px 0;
+        }
+
+        .qty {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .qty button {
+            border: 1px solid #ddd;
+            background: #fff;
+            width: 24px;
+            height: 24px;
+        }
+
+        .cart-total {
+            border-top: 1px solid #ddd;
+            padding-top: 18px;
+        }
+
+        .total-line {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        .checkout {
+            width: 100%;
+            background: var(--red);
+            color: #fff;
+            padding: 15px;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .checkout:hover {
+            background: #e60000;
+        }
+
+        .empty {
+            color: #777;
+            text-align: center;
+            padding: 45px 0;
+            font-size: 13px;
+        }
+
+        /* =========================================================
+           ANIMAÇÕES
+        ========================================================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition:
+                opacity .8s var(--ease),
+                transform .8s var(--ease);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-stagger > * {
+            opacity: 0;
+            transform: translateY(28px);
+            transition:
+                opacity .7s var(--ease),
+                transform .7s var(--ease);
+        }
+
+        .reveal-stagger.visible > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-stagger.visible > *:nth-child(1) {
+            transition-delay: .05s;
+        }
+
+        .reveal-stagger.visible > *:nth-child(2) {
+            transition-delay: .12s;
+        }
+
+        .reveal-stagger.visible > *:nth-child(3) {
+            transition-delay: .19s;
+        }
+
+        .reveal-stagger.visible > *:nth-child(4) {
+            transition-delay: .26s;
+        }
+
+        .reveal-stagger.visible > *:nth-child(5) {
+            transition-delay: .33s;
+        }
+
+        .reveal-stagger.visible > *:nth-child(6) {
+            transition-delay: .40s;
+        }
+
+        .reveal-stagger.visible > *:nth-child(7) {
+            transition-delay: .47s;
+        }
+
+        .reveal-stagger.visible > *:nth-child(8) {
+            transition-delay: .54s;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal,
+            .reveal-stagger > * {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+        }
+
+        /* =========================================================
+           RESPONSIVIDADE
+        ========================================================= */
+
+        @media (max-width: 1050px) {
+            .nav-links {
+                gap: 17px;
+            }
+
+            .nav-links a {
+                font-size: 10px;
+            }
+
+            .products {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .footer-top {
+                grid-template-columns: 1.3fr 1fr 1fr;
+            }
+
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .navbar {
+                width: calc(100% - 30px);
+            }
+
+            .menu-toggle {
+                display: grid;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 90px;
+                left: 15px;
+                right: 15px;
+                transform: none;
+                background: #1b1b1b;
+                color: #fff;
+                border: 1px solid #333;
+                padding: 12px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a,
+            .nav-links:hover a {
+                width: 100%;
+                padding: 15px 0;
+                border-bottom: 1px solid #333;
+                color: #fff;
+            }
+
+            .nav-links:hover a:hover {
+                color: var(--red);
+            }
+
+            .section {
+                padding: 80px 0;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .container {
+                width: calc(100% - 30px);
+            }
+
+            main {
+                padding-top: 80px;
+            }
+
+            .navbar {
+                height: 80px;
+            }
+
+            .brand img {
+                width: 64px;
+                height: 64px;
+            }
+
+            .nav-links {
+                top: 80px;
+            }
+
+            .section {
+                padding: 70px 0;
+            }
+
+            .section-head {
+                display: block;
+                margin-bottom: 30px;
+            }
+
+            .section-description {
+                margin-top: 20px;
+            }
+
+            .section-title {
+                letter-spacing: -2px;
+            }
+
+            .products {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+            }
+
+            .product-image {
+                height: 205px;
+            }
+
+            .product-info {
+                padding: 13px;
+            }
+
+            .product-name {
+                font-size: 11px;
+            }
+
+            .price {
+                font-size: 13px;
+            }
+
+            .add {
+                font-size: 9px;
+                padding: 8px;
+            }
+
+            .categories {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .category,
+            .category img {
+                height: 220px;
+                min-height: 220px;
+            }
+
+            .statement-inner {
+                display: block;
+            }
+
+            .statement p {
+                margin: 22px 0;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+                gap: 35px 25px;
+            }
+
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+            }
+
+            .footer-watermark {
+                font-size: 145px;
+                right: -35px;
+                bottom: -25px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .products {
+                gap: 9px;
+            }
+
+            .product-image {
+                height: 170px;
+            }
+
+            .product-info {
+                padding: 10px;
+            }
+
+            .filter {
+                padding: 9px 11px;
+                font-size: 9px;
+            }
+
+            .nav-right {
+                gap: 0;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                scroll-behavior: auto !important;
+                transition: none !important;
+            }
+        }
+
+        /* =========================================================
+           MENU DE CONTA — AUTENTICAÇÃO
+        ========================================================= */
+
+        .account-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .account-button {
+            appearance: none;
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .account-menu {
+            position: absolute;
+            top: calc(100% + 14px);
+            right: 0;
+            width: min(320px, calc(100vw - 30px));
+            padding: 22px;
+            background: #fff;
+            color: #111;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 20px 55px rgba(0, 0, 0, .16);
+            z-index: 10000;
+            animation: accountMenuIn .2s ease both;
+        }
+
+        .account-menu::before {
+            content: "";
+            position: absolute;
+            top: -6px;
+            right: 17px;
+            width: 11px;
+            height: 11px;
+            background: #fff;
+            border-left: 1px solid #e5e5e5;
+            border-top: 1px solid #e5e5e5;
+            transform: rotate(45deg);
+        }
+
+        .account-menu-header {
+            display: grid;
+            gap: 5px;
+            padding-bottom: 17px;
+            border-bottom: 1px solid #ededed;
+        }
+
+        .account-menu-kicker {
+            color: #ff0000;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .account-menu-header strong {
+            font-size: 20px;
+            line-height: 1.15;
+            letter-spacing: -.5px;
+            overflow-wrap: anywhere;
+        }
+
+        .account-menu-header > span:last-child {
+            color: #777;
+            font-size: 12px;
+            overflow-wrap: anywhere;
+        }
+
+        .account-menu-status {
+            margin: 16px 0;
+            padding: 10px 12px;
+            background: #f5f5f5;
+            color: #555;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .account-menu-status.verified {
+            color: #111;
+        }
+
+        .account-menu-actions {
+            display: grid;
+            gap: 8px;
+        }
+
+        .account-menu-action {
+            width: 100%;
+            min-height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 11px 15px;
+            border: 1px solid #111;
+            background: #111;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition:
+                background .2s ease,
+                color .2s ease,
+                border-color .2s ease,
+                transform .2s ease;
+        }
+
+        .account-menu-action:hover {
+            background: #ff0000;
+            border-color: #ff0000;
+            color: #000;
+            transform: translateY(-1px);
+        }
+
+        .account-menu-logout {
+            background: #fff;
+            color: #111;
+        }
+
+        .account-menu-action:disabled {
+            opacity: .6;
+            cursor: wait;
+            transform: none;
+        }
+
+        @keyframes accountMenuIn {
+            from {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 520px) {
+            .account-menu {
+                right: -8px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-<header class="site-header" id="siteHeader">
-<nav class="navbar">
- <div class="nav-left">
-  <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
-  <a href="index.html" class="brand"><img src="Imagens/logo-dragon.png" alt="Dread Wyrm Esports"></a>
-  <div class="nav-links" id="navLinks">
-   <a href="index.html">Início</a><a href="sobrenos.html">Sobre nós</a>
-   <a href="times.html">Times</a><a href="loja.html" class="active">Loja</a>
-   <a href="index.html#contact">Contato</a>
-  </div>
- </div>
- <div class="nav-right">
-  <a class="nav-icon" href="login.html" aria-label="Login" title="Login">
-   <svg viewBox="0 0 24 24"><path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4.2 0-7.5 2.1-7.5 4.7V22h15v-3.3c0-2.6-3.3-4.7-7.5-4.7Z"/></svg>
-  </a>
-  <button class="nav-icon" id="cartToggle" aria-label="Abrir carrinho">
-   <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2Zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2ZM6.2 6l.9 2h11.8l-2 7H8L4.3 3H1V1h4.7l.9 3H23l-2.8 11.2A2.5 2.5 0 0 1 17.8 17H8a2 2 0 0 1-1.8-1.2L2.5 6h3.7Z"/></svg>
-   <span class="cart-count" id="cartCount">0</span>
-  </button>
- </div>
-</nav>
-</header>
 
-<main>
-<section class="hero" aria-label="Banners da loja Dread Wyrm">
- <div class="hero-slides">
-  <div class="hero-slide active" aria-hidden="false"><img src="Imagens/heroloja.png" alt="Banner Dread Wyrm Esports 1" fetchpriority="high"></div>
-  <div class="hero-slide" aria-hidden="true"><img src="Imagens/heroloja2.png" alt="Banner Dread Wyrm Esports 2" loading="lazy"></div>
-  <div class="hero-slide" aria-hidden="true"><img src="Imagens/heroloja3.png" alt="Banner Dread Wyrm Esports 3" loading="lazy"></div>
-  <div class="hero-slide" aria-hidden="true"><img src="Imagens/heroloja4.png" alt="Banner Dread Wyrm Esports 4" loading="lazy"></div>
- </div>
- <div class="hero-pagination" role="group" aria-label="Selecionar banner">
-  <button class="hero-dot active" aria-label="Mostrar banner 1" aria-current="true"></button>
-  <button class="hero-dot" aria-label="Mostrar banner 2" aria-current="false"></button>
-  <button class="hero-dot" aria-label="Mostrar banner 3" aria-current="false"></button>
-  <button class="hero-dot" aria-label="Mostrar banner 4" aria-current="false"></button>
- </div>
-</section>
+    <!-- =========================================================
+         CABEÇALHO
+    ========================================================= -->
 
-<section class="section section-light" id="produtos">
-<div class="container">
- <div class="section-head">
-  <div><span class="section-kicker">EQUIPAMENTO OFICIAL</span><h2 class="section-title">Loja <span style="color:#ff0000">DWY.</span></h2></div>
-  <p class="section-description">Peças e acessórios para quem faz parte da comunidade. Escolha seus favoritos e monte seu kit.</p>
- </div>
+    <header class="site-header" id="siteHeader">
 
- <div class="filterbar">
-  <button class="filter active" data-filter="todos">Todos</button>
-  <button class="filter" data-filter="camisa">Camisas</button>
-  <button class="filter" data-filter="acessorio">Acessórios</button>
-  <button class="filter" data-filter="colecionavel">Colecionáveis</button>
- </div>
+        <nav class="navbar">
 
- <div class="products" id="productGrid">
-  <article class="product" data-product-id="camisa-oficial" data-name="Camisa Oficial Dread Wyrm" data-category="camisa" data-price="129.90">
-   <div class="product-image"><span class="tag">Oficial</span><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=85" alt="Camisa oficial"></div>
-   <div class="product-info"><div class="product-name">Camisa Oficial Dread Wyrm</div><div class="price">R$ 129,90</div><button class="add">Adicionar ao carrinho</button></div>
-  </article>
-  <article class="product" data-product-id="camisa-pro-player" data-name="Camisa DWY Pro Player" data-category="camisa" data-price="149.90">
-   <div class="product-image"><img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=700&q=85" alt="Camisa Pro Player"></div>
-   <div class="product-info"><div class="product-name">Camisa DWY Pro Player</div><div class="price">R$ 149,90</div><button class="add">Adicionar ao carrinho</button></div>
-  </article>
-  <article class="product" data-product-id="moletom-dwy" data-name="Moletom Dread Wyrm" data-category="camisa" data-price="229.90">
-   <div class="product-image"><img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=85" alt="Moletom"></div>
-   <div class="product-info"><div class="product-name">Moletom Dread Wyrm</div><div class="price">R$ 229,90</div><button class="add">Adicionar ao carrinho</button></div>
-  </article>
-  <article class="product" data-product-id="mousepad-dwy" data-name="Mousepad DWY" data-category="acessorio" data-price="54.99">
-   <div class="product-image"><img src="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=700&q=85" alt="Mousepad gamer"></div>
-   <div class="product-info"><div class="product-name">Mousepad DWY</div><div class="price">R$ 54,99</div><button class="add">Adicionar ao carrinho</button></div>
-  </article>
-  <article class="product" data-product-id="caneca-dwy" data-name="Caneca Dread Wyrm" data-category="acessorio" data-price="39.90">
-   <div class="product-image"><img src="https://images.unsplash.com/photo-1514228742587-6b1558f67993?auto=format&fit=crop&w=700&q=85" alt="Caneca"></div>
-   <div class="product-info"><div class="product-name">Caneca Dread Wyrm</div><div class="price">R$ 39,90</div><button class="add">Adicionar ao carrinho</button></div>
-  </article>
-  <article class="product" data-product-id="bone-dwy" data-name="Boné DWY" data-category="acessorio" data-price="69.90">
-   <div class="product-image"><img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=700&q=85" alt="Boné"></div>
-   <div class="product-info"><div class="product-name">Boné DWY</div><div class="price">R$ 69,90</div><button class="add">Adicionar ao carrinho</button></div>
-  </article>
-  <article class="product" data-product-id="chaveiro-dwy" data-name="Chaveiro Dread Wyrm" data-category="colecionavel" data-price="19.90">
-   <div class="product-image"><img src="https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&w=700&q=85" alt="Chaveiro"></div>
-   <div class="product-info"><div class="product-name">Chaveiro Dread Wyrm</div><div class="price">R$ 19,90</div><button class="add">Adicionar ao carrinho</button></div>
-  </article>
-  <article class="product" data-product-id="poster-dwy" data-name="Pôster Dread Wyrm" data-category="colecionavel" data-price="29.90">
-   <div class="product-image"><img src="https://images.unsplash.com/photo-1580136579312-94651dfd596d?auto=format&fit=crop&w=700&q=85" alt="Pôster decorativo"></div>
-   <div class="product-info"><div class="product-name">Pôster Dread Wyrm</div><div class="price">R$ 29,90</div><button class="add">Adicionar ao carrinho</button></div>
-  </article>
- </div>
-</div>
-</section>
+            <div class="nav-left">
 
-<section class="section section-dark">
-<div class="container">
- <div class="section-head">
-  <div><span class="section-kicker">ENCONTRE SEU ESTILO</span><h2 class="section-title">Categorias<span style="color:#ff0000">.</span></h2></div>
-  <p class="section-description" style="color:#aaa">Do uniforme aos detalhes do setup: escolha como representar a equipe.</p>
- </div>
- <div class="categories">
-  <a class="category" href="#produtos" data-jump="camisa"><img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85" alt="Vestuário"><strong>Vestuário</strong></a>
-  <a class="category" href="#produtos" data-jump="acessorio"><img src="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=900&q=85" alt="Acessórios gamer"><strong>Acessórios</strong></a>
-  <a class="category" href="#produtos" data-jump="colecionavel"><img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=85" alt="Colecionáveis"><strong>Colecionáveis</strong></a>
- </div>
-</div>
-</section>
+                <button
+                    class="menu-toggle"
+                    id="menuToggle"
+                    aria-label="Abrir menu"
+                    aria-expanded="false"
+                >
+                    ☰
+                </button>
 
-<section class="statement">
-<div class="container statement-inner">
- <h2>Uma equipe.<br><span>Uma identidade.</span></h2>
- <div><p>Competição, comunidade e performance. Faça parte da Dread Wyrm e represente nossas cores em qualquer lugar.</p><a class="btn" href="index.html">Conheça a equipe&nbsp; ↗</a></div>
-</div>
-</section>
-</main>
+                <a href="index.html" class="brand">
+                    <img
+                        src="Imagens/logo-dragon.png"
+                        alt="Dread Wyrm Esports"
+                    >
+                </a>
 
-<footer class="site-footer">
-<div class="footer-watermark">DWY</div>
-<div class="container">
- <div class="footer-top">
-  <div class="footer-brand"><img src="Imagens/logo-dragon.png" class="footer-logo" alt="Dread Wyrm Esports"><p class="footer-description">A Dread Wyrm Esports é uma organização de esports focada em competição, performance, identidade e construção de comunidade.</p></div>
-  <div class="footer-column"><h4>Navegação</h4><a href="index.html">Início</a><a href="sobrenos.html">Sobre nós</a><a href="times.html">Times</a><a href="loja.html">Loja</a></div>
-  <div class="footer-column"><h4>Loja</h4><a href="#produtos">Todos os produtos</a><a href="#produtos">Camisas</a><a href="#produtos">Acessórios</a><a href="#produtos">Colecionáveis</a></div>
-  <div class="footer-column"><h4>Atendimento</h4><a href="index.html#contact">Contato</a><a href="#">Entrega e pagamento</a><a href="#">Trocas e devoluções</a></div>
- </div>
- <div class="footer-bottom"><span>© 2026 Dread Wyrm Esports. Todos os direitos reservados.</span><span>Competição · Comunidade · Performance</span></div>
-</div>
-</footer>
+                <div class="nav-links" id="navLinks">
+                    <a href="index.html">Início</a>
+                    <a href="sobrenos.html">Sobre nós</a>
+                    <a href="times.html">Times</a>
+                    <a href="loja.html" class="active">Loja</a>
+                    <a href="index.html#contact">Contato</a>
+                </div>
 
-<div class="overlay" id="overlay"></div>
-<aside class="drawer" id="drawer" aria-label="Carrinho de compras">
- <div class="drawer-head"><h3>Seu carrinho</h3><button class="close" id="closeCart" aria-label="Fechar">×</button></div>
- <div class="cart-items" id="cartItems"><div class="empty">Seu carrinho está vazio.</div></div>
- <div class="cart-total"><div class="total-line"><span>Subtotal</span><span id="cartTotal">R$ 0,00</span></div><button class="checkout" id="checkout">Finalizar pedido</button></div>
-</aside>
+            </div>
 
-<script>
-const CART_KEY='dwy_cart';
-const cart=loadCart();
-function loadCart(){try{return JSON.parse(localStorage.getItem(CART_KEY)||'[]')}catch(e){return[]}}
-function saveCart(){localStorage.setItem(CART_KEY,JSON.stringify(cart))}
-const money=value=>Number(value).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
-const drawer=document.getElementById('drawer');
-const overlay=document.getElementById('overlay');
+            <div class="nav-right">
 
-/* SLIDER */
-const heroSlides=[...document.querySelectorAll('.hero-slide')];
-const heroDots=[...document.querySelectorAll('.hero-dot')];
-let currentHeroSlide=0,heroTimer;
-function showHeroSlide(index){
- if(!heroSlides.length)return;
- currentHeroSlide=(index+heroSlides.length)%heroSlides.length;
- heroSlides.forEach((slide,i)=>{const active=i===currentHeroSlide;slide.classList.toggle('active',active);slide.setAttribute('aria-hidden',String(!active))});
- heroDots.forEach((dot,i)=>{const active=i===currentHeroSlide;dot.classList.toggle('active',active);dot.setAttribute('aria-current',String(active))});
-}
-function startHeroTimer(){
- clearInterval(heroTimer);
- if(heroSlides.length>1&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches)heroTimer=setInterval(()=>showHeroSlide(currentHeroSlide+1),6000);
-}
-heroDots.forEach((dot,i)=>dot.addEventListener('click',()=>{showHeroSlide(i);startHeroTimer()}));
-startHeroTimer();
+                <!-- MENU DE CONTA -->
 
-/* DESLIZAR BANNERS NO CELULAR */
-const heroElement=document.querySelector('.hero');
-let heroTouchStartX=0,heroTouchStartY=0;
-if(heroElement){
- heroElement.addEventListener('touchstart',event=>{if(event.touches.length!==1)return;heroTouchStartX=event.touches[0].clientX;heroTouchStartY=event.touches[0].clientY},{passive:true});
- heroElement.addEventListener('touchend',event=>{
-  if(event.changedTouches.length!==1)return;
-  const dx=event.changedTouches[0].clientX-heroTouchStartX,dy=event.changedTouches[0].clientY-heroTouchStartY;
-  if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)){showHeroSlide(currentHeroSlide+(dx<0?1:-1));startHeroTimer()}
- },{passive:true});
-}
-document.addEventListener('visibilitychange',()=>{if(document.hidden)clearInterval(heroTimer);else startHeroTimer()});
+                <div class="account-wrapper" id="accountWrapper">
 
-/* CARRINHO */
-function openCart(){renderCart();drawer.classList.add('open');overlay.classList.add('open')}
-function closeCart(){drawer.classList.remove('open');overlay.classList.remove('open')}
-document.getElementById('cartToggle').addEventListener('click',openCart);
-document.getElementById('closeCart').addEventListener('click',closeCart);
-overlay.addEventListener('click',closeCart);
-if(window.location.hash==='#carrinho')openCart();
+                    <button
+                        type="button"
+                        class="nav-icon account-button"
+                        id="accountButton"
+                        aria-label="Entrar ou criar conta"
+                        title="Entrar ou criar conta"
+                        aria-expanded="false"
+                        aria-controls="accountMenu"
+                    >
 
-/* MENU */
-document.getElementById('menuToggle').addEventListener('click',()=>{
- const nav=document.getElementById('navLinks'),isOpen=nav.classList.toggle('open');
- document.getElementById('menuToggle').setAttribute('aria-expanded',String(isOpen));
-});
-document.querySelectorAll('.nav-links a').forEach(link=>link.addEventListener('click',()=>{
- document.getElementById('navLinks').classList.remove('open');
- document.getElementById('menuToggle').setAttribute('aria-expanded','false');
-}));
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-8a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 10c-4.42 0-8 2.24-8 5v3h16v-3c0-2.76-3.58-5-8-5Zm6 6H6v-1c0-1.58 2.75-3 6-3s6 1.42 6 3v1Z"/>
+                        </svg>
 
-/* CABEÇALHO */
-function updateHeader(){document.getElementById('siteHeader').classList.toggle('scrolled',window.scrollY>20)}
-window.addEventListener('scroll',updateHeader,{passive:true});updateHeader();
+                    </button>
 
-/* ANIMAÇÕES */
-const revealGroups=[document.querySelector('.section-head'),document.querySelector('.filterbar'),document.querySelector('#productGrid'),document.querySelector('.categories'),document.querySelector('.statement-inner'),document.querySelector('.footer-top'),document.querySelector('.footer-bottom')].filter(Boolean);
-revealGroups.forEach(element=>{element.classList.add('reveal');if(element.id==='productGrid'||element.classList.contains('categories'))element.classList.add('reveal-stagger')});
-document.querySelectorAll('.section').forEach(section=>section.classList.add('reveal'));
-if('IntersectionObserver'in window){
- const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});
- document.querySelectorAll('.reveal').forEach(element=>observer.observe(element));
-}else document.querySelectorAll('.reveal').forEach(element=>element.classList.add('visible'));
+                    <div class="account-menu" id="accountMenu" hidden>
 
-/* FILTROS */
-document.querySelectorAll('.filter').forEach(button=>button.addEventListener('click',()=>{
- document.querySelectorAll('.filter').forEach(item=>item.classList.remove('active'));
- button.classList.add('active');
- document.querySelectorAll('.product').forEach(product=>product.style.display=button.dataset.filter==='todos'||product.dataset.category===button.dataset.filter?'':'none');
-}));
-document.querySelectorAll('[data-jump]').forEach(link=>link.addEventListener('click',()=>{
- const filter=link.dataset.jump;
- document.querySelectorAll('.filter').forEach(button=>button.classList.toggle('active',button.dataset.filter===filter));
- document.querySelectorAll('.product').forEach(product=>product.style.display=product.dataset.category===filter?'':'none');
-}));
+                        <div class="account-menu-header">
+                            <span class="account-menu-kicker">MINHA CONTA</span>
 
-/* ABRIR DETALHES */
-document.querySelectorAll('.product[data-product-id]').forEach(card=>card.addEventListener('click',event=>{
- if(event.target.closest('.add'))return;
- window.location.href='produto.html?id='+encodeURIComponent(card.dataset.productId);
-}));
+                            <strong id="accountMenuName">
+                                Verificando conta...
+                            </strong>
 
-/* ADICIONAR AO CARRINHO */
-document.querySelectorAll('.product .add').forEach(button=>button.addEventListener('click',()=>{
- const product=button.closest('.product');
- const id=product.dataset.productId,name=product.dataset.name,price=Number(product.dataset.price),image=product.querySelector('img').src;
- const found=cart.find(item=>item.id===id&&!item.size);
- if(found)found.qty++;
- else cart.push({id,name,price,img:image,qty:1,size:''});
- saveCart();renderCart();
- button.textContent='Adicionado ✓';
- setTimeout(()=>button.textContent='Adicionar ao carrinho',1000);
-}));
+                            <span id="accountMenuEmail">
+                                Aguarde um momento.
+                            </span>
+                        </div>
 
-/* ATUALIZAR CARRINHO */
-function renderCart(){
- const count=cart.reduce((sum,item)=>sum+Number(item.qty||0),0);
- const total=cart.reduce((sum,item)=>sum+Number(item.price)*Number(item.qty),0);
- document.getElementById('cartCount').textContent=count;
- document.getElementById('cartTotal').textContent=money(total);
- const element=document.getElementById('cartItems');
- if(!cart.length){element.innerHTML='<div class="empty">Seu carrinho está vazio.</div>';return}
- element.innerHTML=cart.map((product,index)=>`
-  <div class="cart-row">
-   <img src="${product.img}" alt="">
-   <div>${product.name}
-    ${product.size?`<small style="display:block;color:#888">Tamanho: ${product.size}</small>`:''}
-    <strong>${money(product.price)}</strong>
-    <div class="qty"><button data-dec="${index}">−</button><span>${product.qty}</span><button data-inc="${index}">+</button></div>
-   </div>
-   <button class="close" data-del="${index}">×</button>
-  </div>`).join('');
- element.querySelectorAll('[data-inc]').forEach(button=>button.onclick=()=>{cart[Number(button.dataset.inc)].qty++;saveCart();renderCart()});
- element.querySelectorAll('[data-dec]').forEach(button=>button.onclick=()=>{
-  const index=Number(button.dataset.dec);cart[index].qty--;
-  if(cart[index].qty<=0)cart.splice(index,1);
-  saveCart();renderCart();
- });
- element.querySelectorAll('[data-del]').forEach(button=>button.onclick=()=>{cart.splice(Number(button.dataset.del),1);saveCart();renderCart()});
-}
-renderCart();
+                        <div
+                            class="account-menu-status"
+                            id="accountMenuStatus"
+                        >
+                            VERIFICANDO SESSÃO
+                        </div>
 
-/* FINALIZAR PEDIDO */
-document.getElementById('checkout').addEventListener('click',()=>{
- if(!cart.length){alert('Adicione produtos ao carrinho antes de finalizar.');return}
- alert('Seu carrinho está pronto. Para receber pagamentos, conecte esta página ao checkout da plataforma da loja.');
-});
-</script>
+                        <div class="account-menu-actions">
+
+                            <a
+                                href="login.html"
+                                class="account-menu-action"
+                                id="accountMenuLogin"
+                            >
+                                ENTRAR
+                            </a>
+
+                            <a
+                                href="login.html"
+                                class="account-menu-action"
+                                id="accountMenuAccount"
+                                hidden
+                            >
+                                MINHA CONTA
+                            </a>
+
+                            <button
+                                type="button"
+                                class="account-menu-action account-menu-logout"
+                                id="accountMenuLogout"
+                                hidden
+                            >
+                                SAIR
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- CARRINHO -->
+
+                <button
+                    class="nav-icon"
+                    id="cartToggle"
+                    aria-label="Abrir carrinho"
+                >
+
+                    <svg viewBox="0 0 24 24">
+                        <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2Zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2ZM6.2 6l.9 2h11.8l-2 7H8L4.3 3H1V1h4.7l.9 3H23l-2.8 11.2A2.5 2.5 0 0 1 17.8 17H8a2.5 2.5 0 0 1-1.8-1.2L2.5 6h3.7Z"/>
+                    </svg>
+
+                    <span class="cart-count" id="cartCount">0</span>
+
+                </button>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+    <!-- =========================================================
+         CONTEÚDO PRINCIPAL
+    ========================================================= -->
+
+    <main>
+
+        <!-- HERO -->
+
+        <section
+            class="hero"
+            aria-label="Banners da loja Dread Wyrm"
+        >
+
+            <div class="hero-slides">
+
+                <div
+                    class="hero-slide active"
+                    aria-hidden="false"
+                >
+                    <img
+                        src="Imagens/heroloja.png"
+                        alt="Banner Dread Wyrm Esports 1"
+                        fetchpriority="high"
+                    >
+                </div>
+
+                <div
+                    class="hero-slide"
+                    aria-hidden="true"
+                >
+                    <img
+                        src="Imagens/heroloja2.png"
+                        alt="Banner Dread Wyrm Esports 2"
+                        loading="lazy"
+                    >
+                </div>
+
+                <div
+                    class="hero-slide"
+                    aria-hidden="true"
+                >
+                    <img
+                        src="Imagens/heroloja3.png"
+                        alt="Banner Dread Wyrm Esports 3"
+                        loading="lazy"
+                    >
+                </div>
+
+                <div
+                    class="hero-slide"
+                    aria-hidden="true"
+                >
+                    <img
+                        src="Imagens/heroloja4.png"
+                        alt="Banner Dread Wyrm Esports 4"
+                        loading="lazy"
+                    >
+                </div>
+
+            </div>
+
+            <div
+                class="hero-pagination"
+                role="group"
+                aria-label="Selecionar banner"
+            >
+
+                <button
+                    class="hero-dot active"
+                    aria-label="Mostrar banner 1"
+                    aria-current="true"
+                ></button>
+
+                <button
+                    class="hero-dot"
+                    aria-label="Mostrar banner 2"
+                    aria-current="false"
+                ></button>
+
+                <button
+                    class="hero-dot"
+                    aria-label="Mostrar banner 3"
+                    aria-current="false"
+                ></button>
+
+                <button
+                    class="hero-dot"
+                    aria-label="Mostrar banner 4"
+                    aria-current="false"
+                ></button>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================================
+             PRODUTOS
+        ====================================================== -->
+
+        <section
+            class="section section-light"
+            id="produtos"
+        >
+
+            <div class="container">
+
+                <div class="section-head">
+
+                    <div>
+                        <span class="section-kicker">
+                            EQUIPAMENTO OFICIAL
+                        </span>
+
+                        <h2 class="section-title">
+                            Loja
+                            <span style="color:#ff0000">DWY.</span>
+                        </h2>
+                    </div>
+
+                    <p class="section-description">
+                        Peças e acessórios para quem faz parte da comunidade.
+                        Escolha seus favoritos e monte seu kit.
+                    </p>
+
+                </div>
+
+                <!-- FILTROS -->
+
+                <div class="filterbar">
+
+                    <button
+                        class="filter active"
+                        data-filter="todos"
+                    >
+                        Todos
+                    </button>
+
+                    <button
+                        class="filter"
+                        data-filter="camisa"
+                    >
+                        Camisas
+                    </button>
+
+                    <button
+                        class="filter"
+                        data-filter="acessorio"
+                    >
+                        Acessórios
+                    </button>
+
+                    <button
+                        class="filter"
+                        data-filter="colecionavel"
+                    >
+                        Colecionáveis
+                    </button>
+
+                </div>
+
+                <!-- GRID DE PRODUTOS -->
+
+                <div
+                    class="products"
+                    id="productGrid"
+                >
+
+                    <article
+                        class="product"
+                        data-product-id="camisa-oficial"
+                        data-name="Jersey Dread Wyrm 2026"
+                        data-category="uniforme"
+                        data-price="219.99"
+                    >
+
+                        <div class="product-image">
+                            <span class="tag">LIMITED</span>
+
+                            <img
+                                src="Imagens/uniforme2polo.png"
+                                alt="Camisa oficial"
+                            >
+                        </div>
+
+                        <div class="product-info">
+
+                            <div class="product-name">
+                                Uniforme KIC2026 Jacarta - Indonésia
+                            </div>
+
+                            <div class="price">
+                                R$ 219,99
+                            </div>
+
+                            <button class="add">
+                                Adicionar ao carrinho
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                    <article
+                        class="product"
+                        data-product-id="camisa-pro-player"
+                        data-name="Camisa DWY Pro Player"
+                        data-category="camisa"
+                        data-price=".99"
+                    >
+
+                        <div class="product-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=700&q=85"
+                                alt="Camisa Pro Player"
+                            >
+
+                        </div>
+
+                        <div class="product-info">
+
+                            <div class="product-name">
+                                Camisa DWY Pro Player
+                            </div>
+
+                            <div class="price">
+                                R$ 149,90
+                            </div>
+
+                            <button class="add">
+                                Adicionar ao carrinho
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                    <article
+                        class="product"
+                        data-product-id="moletom-dwy"
+                        data-name="Moletom Dread Wyrm"
+                        data-category="camisa"
+                        data-price="229.90"
+                    >
+
+                        <div class="product-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=85"
+                                alt="Moletom"
+                            >
+
+                        </div>
+
+                        <div class="product-info">
+
+                            <div class="product-name">
+                                Moletom Dread Wyrm
+                            </div>
+
+                            <div class="price">
+                                R$ 229,90
+                            </div>
+
+                            <button class="add">
+                                Adicionar ao carrinho
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                    <article
+                        class="product"
+                        data-product-id="mousepad-dwy"
+                        data-name="Mousepad DWY"
+                        data-category="acessorio"
+                        data-price="54.99"
+                    >
+
+                        <div class="product-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=700&q=85"
+                                alt="Mousepad gamer"
+                            >
+
+                        </div>
+
+                        <div class="product-info">
+
+                            <div class="product-name">
+                                Mousepad DWY
+                            </div>
+
+                            <div class="price">
+                                R$ 54,99
+                            </div>
+
+                            <button class="add">
+                                Adicionar ao carrinho
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                    <article
+                        class="product"
+                        data-product-id="caneca-dwy"
+                        data-name="Caneca Dread Wyrm"
+                        data-category="acessorio"
+                        data-price="39.90"
+                    >
+
+                        <div class="product-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1514228742587-6b1558f67993?auto=format&fit=crop&w=700&q=85"
+                                alt="Caneca"
+                            >
+
+                        </div>
+
+                        <div class="product-info">
+
+                            <div class="product-name">
+                                Caneca Dread Wyrm
+                            </div>
+
+                            <div class="price">
+                                R$ 39,90
+                            </div>
+
+                            <button class="add">
+                                Adicionar ao carrinho
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                    <article
+                        class="product"
+                        data-product-id="bone-dwy"
+                        data-name="Boné DWY"
+                        data-category="acessorio"
+                        data-price="69.90"
+                    >
+
+                        <div class="product-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=700&q=85"
+                                alt="Boné"
+                            >
+
+                        </div>
+
+                        <div class="product-info">
+
+                            <div class="product-name">
+                                Boné DWY
+                            </div>
+
+                            <div class="price">
+                                R$ 69,90
+                            </div>
+
+                            <button class="add">
+                                Adicionar ao carrinho
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                    <article
+                        class="product"
+                        data-product-id="chaveiro-dwy"
+                        data-name="Chaveiro Dread Wyrm"
+                        data-category="colecionavel"
+                        data-price="19.90"
+                    >
+
+                        <div class="product-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&w=700&q=85"
+                                alt="Chaveiro"
+                            >
+
+                        </div>
+
+                        <div class="product-info">
+
+                            <div class="product-name">
+                                Chaveiro Dread Wyrm
+                            </div>
+
+                            <div class="price">
+                                R$ 19,90
+                            </div>
+
+                            <button class="add">
+                                Adicionar ao carrinho
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                    <article
+                        class="product"
+                        data-product-id="poster-dwy"
+                        data-name="Pôster Dread Wyrm"
+                        data-category="colecionavel"
+                        data-price="29.90"
+                    >
+
+                        <div class="product-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1580136579312-94651dfd596d?auto=format&fit=crop&w=700&q=85"
+                                alt="Pôster decorativo"
+                            >
+
+                        </div>
+
+                        <div class="product-info">
+
+                            <div class="product-name">
+                                Pôster Dread Wyrm
+                            </div>
+
+                            <div class="price">
+                                R$ 29,90
+                            </div>
+
+                            <button class="add">
+                                Adicionar ao carrinho
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================================
+             CATEGORIAS
+        ====================================================== -->
+
+        <section class="section section-dark">
+
+            <div class="container">
+
+                <div class="section-head">
+
+                    <div>
+                        <span class="section-kicker">
+                            ENCONTRE SEU ESTILO
+                        </span>
+
+                        <h2 class="section-title">
+                            Categorias<span style="color:#ff0000">.</span>
+                        </h2>
+                    </div>
+
+                    <p
+                        class="section-description"
+                        style="color:#aaa"
+                    >
+                        Do uniforme aos detalhes do setup:
+                        escolha como representar a equipe.
+                    </p>
+
+                </div>
+
+                <div class="categories">
+
+                    <a
+                        class="category"
+                        href="#produtos"
+                        data-jump="camisa"
+                    >
+                        <img
+                            src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85"
+                            alt="Vestuário"
+                        >
+
+                        <strong>Vestuário</strong>
+                    </a>
+
+                    <a
+                        class="category"
+                        href="#produtos"
+                        data-jump="acessorio"
+                    >
+                        <img
+                            src="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=900&q=85"
+                            alt="Acessórios gamer"
+                        >
+
+                        <strong>Acessórios</strong>
+                    </a>
+
+                    <a
+                        class="category"
+                        href="#produtos"
+                        data-jump="colecionavel"
+                    >
+                        <img
+                            src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=85"
+                            alt="Colecionáveis"
+                        >
+
+                        <strong>Colecionáveis</strong>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================================
+             FAIXA INSTITUCIONAL
+        ====================================================== -->
+
+        <section class="statement">
+
+            <div class="container statement-inner">
+
+                <h2>
+                    Uma equipe.<br>
+                    <span>Uma identidade.</span>
+                </h2>
+
+                <div>
+
+                    <p>
+                        Competição, comunidade e performance.
+                        Faça parte da Dread Wyrm e represente
+                        nossas cores em qualquer lugar.
+                    </p>
+
+                    <a
+                        class="btn"
+                        href="index.html"
+                    >
+                        Conheça a equipe&nbsp; ↗
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- =========================================================
+         RODAPÉ
+    ========================================================= -->
+
+    <footer class="site-footer">
+
+        <div class="footer-watermark">
+            DWY
+        </div>
+
+        <div class="container">
+
+            <div class="footer-top">
+
+                <div class="footer-brand">
+
+                    <img
+                        src="Imagens/logo-dragon.png"
+                        class="footer-logo"
+                        alt="Dread Wyrm Esports"
+                    >
+
+                    <p class="footer-description">
+                        A Dread Wyrm Esports é uma organização de esports
+                        focada em competição, performance, identidade e
+                        construção de comunidade.
+                    </p>
+
+                </div>
+
+                <div class="footer-column">
+
+                    <h4>Navegação</h4>
+
+                    <a href="index.html">Início</a>
+                    <a href="sobrenos.html">Sobre nós</a>
+                    <a href="times.html">Times</a>
+                    <a href="loja.html">Loja</a>
+
+                </div>
+
+                <div class="footer-column">
+
+                    <h4>Loja</h4>
+
+                    <a href="#produtos">Todos os produtos</a>
+                    <a href="#produtos">Camisas</a>
+                    <a href="#produtos">Acessórios</a>
+                    <a href="#produtos">Colecionáveis</a>
+
+                </div>
+
+                <div class="footer-column">
+
+                    <h4>Atendimento</h4>
+
+                    <a href="index.html#contact">Contato</a>
+                    <a href="#">Entrega e pagamento</a>
+                    <a href="#">Trocas e devoluções</a>
+
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+
+                <span>
+                    © 2026 Dread Wyrm Esports.
+                    Todos os direitos reservados.
+                </span>
+
+                <span>
+                    Competição · Comunidade · Performance
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- =========================================================
+         CARRINHO
+    ========================================================= -->
+
+    <div class="overlay" id="overlay"></div>
+
+    <aside
+        class="drawer"
+        id="drawer"
+        aria-label="Carrinho de compras"
+    >
+
+        <div class="drawer-head">
+
+            <h3>Seu carrinho</h3>
+
+            <button
+                class="close"
+                id="closeCart"
+                aria-label="Fechar"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <div
+            class="cart-items"
+            id="cartItems"
+        >
+            <div class="empty">
+                Seu carrinho está vazio.
+            </div>
+        </div>
+
+        <div class="cart-total">
+
+            <div class="total-line">
+                <span>Subtotal</span>
+                <span id="cartTotal">R$ 0,00</span>
+            </div>
+
+            <button
+                class="checkout"
+                id="checkout"
+            >
+                Finalizar pedido
+            </button>
+
+        </div>
+
+    </aside>
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
+
+    <script>
+
+        /* =========================================================
+           CONFIGURAÇÃO DO CARRINHO
+        ========================================================= */
+
+        const CART_KEY = 'dwy_cart';
+
+        const cart = loadCart();
+
+        function loadCart() {
+            try {
+                return JSON.parse(
+                    localStorage.getItem(CART_KEY) || '[]'
+                );
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveCart() {
+            localStorage.setItem(
+                CART_KEY,
+                JSON.stringify(cart)
+            );
+        }
+
+        const money = value =>
+            Number(value).toLocaleString(
+                'pt-BR',
+                {
+                    style: 'currency',
+                    currency: 'BRL'
+                }
+            );
+
+        const drawer = document.getElementById('drawer');
+        const overlay = document.getElementById('overlay');
+
+
+        /* =========================================================
+           SLIDER
+        ========================================================= */
+
+        const heroSlides = [
+            ...document.querySelectorAll('.hero-slide')
+        ];
+
+        const heroDots = [
+            ...document.querySelectorAll('.hero-dot')
+        ];
+
+        let currentHeroSlide = 0;
+        let heroTimer;
+
+
+        function showHeroSlide(index) {
+
+            if (!heroSlides.length) return;
+
+            currentHeroSlide =
+                (index + heroSlides.length) %
+                heroSlides.length;
+
+            heroSlides.forEach((slide, i) => {
+
+                const active =
+                    i === currentHeroSlide;
+
+                slide.classList.toggle(
+                    'active',
+                    active
+                );
+
+                slide.setAttribute(
+                    'aria-hidden',
+                    String(!active)
+                );
+
+            });
+
+            heroDots.forEach((dot, i) => {
+
+                const active =
+                    i === currentHeroSlide;
+
+                dot.classList.toggle(
+                    'active',
+                    active
+                );
+
+                dot.setAttribute(
+                    'aria-current',
+                    String(active)
+                );
+
+            });
+        }
+
+
+        function startHeroTimer() {
+
+            clearInterval(heroTimer);
+
+            if (
+                heroSlides.length > 1 &&
+                !window.matchMedia(
+                    '(prefers-reduced-motion: reduce)'
+                ).matches
+            ) {
+
+                heroTimer = setInterval(
+                    () =>
+                        showHeroSlide(
+                            currentHeroSlide + 1
+                        ),
+                    6000
+                );
+            }
+        }
+
+
+        heroDots.forEach((dot, i) => {
+
+            dot.addEventListener(
+                'click',
+                () => {
+                    showHeroSlide(i);
+                    startHeroTimer();
+                }
+            );
+
+        });
+
+        startHeroTimer();
+
+
+        /* =========================================================
+           DESLIZAR BANNERS NO CELULAR
+        ========================================================= */
+
+        const heroElement =
+            document.querySelector('.hero');
+
+        let heroTouchStartX = 0;
+        let heroTouchStartY = 0;
+
+
+        if (heroElement) {
+
+            heroElement.addEventListener(
+                'touchstart',
+                event => {
+
+                    if (
+                        event.touches.length !== 1
+                    ) {
+                        return;
+                    }
+
+                    heroTouchStartX =
+                        event.touches[0].clientX;
+
+                    heroTouchStartY =
+                        event.touches[0].clientY;
+
+                },
+                {
+                    passive: true
+                }
+            );
+
+
+            heroElement.addEventListener(
+                'touchend',
+                event => {
+
+                    if (
+                        event.changedTouches.length !== 1
+                    ) {
+                        return;
+                    }
+
+                    const dx =
+                        event.changedTouches[0].clientX -
+                        heroTouchStartX;
+
+                    const dy =
+                        event.changedTouches[0].clientY -
+                        heroTouchStartY;
+
+
+                    if (
+                        Math.abs(dx) > 45 &&
+                        Math.abs(dx) > Math.abs(dy)
+                    ) {
+
+                        showHeroSlide(
+                            currentHeroSlide +
+                            (dx < 0 ? 1 : -1)
+                        );
+
+                        startHeroTimer();
+                    }
+
+                },
+                {
+                    passive: true
+                }
+            );
+        }
+
+
+        document.addEventListener(
+            'visibilitychange',
+            () => {
+
+                if (document.hidden) {
+                    clearInterval(heroTimer);
+                } else {
+                    startHeroTimer();
+                }
+
+            }
+        );
+
+
+        /* =========================================================
+           CARRINHO
+        ========================================================= */
+
+        function openCart() {
+
+            renderCart();
+
+            drawer.classList.add('open');
+            overlay.classList.add('open');
+        }
+
+
+        function closeCart() {
+
+            drawer.classList.remove('open');
+            overlay.classList.remove('open');
+        }
+
+
+        document
+            .getElementById('cartToggle')
+            .addEventListener(
+                'click',
+                openCart
+            );
+
+
+        document
+            .getElementById('closeCart')
+            .addEventListener(
+                'click',
+                closeCart
+            );
+
+
+        overlay.addEventListener(
+            'click',
+            closeCart
+        );
+
+
+        if (
+            window.location.hash === '#carrinho'
+        ) {
+            openCart();
+        }
+
+
+        /* =========================================================
+           MENU MOBILE
+        ========================================================= */
+
+        document
+            .getElementById('menuToggle')
+            .addEventListener(
+                'click',
+                () => {
+
+                    const nav =
+                        document.getElementById(
+                            'navLinks'
+                        );
+
+                    const isOpen =
+                        nav.classList.toggle(
+                            'open'
+                        );
+
+                    document
+                        .getElementById('menuToggle')
+                        .setAttribute(
+                            'aria-expanded',
+                            String(isOpen)
+                        );
+
+                }
+            );
+
+
+        document
+            .querySelectorAll('.nav-links a')
+            .forEach(link => {
+
+                link.addEventListener(
+                    'click',
+                    () => {
+
+                        document
+                            .getElementById('navLinks')
+                            .classList.remove(
+                                'open'
+                            );
+
+                        document
+                            .getElementById('menuToggle')
+                            .setAttribute(
+                                'aria-expanded',
+                                'false'
+                            );
+
+                    }
+                );
+
+            });
+
+
+        /* =========================================================
+           CABEÇALHO
+        ========================================================= */
+
+        function updateHeader() {
+
+            document
+                .getElementById('siteHeader')
+                .classList.toggle(
+                    'scrolled',
+                    window.scrollY > 20
+                );
+
+        }
+
+
+        window.addEventListener(
+            'scroll',
+            updateHeader,
+            {
+                passive: true
+            }
+        );
+
+        updateHeader();
+
+
+        /* =========================================================
+           ANIMAÇÕES
+        ========================================================= */
+
+        const revealGroups = [
+
+            document.querySelector(
+                '.section-head'
+            ),
+
+            document.querySelector(
+                '.filterbar'
+            ),
+
+            document.querySelector(
+                '#productGrid'
+            ),
+
+            document.querySelector(
+                '.categories'
+            ),
+
+            document.querySelector(
+                '.statement-inner'
+            ),
+
+            document.querySelector(
+                '.footer-top'
+            ),
+
+            document.querySelector(
+                '.footer-bottom'
+            )
+
+        ].filter(Boolean);
+
+
+        revealGroups.forEach(element => {
+
+            element.classList.add(
+                'reveal'
+            );
+
+            if (
+                element.id === 'productGrid' ||
+                element.classList.contains(
+                    'categories'
+                )
+            ) {
+
+                element.classList.add(
+                    'reveal-stagger'
+                );
+
+            }
+
+        });
+
+
+        document
+            .querySelectorAll('.section')
+            .forEach(section =>
+                section.classList.add('reveal')
+            );
+
+
+        if (
+            'IntersectionObserver' in window
+        ) {
+
+            const observer =
+                new IntersectionObserver(
+                    entries =>
+                        entries.forEach(entry => {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target.classList.add(
+                                    'visible'
+                                );
+
+                                observer.unobserve(
+                                    entry.target
+                                );
+                            }
+
+                        }),
+                    {
+                        threshold: .12
+                    }
+                );
+
+
+            document
+                .querySelectorAll('.reveal')
+                .forEach(element =>
+                    observer.observe(element)
+                );
+
+        } else {
+
+            document
+                .querySelectorAll('.reveal')
+                .forEach(element =>
+                    element.classList.add(
+                        'visible'
+                    )
+                );
+
+        }
+
+
+        /* =========================================================
+           FILTROS
+        ========================================================= */
+
+        document
+            .querySelectorAll('.filter')
+            .forEach(button => {
+
+                button.addEventListener(
+                    'click',
+                    () => {
+
+                        document
+                            .querySelectorAll(
+                                '.filter'
+                            )
+                            .forEach(item =>
+                                item.classList.remove(
+                                    'active'
+                                )
+                            );
+
+                        button.classList.add(
+                            'active'
+                        );
+
+
+                        document
+                            .querySelectorAll(
+                                '.product'
+                            )
+                            .forEach(product => {
+
+                                product.style.display =
+                                    button.dataset.filter ===
+                                        'todos' ||
+                                    product.dataset.category ===
+                                        button.dataset.filter
+                                        ? ''
+                                        : 'none';
+
+                            });
+
+                    }
+                );
+
+            });
+
+
+        /* =========================================================
+           LINKS DAS CATEGORIAS
+        ========================================================= */
+
+        document
+            .querySelectorAll('[data-jump]')
+            .forEach(link => {
+
+                link.addEventListener(
+                    'click',
+                    () => {
+
+                        const filter =
+                            link.dataset.jump;
+
+
+                        document
+                            .querySelectorAll(
+                                '.filter'
+                            )
+                            .forEach(button =>
+                                button.classList.toggle(
+                                    'active',
+                                    button.dataset.filter ===
+                                        filter
+                                )
+                            );
+
+
+                        document
+                            .querySelectorAll(
+                                '.product'
+                            )
+                            .forEach(product =>
+                                product.style.display =
+                                    product.dataset.category ===
+                                        filter
+                                        ? ''
+                                        : 'none'
+                            );
+
+                    }
+                );
+
+            });
+
+
+        /* =========================================================
+           ABRIR DETALHES DO PRODUTO
+        ========================================================= */
+
+        document
+            .querySelectorAll(
+                '.product[data-product-id]'
+            )
+            .forEach(card => {
+
+                card.addEventListener(
+                    'click',
+                    event => {
+
+                        if (
+                            event.target.closest(
+                                '.add'
+                            )
+                        ) {
+                            return;
+                        }
+
+
+                        window.location.href =
+                            'produto.html?id=' +
+                            encodeURIComponent(
+                                card.dataset.productId
+                            );
+
+                    }
+                );
+
+            });
+
+
+        /* =========================================================
+           ADICIONAR AO CARRINHO
+        ========================================================= */
+
+        document
+            .querySelectorAll(
+                '.product .add'
+            )
+            .forEach(button => {
+
+                button.addEventListener(
+                    'click',
+                    () => {
+
+                        const product =
+                            button.closest(
+                                '.product'
+                            );
+
+                        const id =
+                            product.dataset.productId;
+
+                        const name =
+                            product.dataset.name;
+
+                        const price =
+                            Number(
+                                product.dataset.price
+                            );
+
+                        const image =
+                            product.querySelector(
+                                'img'
+                            ).src;
+
+
+                        const found =
+                            cart.find(
+                                item =>
+                                    item.id === id &&
+                                    !item.size
+                            );
+
+
+                        if (found) {
+
+                            found.qty++;
+
+                        } else {
+
+                            cart.push({
+                                id,
+                                name,
+                                price,
+                                img: image,
+                                qty: 1,
+                                size: ''
+                            });
+
+                        }
+
+
+                        saveCart();
+                        renderCart();
+
+
+                        button.textContent =
+                            'Adicionado ✓';
+
+
+                        setTimeout(
+                            () =>
+                                button.textContent =
+                                    'Adicionar ao carrinho',
+                            1000
+                        );
+
+                    }
+                );
+
+            });
+
+
+        /* =========================================================
+           ATUALIZAR CARRINHO
+        ========================================================= */
+
+        function renderCart() {
+
+            const count =
+                cart.reduce(
+                    (sum, item) =>
+                        sum +
+                        Number(
+                            item.qty || 0
+                        ),
+                    0
+                );
+
+
+            const total =
+                cart.reduce(
+                    (sum, item) =>
+                        sum +
+                        Number(item.price) *
+                        Number(item.qty),
+                    0
+                );
+
+
+            document
+                .getElementById('cartCount')
+                .textContent = count;
+
+
+            document
+                .getElementById('cartTotal')
+                .textContent = money(total);
+
+
+            const element =
+                document.getElementById(
+                    'cartItems'
+                );
+
+
+            if (!cart.length) {
+
+                element.innerHTML =
+                    '<div class="empty">Seu carrinho está vazio.</div>';
+
+                return;
+            }
+
+
+            element.innerHTML =
+                cart
+                    .map(
+                        (product, index) => `
+                            <div class="cart-row">
+
+                                <img
+                                    src="${product.img}"
+                                    alt=""
+                                >
+
+                                <div>
+                                    ${product.name}
+
+                                    ${
+                                        product.size
+                                            ? `
+                                                <small
+                                                    style="
+                                                        display:block;
+                                                        color:#888
+                                                    "
+                                                >
+                                                    Tamanho:
+                                                    ${product.size}
+                                                </small>
+                                            `
+                                            : ''
+                                    }
+
+                                    <strong>
+                                        ${money(product.price)}
+                                    </strong>
+
+                                    <div class="qty">
+
+                                        <button
+                                            data-dec="${index}"
+                                        >
+                                            −
+                                        </button>
+
+                                        <span>
+                                            ${product.qty}
+                                        </span>
+
+                                        <button
+                                            data-inc="${index}"
+                                        >
+                                            +
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+                                <button
+                                    class="close"
+                                    data-del="${index}"
+                                >
+                                    ×
+                                </button>
+
+                            </div>
+                        `
+                    )
+                    .join('');
+
+
+            element
+                .querySelectorAll('[data-inc]')
+                .forEach(button => {
+
+                    button.onclick = () => {
+
+                        cart[
+                            Number(
+                                button.dataset.inc
+                            )
+                        ].qty++;
+
+                        saveCart();
+                        renderCart();
+
+                    };
+
+                });
+
+
+            element
+                .querySelectorAll('[data-dec]')
+                .forEach(button => {
+
+                    button.onclick = () => {
+
+                        const index =
+                            Number(
+                                button.dataset.dec
+                            );
+
+                        cart[index].qty--;
+
+
+                        if (
+                            cart[index].qty <= 0
+                        ) {
+
+                            cart.splice(
+                                index,
+                                1
+                            );
+
+                        }
+
+
+                        saveCart();
+                        renderCart();
+
+                    };
+
+                });
+
+
+            element
+                .querySelectorAll('[data-del]')
+                .forEach(button => {
+
+                    button.onclick = () => {
+
+                        cart.splice(
+                            Number(
+                                button.dataset.del
+                            ),
+                            1
+                        );
+
+                        saveCart();
+                        renderCart();
+
+                    };
+
+                });
+
+        }
+
+
+        renderCart();
+
+
+        /* =========================================================
+           FINALIZAR PEDIDO
+        ========================================================= */
+
+        document
+            .getElementById('checkout')
+            .addEventListener(
+                'click',
+                () => {
+
+                    if (!cart.length) {
+
+                        alert(
+                            'Adicione produtos ao carrinho antes de finalizar.'
+                        );
+
+                        return;
+                    }
+
+
+                    alert(
+                        'Seu carrinho está pronto. Para receber pagamentos, conecte esta página ao checkout da plataforma da loja.'
+                    );
+
+                }
+            );
+
+    </script>
+
+    <!-- =========================================================
+         AUTENTICAÇÃO
+    ========================================================= -->
+
+    <script
+        type="module"
+        src="autenticacao/auth-state.js"
+    ></script>
+
+    <script
+        src="autenticacao/account-menu.js"
+    ></script>
+
 </body>
+
 </html>

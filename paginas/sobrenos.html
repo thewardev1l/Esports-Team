@@ -3059,6 +3059,28 @@ ul{
 @media(max-width:900px){.about-hero{min-height:650px;padding:145px 6% 90px}.about-story,.about-values,.about-identity,.about-cta{padding:85px 6%}.about-story-grid,.about-identity-container{grid-template-columns:1fr;gap:50px}.values-grid{grid-template-columns:1fr}.about-values-heading,.about-cta-container{flex-direction:column;align-items:flex-start}.about-identity-visual{min-height:350px}}
 @media(max-width:600px){.about-hero{min-height:620px;padding:125px 6% 75px}.about-hero h1{letter-spacing:-4px}.about-hero-intro{font-size:15px}.value-card{min-height:260px}.value-number{margin-bottom:55px}.about-identity-visual::before{width:250px;height:250px}}
 
+
+/* =========================================================
+   MENU DE CONTA — AUTENTICAÇÃO
+========================================================= */
+.account-wrapper{position:relative;display:flex;align-items:center;}
+.account-button{appearance:none;border:0;background:transparent;cursor:pointer;}
+.account-menu{position:absolute;top:calc(100% + 14px);right:0;width:min(320px,calc(100vw - 30px));padding:22px;background:#fff;color:#111;border:1px solid #e5e5e5;box-shadow:0 20px 55px rgba(0,0,0,.16);z-index:10000;animation:accountMenuIn .2s ease both;}
+.account-menu::before{content:"";position:absolute;top:-6px;right:17px;width:11px;height:11px;background:#fff;border-left:1px solid #e5e5e5;border-top:1px solid #e5e5e5;transform:rotate(45deg);}
+.account-menu-header{display:grid;gap:5px;padding-bottom:17px;border-bottom:1px solid #ededed;}
+.account-menu-kicker{color:#ff0000;font-size:10px;font-weight:900;letter-spacing:2px;}
+.account-menu-header strong{font-size:20px;line-height:1.15;letter-spacing:-.5px;overflow-wrap:anywhere;}
+.account-menu-header>span:last-child{color:#777;font-size:12px;overflow-wrap:anywhere;}
+.account-menu-status{margin:16px 0;padding:10px 12px;background:#f5f5f5;color:#555;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;}
+.account-menu-status.verified{color:#111;}
+.account-menu-actions{display:grid;gap:8px;}
+.account-menu-action{width:100%;min-height:42px;display:flex;align-items:center;justify-content:center;padding:11px 15px;border:1px solid #111;background:#111;color:#fff;font-size:10px;font-weight:900;letter-spacing:1.5px;text-decoration:none;cursor:pointer;transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease;}
+.account-menu-action:hover{background:#ff0000;border-color:#ff0000;color:#000;transform:translateY(-1px);}
+.account-menu-logout{background:#fff;color:#111;}
+.account-menu-action:disabled{opacity:.6;cursor:wait;transform:none;}
+@keyframes accountMenuIn{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
+@media(max-width:520px){.account-menu{right:-8px;}}
+
 </style>
 </head>
 <body class="about-page">
@@ -3109,19 +3131,37 @@ ul{
 
         <div class="nav-right">
 
-    <a
-        href="login.html"
-        class="nav-login"
-        aria-label="Login"
-        title="Login"
-    >
-        <svg
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-        >
-            <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-8a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 10c-4.42 0-8 2.24-8 5v3h16v-3c0-2.76-3.58-5-8-5Zm6 6H6v-1c0-1.58 2.75-3 6-3s6 1.42 6 3v1Z"/>
-        </svg>
-    </a>
+    <div class="account-wrapper" id="accountWrapper">
+  <button
+    type="button"
+    class="nav-login account-button"
+    id="accountButton"
+    aria-label="Entrar ou criar conta"
+    title="Entrar ou criar conta"
+    aria-expanded="false"
+    aria-controls="accountMenu"
+  >
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-8a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 10c-4.42 0-8 2.24-8 5v3h16v-3c0-2.76-3.58-5-8-5Zm6 6H6v-1c0-1.58 2.75-3 6-3s6 1.42 6 3v1Z"/>
+    </svg>
+  </button>
+
+  <div class="account-menu" id="accountMenu" hidden>
+    <div class="account-menu-header">
+      <span class="account-menu-kicker">MINHA CONTA</span>
+      <strong id="accountMenuName">Verificando conta...</strong>
+      <span id="accountMenuEmail">Aguarde um momento.</span>
+    </div>
+
+    <div class="account-menu-status" id="accountMenuStatus">VERIFICANDO SESSÃO</div>
+
+    <div class="account-menu-actions">
+      <a href="login.html" class="account-menu-action" id="accountMenuLogin">ENTRAR</a>
+      <a href="login.html" class="account-menu-action" id="accountMenuAccount" hidden>MINHA CONTA</a>
+      <button type="button" class="account-menu-action account-menu-logout" id="accountMenuLogout" hidden>SAIR</button>
+    </div>
+  </div>
+</div>
 
     <button
         class="menu-toggle"
@@ -3344,5 +3384,8 @@ document.addEventListener("DOMContentLoaded",()=>{
  const year=document.getElementById("year");if(year)year.textContent=new Date().getFullYear();
 });
 </script>
+
+<script type="module" src="autenticacao/auth-state.js"></script>
+<script src="autenticacao/account-menu.js"></script>
 </body>
 </html>
