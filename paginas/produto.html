@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -12,6 +11,7 @@
  --preto:#1b1b1b;--vermelho:#ff0000;--branco:#fff;
  --cinza:#f4f4f4;--cinza-texto:#777;--borda:#ddd;
  --largura:1400px;
+ --ease: cubic-bezier(.2, .8, .2, 1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -21,18 +21,187 @@ button{font-family:inherit;cursor:pointer;border:0}
 img{max-width:100%;display:block}
 .container{width:min(90%,var(--largura));margin:auto}
 
-/* CABEÇALHO */
-header{width:100%;height:90px;background:#fff;position:fixed;top:0;left:0;z-index:1000;transition:.3s}
-header.scrolled{box-shadow:0 5px 25px #0002}
-.navbar{width:90%;max-width:var(--largura);height:100%;margin:auto;display:flex;align-items:center;justify-content:space-between}
-.logo img{width:75px;height:75px;object-fit:contain}
-.nav-links{display:flex;align-items:center;gap:30px}
-.nav-links a{color:#111;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;transition:.3s}
-.nav-links a:hover,.nav-links a.active{color:var(--vermelho)}
-.nav-actions{display:flex;align-items:center;gap:15px}
-.nav-actions button,.nav-actions a{background:none;color:var(--preto);font-size:19px;position:relative}
-.cart-count{position:absolute;top:-9px;right:-10px;width:17px;height:17px;border-radius:50%;background:var(--vermelho);color:#fff;display:flex;justify-content:center;align-items:center;font-size:10px;font-weight:bold}
-.menu-toggle{display:none;background:var(--preto);color:#fff;padding:10px 13px;font-size:18px}
+/* =========================================================
+   CABEÇALHO / NAVBAR (PADRÃO DO SITE)
+========================================================= */
+
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    background: #fff;
+    transition:
+        box-shadow .3s ease,
+        transform .3s ease;
+}
+
+.site-header.scrolled {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .09);
+}
+
+.navbar {
+    width: min(calc(100% - 60px), var(--largura));
+    height: 90px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand img {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+}
+
+.nav-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-links a {
+    position: relative;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+    color: #000;
+    padding: 8px 0;
+    text-decoration: none;
+    transition: color .25s ease;
+}
+
+.nav-links:hover a {
+    color: #9c9c9c;
+}
+
+.nav-links:hover a:hover {
+    color: var(--vermelho);
+}
+
+.nav-links a::after {
+    display: none !important;
+    content: none !important;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.nav-login {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    color: #000;
+    text-decoration: none;
+    transition:
+        color .25s var(--ease),
+        transform .25s var(--ease);
+}
+
+.nav-login .account-icon {
+    width: 21px;
+    height: 21px;
+    display: block;
+    object-fit: contain;
+    transition: opacity .2s ease, transform .25s var(--ease);
+}
+
+.nav-login .account-icon-hover {
+    position: absolute;
+    opacity: 0;
+}
+
+.nav-login:hover .account-icon-default {
+    opacity: 0;
+}
+
+.nav-login:hover .account-icon-hover {
+    opacity: 1;
+}
+
+.nav-login:hover {
+    transform: translateY(-2px);
+}
+
+.nav-icon {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    background: transparent;
+    color: #000;
+    position: relative;
+    transition: .25s;
+}
+
+.nav-icon svg {
+    width: 21px;
+    height: 21px;
+    fill: currentColor;
+}
+
+.nav-icon:hover {
+    color: var(--vermelho);
+    transform: translateY(-2px);
+}
+
+.cart-count {
+    position: absolute;
+    right: -2px;
+    top: -1px;
+    background: var(--vermelho);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 900;
+    width: 17px;
+    height: 17px;
+    display: grid;
+    place-items: center;
+}
+
+.menu-toggle {
+    display: none;
+    width: 42px;
+    height: 42px;
+    background: #1b1b1b;
+    color: #fff;
+    cursor: pointer;
+    place-items: center;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: #fff;
+    margin: 3px 0;
+    transition: .25s ease;
+}
+
 main{padding-top:90px}
 .breadcrumb{padding:25px 0;font-size:11px;color:var(--cinza-texto)}
 .breadcrumb a:hover{color:var(--vermelho)}
@@ -116,14 +285,23 @@ footer{background:white;padding:80px 0 25px;border-top:1px solid #eee;position:r
  .footer-brand{grid-column:1/-1}
 }
 @media(max-width:850px){
- .menu-toggle{display:block}
- .nav-links{display:none;position:absolute;top:90px;left:15px;right:15px;background:var(--preto);padding:15px 20px;flex-direction:column;align-items:flex-start;gap:0}
+ .navbar {
+     width: min(calc(100% - 30px), var(--largura));
+ }
+ .nav-left {
+     gap: 15px;
+ }
+ .menu-toggle{display:grid}
+ .nav-links{display:none;position:fixed;top:90px;left:0;right:0;transform:none;width:100%;margin:0;padding:25px 30px;flex-direction:column;align-items:flex-start;gap:18px;background:#fff;box-shadow:0 18px 35px rgba(0,0,0,.12);border-top:1px solid #eee}
  .nav-links.open{display:flex}
- .nav-links a{width:100%;color:white;padding:15px 0;border-bottom:1px solid #444}
+ .nav-links a{width:100%;padding:15px 0;border-bottom:1px solid #eee;color:#000}
+ .nav-links:hover a{color:#9c9c9c}
+ .nav-links:hover a:hover{color:var(--vermelho)}
+ .nav-right{margin-left:auto;margin-right:10px}
 }
 @media(max-width:650px){
  .container{width:92%}.navbar{width:92%;height:80px}
- header{height:80px}.logo img{width:65px;height:65px}
+ .site-header{height:80px}.brand img{width:64px;height:64px}
  .nav-links{top:80px}main{padding-top:80px}
  .product-layout{grid-template-columns:1fr;gap:25px;padding-bottom:60px}
  .gallery{position:static;grid-template-columns:62px 1fr;gap:10px}
@@ -163,50 +341,81 @@ footer{background:white;padding:80px 0 25px;border-top:1px solid #eee;position:r
 </head>
 
 <body>
-<header id="header">
+<header class="site-header" id="siteHeader">
 <nav class="navbar">
- <div style="display:flex;align-items:center;gap:20px">
-  <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">☰</button>
-  <a href="index.html" class="logo"><img src="Imagens/logo-dragon.png" alt="Dread Wyrm Esports"></a>
- </div>
- <div class="nav-links" id="navLinks">
-  <a href="index.html">Início</a><a href="sobrenos.html">Sobre nós</a>
-  <a href="times.html">Times</a><a href="loja.html" class="active">Loja</a>
-  <a href="index.html#contact">Contato</a>
- </div>
- <div class="nav-actions">
-  <div class="account-wrapper" id="accountWrapper">
+ <div class="nav-left">
   <button
-    type="button"
-    class="nav-account-icon account-button"
-    id="accountButton"
-    aria-label="Entrar ou criar conta"
-    title="Entrar ou criar conta"
-    aria-expanded="false"
-    aria-controls="accountMenu"
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Abrir menu"
+      aria-expanded="false"
   >
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-8a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 10c-4.42 0-8 2.24-8 5v3h16v-3c0-2.76-3.58-5-8-5Zm6 6H6v-1c0-1.58 2.75-3 6-3s6 1.42 6 3v1Z"/>
-    </svg>
+      <div>
+          <span></span>
+          <span></span>
+          <span></span>
+      </div>
   </button>
-
-  <div class="account-menu" id="accountMenu" hidden>
-    <div class="account-menu-header">
-      <span class="account-menu-kicker">MINHA CONTA</span>
-      <strong id="accountMenuName">Verificando conta...</strong>
-      <span id="accountMenuEmail">Aguarde um momento.</span>
-    </div>
-
-    <div class="account-menu-status" id="accountMenuStatus">VERIFICANDO SESSÃO</div>
-
-    <div class="account-menu-actions">
-      <a href="login.html" class="account-menu-action" id="accountMenuLogin">ENTRAR</a>
-      <a href="login.html" class="account-menu-action" id="accountMenuAccount" hidden>MINHA CONTA</a>
-      <button type="button" class="account-menu-action account-menu-logout" id="accountMenuLogout" hidden>SAIR</button>
-    </div>
+  <a href="index.html" class="brand"><img src="Imagens/logo-dragon.png" alt="Dread Wyrm Esports"></a>
+  <div class="nav-links" id="navLinks">
+   <a href="index.html">Início</a>
+   <a href="sobrenos.html">Sobre nós</a>
+   <a href="times.html">Times</a>
+   <a href="loja.html" class="active">Loja</a>
+   <a href="index.html#contact">Contato</a>
   </div>
-</div>
-  <button id="cartButton" aria-label="Carrinho">🛒 <span class="cart-count" id="cartCount">0</span></button>
+ </div>
+ <div class="nav-right">
+  <div class="account-wrapper" id="accountWrapper">
+   <button
+     type="button"
+     class="nav-login account-button"
+     id="accountButton"
+     aria-label="Entrar ou criar conta"
+     title="Entrar ou criar conta"
+     aria-expanded="false"
+     aria-controls="accountMenu"
+   >
+     <img
+         class="account-icon account-icon-default"
+         src="Imagens/iconelogin.png"
+         alt=""
+         aria-hidden="true"
+     >
+     <img
+         class="account-icon account-icon-hover"
+         src="Imagens/iconelogin2.png"
+         alt=""
+         aria-hidden="true"
+     >
+   </button>
+
+   <div class="account-menu" id="accountMenu" hidden>
+     <div class="account-menu-header">
+       <span class="account-menu-kicker">MINHA CONTA</span>
+       <strong id="accountMenuName">Verificando conta...</strong>
+       <span id="accountMenuEmail">Aguarde um momento.</span>
+     </div>
+
+     <div class="account-menu-status" id="accountMenuStatus">VERIFICANDO SESSÃO</div>
+
+     <div class="account-menu-actions">
+       <a href="login.html" class="account-menu-action" id="accountMenuLogin">ENTRAR</a>
+       <a href="login.html" class="account-menu-action" id="accountMenuAccount" hidden>MINHA CONTA</a>
+       <button type="button" class="account-menu-action account-menu-logout" id="accountMenuLogout" hidden>SAIR</button>
+     </div>
+   </div>
+  </div>
+  <button
+      class="nav-icon"
+      id="cartButton"
+      aria-label="Abrir carrinho"
+  >
+      <svg viewBox="0 0 24 24">
+          <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2Zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2ZM6.2 6l.9 2h11.8l-2 7H8L4.3 3H1V1h4.7l.9 3H23l-2.8 11.2A2.5 2.5 0 0 1 17.8 17H8a2.5 2.5 0 0 1-1.8-1.2L2.5 6h3.7Z"/>
+      </svg>
+      <span class="cart-count" id="cartCount">0</span>
+  </button>
  </div>
 </nav>
 </header>
@@ -445,18 +654,28 @@ document.getElementById('cartButton').addEventListener('click',()=>{
 });
 updateCartCount();
 
-/* MENU */
-document.getElementById('menuToggle').addEventListener('click',()=>{
- document.getElementById('navLinks').classList.toggle('open');
-});
-document.querySelectorAll('.nav-links a').forEach(link=>link.addEventListener('click',()=>{
- document.getElementById('navLinks').classList.remove('open');
-}));
+/* MENU MOBILE */
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+if(menuToggle && navLinks){
+    menuToggle.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+    }));
+}
 
 /* CABEÇALHO */
-window.addEventListener('scroll',()=>{
- document.getElementById('header').classList.toggle('scrolled',window.scrollY>20);
-});
+const header = document.getElementById("siteHeader");
+function updateHeader(){
+    if(!header) return;
+    header.classList.toggle('scrolled', window.scrollY > 20);
+}
+window.addEventListener('scroll', updateHeader, { passive: true });
+updateHeader();
 
 /* COMPARTILHAR */
 document.getElementById('shareButton').addEventListener('click',()=>{
