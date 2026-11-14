@@ -6,8 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#1b1b1b">
     <meta name="description" content="Loja oficial Dread Wyrm Esports.">
-
     <title>Loja | Dread Wyrm Esports</title>
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="Imagens/favicon.png"
+    >
+    
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href="Imagens/favicon.png"
+    >
+
+    <link
+        rel="apple-touch-icon"
+        href="Imagens/favicon.png"
+    >
 
     <style>
         :root {
@@ -59,7 +76,7 @@
         }
 
         /* =========================================================
-           CABEÇALHO / NAVBAR (PADRÃO DOS OUTROS ARQUIVOS)
+           CABEÇALHO / NAVBAR
         ========================================================= */
 
         .site-header {
@@ -130,13 +147,9 @@
             color: #9c9c9c;
         }
 
-        .nav-links:hover a:hover {
+        .nav-links:hover a:hover,
+        .nav-links a.active {
             color: var(--red);
-        }
-
-        .nav-links a::after {
-            display: none !important;
-            content: none !important;
         }
 
         .nav-right {
@@ -440,11 +453,22 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform .45s;
+            transition: transform .45s, opacity .3s ease;
+        }
+
+        .product-image .product-img-hover {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            z-index: 2;
         }
 
         .product:hover .product-image img {
             transform: scale(1.05);
+        }
+
+        .product:hover .product-image .product-img-hover {
+            opacity: 1;
         }
 
         .tag {
@@ -458,6 +482,7 @@
             font-weight: 900;
             letter-spacing: 1px;
             text-transform: uppercase;
+            z-index: 3;
         }
 
         .product-info {
@@ -512,6 +537,7 @@
             background: #080808;
             overflow: hidden;
             border: 1px solid #292929;
+            cursor: pointer;
         }
 
         .category img {
@@ -690,7 +716,7 @@
         }
 
         /* =========================================================
-           CARRINHO
+           CARRINHO & DRAWER
         ========================================================= */
 
         .overlay {
@@ -746,6 +772,7 @@
             background: none;
             color: #111;
             font-size: 27px;
+            cursor: pointer;
         }
 
         .cart-items {
@@ -809,6 +836,8 @@
             font-weight: 900;
             letter-spacing: 1px;
             text-transform: uppercase;
+            cursor: pointer;
+            transition: background .2s;
         }
 
         .checkout:hover {
@@ -823,111 +852,128 @@
         }
 
         /* =========================================================
-           ANIMAÇÕES
+           MODAL DE CHECKOUT SIMULADO
         ========================================================= */
 
-        .reveal {
+        .checkout-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 10002;
+            background: rgba(0,0,0,0.8);
+            display: grid;
+            place-items: center;
             opacity: 0;
-            transform: translateY(35px);
-            transition:
-                opacity .8s var(--ease),
-                transform .8s var(--ease);
+            visibility: hidden;
+            transition: 0.3s ease;
+            padding: 20px;
         }
 
-        .reveal.visible {
+        .checkout-modal.open {
             opacity: 1;
-            transform: translateY(0);
+            visibility: visible;
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            .reveal {
-                opacity: 1 !important;
-                transform: none !important;
-                transition: none !important;
-            }
+        .checkout-box {
+            background: #fff;
+            color: #1b1b1b;
+            width: min(600px, 100%);
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+        }
+
+        .checkout-box h2 {
+            font-size: 20px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #111;
+            padding-bottom: 10px;
+        }
+
+        .checkout-group {
+            margin-bottom: 15px;
+        }
+
+        .checkout-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            color: #444;
+        }
+
+        .checkout-group input, .checkout-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            font: inherit;
+            font-size: 13px;
+        }
+
+        .checkout-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .pay-option {
+            padding: 12px;
+            border: 2px solid #ddd;
+            background: #fff;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 900;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .pay-option.active {
+            border-color: var(--red);
+            color: var(--red);
+            background: #fff5f5;
+        }
+
+        .checkout-submit {
+            width: 100%;
+            background: #111;
+            color: #fff;
+            padding: 16px;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 15px;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .checkout-submit:hover {
+            background: var(--red);
+        }
+
+        .checkout-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            font-size: 24px;
+            cursor: pointer;
         }
 
         /* =========================================================
-           RESPONSIVIDADE DA NAVBAR
-        ========================================================= */
-
-        @media (max-width: 850px) {
-            .navbar {
-                width: min(calc(100% - 30px), var(--container));
-            }
-
-            .nav-left {
-                gap: 15px;
-            }
-
-            .menu-toggle {
-                display: grid;
-            }
-
-            .nav-links {
-                display: none;
-                position: fixed;
-                top: 90px;
-                left: 0;
-                right: 0;
-                transform: none;
-                width: 100%;
-                margin: 0;
-                padding: 25px 30px;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 18px;
-                background: #fff;
-                box-shadow: 0 18px 35px rgba(0, 0, 0, .12);
-                border-top: 1px solid #eee;
-            }
-
-            .nav-links.open {
-                display: flex;
-            }
-
-            .nav-links a {
-                width: 100%;
-                padding: 15px 0;
-                border-bottom: 1px solid #eee;
-                color: #000;
-            }
-
-            .nav-links:hover a {
-                color: #9c9c9c;
-            }
-
-            .nav-links:hover a:hover {
-                color: var(--red);
-            }
-
-            .nav-right {
-                margin-left: auto;
-                margin-right: 10px;
-            }
-        }
-
-        @media (max-width: 650px) {
-            .navbar {
-                height: 80px;
-            }
-
-            .brand img {
-                width: 64px;
-                height: 64px;
-            }
-
-            .nav-links {
-                top: 80px;
-            }
-
-            main {
-                padding-top: 80px;
-            }
-        }
-
-        /* =========================================================
-           MENU DE CONTA — AUTENTICAÇÃO
+           MENU DE CONTA & RESPONSIVIDADE
         ========================================================= */
 
         .account-wrapper {
@@ -954,142 +1000,36 @@
             border: 1px solid #e5e5e5;
             box-shadow: 0 20px 55px rgba(0, 0, 0, .16);
             z-index: 10000;
-            animation: accountMenuIn .2s ease both;
         }
 
-        .account-menu::before {
-            content: "";
-            position: absolute;
-            top: -6px;
-            right: 17px;
-            width: 11px;
-            height: 11px;
-            background: #fff;
-            border-left: 1px solid #e5e5e5;
-            border-top: 1px solid #e5e5e5;
-            transform: rotate(45deg);
-        }
-
-        .account-menu-header {
-            display: grid;
-            gap: 5px;
-            padding-bottom: 17px;
-            border-bottom: 1px solid #ededed;
-        }
-
-        .account-menu-kicker {
-            color: #ff0000;
-            font-size: 10px;
-            font-weight: 900;
-            letter-spacing: 2px;
-        }
-
-        .account-menu-header strong {
-            font-size: 20px;
-            line-height: 1.15;
-            letter-spacing: -.5px;
-            overflow-wrap: anywhere;
-        }
-
-        .account-menu-header > span:last-child {
-            color: #777;
-            font-size: 12px;
-            overflow-wrap: anywhere;
-        }
-
-        .account-menu-status {
-            margin: 16px 0;
-            padding: 10px 12px;
-            background: #f5f5f5;
-            color: #555;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .account-menu-status.verified {
-            color: #111;
-        }
-
-        .account-menu-actions {
-            display: grid;
-            gap: 8px;
-        }
-
-        .account-menu-action {
-            width: 100%;
-            min-height: 42px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 11px 15px;
-            border: 1px solid #111;
-            background: #111;
-            color: #fff;
-            font-size: 10px;
-            font-weight: 900;
-            letter-spacing: 1.5px;
-            text-decoration: none;
-            cursor: pointer;
-            transition:
-                background .2s ease,
-                color .2s ease,
-                border-color .2s ease,
-                transform .2s ease;
-        }
-
-        .account-menu-action:hover {
-            background: #ff0000;
-            border-color: #ff0000;
-            color: #000;
-            transform: translateY(-1px);
-        }
-
-        .account-menu-logout {
-            background: #fff;
-            color: #111;
-        }
-
-        @keyframes accountMenuIn {
-            from {
-                opacity: 0;
-                transform: translateY(-6px);
+        @media (max-width: 850px) {
+            .navbar { width: min(calc(100% - 30px), var(--container)); }
+            .menu-toggle { display: grid; }
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 90px;
+                left: 0;
+                right: 0;
+                width: 100%;
+                padding: 25px 30px;
+                flex-direction: column;
+                background: #fff;
+                border-top: 1px solid #eee;
             }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 520px) {
-            .account-menu {
-                right: -8px;
-            }
+            .nav-links.open { display: flex; }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- =========================================================
-         CABEÇALHO
-    ========================================================= -->
-
     <header class="site-header" id="siteHeader">
-
         <nav class="navbar">
-
             <div class="nav-left">
-
                 <a href="index.html" class="brand" aria-label="Dread Wyrm Esports">
-                    <img
-                        src="Imagens/logo-dragon.png"
-                        alt="Dread Wyrm Esports"
-                    >
+                    <img src="Imagens/logo-dragon.png" alt="Dread Wyrm Esports">
                 </a>
-
                 <div class="nav-links" id="navLinks">
                     <a href="index.html">Início</a>
                     <a href="sobrenos.html">Sobre nós</a>
@@ -1097,1364 +1037,555 @@
                     <a href="loja.html" class="active">Loja</a>
                     <a href="index.html#contact">Contato</a>
                 </div>
-
             </div>
-
             <div class="nav-right">
-
-                <!-- MENU DE CONTA -->
-
                 <div class="account-wrapper" id="accountWrapper">
-
-                    <button
-                        type="button"
-                        class="nav-login account-button"
-                        id="accountButton"
-                        aria-label="Entrar ou criar conta"
-                        title="Entrar ou criar conta"
-                        aria-expanded="false"
-                        aria-controls="accountMenu"
-                    >
-
-                        <img
-                            class="account-icon account-icon-default"
-                            src="Imagens/iconelogin.png"
-                            alt=""
-                            aria-hidden="true"
-                        >
-                        <img
-                            class="account-icon account-icon-hover"
-                            src="Imagens/iconelogin2.png"
-                            alt=""
-                            aria-hidden="true"
-                        >
-
+                    <button type="button" class="nav-login account-button" id="accountButton" aria-label="Entrar ou criar conta">
+                        <img class="account-icon account-icon-default" src="Imagens/iconelogin.png" alt="" aria-hidden="true">
+                        <img class="account-icon account-icon-hover" src="Imagens/iconelogin2.png" alt="" aria-hidden="true">
                     </button>
-
                     <div class="account-menu" id="accountMenu" hidden>
-
                         <div class="account-menu-header">
                             <span class="account-menu-kicker">MINHA CONTA</span>
-
-                            <strong id="accountMenuName">
-                                Verificando conta...
-                            </strong>
-
-                            <span id="accountMenuEmail">
-                                Aguarde um momento.
-                            </span>
+                            <strong id="accountMenuName">Verificando conta...</strong>
+                            <span id="accountMenuEmail">Aguarde um momento.</span>
                         </div>
-
-                        <div
-                            class="account-menu-status"
-                            id="accountMenuStatus"
-                        >
-                            VERIFICANDO SESSÃO
-                        </div>
-
+                        <div class="account-menu-status" id="accountMenuStatus">VERIFICANDO SESSÃO</div>
                         <div class="account-menu-actions">
-
-                            <a
-                                href="login.html"
-                                class="account-menu-action"
-                                id="accountMenuLogin"
-                            >
-                                ENTRAR
-                            </a>
-
-                            <a
-                                href="login.html"
-                                class="account-menu-action"
-                                id="accountMenuAccount"
-                                hidden
-                            >
-                                MINHA CONTA
-                            </a>
-
-                            <button
-                                type="button"
-                                class="account-menu-action account-menu-logout"
-                                id="accountMenuLogout"
-                                hidden
-                            >
-                                SAIR
-                            </button>
-
+                            <a href="login.html" class="account-menu-action" id="accountMenuLogin">ENTRAR</a>
+                            <a href="login.html" class="account-menu-action" id="accountMenuAccount" hidden>MINHA CONTA</a>
+                            <button type="button" class="account-menu-action account-menu-logout" id="accountMenuLogout" hidden>SAIR</button>
                         </div>
-
                     </div>
-
                 </div>
 
-                <!-- CARRINHO -->
-
-                <button
-                    class="nav-icon"
-                    id="cartToggle"
-                    aria-label="Abrir carrinho"
-                >
-
+                <button class="nav-icon" id="cartToggle" aria-label="Abrir carrinho">
                     <svg viewBox="0 0 24 24">
                         <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2Zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2ZM6.2 6l.9 2h11.8l-2 7H8L4.3 3H1V1h4.7l.9 3H23l-2.8 11.2A2.5 2.5 0 0 1 17.8 17H8a2.5 2.5 0 0 1-1.8-1.2L2.5 6h3.7Z"/>
                     </svg>
-
                     <span class="cart-count" id="cartCount">0</span>
-
                 </button>
 
-                <!-- MENU MOBILE -->
-
-                <button
-                    class="menu-toggle"
-                    id="menuToggle"
-                    aria-label="Abrir menu"
-                    aria-expanded="false"
-                >
+                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
                     <div>
                         <span></span>
                         <span></span>
                         <span></span>
                     </div>
                 </button>
-
             </div>
-
         </nav>
-
     </header>
 
-    <!-- =========================================================
-         CONTEÚDO PRINCIPAL
-    ========================================================= -->
-
     <main>
-
         <!-- HERO -->
-
-        <section
-            class="hero"
-            aria-label="Banners da loja Dread Wyrm"
-        >
-
+        <section class="hero" aria-label="Banners da loja Dread Wyrm">
             <div class="hero-slides">
-
-                <div
-                    class="hero-slide active"
-                    aria-hidden="false"
-                >
-                    <img
-                        src="Imagens/heroloja.png"
-                        alt="Banner Dread Wyrm Esports 1"
-                        fetchpriority="high"
-                    >
+                <div class="hero-slide active" aria-hidden="false">
+                    <img src="Imagens/heroloja.png" alt="Banner Dread Wyrm Esports 1" fetchpriority="high">
                 </div>
-
-                <div
-                    class="hero-slide"
-                    aria-hidden="true"
-                >
-                    <img
-                        src="Imagens/heroloja2.png"
-                        alt="Banner Dread Wyrm Esports 2"
-                        loading="lazy"
-                    >
+                <div class="hero-slide" aria-hidden="true">
+                    <img src="Imagens/heroloja2.png" alt="Banner Dread Wyrm Esports 2" loading="lazy">
                 </div>
-
-                <div
-                    class="hero-slide"
-                    aria-hidden="true"
-                >
-                    <img
-                        src="Imagens/heroloja3.png"
-                        alt="Banner Dread Wyrm Esports 3"
-                        loading="lazy"
-                    >
+                <div class="hero-slide" aria-hidden="true">
+                    <img src="Imagens/heroloja3.png" alt="Banner Dread Wyrm Esports 3" loading="lazy">
                 </div>
-
-                <div
-                    class="hero-slide"
-                    aria-hidden="true"
-                >
-                    <img
-                        src="Imagens/heroloja4.png"
-                        alt="Banner Dread Wyrm Esports 4"
-                        loading="lazy"
-                    >
+                <div class="hero-slide" aria-hidden="true">
+                    <img src="Imagens/heroloja4.png" alt="Banner Dread Wyrm Esports 4" loading="lazy">
                 </div>
-
             </div>
-
-            <div
-                class="hero-pagination"
-                role="group"
-                aria-label="Selecionar banner"
-            >
-
-                <button
-                    class="hero-dot active"
-                    aria-label="Mostrar banner 1"
-                    aria-current="true"
-                ></button>
-
-                <button
-                    class="hero-dot"
-                    aria-label="Mostrar banner 2"
-                    aria-current="false"
-                ></button>
-
-                <button
-                    class="hero-dot"
-                    aria-label="Mostrar banner 3"
-                    aria-current="false"
-                ></button>
-
-                <button
-                    class="hero-dot"
-                    aria-label="Mostrar banner 4"
-                    aria-current="false"
-                ></button>
-
+            <div class="hero-pagination" role="group" aria-label="Selecionar banner">
+                <button class="hero-dot active" aria-label="Mostrar banner 1" aria-current="true"></button>
+                <button class="hero-dot" aria-label="Mostrar banner 2" aria-current="false"></button>
+                <button class="hero-dot" aria-label="Mostrar banner 3" aria-current="false"></button>
+                <button class="hero-dot" aria-label="Mostrar banner 4" aria-current="false"></button>
             </div>
-
         </section>
 
-        <!-- =====================================================
-             PRODUTOS
-        ====================================================== -->
-
-        <section
-            class="section section-light"
-            id="produtos"
-        >
-
+        <!-- PRODUTOS -->
+        <section class="section section-light" id="produtos">
             <div class="container">
-
                 <div class="section-head">
-
                     <div>
-                        <span class="section-kicker">
-                            EQUIPAMENTO OFICIAL
-                        </span>
-
-                        <h2 class="section-title">
-                            Loja
-                            <span style="color:#ff0000">DWY.</span>
-                        </h2>
+                        <span class="section-kicker">EQUIPAMENTO OFICIAL</span>
+                        <h2 class="section-title">Loja <span style="color:#ff0000">DWY.</span></h2>
                     </div>
-
-                    <p class="section-description">
-                        Peças e acessórios para quem faz parte da comunidade.
-                        Escolha seus favoritos e monte seu kit.
-                    </p>
-
+                    <p class="section-description">Peças e acessórios para quem faz parte da comunidade. Escolha seus favoritos e monte seu kit.</p>
                 </div>
 
                 <!-- FILTROS -->
-
                 <div class="filterbar">
-
-                    <button
-                        class="filter active"
-                        data-filter="todos"
-                    >
-                        Todos
-                    </button>
-
-                    <button
-                        class="filter"
-                        data-filter="uniformes"
-                    >
-                        Uniformes
-                    </button>
-
-                    <button
-                        class="filter"
-                        data-filter="camisa"
-                    >
-                        Camisas
-                    </button>
-
-                    <button
-                        class="filter"
-                        data-filter="blusas"
-                    >
-                        Blusas
-                    </button>
-
-                    <button
-                        class="filter"
-                        data-filter="calca"
-                    >
-                        Calças
-                    </button>
-
-                    <button
-                        class="filter"
-                        data-filter="acessorio"
-                    >
-                        Outros
-                    </button>
-
+                    <button class="filter active" data-filter="todos">Todos</button>
+                    <button class="filter" data-filter="uniformes">Uniformes</button>
+                    <button class="filter" data-filter="acessorio">Acessórios</button>
                 </div>
 
-                <!-- GRID DE PRODUTOS -->
+                <!-- GRID DE PRODUTOS COMPLETO (8 PRODUTOS) -->
+                <div class="products" id="productGrid">
 
-                <div
-                    class="products"
-                    id="productGrid"
-                >
-
-                    <article
-                        class="product"
-                        data-product-id="uniformekic2026-dwy"
-                        data-name="Jersey Dread Wyrm KIC 2026"
-                        data-category="uniformes"
-                        data-price="239.99"
-                    >
-
+                    <article class="product" data-product-id="uniformekic2026-dwy" data-name="Jersey Dread Wyrm KIC 2026" data-category="uniformes" data-price="239.99">
                         <div class="product-image">
                             <span class="tag">LIMITED</span>
-
-                            <img
-                                src="Imagens/uniforme2polo.png"
-                                alt="Camisa oficial"
-                            >
+                            <img class="product-img-default" src="Imagens/uniforme2polo.png" alt="Camisa oficial">
                         </div>
-
                         <div class="product-info">
-
-                            <div class="product-name">
-                                Uniforme KIC2026 Jacarta - Indonésia
-                            </div>
-
-                            <div class="price">
-                                R$ 239,99
-                            </div>
-
-                            <button class="add">
-                                Adicionar ao carrinho
-                            </button>
-
+                            <div class="product-name">Uniforme KIC2026 Jacarta - Indonésia</div>
+                            <div class="price">R$ 239,99</div>
+                            <button class="add">Adicionar ao carrinho</button>
                         </div>
-
                     </article>
 
-                    <article
-                        class="product"
-                        data-product-id="uniforme-2026"
-                        data-name="Jersey 2026"
-                        data-category="uniformes"
-                        data-price="219.99"
-                    >
-
+                    <article class="product" data-product-id="uniforme-2026" data-name="Jersey 2026" data-category="uniformes" data-price="219.99">
                         <div class="product-image">
-
-                            <img
-                                src="Imagens/uniformebranco.png"
-                                alt="Uniforme oficial 2026"
-                            >
-
+                            <img class="product-img-default" src="Imagens/uniformebranco.png" alt="Uniforme oficial 2026">
+                            <img class="product-img-hover" src="Imagens/uniformepreto.png" alt="Uniforme oficial 2026 - Variação">
                         </div>
-
                         <div class="product-info">
-
-                            <div class="product-name">
-                                Jersey 2026
-                            </div>
-
-                            <div class="price">
-                                R$ 219,99
-                            </div>  
-
-                            <button class="add">
-                                Adicionar ao carrinho
-                            </button>
-
+                            <div class="product-name">Jersey 2026</div>
+                            <div class="price">R$ 219,99</div>  
+                            <button class="add">Adicionar ao carrinho</button>
                         </div>
-
                     </article>
 
-                    <article
-                        class="product"
-                        data-product-id="cortavento-dwy"
-                        data-name="Corta Vento"
-                        data-category="uniformes"
-                        data-price="299.99"
-                    >
-
+                    <article class="product" data-product-id="cortavento-dwy" data-name="Corta Vento" data-category="uniformes" data-price="299.99">
                         <div class="product-image">
-
-                            <img
-                                src="Imagens/cortaventobranco.png"
-                                alt="Corta vento"
-                            >
-
+                            <img class="product-img-default" src="Imagens/cortaventobranco.png" alt="Corta vento">
+                            <img class="product-img-hover" src="Imagens/cortaventopreto.png" alt="Corta vento - Variação">
                         </div>
-
                         <div class="product-info">
-
-                            <div class="product-name">
-                                Corta Vento
-                            </div>
-
-                            <div class="price">
-                                R$ 299,99
-                            </div>
-
-                            <button class="add">
-                                Adicionar ao carrinho
-                            </button>
-
+                            <div class="product-name">Corta Vento</div>
+                            <div class="price">R$ 299,99</div>
+                            <button class="add">Adicionar ao carrinho</button>
                         </div>
-
                     </article>
 
-                    <article
-                        class="product"
-                        data-product-id="calca-dwy"
-                        data-name="Calça DWY"
-                        data-category="uniformes"
-                        data-price="139.99"
-                    >
-
+                    <article class="product" data-product-id="calca-dwy" data-name="Calça DWY" data-category="uniformes" data-price="139.99">
                         <div class="product-image">
-
-                            <img
-                                src="Imagens/calcamoletompreto.png"
-                                alt="Calça Uniforme"
-                            >
-
+                            <img class="product-img-default" src="Imagens/calcamoletompreto.png" alt="Calça Uniforme">
+                            <img class="product-img-hover" src="Imagens/calcamoletombranco.png" alt="Calça Uniforme - Variação">
                         </div>
-
                         <div class="product-info">
-
-                            <div class="product-name">
-                                Calça Uniforme DWY
-                            </div>
-
-                            <div class="price">
-                                R$ 139,99
-                            </div>
-
-                            <button class="add">
-                                Adicionar ao carrinho
-                            </button>
-
+                            <div class="product-name">Calça Uniforme DWY</div>
+                            <div class="price">R$ 139,99</div>
+                            <button class="add">Adicionar ao carrinho</button>
                         </div>
-
                     </article>
 
-                    <article
-                        class="product"
-                        data-product-id="caneca-dwy"
-                        data-name="Caneca Dread Wyrm"
-                        data-category="acessorio"
-                        data-price="49.99"
-                    >
-
+                    <article class="product" data-product-id="caneca-dwy" data-name="Par de Meias" data-category="acessorio" data-price="49.99">
                         <div class="product-image">
-
-                            <img
-                                src="Imagens/meiaspretas.png"
-                                alt="Meias"
-                            >
-
+                            <img class="product-img-default" src="Imagens/meiaspretas.png" alt="Meias">
+                            <img class="product-img-hover" src="Imagens/meiasbrancas.png" alt="Meias - Variação">
                         </div>
-
                         <div class="product-info">
-
-                            <div class="product-name">
-                                Par de Meias(2x 4x & 8x Disponíveis)
-                            </div>
-
-                            <div class="price">
-                                R$ 49,99
-                            </div>
-
-                            <button class="add">
-                                Adicionar ao carrinho
-                            </button>
-
+                            <div class="product-name">Par de Meias (2x, 4x & 8x)</div>
+                            <div class="price">R$ 49,99</div>
+                            <button class="add">Adicionar ao carrinho</button>
                         </div>
-
                     </article>
 
-                    <article
-                        class="product"
-                        data-product-id="mousesparta-dwy"
-                        data-name="Mouse SPARTA x DWY Collab"
-                        data-category="acessorio"
-                        data-price="129,99"
-                    >
-
+                    <article class="product" data-product-id="mousesparta-dwy" data-name="Mouse SPARTA x DWY Collab" data-category="acessorio" data-price="129.99">
                         <div class="product-image">
-
-                            <img
-                                src="Imagens/mousebranco.png"
-                                alt="Boné"
-                            >
-
+                            <img class="product-img-default" src="Imagens/mousebranco.png" alt="Mouse">
+                            <img class="product-img-hover" src="Imagens/mousevermelho.png" alt="Mouse - Variação">
                         </div>
-
                         <div class="product-info">
-
-                            <div class="product-name">
-                                Mouse Tri-Mode SPARTA x DWY K230
-                            </div>
-
-                            <div class="price">
-                                R$ 129,99
-                            </div>
-
-                            <button class="add">
-                                Adicionar ao carrinho
-                            </button>
-
+                            <div class="product-name">Mouse Tri-Mode SPARTA x DWY K230</div>
+                            <div class="price">R$ 129,99</div>
+                            <button class="add">Adicionar ao carrinho</button>
                         </div>
-
                     </article>
 
-                    <article
-                        class="product"
-                        data-product-id="tecladosparta-dwy"
-                        data-name="Teclado DWY x SPARTA K945 Collab"
-                        data-category="acessorio"
-                        data-price="159,99"
-                    >
-
+                    <article class="product" data-product-id="tecladosparta-dwy" data-name="Teclado DWY x SPARTA K945 Collab" data-category="acessorio" data-price="159.99">
                         <div class="product-image">
-
-                            <img
-                                src="Imagens/tecladovermelho.png"
-                                alt="Chaveiro"
-                            >
-
+                            <img class="product-img-default" src="Imagens/tecladovermelho.png" alt="Teclado">
+                            <img class="product-img-hover" src="Imagens/tecladobranco.png" alt="Teclado - Variação">
                         </div>
-
                         <div class="product-info">
-
-                            <div class="product-name">
-                                Teclado SPARTA x DWY K945 60/75% RGB
-                            </div>
-
-                            <div class="price">
-                                R$ 159,99
-                            </div>
-
-                            <button class="add">
-                                Adicionar ao carrinho
-                            </button>
-
+                            <div class="product-name">Teclado SPARTA x DWY K945 60/75% RGB</div>
+                            <div class="price">R$ 159,99</div>
+                            <button class="add">Adicionar ao carrinho</button>
                         </div>
-
                     </article>
 
-                    <article
-                        class="product"
-                        data-product-id="mousepad-dwy"
-                        data-name="Mousepad DWY"
-                        data-category="acessorio"
-                        data-price="54.99"
-                    >
-
+                    <article class="product" data-product-id="mousepad-dwy" data-name="Mousepad DWY" data-category="acessorio" data-price="54.99">
                         <div class="product-image">
-
-                            <img
-                                src="Imagens/mousepad.png"
-                                alt="Pôster decorativo"
-                            >
-
+                            <img class="product-img-default" src="Imagens/mousepad.png" alt="Mousepad DWY">
                         </div>
-
                         <div class="product-info">
-
-                            <div class="product-name">
-                                Mousepad
-                            </div>
-
-                            <div class="price">
-                                R$ 54,99
-                            </div>
-
-                            <button class="add">
-                                Adicionar ao carrinho
-                            </button>
-
+                            <div class="product-name">Mousepad</div>
+                            <div class="price">R$ 54,99</div>
+                            <button class="add">Adicionar ao carrinho</button>
                         </div>
-
                     </article>
 
                 </div>
-
             </div>
-
         </section>
 
-        <!-- =====================================================
-             CATEGORIAS
-        ====================================================== -->
-
+        <!-- CATEGORIAS -->
         <section class="section section-dark">
-
             <div class="container">
-
                 <div class="section-head">
-
                     <div>
-                        <span class="section-kicker">
-                            ENCONTRE SEU ESTILO 
-                        </span>
-
-                        <h2 class="section-title">
-                            Categorias<span style="color:#ff0000">.</span>
-                        </h2>
+                        <span class="section-kicker">ENCONTRE SEU ESTILO</span>
+                        <h2 class="section-title">Categorias<span style="color:#ff0000">.</span></h2>
                     </div>
-
-                    <p
-                        class="section-description"
-                        style="color:#aaa"
-                    >
-                        Do uniforme aos detalhes do setup:
-                        escolha como representar a equipe.
-                    </p>
-
+                    <p class="section-description" style="color:#aaa">Do uniforme aos detalhes do setup: escolha como representar a equipe.</p>
                 </div>
-
                 <div class="categories">
-
-                    <a
-                        class="category"
-                        href="#produtos"
-                        data-jump="camisa"
-                    >
-                        <img
-                            src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85"
-                            alt="Vestuário"
-                        >
-
+                    <a class="category" href="#produtos" data-jump="uniformes">
+                        <img src="Imagens/uniformebranco.png" alt="Vestuário">
                         <strong>Vestuário</strong>
                     </a>
-
-                    <a
-                        class="category"
-                        href="#produtos"
-                        data-jump="acessorio"
-                    >
-                        <img
-                            src="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=900&q=85"
-                            alt="Acessórios gamer"
-                        >
-
+                    <a class="category" href="#produtos" data-jump="acessorio">
+                        <img src="Imagens/tecladobranco.png" alt="Acessórios gamer">
                         <strong>Acessórios</strong>
                     </a>
-
-                    <a
-                        class="category"
-                        href="#produtos"
-                        data-jump="colecionavel"
-                    >
-                        <img
-                            src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=85"
-                            alt="Colecionáveis"
-                        >
-
-                        <strong>Colecionáveis</strong>
+                    <a class="category" href="#produtos" data-jump="uniformes">
+                        <img src="Imagens/uniforme2polo.png" alt="Colecionáveis">
+                        <strong>Edições Limitadas</strong>
                     </a>
-
                 </div>
-
             </div>
-
         </section>
 
-        <!-- =====================================================
-             FAIXA INSTITUCIONAL
-        ====================================================== -->
-
+        <!-- FAIXA INSTITUCIONAL -->
         <section class="statement">
-
             <div class="container statement-inner">
-
-                <h2>
-                    Uma equipe.<br>
-                    <span>Uma identidade.</span>
-                </h2>
-
+                <h2>Uma equipe.<br><span>Uma identidade.</span></h2>
                 <div>
-
-                    <p>
-                        Competição, comunidade e performance.
-                        Faça parte da Dread Wyrm e represente
-                        nossas cores em qualquer lugar.
-                    </p>
-
-                    <a
-                        class="btn"
-                        href="index.html"
-                    >
-                        Conheça a equipe&nbsp; ↗
-                    </a>
-
+                    <p>Competição, comunidade e performance. Faça parte da Dread Wyrm e represente nossas cores em qualquer lugar.</p>
+                    <a class="btn" href="index.html">Conheça a equipe&nbsp; ↗</a>
                 </div>
-
             </div>
-
         </section>
-
     </main>
 
-    <!-- =========================================================
-         RODAPÉ
-    ========================================================= -->
-
+    <!-- RODAPÉ -->
     <footer class="site-footer">
-
-        <div class="footer-watermark">
-            DWY
-        </div>
-
+        <div class="footer-watermark">DWY</div>
         <div class="container">
-
             <div class="footer-top">
-
                 <div class="footer-brand">
-
-                    <img
-                        src="Imagens/logo-dragon.png"
-                        class="footer-logo"
-                        alt="Dread Wyrm Esports"
-                    >
-
-                    <p class="footer-description">
-                        A Dread Wyrm Esports é uma organização de esports
-                        focada em competição, performance, identidade e
-                        construção de comunidade.
-                    </p>
-
+                    <img src="Imagens/logo-dragon.png" class="footer-logo" alt="Dread Wyrm Esports">
+                    <p class="footer-description">A Dread Wyrm Esports é uma organização de esports focada em competição, performance, identidade e construção de comunidade.</p>
                 </div>
-
                 <div class="footer-column">
-
                     <h4>Navegação</h4>
-
                     <a href="index.html">Início</a>
                     <a href="sobrenos.html">Sobre nós</a>
                     <a href="times.html">Times</a>
                     <a href="loja.html">Loja</a>
-
                 </div>
-
                 <div class="footer-column">
-
                     <h4>Loja</h4>
-
                     <a href="#produtos">Todos os produtos</a>
-                    <a href="#produtos">Camisas</a>
+                    <a href="#produtos">Uniformes</a>
                     <a href="#produtos">Acessórios</a>
-                    <a href="#produtos">Colecionáveis</a>
-
                 </div>
-
                 <div class="footer-column">
-
                     <h4>Atendimento</h4>
-
                     <a href="index.html#contact">Contato</a>
                     <a href="#">Entrega e pagamento</a>
                     <a href="#">Trocas e devoluções</a>
-
                 </div>
-
             </div>
-
             <div class="footer-bottom">
-
-                <span>
-                    © 2026 Dread Wyrm Esports.
-                    Todos os direitos reservados.
-                </span>
-
-                <span>
-                    Competição · Comunidade · Performance
-                </span>
-
+                <span>© 2026 Dread Wyrm Esports. Todos os direitos reservados.</span>
+                <span>Competição · Comunidade · Performance</span>
             </div>
-
         </div>
-
     </footer>
 
-    <!-- =========================================================
-         CARRINHO
-    ========================================================= -->
-
+    <!-- CARRINHO DRAWER -->
     <div class="overlay" id="overlay"></div>
-
-    <aside
-        class="drawer"
-        id="drawer"
-        aria-label="Carrinho de compras"
-    >
-
+    <aside class="drawer" id="drawer" aria-label="Carrinho de compras">
         <div class="drawer-head">
-
             <h3>Seu carrinho</h3>
-
-            <button
-                class="close"
-                id="closeCart"
-                aria-label="Fechar"
-            >
-                ×
-            </button>
-
+            <button class="close" id="closeCart" aria-label="Fechar">×</button>
         </div>
-
-        <div
-            class="cart-items"
-            id="cartItems"
-        >
-            <div class="empty">
-                Seu carrinho está vazio.
-            </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty">Seu carrinho está vazio.</div>
         </div>
-
         <div class="cart-total">
-
             <div class="total-line">
                 <span>Subtotal</span>
                 <span id="cartTotal">R$ 0,00</span>
             </div>
-
-            <button
-                class="checkout"
-                id="checkout"
-            >
-                Finalizar pedido
-            </button>
-
+            <button class="checkout" id="checkout">Finalizar pedido</button>
         </div>
-
     </aside>
 
-    <!-- =========================================================
-         JAVASCRIPT
-    ========================================================= -->
+    <!-- MODAL DE CHECKOUT SIMULADO -->
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-box">
+            <button class="checkout-close" id="closeCheckoutModal">×</button>
+            <h2>Checkout / Simulação de Pedido</h2>
+            <form id="checkoutForm">
+                <div class="checkout-group">
+                    <label>Nome Completo</label>
+                    <input type="text" id="custName" required placeholder="Digite seu nome">
+                </div>
+                <div class="checkout-row">
+                    <div class="checkout-group">
+                        <label>CEP</label>
+                        <input type="text" id="custCep" required placeholder="00000-000">
+                    </div>
+                    <div class="checkout-group">
+                        <label>Cidade / Estado</label>
+                        <input type="text" id="custCity" required placeholder="Ex: São Paulo - SP">
+                    </div>
+                </div>
+                <div class="checkout-group">
+                    <label>Endereço de Entrega (Rua, Número e Bairro)</label>
+                    <input type="text" id="custAddress" required placeholder="Rua Exemplo, 123 - Bairro">
+                </div>
+                
+                <div class="checkout-group">
+                    <label>Forma de Pagamento</label>
+                    <div class="payment-methods">
+                        <div class="pay-option active" data-method="pix">Pix (Aprovação imediata)</div>
+                        <div class="pay-option" data-method="cartao">Cartão de Crédito</div>
+                    </div>
+                </div>
 
+                <div id="pixInfo" style="background:#f9f9f9; padding:15px; margin-bottom:15px; font-size:12px; border-left:3px solid var(--red);">
+                    <strong>Chave Pix Copia e Cola:</strong><br>
+                    <span style="font-family:monospace; color:#555;">dwy-esports-checkout-pix-simulacao-2026@dwy.com</span>
+                </div>
+
+                <button type="submit" class="checkout-submit">Confirmar e Concluir Pedido</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
     <script>
-
-    const header = document.getElementById("siteHeader");
-
-    function updateHeader(){
-        if(!header) return;
-
-        header.classList.toggle(
-            "scrolled",
-            window.scrollY > 20
-        );
-    }
-
-    window.addEventListener(
-        "scroll",
-        updateHeader,
-        { passive:true }
-    );
-
-    updateHeader();
-
-
-    /* =================================================
-       MOBILE MENU
-    ================================================= */
-
-    const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.getElementById("navLinks");
-
-    if(menuToggle && navLinks){
-
-        menuToggle.addEventListener("click", () => {
-
-            const isOpen = navLinks.classList.toggle("open");
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                String(isOpen)
-            );
-
-        });
-
-        navLinks.querySelectorAll("a").forEach(link => {
-
-            link.addEventListener("click", () => {
-
-                navLinks.classList.remove("open");
-
-                menuToggle.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-            });
-
-        });
-    }
-
-
-    /* =================================================
-       ACTIVE NAV
-    ================================================= */
-
-    const sections = document.querySelectorAll("section[id]");
-    const navigationLinks = document.querySelectorAll(".nav-links a");
-
-    if("IntersectionObserver" in window){
-
-        const navObserver = new IntersectionObserver(
-            entries => {
-
-                entries.forEach(entry => {
-
-                    if(!entry.isIntersecting) return;
-
-                    navigationLinks.forEach(link => {
-                        link.classList.remove("active");
-                    });
-
-                    const active = document.querySelector(
-                        `.nav-links a[href="#${entry.target.id}"]`
-                    );
-
-                    if(active){
-                        active.classList.add("active");
-                    }
-
-                });
-
-            },
-            {
-                rootMargin:"-35% 0px -55% 0px"
-            }
-        );
-
-        sections.forEach(section => {
-            navObserver.observe(section);
-        });
-    }
-
-
-    /* =================================================
-       REVEAL ANIMATION
-    ================================================= */
-
-    const revealElements = document.querySelectorAll(".reveal");
-
-    if("IntersectionObserver" in window){
-
-        const revealObserver = new IntersectionObserver(
-            entries => {
-
-                entries.forEach(entry => {
-
-                    if(!entry.isIntersecting) return;
-
-                    entry.target.classList.add("visible");
-                    revealObserver.unobserve(entry.target);
-
-                });
-
-            },
-            {
-                threshold:.12
-            }
-        );
-
-        revealElements.forEach(element => {
-            revealObserver.observe(element);
-        });
-
-    }else{
-
-        revealElements.forEach(element => {
-            element.classList.add("visible");
-        });
-    }
-
-    /* =========================================================
-       CONFIGURAÇÃO DO CARRINHO
-    ========================================================= */
-
-    const CART_KEY = 'dwy_cart';
-    const cart = loadCart();
-
-    function loadCart() {
-        try {
-            return JSON.parse(
-                localStorage.getItem(CART_KEY) || '[]'
-            );
-        } catch (e) {
-            return [];
+        const header = document.getElementById("siteHeader");
+        function updateHeader(){
+            if(!header) return;
+            header.classList.toggle("scrolled", window.scrollY > 20);
         }
-    }
+        window.addEventListener("scroll", updateHeader, { passive:true });
+        updateHeader();
 
-    function saveCart() {
-        localStorage.setItem(
-            CART_KEY,
-            JSON.stringify(cart)
-        );
-    }
+        // Mobile menu
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+        if(menuToggle && navLinks){
+            menuToggle.addEventListener("click", () => {
+                const isOpen = navLinks.classList.toggle("open");
+                menuToggle.setAttribute("aria-expanded", String(isOpen));
+            });
+        }
 
-    const money = value =>
-        Number(value).toLocaleString(
-            'pt-BR',
-            {
-                style: 'currency',
-                currency: 'BRL'
+        // Hero Slider
+        const heroSlides = [...document.querySelectorAll('.hero-slide')];
+        const heroDots = [...document.querySelectorAll('.hero-dot')];
+        let currentHeroSlide = 0;
+        let heroTimer;
+
+        function showHeroSlide(index) {
+            if (!heroSlides.length) return;
+            currentHeroSlide = (index + heroSlides.length) % heroSlides.length;
+            heroSlides.forEach((slide, i) => {
+                const active = i === currentHeroSlide;
+                slide.classList.toggle('active', active);
+                slide.setAttribute('aria-hidden', String(!active));
+            });
+            heroDots.forEach((dot, i) => {
+                const active = i === currentHeroSlide;
+                dot.classList.toggle('active', active);
+                dot.setAttribute('aria-current', String(active));
+            });
+        }
+
+        function startHeroTimer() {
+            clearInterval(heroTimer);
+            if (heroSlides.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                heroTimer = setInterval(() => showHeroSlide(currentHeroSlide + 1), 6000);
             }
-        );
-
-    const drawer = document.getElementById('drawer');
-    const overlay = document.getElementById('overlay');
-
-
-    /* =========================================================
-       SLIDER
-    ========================================================= */
-
-    const heroSlides = [
-        ...document.querySelectorAll('.hero-slide')
-    ];
-
-    const heroDots = [
-        ...document.querySelectorAll('.hero-dot')
-    ];
-
-    let currentHeroSlide = 0;
-    let heroTimer;
-
-
-    function showHeroSlide(index) {
-
-        if (!heroSlides.length) return;
-
-        currentHeroSlide =
-            (index + heroSlides.length) %
-            heroSlides.length;
-
-        heroSlides.forEach((slide, i) => {
-
-            const active = i === currentHeroSlide;
-
-            slide.classList.toggle('active', active);
-            slide.setAttribute('aria-hidden', String(!active));
-
-        });
+        }
 
         heroDots.forEach((dot, i) => {
-
-            const active = i === currentHeroSlide;
-
-            dot.classList.toggle('active', active);
-            dot.setAttribute('aria-current', String(active));
-
-        });
-    }
-
-
-    function startHeroTimer() {
-
-        clearInterval(heroTimer);
-
-        if (
-            heroSlides.length > 1 &&
-            !window.matchMedia(
-                '(prefers-reduced-motion: reduce)'
-            ).matches
-        ) {
-
-            heroTimer = setInterval(
-                () =>
-                    showHeroSlide(
-                        currentHeroSlide + 1
-                    ),
-                6000
-            );
-        }
-    }
-
-
-    heroDots.forEach((dot, i) => {
-
-        dot.addEventListener(
-            'click',
-            () => {
+            dot.addEventListener('click', () => {
                 showHeroSlide(i);
                 startHeroTimer();
-            }
-        );
-
-    });
-
-    startHeroTimer();
-
-
-    /* =========================================================
-       DESLIZAR BANNERS NO CELULAR
-    ========================================================= */
-
-    const heroElement = document.querySelector('.hero');
-    let heroTouchStartX = 0;
-    let heroTouchStartY = 0;
-
-    if (heroElement) {
-
-        heroElement.addEventListener(
-            'touchstart',
-            event => {
-                if (event.touches.length !== 1) return;
-                heroTouchStartX = event.touches[0].clientX;
-                heroTouchStartY = event.touches[0].clientY;
-            },
-            { passive: true }
-        );
-
-        heroElement.addEventListener(
-            'touchend',
-            event => {
-                if (event.changedTouches.length !== 1) return;
-
-                const dx = event.changedTouches[0].clientX - heroTouchStartX;
-                const dy = event.changedTouches[0].clientY - heroTouchStartY;
-
-                if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
-                    showHeroSlide(currentHeroSlide + (dx < 0 ? 1 : -1));
-                    startHeroTimer();
-                }
-            },
-            { passive: true }
-        );
-    }
-
-
-    document.addEventListener(
-        'visibilitychange',
-        () => {
-            if (document.hidden) {
-                clearInterval(heroTimer);
-            } else {
-                startHeroTimer();
-            }
-        }
-    );
-
-
-    /* =========================================================
-       CARRINHO
-    ========================================================= */
-
-    function openCart() {
-        renderCart();
-        drawer.classList.add('open');
-        overlay.classList.add('open');
-    }
-
-    function closeCart() {
-        drawer.classList.remove('open');
-        overlay.classList.remove('open');
-    }
-
-    document.getElementById('cartToggle').addEventListener('click', openCart);
-    document.getElementById('closeCart').addEventListener('click', closeCart);
-    overlay.addEventListener('click', closeCart);
-
-    if (window.location.hash === '#carrinho') {
-        openCart();
-    }
-
-
-    /* =========================================================
-       FILTROS
-    ========================================================= */
-
-    document.querySelectorAll('.filter').forEach(button => {
-        button.addEventListener('click', () => {
-            document.querySelectorAll('.filter').forEach(item =>
-                item.classList.remove('active')
-            );
-            button.classList.add('active');
-
-            document.querySelectorAll('.product').forEach(product => {
-                product.style.display =
-                    button.dataset.filter === 'todos' ||
-                    product.dataset.category === button.dataset.filter
-                        ? ''
-                        : 'none';
             });
         });
-    });
+        startHeroTimer();
 
+        // Carrinho e Storage
+        const CART_KEY = 'dwy_cart';
+        let cart = loadCart();
 
-    /* =========================================================
-       LINKS DAS CATEGORIAS
-    ========================================================= */
+        function loadCart() {
+            try { return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); } catch (e) { return []; }
+        }
 
-    document.querySelectorAll('[data-jump]').forEach(link => {
-        link.addEventListener('click', () => {
-            const filter = link.dataset.jump;
+        function saveCart() {
+            localStorage.setItem(CART_KEY, JSON.stringify(cart));
+            updateCartCount();
+        }
 
-            document.querySelectorAll('.filter').forEach(button =>
-                button.classList.toggle('active', button.dataset.filter === filter)
-            );
+        function updateCartCount() {
+            const count = cart.reduce((sum, item) => sum + Number(item.qty || 0), 0);
+            const badge = document.getElementById('cartCount');
+            if (badge) badge.textContent = count;
+        }
 
-            document.querySelectorAll('.product').forEach(product =>
-                product.style.display =
-                    product.dataset.category === filter ? '' : 'none'
-            );
-        });
-    });
+        const money = val => Number(val).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
+        const drawer = document.getElementById('drawer');
+        const overlay = document.getElementById('overlay');
+        const checkoutModal = document.getElementById('checkoutModal');
 
-    /* =========================================================
-       ABRIR DETALHES DO PRODUTO
-    ========================================================= */
+        function openCart() { renderCart(); drawer.classList.add('open'); overlay.classList.add('open'); }
+        function closeCart() { drawer.classList.remove('open'); overlay.classList.remove('open'); }
 
-    document.querySelectorAll('.product[data-product-id]').forEach(card => {
-        card.addEventListener('click', event => {
-            if (event.target.closest('.add')) return;
+        document.getElementById('cartToggle').addEventListener('click', openCart);
+        document.getElementById('closeCart').addEventListener('click', closeCart);
+        overlay.addEventListener('click', closeCart);
 
-            window.location.href =
-                'produto.html?id=' + encodeURIComponent(card.dataset.productId);
-        });
-    });
+        // Filtros
+        document.querySelectorAll('.filter').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.filter').forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
 
-
-    /* =========================================================
-       ADICIONAR AO CARRINHO
-    ========================================================= */
-
-    document.querySelectorAll('.product .add').forEach(button => {
-        button.addEventListener('click', () => {
-            const product = button.closest('.product');
-            const id = product.dataset.productId;
-            const name = product.dataset.name;
-            const price = Number(product.dataset.price);
-            const image = product.querySelector('img').src;
-
-            const found = cart.find(item => item.id === id && !item.size);
-
-            if (found) {
-                found.qty++;
-            } else {
-                cart.push({
-                    id,
-                    name,
-                    price,
-                    img: image,
-                    qty: 1,
-                    size: ''
+                const filterValue = button.dataset.filter;
+                document.querySelectorAll('.product').forEach(product => {
+                    product.style.display =
+                        filterValue === 'todos' ||
+                        product.dataset.category === filterValue
+                            ? ''
+                            : 'none';
                 });
+            });
+        });
+
+        // Links de categorias (Jump)
+        document.querySelectorAll('[data-jump]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const filter = link.dataset.jump;
+                document.querySelectorAll('.filter').forEach(button =>
+                    button.classList.toggle('active', button.dataset.filter === filter)
+                );
+                document.querySelectorAll('.product').forEach(product =>
+                    product.style.display = (filter === 'todos' || product.dataset.category === filter) ? '' : 'none'
+                );
+                document.getElementById('produtos').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Adicionar produto direto do card
+        document.querySelectorAll('.product .add').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const product = button.closest('.product');
+                const id = product.dataset.productId;
+                const name = product.dataset.name;
+                const price = Number(product.dataset.price);
+                const image = product.querySelector('.product-img-default').src;
+
+                const found = cart.find(item => item.id === id && !item.size && !item.color);
+                if (found) found.qty++;
+                else cart.push({ id, name, price, img: image, qty: 1, size: '', color: '' });
+
+                saveCart();
+                renderCart();
+                button.textContent = 'Adicionado ✓';
+                setTimeout(() => button.textContent = 'Adicionar ao carrinho', 1000);
+            });
+        });
+
+        // Clicar no card do produto leva aos detalhes (produto.html)
+        document.querySelectorAll('.product[data-product-id]').forEach(card => {
+            card.addEventListener('click', event => {
+                if (event.target.closest('.add')) return;
+                window.location.href = 'produto.html?id=' + encodeURIComponent(card.dataset.productId);
+            });
+        });
+
+        function renderCart() {
+            updateCartCount();
+            const total = cart.reduce((sum, item) => sum + Number(item.price) * Number(item.qty), 0);
+            document.getElementById('cartTotal').textContent = money(total);
+            const element = document.getElementById('cartItems');
+
+            if (!cart.length) {
+                element.innerHTML = '<div class="empty">Seu carrinho está vazio.</div>';
+                return;
             }
 
+            element.innerHTML = cart.map((p, i) => `
+                <div class="cart-row">
+                    <img src="${p.img}" alt="">
+                    <div>
+                        <strong>${p.name}</strong>
+                        ${p.color ? `<small style="display:block;color:#666">Cor: ${p.color}</small>` : ''}
+                        ${p.size ? `<small style="display:block;color:#666">Tamanho: ${p.size}</small>` : ''}
+                        <span>${money(p.price)}</span>
+                        <div class="qty">
+                            <button type="button" data-dec="${i}">−</button>
+                            <span>${p.qty}</span>
+                            <button type="button" data-inc="${i}">+</button>
+                        </div>
+                    </div>
+                    <button type="button" class="close" data-del="${i}">×</button>
+                </div>
+            `).join('');
+
+            element.querySelectorAll('[data-inc]').forEach(btn => btn.onclick = () => { cart[btn.dataset.inc].qty++; saveCart(); renderCart(); });
+            element.querySelectorAll('[data-dec]').forEach(btn => {
+                btn.onclick = () => {
+                    const idx = btn.dataset.dec;
+                    cart[idx].qty--;
+                    if (cart[idx].qty <= 0) cart.splice(idx, 1);
+                    saveCart();
+                    renderCart();
+                };
+            });
+            element.querySelectorAll('[data-del]').forEach(btn => btn.onclick = () => { cart.splice(btn.dataset.del, 1); saveCart(); renderCart(); });
+        }
+
+        renderCart();
+
+        // Fluxo de Checkout
+        document.getElementById('checkout').addEventListener('click', () => {
+            if (!cart.length) {
+                alert('Seu carrinho está vazio!');
+                return;
+            }
+            closeCart();
+            checkoutModal.classList.add('open');
+        });
+
+        document.getElementById('closeCheckoutModal').addEventListener('click', () => {
+            checkoutModal.classList.remove('open');
+        });
+
+        document.querySelectorAll('.pay-option').forEach(opt => {
+            opt.addEventListener('click', () => {
+                document.querySelectorAll('.pay-option').forEach(o => o.classList.remove('active'));
+                opt.classList.add('active');
+            });
+        });
+
+        document.getElementById('checkoutForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const orderId = 'DWY-' + Math.floor(100000 + Math.random() * 900000);
+            alert(`Pedido ${orderId} realizado com sucesso! Obrigado por apoiar a Dread Wyrm Esports.`);
+            cart = [];
             saveCart();
             renderCart();
-
-            button.textContent = 'Adicionado ✓';
-            setTimeout(() => button.textContent = 'Adicionar ao carrinho', 1000);
+            checkoutModal.classList.remove('open');
         });
-    });
-
-
-    /* =========================================================
-       ATUALIZAR CARRINHO
-    ========================================================= */
-
-    function renderCart() {
-        const count = cart.reduce((sum, item) => sum + Number(item.qty || 0), 0);
-        const total = cart.reduce((sum, item) => sum + Number(item.price) * Number(item.qty), 0);
-
-        document.getElementById('cartCount').textContent = count;
-        document.getElementById('cartTotal').textContent = money(total);
-
-        const element = document.getElementById('cartItems');
-
-        if (!cart.length) {
-            element.innerHTML = '<div class="empty">Seu carrinho está vazio.</div>';
-            return;
-        }
-
-        element.innerHTML = cart
-            .map(
-                (product, index) => `
-                    <div class="cart-row">
-                        <img src="${product.img}" alt="">
-                        <div>
-                            ${product.name}
-                            ${product.size ? `<small style="display:block;color:#888">Tamanho: ${product.size}</small>` : ''}
-                            <strong>${money(product.price)}</strong>
-                            <div class="qty">
-                                <button data-dec="${index}">−</button>
-                                <span>${product.qty}</span>
-                                <button data-inc="${index}">+</button>
-                            </div>
-                        </div>
-                        <button class="close" data-del="${index}">×</button>
-                    </div>
-                `
-            )
-            .join('');
-
-        element.querySelectorAll('[data-inc]').forEach(button => {
-            button.onclick = () => {
-                cart[Number(button.dataset.inc)].qty++;
-                saveCart();
-                renderCart();
-            };
-        });
-
-        element.querySelectorAll('[data-dec]').forEach(button => {
-            button.onclick = () => {
-                const index = Number(button.dataset.dec);
-                cart[index].qty--;
-                if (cart[index].qty <= 0) {
-                    cart.splice(index, 1);
-                }
-                saveCart();
-                renderCart();
-            };
-        });
-
-        element.querySelectorAll('[data-del]').forEach(button => {
-            button.onclick = () => {
-                cart.splice(Number(button.dataset.del), 1);
-                saveCart();
-                renderCart();
-            };
-        });
-    }
-
-    renderCart();
-
-
-    /* =========================================================
-       FINALIZAR PEDIDO
-    ========================================================= */
-
-    document.getElementById('checkout').addEventListener('click', () => {
-        if (!cart.length) {
-            alert('Adicione produtos ao carrinho antes de finalizar.');
-            return;
-        }
-        alert('Seu carrinho está pronto. Para receber pagamentos, conecte esta página ao checkout da plataforma da loja.');
-    });
-
     </script>
-
-    <!-- =========================================================
-         AUTENTICAÇÃO
-    ========================================================= -->
-
     <script type="module" src="autenticacao/auth-state.js"></script>
+    <script type="module" src="bancodedados/firestore.js"></script>
     <script src="autenticacao/account-menu.js"></script>
-
 </body>
 
 </html>

@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#1b1b1b">
 <title>Produto | Dread Wyrm Esports</title>
+<link rel="icon" type="image/png" sizes="32x32" href="Imagens/favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="Imagens/favicon.png">
+<link rel="apple-touch-icon" href="Imagens/favicon.png">
 
 <style>
 :root{
@@ -22,7 +25,7 @@ img{max-width:100%;display:block}
 .container{width:min(90%,var(--largura));margin:auto}
 
 /* =========================================================
-   CABEÇALHO / NAVBAR (PADRÃO DO SITE)
+   CABEÇALHO / NAVBAR
 ========================================================= */
 
 .site-header {
@@ -32,9 +35,7 @@ img{max-width:100%;display:block}
     width: 100%;
     z-index: 9999;
     background: #fff;
-    transition:
-        box-shadow .3s ease,
-        transform .3s ease;
+    transition: box-shadow .3s ease, transform .3s ease;
 }
 
 .site-header.scrolled {
@@ -85,22 +86,11 @@ img{max-width:100%;display:block}
     text-transform: uppercase;
     color: #000;
     padding: 8px 0;
-    text-decoration: none;
     transition: color .25s ease;
 }
 
-.nav-links:hover a {
-    color: #9c9c9c;
-}
-
-.nav-links:hover a:hover {
-    color: var(--vermelho);
-}
-
-.nav-links a::after {
-    display: none !important;
-    content: none !important;
-}
+.nav-links:hover a { color: #9c9c9c; }
+.nav-links:hover a:hover, .nav-links a.active { color: var(--vermelho); }
 
 .nav-right {
     display: flex;
@@ -115,10 +105,7 @@ img{max-width:100%;display:block}
     display: grid;
     place-items: center;
     color: #000;
-    text-decoration: none;
-    transition:
-        color .25s var(--ease),
-        transform .25s var(--ease);
+    transition: transform .25s var(--ease);
 }
 
 .nav-login .account-icon {
@@ -126,7 +113,7 @@ img{max-width:100%;display:block}
     height: 21px;
     display: block;
     object-fit: contain;
-    transition: opacity .2s ease, transform .25s var(--ease);
+    transition: opacity .2s ease;
 }
 
 .nav-login .account-icon-hover {
@@ -134,17 +121,9 @@ img{max-width:100%;display:block}
     opacity: 0;
 }
 
-.nav-login:hover .account-icon-default {
-    opacity: 0;
-}
-
-.nav-login:hover .account-icon-hover {
-    opacity: 1;
-}
-
-.nav-login:hover {
-    transform: translateY(-2px);
-}
+.nav-login:hover .account-icon-default { opacity: 0; }
+.nav-login:hover .account-icon-hover { opacity: 1; }
+.nav-login:hover { transform: translateY(-2px); }
 
 .nav-icon {
     width: 38px;
@@ -199,7 +178,6 @@ img{max-width:100%;display:block}
     height: 2px;
     background: #fff;
     margin: 3px 0;
-    transition: .25s ease;
 }
 
 main{padding-top:90px}
@@ -210,10 +188,10 @@ main{padding-top:90px}
 .product-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:65px;align-items:start;padding-bottom:90px}
 .gallery{display:grid;grid-template-columns:85px 1fr;gap:18px;position:sticky;top:110px}
 .thumbnails{display:flex;flex-direction:column;gap:12px}
-.thumbnail{width:85px;height:95px;object-fit:contain;background:var(--cinza);border:1px solid transparent;cursor:pointer;transition:.2s}
+.thumbnail{width:85px;height:95px;object-fit:cover;background:var(--cinza);border:1px solid transparent;cursor:pointer;transition:.2s}
 .thumbnail:hover,.thumbnail.active{border-color:var(--vermelho)}
 .main-image{width:100%;height:590px;background:var(--cinza);display:flex;justify-content:center;align-items:center;overflow:hidden}
-.main-image img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
+.main-image img{width:100%;height:100%;object-fit:cover}
 .product-info{padding-top:8px}
 .product-category{color:var(--vermelho);font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
 .product-info h1{font-size:clamp(30px,3.5vw,48px);font-weight:950;text-transform:uppercase;line-height:1;letter-spacing:-2px;margin-bottom:18px}
@@ -221,9 +199,9 @@ main{padding-top:90px}
 .payment-info{color:var(--cinza-texto);font-size:12px;line-height:1.8}
 .details-link{display:inline-block;margin:18px 0 25px;font-size:12px;text-decoration:underline}
 .field-label{font-size:12px;font-weight:800;margin-bottom:10px}
-.sizes{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
-.size-button{min-width:42px;height:38px;padding:0 10px;border:1px solid #ccc;background:white;font-size:11px;font-weight:800;transition:.2s}
-.size-button:hover,.size-button.active{background:var(--preto);color:white;border-color:var(--preto)}
+.colors, .sizes{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.color-button, .size-button{min-width:48px;height:38px;padding:0 12px;border:1px solid #ccc;background:white;font-size:11px;font-weight:800;transition:.2s;cursor:pointer;}
+.color-button:hover,.color-button.active,.size-button:hover,.size-button.active{background:var(--preto);color:white;border-color:var(--preto)}
 .stock-warning{color:var(--vermelho);font-size:11px;font-weight:bold;margin-bottom:12px}
 .buy-row{display:grid;grid-template-columns:130px 1fr;gap:10px;height:50px;margin-bottom:25px}
 .quantity{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--borda);padding:0 10px}
@@ -272,71 +250,72 @@ footer{background:white;padding:80px 0 25px;border-top:1px solid #eee;position:r
 .footer-column a:hover{color:var(--vermelho);transform:translateX(4px)}
 .footer-bottom{position:relative;z-index:1;display:flex;justify-content:space-between;gap:20px;padding-top:22px;color:#666;font-size:10px;font-weight:bold;letter-spacing:1px;text-transform:uppercase}
 
+/* CARRINHO DRAWER */
+.overlay{position:fixed;inset:0;background:#0009;z-index:1000;opacity:0;visibility:hidden;transition:.25s}
+.overlay.open{opacity:1;visibility:visible}
+.drawer{position:fixed;right:0;top:0;height:100%;width:min(430px,100%);background:#fff;color:#1b1b1b;z-index:1001;padding:25px;transform:translateX(100%);transition:.3s;display:flex;flex-direction:column}
+.drawer.open{transform:translateX(0)}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ddd;padding-bottom:18px}
+.drawer-head h3{font-size:16px;font-weight:900;text-transform:uppercase}
+.close{background:none;color:#111;font-size:27px;cursor:pointer}
+.cart-items{overflow:auto;flex:1}
+.cart-row{display:grid;grid-template-columns:70px 1fr auto;gap:13px;padding:17px 0;border-bottom:1px solid #eee;font-size:12px}
+.cart-row img{width:70px;height:78px;object-fit:cover;background:#eee}
+.cart-row strong{display:block;margin:6px 0}
+.qty{display:flex;align-items:center;gap:8px;margin-top:8px}
+.qty button{border:1px solid #ddd;background:#fff;width:24px;height:24px}
+.cart-total{border-top:1px solid #ddd;padding-top:18px}
+.total-line{display:flex;justify-content:space-between;font-weight:900;margin-bottom:15px}
+.checkout-btn{width:100%;background:var(--vermelho);color:#fff;padding:15px;font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
+.checkout-btn:hover{background:#e60000}
+.empty{color:#777;text-align:center;padding:45px 0;font-size:13px}
+
+/* MODAL DE CHECKOUT SIMULADO */
+.checkout-modal{position:fixed;inset:0;z-index:10002;background:rgba(0,0,0,0.8);display:grid;place-items:center;opacity:0;visibility:hidden;transition:0.3s ease;padding:20px}
+.checkout-modal.open{opacity:1;visibility:visible}
+.checkout-box{background:#fff;color:#1b1b1b;width:min(600px,100%);max-height:90vh;overflow-y:auto;padding:30px;position:relative;box-shadow:0 25px 60px rgba(0,0,0,0.3)}
+.checkout-box h2{font-size:20px;font-weight:900;text-transform:uppercase;margin-bottom:20px;border-bottom:2px solid #111;padding-bottom:10px}
+.checkout-group{margin-bottom:15px}
+.checkout-group label{display:block;font-size:11px;font-weight:800;text-transform:uppercase;margin-bottom:6px;color:#444}
+.checkout-group input{width:100%;padding:12px;border:1px solid #ccc;font:inherit;font-size:13px}
+.checkout-row{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.payment-methods{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:15px 0}
+.pay-option{padding:12px;border:2px solid #ddd;background:#fff;text-align:center;font-size:11px;font-weight:900;text-transform:uppercase;cursor:pointer;transition:0.2s}
+.pay-option.active{border-color:var(--vermelho);color:var(--vermelho);background:#fff5f5}
+.checkout-submit{width:100%;background:#111;color:#fff;padding:16px;font-size:12px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;margin-top:15px;cursor:pointer;transition:0.2s}
+.checkout-submit:hover{background:var(--vermelho)}
+.checkout-close{position:absolute;top:20px;right:20px;background:none;font-size:24px;cursor:pointer}
+
 /* NOTIFICAÇÃO */
 .toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,20px);opacity:0;padding:15px 22px;background:var(--preto);color:white;border-left:4px solid var(--vermelho);font-size:12px;z-index:2000;transition:.3s;pointer-events:none}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
 /* RESPONSIVIDADE */
-@media(max-width:1050px){
- .nav-links{gap:17px}.nav-links a{font-size:10px}
- .product-layout{gap:35px}.main-image{height:500px}
+@media(max-width:950px){
+ .product-layout{grid-template-columns:1fr;gap:35px}
+ .gallery{position:static;grid-template-columns:1fr}
+ .thumbnails{flex-direction:row;order:2}
+ .main-image{height:420px}
  .products-grid{grid-template-columns:repeat(2,1fr)}
- .footer-top{grid-template-columns:1fr 1fr 1fr}
- .footer-brand{grid-column:1/-1}
 }
+
 @media(max-width:850px){
- .navbar {
-     width: min(calc(100% - 30px), var(--largura));
- }
- .nav-left {
-     gap: 15px;
- }
+ .navbar { width: min(calc(100% - 30px), var(--largura)); }
  .menu-toggle{display:grid}
- .nav-links{display:none;position:fixed;top:90px;left:0;right:0;transform:none;width:100%;margin:0;padding:25px 30px;flex-direction:column;align-items:flex-start;gap:18px;background:#fff;box-shadow:0 18px 35px rgba(0,0,0,.12);border-top:1px solid #eee}
+ .nav-links{display:none;position:fixed;top:90px;left:0;right:0;width:100%;padding:25px 30px;flex-direction:column;background:#fff;border-top:1px solid #eee}
  .nav-links.open{display:flex}
- .nav-links a{width:100%;padding:15px 0;border-bottom:1px solid #eee;color:#000}
- .nav-links:hover a{color:#9c9c9c}
- .nav-links:hover a:hover{color:var(--vermelho)}
- .nav-right{margin-left:auto;margin-right:10px}
-}
-@media(max-width:650px){
- .container{width:92%}.navbar{width:92%;height:80px}
- .site-header{height:80px}.brand img{width:64px;height:64px}
- .nav-links{top:80px}main{padding-top:80px}
- .product-layout{grid-template-columns:1fr;gap:25px;padding-bottom:60px}
- .gallery{position:static;grid-template-columns:62px 1fr;gap:10px}
- .thumbnail{width:62px;height:72px}
- .main-image{height:95vw;max-height:480px}
- .product-info h1{font-size:34px}
- .buy-row{grid-template-columns:115px 1fr}
- .related{padding:60px 0}.products-grid{gap:12px}
- .product-card img{height:190px}.card-info{padding:12px}
- .footer-top{grid-template-columns:1fr 1fr;gap:35px 25px}
- .footer-brand{grid-column:1/-1}.footer-bottom{flex-direction:column}
- .footer-watermark{font-size:145px;right:-35px;bottom:-25px}
+ .footer-top{grid-template-columns:1fr 1fr}
 }
 
-/* =========================================================
-   MENU DE CONTA — AUTENTICAÇÃO
-========================================================= */
-.account-wrapper{position:relative;display:flex;align-items:center;}
-.account-button{appearance:none;border:0;background:transparent;cursor:pointer;}
-.account-menu{position:absolute;top:calc(100% + 14px);right:0;width:min(320px,calc(100vw - 30px));padding:22px;background:#fff;color:#111;border:1px solid #e5e5e5;box-shadow:0 20px 55px rgba(0,0,0,.16);z-index:10000;animation:accountMenuIn .2s ease both;}
-.account-menu::before{content:"";position:absolute;top:-6px;right:17px;width:11px;height:11px;background:#fff;border-left:1px solid #e5e5e5;border-top:1px solid #e5e5e5;transform:rotate(45deg);}
-.account-menu-header{display:grid;gap:5px;padding-bottom:17px;border-bottom:1px solid #ededed;}
-.account-menu-kicker{color:#ff0000;font-size:10px;font-weight:900;letter-spacing:2px;}
-.account-menu-header strong{font-size:20px;line-height:1.15;letter-spacing:-.5px;overflow-wrap:anywhere;}
-.account-menu-header>span:last-child{color:#777;font-size:12px;overflow-wrap:anywhere;}
-.account-menu-status{margin:16px 0;padding:10px 12px;background:#f5f5f5;color:#555;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;}
-.account-menu-status.verified{color:#111;}
-.account-menu-actions{display:grid;gap:8px;}
-.account-menu-action{width:100%;min-height:42px;display:flex;align-items:center;justify-content:center;padding:11px 15px;border:1px solid #111;background:#111;color:#fff;font-size:10px;font-weight:900;letter-spacing:1.5px;text-decoration:none;cursor:pointer;transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease;}
-.account-menu-action:hover{background:#ff0000;border-color:#ff0000;color:#000;transform:translateY(-1px);}
-.account-menu-logout{background:#fff;color:#111;}
-.account-menu-action:disabled{opacity:.6;cursor:wait;transform:none;}
-@keyframes accountMenuIn{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
-@media(max-width:520px){.account-menu{right:-8px;}}
+@media(max-width:520px){
+ .products-grid{grid-template-columns:1fr}
+ .footer-top{grid-template-columns:1fr}
+}
 
+/* MENU DE CONTA */
+.account-wrapper{position:relative;display:flex;align-items:center}
+.account-button{appearance:none;border:0;background:transparent;cursor:pointer}
+.account-menu{position:absolute;top:calc(100% + 14px);right:0;width:min(320px,calc(100vw - 30px));padding:22px;background:#fff;color:#111;border:1px solid #e5e5e5;box-shadow:0 20px 55px rgba(0,0,0,.16);z-index:10000}
 </style>
 </head>
 
@@ -344,17 +323,8 @@ footer{background:white;padding:80px 0 25px;border-top:1px solid #eee;position:r
 <header class="site-header" id="siteHeader">
 <nav class="navbar">
  <div class="nav-left">
-  <button
-      class="menu-toggle"
-      id="menuToggle"
-      aria-label="Abrir menu"
-      aria-expanded="false"
-  >
-      <div>
-          <span></span>
-          <span></span>
-          <span></span>
-      </div>
+  <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+      <div><span></span><span></span><span></span></div>
   </button>
   <a href="index.html" class="brand"><img src="Imagens/logo-dragon.png" alt="Dread Wyrm Esports"></a>
   <div class="nav-links" id="navLinks">
@@ -362,43 +332,22 @@ footer{background:white;padding:80px 0 25px;border-top:1px solid #eee;position:r
    <a href="sobrenos.html">Sobre nós</a>
    <a href="times.html">Times</a>
    <a href="loja.html" class="active">Loja</a>
-   <a href="index.html#contact">Contato</a>
+   <a href="contato.html">Contato</a>
   </div>
  </div>
  <div class="nav-right">
   <div class="account-wrapper" id="accountWrapper">
-   <button
-     type="button"
-     class="nav-login account-button"
-     id="accountButton"
-     aria-label="Entrar ou criar conta"
-     title="Entrar ou criar conta"
-     aria-expanded="false"
-     aria-controls="accountMenu"
-   >
-     <img
-         class="account-icon account-icon-default"
-         src="Imagens/iconelogin.png"
-         alt=""
-         aria-hidden="true"
-     >
-     <img
-         class="account-icon account-icon-hover"
-         src="Imagens/iconelogin2.png"
-         alt=""
-         aria-hidden="true"
-     >
+   <button type="button" class="nav-login account-button" id="accountButton" aria-label="Entrar ou criar conta">
+     <img class="account-icon account-icon-default" src="Imagens/iconelogin.png" alt="" aria-hidden="true">
+     <img class="account-icon account-icon-hover" src="Imagens/iconelogin2.png" alt="" aria-hidden="true">
    </button>
-
    <div class="account-menu" id="accountMenu" hidden>
      <div class="account-menu-header">
        <span class="account-menu-kicker">MINHA CONTA</span>
        <strong id="accountMenuName">Verificando conta...</strong>
        <span id="accountMenuEmail">Aguarde um momento.</span>
      </div>
-
      <div class="account-menu-status" id="accountMenuStatus">VERIFICANDO SESSÃO</div>
-
      <div class="account-menu-actions">
        <a href="login.html" class="account-menu-action" id="accountMenuLogin">ENTRAR</a>
        <a href="login.html" class="account-menu-action" id="accountMenuAccount" hidden>MINHA CONTA</a>
@@ -406,11 +355,7 @@ footer{background:white;padding:80px 0 25px;border-top:1px solid #eee;position:r
      </div>
    </div>
   </div>
-  <button
-      class="nav-icon"
-      id="cartButton"
-      aria-label="Abrir carrinho"
-  >
+  <button class="nav-icon" id="cartButton" aria-label="Abrir carrinho">
       <svg viewBox="0 0 24 24">
           <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2Zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2ZM6.2 6l.9 2h11.8l-2 7H8L4.3 3H1V1h4.7l.9 3H23l-2.8 11.2A2.5 2.5 0 0 1 17.8 17H8a2.5 2.5 0 0 1-1.8-1.2L2.5 6h3.7Z"/>
       </svg>
@@ -425,34 +370,31 @@ footer{background:white;padding:80px 0 25px;border-top:1px solid #eee;position:r
  <div class="breadcrumb">
   <a href="index.html">Início</a> &nbsp; › &nbsp;
   <a href="loja.html">Loja</a> &nbsp; › &nbsp;
-  <span id="breadcrumbProduct">Camisa Oficial Dread Wyrm</span>
+  <span id="breadcrumbProduct">Jersey Dread Wyrm KIC 2026</span>
  </div>
 
  <section class="product-layout">
   <div class="gallery">
-   <div class="thumbnails">
-    <img class="thumbnail active" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=500&q=85" data-large="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=90" alt="Frente do produto">
-    <img class="thumbnail" src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=500&q=85" data-large="https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=1200&q=90" alt="Detalhe do produto">
-   </div>
-   <div class="main-image"><img id="mainImage" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=90" alt="Produto Dread Wyrm"></div>
+   <div class="thumbnails" id="thumbnailsContainer"></div>
+   <div class="main-image"><img id="mainImage" src="" alt="Produto Dread Wyrm"></div>
   </div>
 
   <div class="product-info">
-   <div class="product-category" id="productCategory">Dread Wyrm Esports / Coleção oficial</div>
-   <h1 id="productName">Camisa Oficial Dread Wyrm</h1>
-   <div class="product-price" id="productPrice">R$ 129,90</div>
-   <div class="payment-info" id="paymentInfo">Até 2x de R$ 64,95 sem juros<br>Consulte as condições de pagamento no checkout.</div>
+   <div class="product-category" id="productCategory">Dread Wyrm Esports / Uniformes</div>
+   <h1 id="productName">Jersey Dread Wyrm KIC 2026</h1>
+   <div class="product-price" id="productPrice">R$ 239,99</div>
+   <div class="payment-info" id="paymentInfo">Até 2x sem juros<br>Consulte as condições de pagamento no checkout.</div>
    <a href="#descricao" class="details-link">↓ Ver descrição e detalhes</a>
 
-   <div class="field-label">Tamanho: <span id="selectedSize">M</span></div>
-   <div class="sizes">
-    <button class="size-button" data-size="P">P</button>
-    <button class="size-button active" data-size="M">M</button>
-    <button class="size-button" data-size="G">G</button>
-    <button class="size-button" data-size="GG">GG</button>
-    <button class="size-button" data-size="XG">XG</button>
-   </div>
-   <div class="stock-warning">Produto demonstrativo — disponibilidade a confirmar.</div>
+   <!-- SELETOR DE COR -->
+   <div class="field-label" id="colorFieldLabel">Cor / Variação: <span id="selectedColor">Selecione</span></div>
+   <div class="colors" id="colorsContainer"></div>
+
+   <!-- SELETOR DE TAMANHO OU KIT DE PARES -->
+   <div class="field-label" id="sizeFieldLabel"><span id="sizeTitleText">Tamanho</span>: <span id="selectedSize">M</span></div>
+   <div class="sizes" id="sizesContainer"></div>
+
+   <div class="stock-warning">Produto oficial Dread Wyrm Esports.</div>
 
    <div class="buy-row">
     <div class="quantity">
@@ -470,18 +412,18 @@ footer{background:white;padding:80px 0 25px;border-top:1px solid #eee;position:r
     <h2>Descrição do produto</h2>
     <p id="descriptionIntro"><strong>Vista as cores da Dread Wyrm Esports.</strong> Uma peça para representar a equipe dentro e fora dos servidores.</p>
     <p><strong>Características:</strong></p>
-    <p id="descriptionSpecs">Modelagem: camiseta clássica.<br>Cor: conforme variação apresentada nas imagens.<br>Estampa: identidade visual Dread Wyrm.<br>Composição e gramatura: confirmar com o fornecedor antes da publicação final.</p>
+    <p id="descriptionSpecs">Modelagem oficial de alta performance.<br>Cor: conforme a variação escolhida.<br>Estampa: identidade visual Dread Wyrm.</p>
     <p><strong>Cuidados:</strong> seguir as instruções de lavagem da etiqueta para preservar o tecido e a estampa.</p>
 
-    <h2 style="margin-top:30px">Guia de tamanhos</h2>
+    <h2 id="measurementsTitle" style="margin-top:30px">Guia de tamanhos</h2>
     <table class="measurements">
      <thead><tr><th>Tamanho</th><th>Tórax</th><th>Comprimento</th></tr></thead>
      <tbody>
-      <tr><td>P</td><td>A confirmar</td><td>A confirmar</td></tr>
-      <tr><td>M</td><td>A confirmar</td><td>A confirmar</td></tr>
-      <tr><td>G</td><td>A confirmar</td><td>A confirmar</td></tr>
-      <tr><td>GG</td><td>A confirmar</td><td>A confirmar</td></tr>
-      <tr><td>XG</td><td>A confirmar</td><td>A confirmar</td></tr>
+      <tr><td>P</td><td>52 cm</td><td>70 cm</td></tr>
+      <tr><td>M</td><td>54 cm</td><td>72 cm</td></tr>
+      <tr><td>G</td><td>56 cm</td><td>74 cm</td></tr>
+      <tr><td>GG</td><td>58 cm</td><td>76 cm</td></tr>
+      <tr><td>XG</td><td>60 cm</td><td>78 cm</td></tr>
      </tbody>
     </table>
     <p class="measure-note">Confira as medidas com atenção antes de concluir seu pedido.</p>
@@ -495,24 +437,7 @@ footer{background:white;padding:80px 0 25px;border-top:1px solid #eee;position:r
 <div class="container">
  <div class="section-label">Complete seu kit</div>
  <h2 class="section-title">Produtos relacionados<span>.</span></h2>
- <div class="products-grid">
-  <article class="product-card" data-product-id="camisa-pro-player">
-   <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=700&q=85" alt="Camisa Pro Player">
-   <div class="card-info"><div class="card-name">Camisa DWY Pro Player</div><div class="card-price">R$ 149,90</div><a href="produto.html?id=camisa-pro-player" class="card-button">Ver produto</a></div>
-  </article>
-  <article class="product-card" data-product-id="moletom-dwy">
-   <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=85" alt="Moletom Dread Wyrm">
-   <div class="card-info"><div class="card-name">Moletom Dread Wyrm</div><div class="card-price">R$ 229,90</div><a href="produto.html?id=moletom-dwy" class="card-button">Ver produto</a></div>
-  </article>
-  <article class="product-card" data-product-id="mousepad-dwy">
-   <img src="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=700&q=85" alt="Mousepad gamer">
-   <div class="card-info"><div class="card-name">Mousepad DWY</div><div class="card-price">R$ 54,99</div><a href="produto.html?id=mousepad-dwy" class="card-button">Ver produto</a></div>
-  </article>
-  <article class="product-card" data-product-id="bone-dwy">
-   <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=700&q=85" alt="Boné DWY">
-   <div class="card-info"><div class="card-name">Boné DWY</div><div class="card-price">R$ 69,90</div><a href="produto.html?id=bone-dwy" class="card-button">Ver produto</a></div>
-  </article>
- </div>
+ <div class="products-grid" id="relatedGrid"></div>
 </div>
 </section>
 </main>
@@ -523,27 +448,164 @@ footer{background:white;padding:80px 0 25px;border-top:1px solid #eee;position:r
  <div class="footer-top">
   <div class="footer-brand"><img src="Imagens/logo-dragon.png" class="footer-logo" alt="Dread Wyrm Esports"><p class="footer-description">A Dread Wyrm Esports é uma organização de esports focada em competição, performance, identidade e construção de comunidade.</p></div>
   <div class="footer-column"><h4>Navegação</h4><a href="index.html">Início</a><a href="sobrenos.html">Sobre nós</a><a href="times.html">Times</a><a href="loja.html">Loja</a></div>
-  <div class="footer-column"><h4>Loja</h4><a href="loja.html">Todos os produtos</a><a href="loja.html">Vestuário</a><a href="loja.html">Acessórios</a></div>
-  <div class="footer-column"><h4>Atendimento</h4><a href="index.html#contact">Contato</a></div>
+  <div class="footer-column"><h4>Loja</h4><a href="loja.html">Todos os produtos</a><a href="loja.html">Uniformes</a><a href="loja.html">Acessórios</a></div>
+  <div class="footer-column"><h4>Atendimento</h4><a href="contato.html">Contato</a></div>
  </div>
  <div class="footer-bottom"><span>© 2026 Dread Wyrm Esports. Todos os direitos reservados.</span><span>Competição · Comunidade · Performance</span></div>
 </div>
 </footer>
 
+<!-- CARRINHO DRAWER -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Carrinho de compras">
+    <div class="drawer-head">
+        <h3>Seu carrinho</h3>
+        <button class="close" id="closeCart" aria-label="Fechar">×</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+        <div class="empty">Seu carrinho está vazio.</div>
+    </div>
+    <div class="cart-total">
+        <div class="total-line">
+            <span>Subtotal</span>
+            <span id="cartTotal">R$ 0,00</span>
+        </div>
+        <button class="checkout-btn" id="checkoutBtn">Finalizar pedido</button>
+    </div>
+</aside>
+
+<!-- MODAL DE CHECKOUT -->
+<div class="checkout-modal" id="checkoutModal">
+    <div class="checkout-box">
+        <button class="checkout-close" id="closeCheckoutModal">×</button>
+        <h2>Checkout / Simulação de Pedido</h2>
+        <form id="checkoutForm">
+            <div class="checkout-group">
+                <label>Nome Completo</label>
+                <input type="text" id="custName" required placeholder="Digite seu nome">
+            </div>
+            <div class="checkout-row">
+                <div class="checkout-group">
+                    <label>CEP</label>
+                    <input type="text" id="custCep" required placeholder="00000-000">
+                </div>
+                <div class="checkout-group">
+                    <label>Cidade / Estado</label>
+                    <input type="text" id="custCity" required placeholder="Ex: São Paulo - SP">
+                </div>
+            </div>
+            <div class="checkout-group">
+                <label>Endereço de Entrega (Rua, Número e Bairro)</label>
+                <input type="text" id="custAddress" required placeholder="Rua Exemplo, 123 - Bairro">
+            </div>
+            
+            <div class="checkout-group">
+                <label>Forma de Pagamento</label>
+                <div class="payment-methods">
+                    <div class="pay-option active" data-method="pix">Pix (Aprovação imediata)</div>
+                    <div class="pay-option" data-method="cartao">Cartão de Crédito</div>
+                </div>
+            </div>
+
+            <div id="pixInfo" style="background:#f9f9f9; padding:15px; margin-bottom:15px; font-size:12px; border-left:3px solid var(--vermelho);">
+                <strong>Chave Pix Copia e Cola:</strong><br>
+                <span style="font-family:monospace; color:#555;">dwy-esports-checkout-pix-simulacao-2026@dwy.com</span>
+            </div>
+
+            <button type="submit" class="checkout-submit">Confirmar e Concluir Pedido</button>
+        </form>
+    </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
-/* CATÁLOGO COMPARTILHADO COM loja.html */
 const CART_KEY='dwy_cart';
 const products={
- 'camisa-oficial':{name:'Camisa Oficial Dread Wyrm',price:129.90,category:'Camisas / Coleção oficial',image:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=90',thumb:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=500&q=85',sizes:['P','M','G','GG','XG']},
- 'camisa-pro-player':{name:'Camisa DWY Pro Player',price:149.90,category:'Camisas / Linha Pro Player',image:'https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=1200&q=90',thumb:'https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=500&q=85',sizes:['P','M','G','GG','XG']},
- 'moletom-dwy':{name:'Moletom Dread Wyrm',price:229.90,category:'Vestuário / Coleção oficial',image:'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1200&q=90',thumb:'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=500&q=85',sizes:['P','M','G','GG','XG']},
- 'mousepad-dwy':{name:'Mousepad DWY',price:54.99,category:'Acessórios / Setup gamer',image:'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=1200&q=90',thumb:'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=500&q=85',sizes:[]},
- 'caneca-dwy':{name:'Caneca Dread Wyrm',price:39.90,category:'Acessórios / Coleção oficial',image:'https://images.unsplash.com/photo-1514228742587-6b1558f67993?auto=format&fit=crop&w=1200&q=90',thumb:'https://images.unsplash.com/photo-1514228742587-6b1558f67993?auto=format&fit=crop&w=500&q=85',sizes:[]},
- 'bone-dwy':{name:'Boné DWY',price:69.90,category:'Acessórios / Coleção oficial',image:'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=1200&q=90',thumb:'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=500&q=85',sizes:['Único']},
- 'chaveiro-dwy':{name:'Chaveiro Dread Wyrm',price:19.90,category:'Colecionáveis / Coleção oficial',image:'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&w=1200&q=90',thumb:'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&w=500&q=85',sizes:[]},
- 'poster-dwy':{name:'Pôster Dread Wyrm',price:29.90,category:'Colecionáveis / Coleção oficial',image:'https://images.unsplash.com/photo-1580136579312-94651dfd596d?auto=format&fit=crop&w=1200&q=90',thumb:'https://images.unsplash.com/photo-1580136579312-94651dfd596d?auto=format&fit=crop&w=500&q=85',sizes:[]}
+ 'uniformekic2026-dwy':{
+     name:'Jersey Dread Wyrm KIC 2026',
+     price:239.99,
+     category:'Uniformes / Edição Limitada',
+     colors:[
+         {name:'Vermelha/Preta (Polo)', img:'Imagens/uniforme2polo.png'},
+         {name:'Branco Oficial', img:'Imagens/uniformebranco.png'}
+     ],
+     sizes:['P','M','G','GG','XG']
+ },
+ 'uniforme-2026':{
+     name:'Jersey 2026',
+     price:219.99,
+     category:'Uniformes / Oficiais',
+     colors:[
+         {name:'Branco', img:'Imagens/uniformebranco.png'},
+         {name:'Preto', img:'Imagens/uniformepreto.png'}
+     ],
+     sizes:['P','M','G','GG','XG']
+ },
+ 'cortavento-dwy':{
+     name:'Corta Vento',
+     price:299.99,
+     category:'Uniformes / Casacos',
+     colors:[
+         {name:'Branco', img:'Imagens/cortaventobranco.png'},
+         {name:'Preto', img:'Imagens/cortaventopreto.png'}
+     ],
+     sizes:['P','M','G','GG','XG']
+ },
+ 'calca-dwy':{
+     name:'Calça Uniforme DWY',
+     price:139.99,
+     category:'Uniformes / Calças',
+     colors:[
+         {name:'Preto', img:'Imagens/calcamoletompreto.png'},
+         {name:'Branco', img:'Imagens/calcamoletombranco.png'}
+     ],
+     sizes:['P','M','G','GG','XG']
+ },
+ 'caneca-dwy':{
+     name:'Par de Meias DWY',
+     price:49.99,
+     category:'Acessórios / Outros',
+     optionLabel:'Quantidade de Pares',
+     colors:[
+         {name:'Preto', img:'Imagens/meiaspretas.png'},
+         {name:'Branco', img:'Imagens/meiasbrancas.png'}
+     ],
+     sizes:[
+         {label:'2x Pares', price:49.99},
+         {label:'4x Pares', price:89.99},
+         {label:'8x Pares', price:159.99}
+     ]
+ },
+ 'mousesparta-dwy':{
+     name:'Mouse Tri-Mode SPARTA x DWY K230',
+     price:129.99,
+     category:'Acessórios / Setup',
+     colors:[
+         {name:'Branco', img:'Imagens/mousebranco.png'},
+         {name:'Vermelho', img:'Imagens/mousevermelho.png'}
+     ],
+     sizes:[]
+ },
+ 'tecladosparta-dwy':{
+     name:'Teclado SPARTA x DWY K945 60/75% RGB',
+     price:159.99,
+     category:'Acessórios / Setup',
+     colors:[
+         {name:'Vermelho', img:'Imagens/tecladovermelho.png'},
+         {name:'Branco', img:'Imagens/tecladobranco.png'}
+     ],
+     sizes:[]
+ },
+ 'mousepad-dwy':{
+     name:'Mousepad DWY',
+     price:54.99,
+     category:'Acessórios / Setup',
+     colors:[
+         {name:'Padrão', img:'Imagens/mousepad.png'}
+     ],
+     sizes:[]
+ }
 };
 
 const money=value=>Number(value).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
@@ -561,76 +623,250 @@ function showToast(message){
  window.dwyToastTimer=setTimeout(()=>toast.classList.remove('show'),2600);
 }
 
+/* CONTROLE DO DRAWER E CHECKOUT */
+const drawer=document.getElementById('drawer');
+const overlay=document.getElementById('overlay');
+const checkoutModal=document.getElementById('checkoutModal');
+
+function openCart() { renderCart(); drawer.classList.add('open'); overlay.classList.add('open'); }
+function closeCart() { drawer.classList.remove('open'); overlay.classList.remove('open'); }
+
+document.getElementById('cartButton').addEventListener('click', openCart);
+document.getElementById('closeCart').addEventListener('click', closeCart);
+overlay.addEventListener('click', closeCart);
+
+function renderCart(){
+ updateCartCount();
+ const cart = readCart();
+ const total = cart.reduce((sum, item) => sum + Number(item.price) * Number(item.qty), 0);
+ document.getElementById('cartTotal').textContent = money(total);
+
+ const element = document.getElementById('cartItems');
+
+ if (!cart.length) {
+     element.innerHTML = '<div class="empty">Seu carrinho está vazio.</div>';
+     return;
+ }
+
+ element.innerHTML = cart.map((product, index) => `
+     <div class="cart-row">
+         <img src="${product.img}" alt="${product.name}">
+         <div>
+             <strong>${product.name}</strong>
+             ${product.color ? `<small style="display:block;color:#666">Cor: ${product.color}</small>` : ''}
+             ${product.size ? `<small style="display:block;color:#666">Opção: ${product.size}</small>` : ''}
+             <span style="display:block;margin-top:4px;font-weight:bold;">${money(product.price)}</span>
+             <div class="qty">
+                 <button type="button" data-dec="${index}">−</button>
+                 <span>${product.qty}</span>
+                 <button type="button" data-inc="${index}">+</button>
+             </div>
+         </div>
+         <button type="button" class="close" data-del="${index}">×</button>
+     </div>
+ `).join('');
+
+ element.querySelectorAll('[data-inc]').forEach(btn => {
+     btn.onclick = () => {
+         const cart = readCart();
+         cart[Number(btn.dataset.inc)].qty++;
+         writeCart(cart);
+         renderCart();
+     };
+ });
+
+ element.querySelectorAll('[data-dec]').forEach(btn => {
+     btn.onclick = () => {
+         const cart = readCart();
+         const idx = Number(btn.dataset.dec);
+         cart[idx].qty--;
+         if (cart[idx].qty <= 0) cart.splice(idx, 1);
+         writeCart(cart);
+         renderCart();
+     };
+ });
+
+ element.querySelectorAll('[data-del]').forEach(btn => {
+     btn.onclick = () => {
+         const cart = readCart();
+         cart.splice(Number(btn.dataset.del), 1);
+         writeCart(cart);
+         renderCart();
+     };
+ });
+}
+
+document.getElementById('checkoutBtn').addEventListener('click', () => {
+ const cart = readCart();
+ if (!cart.length) {
+     alert('Seu carrinho está vazio!');
+     return;
+ }
+ closeCart();
+ checkoutModal.classList.add('open');
+});
+
+document.getElementById('closeCheckoutModal').addEventListener('click', () => {
+ checkoutModal.classList.remove('open');
+});
+
+document.querySelectorAll('.pay-option').forEach(opt => {
+ opt.addEventListener('click', () => {
+     document.querySelectorAll('.pay-option').forEach(o => o.classList.remove('active'));
+     opt.classList.add('active');
+ });
+});
+
+document.getElementById('checkoutForm').addEventListener('submit', (e) => {
+ e.preventDefault();
+ const orderId = 'DWY-' + Math.floor(100000 + Math.random() * 900000);
+ alert(`Pedido ${orderId} realizado com sucesso! Obrigado por apoiar a Dread Wyrm Esports.`);
+ writeCart([]);
+ renderCart();
+ checkoutModal.classList.remove('open');
+});
+
 /* PRODUTO SELECIONADO */
 const params=new URLSearchParams(window.location.search);
-const requestedId=params.get('id')||'camisa-oficial';
-const productId=products[requestedId]?requestedId:'camisa-oficial';
+const requestedId=params.get('id')||'uniformekic2026-dwy';
+const productId=products[requestedId]?requestedId:'uniformekic2026-dwy';
 const currentProduct=products[productId];
+
+let activePrice = currentProduct.price;
+
+function updatePriceDisplay(priceValue){
+ activePrice = Number(priceValue);
+ document.getElementById('productPrice').textContent = money(activePrice);
+ document.getElementById('paymentInfo').innerHTML = 'Até 2x de ' + money(activePrice / 2) + ' sem juros<br>Consulte as condições de pagamento no checkout.';
+}
 
 document.title=currentProduct.name+' | Dread Wyrm Esports';
 document.getElementById('productName').textContent=currentProduct.name;
-document.getElementById('productPrice').textContent=money(currentProduct.price);
 document.getElementById('productCategory').textContent='Dread Wyrm Esports / '+currentProduct.category;
 document.getElementById('breadcrumbProduct').textContent=currentProduct.name;
-document.getElementById('paymentInfo').innerHTML='Até 2x de '+money(currentProduct.price/2)+' sem juros<br>Consulte as condições de pagamento no checkout.';
+updatePriceDisplay(currentProduct.price);
 
 const mainImage=document.getElementById('mainImage');
-mainImage.src=currentProduct.image;
-mainImage.alt=currentProduct.name;
+let selectedColorName = currentProduct.colors[0].name;
+let selectedImg = currentProduct.colors[0].img;
+let selectedSize = '';
 
-/* GALERIA */
-const thumbnails=[...document.querySelectorAll('.thumbnail')];
-if(thumbnails.length){
- thumbnails[0].src=currentProduct.thumb;
- thumbnails[0].dataset.large=currentProduct.image;
- thumbnails[0].alt=currentProduct.name;
- thumbnails[0].classList.add('active');
- if(thumbnails[1]){
-  thumbnails[1].src=currentProduct.thumb;
-  thumbnails[1].dataset.large=currentProduct.image;
-  thumbnails[1].alt=currentProduct.name;
- }
+mainImage.src = selectedImg;
+mainImage.alt = currentProduct.name;
+
+/* CORES / VARIAÇÕES */
+const colorsContainer = document.getElementById('colorsContainer');
+const selectedColorLabel = document.getElementById('selectedColor');
+const colorFieldLabel = document.getElementById('colorFieldLabel');
+
+if(currentProduct.colors.length > 1){
+ colorFieldLabel.style.display = 'block';
+ colorsContainer.style.display = 'flex';
+ colorsContainer.innerHTML = currentProduct.colors.map((c, i) => `
+  <button class="color-button ${i===0?'active':''}" data-color="${c.name}" data-img="${c.img}">${c.name}</button>
+ `).join('');
+ selectedColorLabel.textContent = selectedColorName;
+
+ colorsContainer.querySelectorAll('.color-button').forEach(btn => {
+  btn.addEventListener('click', () => {
+   colorsContainer.querySelectorAll('.color-button').forEach(b => b.classList.remove('active'));
+   btn.classList.add('active');
+   selectedColorName = btn.dataset.color;
+   selectedImg = btn.dataset.img;
+   selectedColorLabel.textContent = selectedColorName;
+   mainImage.src = selectedImg;
+   
+   thumbnails.forEach(thumb => {
+       if(thumb.dataset.large === selectedImg){
+           thumbnails.forEach(t => t.classList.remove('active'));
+           thumb.classList.add('active');
+       }
+   });
+  });
+ });
+} else {
+ selectedColorName = currentProduct.colors[0].name;
+ selectedImg = currentProduct.colors[0].img;
+ colorFieldLabel.style.display = 'none';
+ colorsContainer.style.display = 'none';
 }
-thumbnails.forEach(image=>image.addEventListener('click',()=>{
- thumbnails.forEach(item=>item.classList.remove('active'));
+
+/* MINIATURAS */
+const thumbnailsContainer = document.getElementById('thumbnailsContainer');
+thumbnailsContainer.innerHTML = currentProduct.colors.map((c, i) => `
+ <img class="thumbnail ${i===0?'active':''}" src="${c.img}" data-large="${c.img}" alt="${c.name}">
+`).join('');
+
+const thumbnails = [...thumbnailsContainer.querySelectorAll('.thumbnail')];
+thumbnails.forEach(image => image.addEventListener('click', () => {
+ thumbnails.forEach(item => item.classList.remove('active'));
  image.classList.add('active');
- mainImage.src=image.dataset.large;
+ selectedImg = image.dataset.large;
+ mainImage.src = selectedImg;
+
+ colorsContainer.querySelectorAll('.color-button').forEach(btn => {
+  if(btn.dataset.img === selectedImg){
+   colorsContainer.querySelectorAll('.color-button').forEach(b => b.classList.remove('active'));
+   btn.classList.add('active');
+   selectedColorName = btn.dataset.color;
+   selectedColorLabel.textContent = selectedColorName;
+  }
+ });
 }));
 
-/* TAMANHOS */
-const sizesContainer=document.querySelector('.sizes');
-const sizeLabel=document.querySelector('.field-label');
-let selectedSize='';
-if(currentProduct.sizes.length){
- sizesContainer.innerHTML=currentProduct.sizes.map((size,index)=>`<button class="size-button ${index===0?'active':''}" data-size="${size}">${size}</button>`).join('');
- selectedSize=currentProduct.sizes[0];
- document.getElementById('selectedSize').textContent=selectedSize;
- sizesContainer.querySelectorAll('.size-button').forEach(button=>button.addEventListener('click',()=>{
-  sizesContainer.querySelectorAll('.size-button').forEach(item=>item.classList.remove('active'));
+/* TAMANHOS OU PACOTES DE PARES (COM PREÇO DINÂMICO) */
+const sizesContainer = document.getElementById('sizesContainer');
+const sizeLabel = document.getElementById('sizeFieldLabel');
+const sizeTitleText = document.getElementById('sizeTitleText');
+
+if(currentProduct.sizes && currentProduct.sizes.length){
+ sizesContainer.style.display='flex';
+ sizeLabel.style.display='block';
+ sizeTitleText.textContent = currentProduct.optionLabel || 'Tamanho';
+
+ sizesContainer.innerHTML = currentProduct.sizes.map((sizeItem, index) => {
+     const label = typeof sizeItem === 'object' ? sizeItem.label : sizeItem;
+     const priceAttr = typeof sizeItem === 'object' ? `data-price="${sizeItem.price}"` : '';
+     return `<button class="size-button ${index===0?'active':''}" data-size="${label}" ${priceAttr}>${label}</button>`;
+ }).join('');
+
+ const firstOption = currentProduct.sizes[0];
+ selectedSize = typeof firstOption === 'object' ? firstOption.label : firstOption;
+ document.getElementById('selectedSize').textContent = selectedSize;
+ if(typeof firstOption === 'object' && firstOption.price){
+     updatePriceDisplay(firstOption.price);
+ }
+
+ sizesContainer.querySelectorAll('.size-button').forEach(button => button.addEventListener('click', () => {
+  sizesContainer.querySelectorAll('.size-button').forEach(item => item.classList.remove('active'));
   button.classList.add('active');
-  selectedSize=button.dataset.size;
-  document.getElementById('selectedSize').textContent=selectedSize;
+  selectedSize = button.dataset.size;
+  document.getElementById('selectedSize').textContent = selectedSize;
+
+  if(button.dataset.price){
+      updatePriceDisplay(button.dataset.price);
+  }
  }));
 }else{
  sizesContainer.style.display='none';
  sizeLabel.style.display='none';
 }
 
-/* DESCRIÇÃO DINÂMICA */
-const apparel=['camisa-oficial','camisa-pro-player','moletom-dwy'];
+/* GUIA DE MEDIDAS E DESCRIÇÃO */
+const apparel=['uniformekic2026-dwy','uniforme-2026','cortavento-dwy','calca-dwy'];
 if(apparel.includes(productId)){
  document.getElementById('descriptionIntro').innerHTML='<strong>Vista as cores da Dread Wyrm Esports.</strong> Uma peça para representar a equipe dentro e fora dos servidores.';
- document.getElementById('descriptionSpecs').innerHTML='Modelagem: conforme o produto.<br>Cor: conforme variação apresentada nas imagens.<br>Estampa: identidade visual Dread Wyrm.<br>Composição e gramatura: confirmar com o fornecedor antes da publicação final.';
+ document.getElementById('measurementsTitle').style.display='block';
+ document.querySelector('.measurements').style.display='table';
+ document.querySelector('.measure-note').style.display='block';
 }else{
  document.getElementById('descriptionIntro').innerHTML='<strong>Leve a identidade Dread Wyrm Esports com você.</strong> Um item da coleção oficial para completar sua experiência com a equipe.';
- document.getElementById('descriptionSpecs').innerHTML='Produto: '+currentProduct.name+'.<br>Coleção: Dread Wyrm Esports.<br>Acabamento e materiais: confirmar com o fornecedor antes da publicação final.';
+ document.getElementById('measurementsTitle').style.display='none';
  document.querySelector('.measurements').style.display='none';
  document.querySelector('.measure-note').style.display='none';
- const sizeHeading=document.querySelector('.measurements').previousElementSibling;
- if(sizeHeading)sizeHeading.style.display='none';
 }
 
-/* QUANTIDADE */
+/* QUANTIDADE & COMPRAR */
 let quantity=1;
 const quantityLabel=document.getElementById('quantity');
 document.getElementById('minus').addEventListener('click',()=>{
@@ -640,21 +876,30 @@ document.getElementById('plus').addEventListener('click',()=>{
  quantity=Math.min(10,quantity+1);quantityLabel.textContent=quantity;
 });
 
-/* CARRINHO COMPARTILHADO */
 document.getElementById('buyButton').addEventListener('click',()=>{
  const cart=readCart();
- const item=cart.find(entry=>entry.id===productId&&entry.size===(selectedSize||''));
- if(item)item.qty+=quantity;
- else cart.push({id:productId,name:currentProduct.name,price:currentProduct.price,img:currentProduct.image,qty:quantity,size:selectedSize||''});
+ const item=cart.find(entry=>entry.id===productId&&entry.size===(selectedSize||'')&&entry.color===selectedColorName);
+ if(item){
+     item.qty+=quantity;
+     item.price=activePrice;
+ } else {
+     cart.push({
+         id:productId,
+         name:currentProduct.name,
+         price:activePrice,
+         img:selectedImg,
+         qty:quantity,
+         size:selectedSize||'',
+         color:selectedColorName
+     });
+ }
  writeCart(cart);
- showToast(quantity+' unidade(s) adicionada(s) ao carrinho'+(selectedSize?' — tamanho '+selectedSize:'')+'.');
-});
-document.getElementById('cartButton').addEventListener('click',()=>{
- window.location.href='loja.html#carrinho';
+ showToast(quantity+' unidade(s) adicionada(s) ao carrinho'+(selectedColorName?' — cor: '+selectedColorName:'')+(selectedSize?' — '+selectedSize:'')+'.');
+ openCart();
 });
 updateCartCount();
 
-/* MENU MOBILE */
+/* MENU MOBILE & SCROLL */
 const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
 if(menuToggle && navLinks){
@@ -662,20 +907,13 @@ if(menuToggle && navLinks){
         const isOpen = navLinks.classList.toggle('open');
         menuToggle.setAttribute('aria-expanded', String(isOpen));
     });
-    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        menuToggle.setAttribute('aria-expanded', 'false');
-    }));
 }
 
-/* CABEÇALHO */
 const header = document.getElementById("siteHeader");
-function updateHeader(){
+window.addEventListener('scroll', () => {
     if(!header) return;
     header.classList.toggle('scrolled', window.scrollY > 20);
-}
-window.addEventListener('scroll', updateHeader, { passive: true });
-updateHeader();
+}, { passive: true });
 
 /* COMPARTILHAR */
 document.getElementById('shareButton').addEventListener('click',()=>{
@@ -687,23 +925,25 @@ document.getElementById('shareButton').addEventListener('click',()=>{
 });
 
 /* PRODUTOS RELACIONADOS */
-document.querySelectorAll('.product-card[data-product-id]').forEach(card=>{
- const id=card.dataset.productId;
- const item=products[id];
- if(!item)return;
- const img=card.querySelector('img');
- const title=card.querySelector('.card-name');
- const price=card.querySelector('.card-price');
- const link=card.querySelector('.card-button');
- img.src=item.thumb;
- img.alt=item.name;
- title.textContent=item.name;
- price.textContent=money(item.price);
- link.href='produto.html?id='+encodeURIComponent(id);
-});
+const relatedGrid = document.getElementById('relatedGrid');
+const relatedIds = Object.keys(products).filter(id => id !== productId).slice(0, 4);
+relatedGrid.innerHTML = relatedIds.map(id => {
+ const item = products[id];
+ return `
+  <article class="product-card" data-product-id="${id}">
+   <img src="${item.colors[0].img}" alt="${item.name}">
+   <div class="card-info">
+    <div class="card-name">${item.name}</div>
+    <div class="card-price">${money(item.price)}</div>
+    <a href="produto.html?id=${encodeURIComponent(id)}" class="card-button">Ver produto</a>
+   </div>
+  </article>
+ `;
+}).join('');
 </script>
 
 <script type="module" src="autenticacao/auth-state.js"></script>
+<script type="module" src="bancodedados/firestore.js"></script>
 <script src="autenticacao/account-menu.js"></script>
 </body>
 </html>
