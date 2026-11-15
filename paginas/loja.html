@@ -1417,19 +1417,18 @@
 
         // Carrinho e Storage
         const CART_KEY = 'dwy_cart';
-        let cart = loadCart();
 
         function loadCart() {
             try { return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); } catch (e) { return []; }
         }
 
-        function saveCart() {
+        function saveCart(cart) {
             localStorage.setItem(CART_KEY, JSON.stringify(cart));
             updateCartCount();
         }
 
         function updateCartCount() {
-            const count = cart.reduce((sum, item) => sum + Number(item.qty || 0), 0);
+            const count = loadCart().reduce((sum, item) => sum + Number(item.qty || 0), 0);
             const badge = document.getElementById('cartCount');
             if (badge) badge.textContent = count;
         }
@@ -1483,6 +1482,7 @@
         document.querySelectorAll('.product .add').forEach(button => {
             button.addEventListener('click', (e) => {
                 e.stopPropagation();
+                const cart = loadCart();
                 const product = button.closest('.product');
                 const id = product.dataset.productId;
                 const name = product.dataset.name;
@@ -1493,7 +1493,7 @@
                 if (found) found.qty++;
                 else cart.push({ id, name, price, img: image, qty: 1, size: '', color: '' });
 
-                saveCart();
+                saveCart(cart);
                 renderCart();
                 button.textContent = 'Adicionado ✓';
                 setTimeout(() => button.textContent = 'Adicionar ao carrinho', 1000);
@@ -1510,6 +1510,7 @@
 
         function renderCart() {
             updateCartCount();
+            const cart = loadCart();
             const total = cart.reduce((sum, item) => sum + Number(item.price) * Number(item.qty), 0);
             document.getElementById('cartTotal').textContent = money(total);
             const element = document.getElementById('cartItems');
@@ -1537,24 +1538,35 @@
                 </div>
             `).join('');
 
-            element.querySelectorAll('[data-inc]').forEach(btn => btn.onclick = () => { cart[btn.dataset.inc].qty++; saveCart(); renderCart(); });
+            element.querySelectorAll('[data-inc]').forEach(btn => btn.onclick = () => {
+                const cart = loadCart();
+                cart[btn.dataset.inc].qty++;
+                saveCart(cart);
+                renderCart();
+            });
             element.querySelectorAll('[data-dec]').forEach(btn => {
                 btn.onclick = () => {
+                    const cart = loadCart();
                     const idx = btn.dataset.dec;
                     cart[idx].qty--;
                     if (cart[idx].qty <= 0) cart.splice(idx, 1);
-                    saveCart();
+                    saveCart(cart);
                     renderCart();
                 };
             });
-            element.querySelectorAll('[data-del]').forEach(btn => btn.onclick = () => { cart.splice(btn.dataset.del, 1); saveCart(); renderCart(); });
+            element.querySelectorAll('[data-del]').forEach(btn => btn.onclick = () => {
+                const cart = loadCart();
+                cart.splice(btn.dataset.del, 1);
+                saveCart(cart);
+                renderCart();
+            });
         }
 
         renderCart();
 
-        // Fluxo de Checkout
+        // Fluxo de Checkout (o envio é processado pelo bancodedados/firestore.js)
         document.getElementById('checkout').addEventListener('click', () => {
-            if (!cart.length) {
+            if (!loadCart().length) {
                 alert('Seu carrinho está vazio!');
                 return;
             }
@@ -1571,16 +1583,6 @@
                 document.querySelectorAll('.pay-option').forEach(o => o.classList.remove('active'));
                 opt.classList.add('active');
             });
-        });
-
-        document.getElementById('checkoutForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const orderId = 'DWY-' + Math.floor(100000 + Math.random() * 900000);
-            alert(`Pedido ${orderId} realizado com sucesso! Obrigado por apoiar a Dread Wyrm Esports.`);
-            cart = [];
-            saveCart();
-            renderCart();
-            checkoutModal.classList.remove('open');
         });
     </script>
     <script type="module" src="autenticacao/auth-state.js"></script>

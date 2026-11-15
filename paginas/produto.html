@@ -717,15 +717,6 @@ document.querySelectorAll('.pay-option').forEach(opt => {
  });
 });
 
-document.getElementById('checkoutForm').addEventListener('submit', (e) => {
- e.preventDefault();
- const orderId = 'DWY-' + Math.floor(100000 + Math.random() * 900000);
- alert(`Pedido ${orderId} realizado com sucesso! Obrigado por apoiar a Dread Wyrm Esports.`);
- writeCart([]);
- renderCart();
- checkoutModal.classList.remove('open');
-});
-
 /* PRODUTO SELECIONADO */
 const params=new URLSearchParams(window.location.search);
 const requestedId=params.get('id')||'uniformekic2026-dwy';

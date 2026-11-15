@@ -1,6 +1,9 @@
-import { getApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+
+// URL da sua API na Vercel
+const STRIPE_FUNCTION_URL = "https://dreadwyrm.vercel.app/api/checkout";
 
 // Reutiliza o app do Firebase que já foi inicializado pelo auth-state.js
 const app = getApp();
@@ -30,6 +33,18 @@ function clearCartStorage() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Verifica se o cliente acabou de voltar do pagamento na Stripe
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('pagamento') === 'sucesso') {
+        const pedidoId = urlParams.get('pedido') || '';
+        alert(`Pagamento Pix confirmado! Seu pedido ${pedidoId} foi recebido com sucesso pela Dread Wyrm Esports.`);
+        // Limpa os parâmetros da URL para não repetir o alerta ao atualizar a página
+        window.history.replaceState({}, document.title, window.location.pathname);
+    } else if (urlParams.get('pagamento') === 'cancelado') {
+        alert('O pagamento Pix foi cancelado. Seu pedido continua registrado caso queira tentar novamente.');
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
     const checkoutForm = document.getElementById('checkoutForm');
     if (!checkoutForm) return;
 
@@ -47,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (submitBtn) {
             submitBtn.disabled = true;
-            submitBtn.textContent = 'PROCESSANDO PEDIDO...';
+            submitBtn.textContent = 'GERANDO PIX...';
         }
 
         // Coleta os dados do formulário
@@ -73,23 +88,39 @@ document.addEventListener('DOMContentLoaded', () => {
             total: Number(total.toFixed(2)),
             paymentMethod: paymentMethod,
             createdAt: serverTimestamp(),
-            status: 'Aprovado (Simulação)'
+            status: 'Aguardando Pagamento Pix'
         };
 
         try {
+            // 1. Salva o pedido no Firestore
             const docRef = await addDoc(collection(db, "orders"), orderData);
             const orderId = 'DWY-' + docRef.id.substring(0, 6).toUpperCase();
 
-            alert(`Pedido ${orderId} realizado com sucesso! Obrigado por apoiar a Dread Wyrm Esports.`);
+            // 2. Chama a API da Vercel para criar a sessão de Pix na Stripe
+            const response = await fetch(STRIPE_FUNCTION_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    items: cart,
+                    orderId: orderId,
+                    userEmail: orderData.userEmail,
+                    returnUrl: window.location.origin + window.location.pathname
+                })
+            });
 
+            const data = await response.json();
+
+            if (!response.ok || !data.url) {
+                throw new Error(data.error || 'Erro ao gerar o link de pagamento Pix.');
+            }
+
+            // 3. Limpa o carrinho e redireciona para o Checkout Pix da Stripe
             clearCartStorage();
-            document.getElementById('checkoutModal')?.classList.remove('open');
-            checkoutForm.reset();
+            window.location.href = data.url;
 
         } catch (error) {
-            console.error("Erro ao salvar pedido no Firestore:", error);
-            alert("Não foi possível salvar o pedido no banco de dados. Verifique o console para mais detalhes.");
-        } finally {
+            console.error("Erro no checkout:", error);
+            alert("Erro ao processar o pagamento: " + error.message);
             if (submitBtn) {
                 submitBtn.disabled = false;
                 submitBtn.textContent = originalText;
