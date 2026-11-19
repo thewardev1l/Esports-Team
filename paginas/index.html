@@ -261,7 +261,7 @@ ul{
     gap:8px;
 }
 
-/* Todos os links começam brancos/pretos */
+/* Todos os links começam pretos */
 .nav-links a{
     position:relative;
 
@@ -289,8 +289,7 @@ ul{
     color:#9c9c9c;
 }
 
-/* O link que está recebendo o cursor
- */
+/* O link que está recebendo o cursor */
 .nav-links:hover a.active,
 .nav-links:hover a:hover{
     color:#ff0000;
@@ -300,12 +299,6 @@ ul{
 .nav-links a::after{
     display:none !important;
     content:none !important;
-}
-
-.nav-right{
-    display:flex;
-    align-items:center;
-    gap:8px;
 }
 
 .nav-login{
@@ -495,6 +488,11 @@ ul{
     cursor:pointer;
 
     place-items:center;
+    transition:background .2s ease;
+}
+
+.menu-toggle:hover{
+    background:#ff0000;
 }
 
 .menu-toggle span{
@@ -503,11 +501,23 @@ ul{
     width:18px;
     height:2px;
 
-    background:#1b1b1b;
+    background:#ffffff;
 
     margin:3px 0;
 
     transition:.25s ease;
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(1){
+    transform:translateY(5px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(2){
+    opacity:0;
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(3){
+    transform:translateY(-5px) rotate(-45deg);
 }
 
 
@@ -518,6 +528,7 @@ ul{
 .hero{
     position:relative;
     width:100%;
+    padding-top:90px;
     overflow:hidden;
     background:#000;
 }
@@ -1573,25 +1584,33 @@ ul{
     .nav-links{
         display:none;
 
-        position:absolute;
+        position:fixed;
 
         top:90px;
-        left:15px;
-        right:15px;
+        left:0;
+        right:0;
+
+        transform:none;
+
+        width:100%;
 
         flex-direction:column;
         align-items:flex-start;
 
         gap:0;
 
-        padding:10px 20px 20px;
+        padding:12px 24px 22px;
 
-        background:#1b1b1b;
+        background:#ffffff;
+        color:#000000;
 
         box-shadow:
-            0 20px 40px rgba(0,0,0,.1);
+            0 20px 40px rgba(0,0,0,.14);
 
-        border:1px solid #ddd;
+        border-top:1px solid #eee;
+        border-bottom:1px solid #ddd;
+
+        z-index:9998;
     }
 
     .nav-links.open{
@@ -1600,10 +1619,26 @@ ul{
 
     .nav-links a{
         width:100%;
+        color:#000000;
 
         padding:15px 0;
 
         border-bottom:1px solid #eee;
+    }
+
+    .nav-links a:last-child{
+        border-bottom:0;
+    }
+
+    .nav-links:hover a{
+        color:#000000;
+    }
+
+    .nav-links a.active,
+    .nav-links a:hover,
+    .nav-links:hover a.active,
+    .nav-links:hover a:hover{
+        color:#ff0000;
     }
 
     .menu-toggle{
@@ -1611,8 +1646,7 @@ ul{
     }
 
     .nav-right{
-        margin-left:auto;
-        margin-right:10px;
+        gap:8px;
     }
 
     .nav-social{
@@ -1785,7 +1819,7 @@ ul{
 @media(max-width:520px){
 
     .nav-right{
-        gap:0;
+        gap:4px;
     }
 
     .brand img{
@@ -1799,6 +1833,7 @@ ul{
 
     .nav-links{
         top:80px;
+        padding:12px 20px 20px;
     }
 
     .hero{
@@ -3217,97 +3252,114 @@ ul{
 
         <div class="nav-right">
 
-    <div class="account-wrapper" id="accountWrapper">
+            <div class="account-wrapper" id="accountWrapper">
 
-    <button
-        type="button"
-        class="nav-login account-button"
-        id="accountButton"
-        aria-label="Entrar ou criar conta"
-        title="Entrar ou criar conta"
-        aria-expanded="false"
-        aria-controls="accountMenu"
-    >
-        <img
-                class="account-icon account-icon-default"
-                src="Imagens/iconelogin.png"
-                alt=""
-                aria-hidden="true"
-            >
-            <img
-                class="account-icon account-icon-hover"
-                src="Imagens/iconelogin2.png"
-                alt=""
-                aria-hidden="true"
-            >
-    </button>
+                <button
+                    type="button"
+                    class="nav-login account-button"
+                    id="accountButton"
+                    aria-label="Entrar ou criar conta"
+                    title="Entrar ou criar conta"
+                    aria-expanded="false"
+                    aria-controls="accountMenu"
+                >
+                    <img
+                        class="account-icon account-icon-default"
+                        src="Imagens/iconelogin.png"
+                        alt=""
+                        aria-hidden="true"
+                    >
+                    <img
+                        class="account-icon account-icon-hover"
+                        src="Imagens/iconelogin2.png"
+                        alt=""
+                        aria-hidden="true"
+                    >
+                </button>
 
-    <div
-        class="account-menu"
-        id="accountMenu"
-        hidden
-    >
+                <div
+                    class="account-menu"
+                    id="accountMenu"
+                    hidden
+                >
 
-        <div class="account-menu-header">
+                    <div class="account-menu-header">
 
-            <span class="account-menu-kicker">
-                MINHA CONTA
-            </span>
+                        <span class="account-menu-kicker">
+                            MINHA CONTA
+                        </span>
 
-            <strong id="accountMenuName">
-                Verificando conta...
-            </strong>
+                        <strong id="accountMenuName">
+                            Verificando conta...
+                        </strong>
 
-            <span id="accountMenuEmail">
-                Aguarde um momento.
-            </span>
+                        <span id="accountMenuEmail">
+                            Aguarde um momento.
+                        </span>
 
-        </div>
-
-
-        <div
-            class="account-menu-status"
-            id="accountMenuStatus"
-        >
-            VERIFICANDO SESSÃO
-        </div>
+                    </div>
 
 
-        <div class="account-menu-actions">
-
-            <a
-                href="login.html"
-                class="account-menu-action"
-                id="accountMenuLogin"
-            >
-                ENTRAR
-            </a>
+                    <div
+                        class="account-menu-status"
+                        id="accountMenuStatus"
+                    >
+                        VERIFICANDO SESSÃO
+                    </div>
 
 
-            <a
-                href="login.html"
-                class="account-menu-action"
-                id="accountMenuAccount"
-                hidden
-            >
-                MINHA CONTA
-            </a>
+                    <div class="account-menu-actions">
 
+                        <a
+                            href="login.html"
+                            class="account-menu-action"
+                            id="accountMenuLogin"
+                        >
+                            ENTRAR
+                        </a>
+
+
+                        <a
+                            href="login.html"
+                            class="account-menu-action"
+                            id="accountMenuAccount"
+                            hidden
+                        >
+                            MINHA CONTA
+                        </a>
+
+
+                        <button
+                            type="button"
+                            class="account-menu-action account-menu-logout"
+                            id="accountMenuLogout"
+                            hidden
+                        >
+                            SAIR
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
 
             <button
                 type="button"
-                class="account-menu-action account-menu-logout"
-                id="accountMenuLogout"
-                hidden
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Abrir menu"
+                aria-controls="navLinks"
+                aria-expanded="false"
             >
-                SAIR
+                <div>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </button>
 
         </div>
-
-    </div>
-
-</div>
 
     </nav>
 

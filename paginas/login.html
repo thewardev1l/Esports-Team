@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -48,6 +47,7 @@ body{
   background:var(--black);
   color:var(--white);
   min-height:100vh;
+  overflow-x:hidden;
 }
 button,input{font:inherit}
 button{cursor:pointer}
@@ -61,9 +61,13 @@ a{color:inherit;text-decoration:none}
   display:flex;
   align-items:center;
   justify-content:space-between;
+  gap:16px;
   padding:0 max(5%,calc((100% - var(--container))/2));
   position:relative;
   z-index:5;
+}
+.logo{
+  flex-shrink:0;
 }
 .logo img{
   width:70px;
@@ -76,6 +80,7 @@ a{color:inherit;text-decoration:none}
   letter-spacing:1px;
   text-transform:uppercase;
   transition:.25s;
+  white-space:nowrap;
 }
 .back-link:hover{color:var(--red)}
 .back-link span{color:var(--red);margin-right:7px}
@@ -84,9 +89,10 @@ a{color:inherit;text-decoration:none}
 main{
   min-height:calc(100vh - 85px);
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);
 }
 .visual{
+  min-width:0;
   min-height:750px;
   position:relative;
   overflow:hidden;
@@ -114,7 +120,7 @@ main{
   left:-35px;
   bottom:30px;
   color:#ffffff09;
-  font-size:clamp(160px,22vw,310px);
+  font-size:clamp(140px,20vw,310px);
   font-weight:1000;
   letter-spacing:-.12em;
   line-height:1;
@@ -133,9 +139,9 @@ main{
 }
 .visual h1{
   margin-top:35px;
-  font-size:clamp(48px,6vw,85px);
+  font-size:clamp(46px,5.5vw,85px);
   line-height:.88;
-  letter-spacing:-5px;
+  letter-spacing:-4px;
   font-weight:1000;
   text-transform:uppercase;
   max-width:600px;
@@ -151,6 +157,7 @@ main{
 .visual-bottom{
   display:flex;
   align-items:center;
+  flex-wrap:wrap;
   gap:15px;
   color:#888;
   font-size:10px;
@@ -164,10 +171,12 @@ main{
   width:35px;
   height:2px;
   background:var(--red);
+  flex-shrink:0;
 }
 
 /* PAINEL DE AUTENTICAÇÃO */
 .auth-area{
+  min-width:0;
   background:#f7f7f7;
   color:#111;
   display:flex;
@@ -178,6 +187,7 @@ main{
 .auth-box{
   width:100%;
   max-width:440px;
+  min-width:0;
 }
 .auth-kicker{
   color:var(--red);
@@ -265,7 +275,8 @@ main{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:10px;
+  flex-wrap:wrap;
+  gap:10px 14px;
   margin:7px 0 23px;
 }
 .remember{
@@ -280,12 +291,14 @@ main{
   accent-color:var(--red);
   width:14px;
   height:14px;
+  flex-shrink:0;
 }
 .text-button{
   background:none;
   color:var(--red);
   font-size:11px;
   font-weight:800;
+  text-align:left;
 }
 .text-button:hover{text-decoration:underline}
 .submit-button{
@@ -325,6 +338,7 @@ main{
   border-left:3px solid var(--red);
   background:#ffe9e9;
   color:#8b0000;
+  overflow-wrap:anywhere;
 }
 .message.show{display:block}
 .message.success{
@@ -356,13 +370,14 @@ main{
   font-size:20px;
   font-weight:1000;
   text-transform:uppercase;
+  overflow-wrap:anywhere;
 }
 .account-card p{
   color:#777;
   font-size:12px;
   margin-top:8px;
   line-height:1.7;
-  word-break:break-word;
+  overflow-wrap:anywhere;
 }
 .account-actions{
   display:grid;
@@ -398,7 +413,9 @@ main{
   border-top:1px solid #292929;
   padding:23px 5%;
   display:flex;
+  align-items:center;
   justify-content:space-between;
+  flex-wrap:wrap;
   gap:15px;
   color:#777;
   font-size:9px;
@@ -408,32 +425,52 @@ main{
 }
 
 /* RESPONSIVIDADE */
+@media(max-width:1024px){
+  .visual{
+    padding:50px 6%;
+  }
+  .visual h1{
+    letter-spacing:-2.5px;
+  }
+  .auth-area{
+    padding:45px 24px;
+  }
+}
+
 @media(max-width:850px){
   main{grid-template-columns:1fr}
   .visual{
-    min-height:350px;
-    padding:45px 7%;
+    min-height:auto;
+    gap:36px;
+    padding:42px 6%;
   }
   .visual h1{
-    font-size:clamp(45px,10vw,70px);
-    letter-spacing:-3px;
-    margin-top:25px;
+    font-size:clamp(42px,10vw,68px);
+    letter-spacing:-2px;
+    margin-top:20px;
   }
-  .visual-description{margin-top:15px}
-  .visual-bottom{margin-top:45px}
-  .auth-area{padding:55px 25px 70px}
+  .visual-description{margin-top:16px}
+  .visual-bottom{margin-top:0}
+  .auth-area{padding:48px 24px 64px}
 }
+
 @media(max-width:480px){
   .header{height:72px;padding:0 5%}
-  .logo img{width:60px;height:60px}
-  .back-link{font-size:9px}
-  .visual{min-height:315px}
-  .visual h1{font-size:47px}
-  .visual-description{font-size:12px}
-  .auth-area{padding:45px 20px 60px}
-  .auth-title{font-size:37px}
-  .footer{flex-direction:column;text-align:center}
+  .logo img{width:58px;height:58px}
+  .back-link{font-size:10px;letter-spacing:.6px}
+  .visual{padding:34px 5%;gap:28px}
+  .visual-label{letter-spacing:2.5px;font-size:10px}
+  .visual h1{font-size:40px;letter-spacing:-1.5px;margin-top:14px}
+  .visual-description{font-size:12px;line-height:1.75;margin-top:12px}
+  .visual-bottom{font-size:9px;letter-spacing:1.3px;gap:10px}
+  .visual-bottom:before{width:24px}
+  .auth-area{padding:38px 18px 52px}
+  .auth-title{font-size:34px;letter-spacing:-1.2px}
+  .auth-tabs{margin:22px 0}
+  .account-card{padding:20px;margin-top:22px}
+  .footer{flex-direction:column;text-align:center;justify-content:center;padding:20px 5%}
 }
+
 @media(prefers-reduced-motion:reduce){
   *,*:before,*:after{
     scroll-behavior:auto!important;
