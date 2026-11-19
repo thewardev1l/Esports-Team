@@ -190,10 +190,15 @@ ul{
         color .25s ease;
 }
 
+.nav-links a.active{
+    color:#ff0000;
+}
+
 .nav-links:hover a{
     color:#9c9c9c;
 }
 
+.nav-links:hover a.active,
 .nav-links:hover a:hover{
     color:#ff0000;
 }
@@ -830,6 +835,8 @@ ul{
 
     text-align:center;
 
+    cursor:pointer;
+
     transition:
         transform .3s ease,
         opacity .3s ease;
@@ -838,6 +845,14 @@ ul{
 .player-card:hover{
     transform:
         translateY(-7px);
+}
+
+.player-card:hover .player-photo{
+    border-color:#ff0000;
+}
+
+.player-card:hover h3{
+    color:#ff0000;
 }
 
 .player-card.filter-hidden{
@@ -854,6 +869,9 @@ ul{
     background:#111;
 
     border:1px solid #242424;
+
+    transition:
+        border-color .3s ease;
 }
 
 .player-photo-placeholder{
@@ -869,6 +887,7 @@ ul{
     color:#444;
 
     font-size:12px;
+
     font-weight:900;
 
     letter-spacing:3px;
@@ -913,6 +932,9 @@ ul{
     letter-spacing:-.5px;
 
     text-transform:uppercase;
+
+    transition:
+        color .25s ease;
 }
 
 .players-empty{
@@ -929,6 +951,226 @@ ul{
     letter-spacing:1.5px;
 
     text-transform:uppercase;
+}
+
+
+/* =========================================================
+   PLAYER MODAL
+========================================================= */
+
+.player-modal{
+    position:fixed;
+    inset:0;
+    z-index:20000;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:rgba(0,0,0,.84);
+    backdrop-filter:blur(6px);
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:
+        opacity .28s var(--ease),
+        visibility .28s var(--ease);
+}
+
+.player-modal.open{
+    opacity:1;
+    visibility:visible;
+}
+
+.player-modal-dialog{
+    position:relative;
+
+    width:100%;
+    max-width:780px;
+
+    display:grid;
+    grid-template-columns:300px 1fr;
+
+    background:#0f0f0f;
+    color:#fff;
+
+    border:1px solid #262626;
+    box-shadow:0 30px 80px rgba(0,0,0,.75);
+
+    overflow:hidden;
+
+    transform:translateY(18px) scale(.98);
+    transition:transform .3s var(--ease);
+}
+
+.player-modal.open .player-modal-dialog{
+    transform:translateY(0) scale(1);
+}
+
+.player-modal-close{
+    position:absolute;
+    top:16px;
+    right:16px;
+    z-index:2;
+
+    width:38px;
+    height:38px;
+
+    display:grid;
+    place-items:center;
+
+    background:#161616;
+    border:1px solid #2d2d2d;
+    color:#fff;
+
+    font-size:18px;
+    line-height:1;
+    cursor:pointer;
+
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        color .2s ease;
+}
+
+.player-modal-close:hover{
+    background:#ff0000;
+    border-color:#ff0000;
+    color:#000;
+}
+
+.player-modal-media{
+    position:relative;
+    background:#090909;
+    border-right:1px solid #222;
+    min-height:360px;
+}
+
+.player-modal-media img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.player-modal-body{
+    padding:38px 34px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:18px;
+}
+
+.player-modal-game{
+    display:inline-block;
+    width:max-content;
+
+    padding:6px 10px;
+    background:rgba(255,0,0,.12);
+    border:1px solid rgba(255,0,0,.35);
+    color:#ff0000;
+
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.player-modal-name{
+    font-size:clamp(32px,4vw,46px);
+    line-height:.95;
+    font-weight:900;
+    letter-spacing:-2px;
+    text-transform:uppercase;
+}
+
+.player-modal-meta{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:14px;
+
+    padding:16px 0;
+    border-top:1px solid #222;
+    border-bottom:1px solid #222;
+}
+
+.player-modal-meta-item span{
+    display:block;
+    color:#777;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    margin-bottom:4px;
+}
+
+.player-modal-meta-item strong{
+    font-size:14px;
+    font-weight:800;
+    color:#fff;
+    text-transform:uppercase;
+}
+
+.player-modal-bio{
+    color:#aaa;
+    font-size:14px;
+    line-height:1.7;
+}
+
+.player-modal-socials{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:4px;
+}
+
+.player-modal-social{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:10px 14px;
+    background:#151515;
+    border:1px solid #2a2a2a;
+    color:#fff;
+
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:1px;
+    text-transform:uppercase;
+
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        color .2s ease;
+}
+
+.player-modal-social:hover{
+    background:#ff0000;
+    border-color:#ff0000;
+    color:#000;
+}
+
+@media(max-width:720px){
+    .player-modal-dialog{
+        grid-template-columns:1fr;
+        max-height:90vh;
+        overflow-y:auto;
+    }
+
+    .player-modal-media{
+        min-height:260px;
+        max-height:320px;
+        border-right:0;
+        border-bottom:1px solid #222;
+    }
+
+    .player-modal-body{
+        padding:26px 22px;
+    }
 }
 
 
@@ -1684,7 +1926,7 @@ ul{
             >
 
                 <a
-                    href="index,html"
+                    href="index.html"
                 >
                     Início
                 </a>
@@ -1698,6 +1940,7 @@ ul{
                 <a
                     href="times.html"
                     class="active"
+                    aria-current="page"
                 >
                     Times
                 </a>
@@ -2079,10 +2322,14 @@ ul{
                 <article
                     class="player-card reveal"
                     data-game="honor-of-kings"
+                    data-player="Kiin"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Ver detalhes do jogador Kiin"
                 >
                     <div class="player-photo">
                         <div class="player-photo-placeholder">
-                            <img src="Imagens/Kiin.png">
+                            <img src="Imagens/Kiin.png" alt="Kiin">
                         </div>
                     </div>
 
@@ -2093,10 +2340,14 @@ ul{
                 <article
                     class="player-card reveal"
                     data-game="honor-of-kings"
+                    data-player="Malrang"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Ver detalhes do jogador Malrang"
                 >
                     <div class="player-photo">
                         <div class="player-photo-placeholder">
-                            <img src="Imagens/Malrang.png">
+                            <img src="Imagens/Malrang.png" alt="Malrang">
                         </div>
                     </div>
 
@@ -2107,10 +2358,14 @@ ul{
                 <article
                     class="player-card reveal"
                     data-game="honor-of-kings"
+                    data-player="Roamer"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Ver detalhes do jogador Roamer"
                 >
                     <div class="player-photo">
                         <div class="player-photo-placeholder">
-                            <img src="Imagens/Roamer.png">
+                            <img src="Imagens/Roamer.png" alt="Roamer">
                         </div>
                     </div>
 
@@ -2121,10 +2376,14 @@ ul{
                 <article
                     class="player-card reveal"
                     data-game="honor-of-kings"
+                    data-player="aizeN"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Ver detalhes do jogador aizeN"
                 >
                     <div class="player-photo">
                         <div class="player-photo-placeholder">
-                            <img src="Imagens/aizeN.png">
+                            <img src="Imagens/aizeN.png" alt="aizeN">
                         </div>
                     </div>
 
@@ -2135,10 +2394,14 @@ ul{
                 <article
                     class="player-card reveal"
                     data-game="honor-of-kings"
+                    data-player="Crisp"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Ver detalhes do jogador Crisp"
                 >
                     <div class="player-photo">
                         <div class="player-photo-placeholder">
-                            <img src="Imagens/Crisp.png">
+                            <img src="Imagens/Crisp.png" alt="Crisp">
                         </div>
                     </div>
 
@@ -2151,10 +2414,14 @@ ul{
                 <article
                     class="player-card reveal"
                     data-game="valorant"
+                    data-player="Astra"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Ver detalhes do jogador Astra"
                 >
                     <div class="player-photo">
                         <div class="player-photo-placeholder">
-                            <img src="Imagens/Astra.webp">
+                            <img src="Imagens/Astra.webp" alt="Astra">
                         </div>
                     </div>
 
@@ -2165,10 +2432,14 @@ ul{
                 <article
                     class="player-card reveal"
                     data-game="valorant"
+                    data-player="Crownie"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Ver detalhes do jogador Crownie"
                 >
                     <div class="player-photo">
                         <div class="player-photo-placeholder">
-                            <img src="Imagens/Crownie.png">
+                            <img src="Imagens/Crownie.png" alt="Crownie">
                         </div>
                     </div>
 
@@ -2179,10 +2450,14 @@ ul{
                 <article
                     class="player-card reveal"
                     data-game="valorant"
+                    data-player="Opala"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Ver detalhes do jogador Opala"
                 >
                     <div class="player-photo">
                         <div class="player-photo-placeholder">
-                            <img src="Imagens/Opala.png">
+                            <img src="Imagens/Opala.png" alt="Opala">
                         </div>
                     </div>
 
@@ -2193,10 +2468,14 @@ ul{
                 <article
                     class="player-card reveal"
                     data-game="valorant"
+                    data-player="Keznit"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Ver detalhes do jogador Keznit"
                 >
                     <div class="player-photo">
                         <div class="player-photo-placeholder">
-                            <img src="Imagens/Keznit.png">
+                            <img src="Imagens/Keznit.png" alt="Keznit">
                         </div>
                     </div>
 
@@ -2207,10 +2486,14 @@ ul{
                 <article
                     class="player-card reveal"
                     data-game="valorant"
+                    data-player="paNcada"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Ver detalhes do jogador paNcada"
                 >
                     <div class="player-photo">
                         <div class="player-photo-placeholder">
-                            <img src="Imagens/Pancada.png">
+                            <img src="Imagens/Pancada.png" alt="paNcada">
                         </div>
                     </div>
 
@@ -2223,10 +2506,14 @@ ul{
                 <article
                     class="player-card reveal"
                     data-game="overwatch"
+                    data-player="Black"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Ver detalhes do jogador Black"
                 >
                     <div class="player-photo">
                         <div class="player-photo-placeholder">
-                            <img src="Imagens/Black.webp">
+                            <img src="Imagens/Black.webp" alt="Black">
                         </div>
                     </div>
 
@@ -2237,10 +2524,14 @@ ul{
                 <article
                     class="player-card reveal"
                     data-game="overwatch"
+                    data-player="Slark"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Ver detalhes do jogador Slark"
                 >
                     <div class="player-photo">
                         <div class="player-photo-placeholder">
-                            <img src="Imagens/Slark.webp">
+                            <img src="Imagens/Slark.webp" alt="Slark">
                         </div>
                     </div>
 
@@ -2251,10 +2542,14 @@ ul{
                 <article
                     class="player-card reveal"
                     data-game="overwatch"
+                    data-player="Pawn"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Ver detalhes do jogador Pawn"
                 >
                     <div class="player-photo">
                         <div class="player-photo-placeholder">
-                            <img src="Imagens/Pawn.webp">
+                            <img src="Imagens/Pawn.webp" alt="Pawn">
                         </div>
                     </div>
 
@@ -2265,10 +2560,14 @@ ul{
                 <article
                     class="player-card reveal"
                     data-game="overwatch"
+                    data-player="Sumioka"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Ver detalhes do jogador Sumioka"
                 >
                     <div class="player-photo">
                         <div class="player-photo-placeholder">
-                            <img src="Imagens/Sumioka.webp">
+                            <img src="Imagens/Sumioka.webp" alt="Sumioka">
                         </div>
                     </div>
 
@@ -2279,10 +2578,14 @@ ul{
                 <article
                     class="player-card reveal"
                     data-game="overwatch"
+                    data-player="Ryu"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Ver detalhes do jogador Ryu"
                 >
                     <div class="player-photo">
                         <div class="player-photo-placeholder">
-                            <img src="Imagens/Ryu.webp">
+                            <img src="Imagens/Ryu.webp" alt="Ryu">
                         </div>
                     </div>
 
@@ -2295,10 +2598,14 @@ ul{
                 <article
                     class="player-card reveal"
                     data-game="dota-2"
+                    data-player="Shino"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Ver detalhes do jogador Shino"
                 >
                     <div class="player-photo">
                         <div class="player-photo-placeholder">
-                            <img src="Imagens/Shino.png">
+                            <img src="Imagens/Shino.png" alt="Shino">
                         </div>
                     </div>
 
@@ -2309,10 +2616,14 @@ ul{
                 <article
                     class="player-card reveal"
                     data-game="dota-2"
+                    data-player="Desamis"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Ver detalhes do jogador Desamis"
                 >
                     <div class="player-photo">
                         <div class="player-photo-placeholder">
-                            <img src="Imagens/Desames.png">
+                            <img src="Imagens/Desames.png" alt="Desamis">
                         </div>
                     </div>
 
@@ -2323,10 +2634,14 @@ ul{
                 <article
                     class="player-card reveal"
                     data-game="dota-2"
+                    data-player="Aithusa"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Ver detalhes do jogador Aithusa"
                 >
                     <div class="player-photo">
                         <div class="player-photo-placeholder">
-                            <img src="Imagens/Aithusa.png">
+                            <img src="Imagens/Aithusa.png" alt="Aithusa">
                         </div>
                     </div>
 
@@ -2337,10 +2652,14 @@ ul{
                 <article
                     class="player-card reveal"
                     data-game="dota-2"
+                    data-player="Deokdam"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Ver detalhes do jogador Deokdam"
                 >
                     <div class="player-photo">
                         <div class="player-photo-placeholder">
-                            <img src="Imagens/Deokdam.png">
+                            <img src="Imagens/Deokdam.png" alt="Deokdam">
                         </div>
                     </div>
 
@@ -2351,10 +2670,14 @@ ul{
                 <article
                     class="player-card reveal"
                     data-game="dota-2"
+                    data-player="Tyson"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Ver detalhes do jogador Tyson"
                 >
                     <div class="player-photo">
                         <div class="player-photo-placeholder">
-                            <img src="Imagens/Tyson.png">
+                            <img src="Imagens/Tyson.png" alt="Tyson">
                         </div>
                     </div>
 
@@ -2398,6 +2721,81 @@ ul{
     </section>
 
 </main>
+
+
+<!-- =======================================================
+     PLAYER MODAL
+======================================================= -->
+
+<div
+    class="player-modal"
+    id="playerModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="playerModalName"
+    hidden
+>
+    <div class="player-modal-dialog">
+
+        <button
+            type="button"
+            class="player-modal-close"
+            id="playerModalClose"
+            aria-label="Fechar modal do jogador"
+        >
+            ✕
+        </button>
+
+        <div class="player-modal-media">
+            <img
+                id="playerModalImg"
+                src=""
+                alt=""
+            >
+        </div>
+
+        <div class="player-modal-body">
+            <span
+                class="player-modal-game"
+                id="playerModalGame"
+            >
+                MODALIDADE
+            </span>
+
+            <h3
+                class="player-modal-name"
+                id="playerModalName"
+            >
+                JOGADOR
+            </h3>
+
+            <div class="player-modal-meta">
+                <div class="player-modal-meta-item">
+                    <span>Função</span>
+                    <strong id="playerModalRole">—</strong>
+                </div>
+
+                <div class="player-modal-meta-item">
+                    <span>Nacionalidade</span>
+                    <strong id="playerModalCountry">—</strong>
+                </div>
+            </div>
+
+            <p
+                class="player-modal-bio"
+                id="playerModalBio"
+            >
+                Jogador oficial da Dread Wyrm Esports.
+            </p>
+
+            <div
+                class="player-modal-socials"
+                id="playerModalSocials"
+            ></div>
+        </div>
+
+    </div>
+</div>
 
 
 <!-- =======================================================
@@ -2587,8 +2985,7 @@ ul{
         <div class="footer-bottom">
 
             <span>
-                © 2026
-                <span id="year"></span>
+                © <span id="year"></span>
                 Dread Wyrm Esports.
                 Todos os direitos reservados.
             </span>
@@ -2951,6 +3348,308 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
     }
+
+
+    /* =====================================================
+       PLAYER MODAL
+    ====================================================== */
+
+    const playersData = {
+        "Kiin": {
+            game: "Honor of Kings",
+            role: "Clash Lane",
+            country: "Coreia do Sul",
+            bio: "Especialista na rota de confronto, conhecido pela consistência mecânica e controle de mapa nas lutas decisivas.",
+            socials: [
+                { label: "X / Twitter", url: "#" },
+                { label: "Instagram", url: "#" }
+            ]
+        },
+        "Malrang": {
+            game: "Honor of Kings",
+            role: "Selva (Jungler)",
+            country: "Coreia do Sul",
+            bio: "Responsável pelo ritmo agressivo no início de partida, ditando rotações e garantindo objetivos neutros para a Dread Wyrm.",
+            socials: [
+                { label: "X / Twitter", url: "#" },
+                { label: "Instagram", url: "#" }
+            ]
+        },
+        "Roamer": {
+            game: "Honor of Kings",
+            role: "Mid Lane",
+            country: "Brasil",
+            bio: "Peça central na criação de jogadas pelo mapa, unindo pressão de rota e presença constante nas teamfights.",
+            socials: [
+                { label: "X / Twitter", url: "#" },
+                { label: "Instagram", url: "#" }
+            ]
+        },
+        "aizeN": {
+            game: "Honor of Kings",
+            role: "Farm Lane",
+            country: "Brasil",
+            bio: "Atirador de alta precisão que lidera o dano da equipe nos momentos mais críticos das séries competitivas.",
+            socials: [
+                { label: "X / Twitter", url: "#" },
+                { label: "Instagram", url: "#" }
+            ]
+        },
+        "Crisp": {
+            game: "Honor of Kings",
+            role: "Suporte (Roam)",
+            country: "China",
+            bio: "Veterano estratégico com visão apurada de jogo, iniciando lutas e protegendo os carregadores do elenco.",
+            socials: [
+                { label: "X / Twitter", url: "#" },
+                { label: "Instagram", url: "#" }
+            ]
+        },
+        "Astra": {
+            game: "Valorant",
+            role: "Controlador",
+            country: "Brasil",
+            bio: "Mestre no controle de espaço e leitura tática, ditando o tempo de execução e retomada de bombsites.",
+            socials: [
+                { label: "X / Twitter", url: "#" },
+                { label: "Instagram", url: "#" }
+            ]
+        },
+        "Crownie": {
+            game: "Valorant",
+            role: "Sentinela",
+            country: "Eslovênia",
+            bio: "Âncora defensivo de extrema confiabilidade, especialista em situações de clutch e controle de flancos.",
+            socials: [
+                { label: "X / Twitter", url: "#" },
+                { label: "Instagram", url: "#" }
+            ]
+        },
+        "Opala": {
+            game: "Valorant",
+            role: "Iniciador",
+            country: "Brasil",
+            bio: "Responsável por abrir espaço com utilitários precisos e coordenar a entrada agressiva da line-up.",
+            socials: [
+                { label: "X / Twitter", url: "#" },
+                { label: "Instagram", url: "#" }
+            ]
+        },
+        "Keznit": {
+            game: "Valorant",
+            role: "Duelista",
+            country: "Chile",
+            bio: "Explosivo nos duelos de entrada, traz intensidade máxima e poder de decisão em cada rodada.",
+            socials: [
+                { label: "X / Twitter", url: "#" },
+                { label: "Instagram", url: "#" }
+            ]
+        },
+        "paNcada": {
+            game: "Valorant",
+            role: "Controlador / Flex",
+            country: "Brasil",
+            bio: "Campeão mundial reconhecido pela mira cirúrgica, calma sob pressão e versatilidade dentro do servidor.",
+            socials: [
+                { label: "X / Twitter", url: "#" },
+                { label: "Instagram", url: "#" }
+            ]
+        },
+        "Black": {
+            game: "Overwatch",
+            role: "Tank",
+            country: "Brasil",
+            bio: "Linha de frente da composição, liderando avanços e absorvendo pressão nas disputas de objetivo.",
+            socials: [
+                { label: "X / Twitter", url: "#" },
+                { label: "Instagram", url: "#" }
+            ]
+        },
+        "Slark": {
+            game: "Overwatch",
+            role: "DPS",
+            country: "Brasil",
+            bio: "Especialista em eliminações rápidas e flancos estratégicos para desestabilizar a formação adversária.",
+            socials: [
+                { label: "X / Twitter", url: "#" },
+                { label: "Instagram", url: "#" }
+            ]
+        },
+        "Pawn": {
+            game: "Overwatch",
+            role: "DPS",
+            country: "Coreia do Sul",
+            bio: "Jogador de altíssimo impacto mecânico, capaz de virar lutas em segundos com precisão impecável.",
+            socials: [
+                { label: "X / Twitter", url: "#" },
+                { label: "Instagram", url: "#" }
+            ]
+        },
+        "Sumioka": {
+            game: "Overwatch",
+            role: "Suporte",
+            country: "Japão",
+            bio: "Garante sustentação e utilidade tática nos momentos mais intensos, mantendo a equipe viva nas lutas.",
+            socials: [
+                { label: "X / Twitter", url: "#" },
+                { label: "Instagram", url: "#" }
+            ]
+        },
+        "Ryu": {
+            game: "Overwatch",
+            role: "Suporte",
+            country: "Coreia do Sul",
+            bio: "Coordena as rotações defensivas e o gerenciamento de ultimates da equipe com leitura impecável.",
+            socials: [
+                { label: "X / Twitter", url: "#" },
+                { label: "Instagram", url: "#" }
+            ]
+        },
+        "Shino": {
+            game: "Dota 2",
+            role: "Hard Carry (Pos 1)",
+            country: "Brasil",
+            bio: "Principal fonte de dano no late game, destacando-se pela eficiência de farm e posicionamento.",
+            socials: [
+                { label: "X / Twitter", url: "#" },
+                { label: "Instagram", url: "#" }
+            ]
+        },
+        "Desamis": {
+            game: "Dota 2",
+            role: "Midlaner (Pos 2)",
+            country: "Brasil",
+            bio: "Controla o ritmo do meio de jogo com criações constantes e domínio mecânico na rota central.",
+            socials: [
+                { label: "X / Twitter", url: "#" },
+                { label: "Instagram", url: "#" }
+            ]
+        },
+        "Aithusa": {
+            game: "Dota 2",
+            role: "Offlaner (Pos 3)",
+            country: "Brasil",
+            bio: "Iniciador nato da equipe de Dota 2, criando espaço no mapa e liderando engajamentos decisivos.",
+            socials: [
+                { label: "X / Twitter", url: "#" },
+                { label: "Instagram", url: "#" }
+            ]
+        },
+        "Deokdam": {
+            game: "Dota 2",
+            role: "Soft Support (Pos 4)",
+            country: "Coreia do Sul",
+            bio: "Movimentação constante pelo mapa para punir adversários e garantir vantagem nas rotas paralelas.",
+            socials: [
+                { label: "X / Twitter", url: "#" },
+                { label: "Instagram", url: "#" }
+            ]
+        },
+        "Tyson": {
+            game: "Dota 2",
+            role: "Hard Support (Pos 5)",
+            country: "Brasil",
+            bio: "Capitão e suporte dedicado ao controle de visão e proteção estratégica em todas as fases do jogo.",
+            socials: [
+                { label: "X / Twitter", url: "#" },
+                { label: "Instagram", url: "#" }
+            ]
+        }
+    };
+
+    const playerModal = document.getElementById("playerModal");
+    const playerModalClose = document.getElementById("playerModalClose");
+    const playerModalImg = document.getElementById("playerModalImg");
+    const playerModalGame = document.getElementById("playerModalGame");
+    const playerModalName = document.getElementById("playerModalName");
+    const playerModalRole = document.getElementById("playerModalRole");
+    const playerModalCountry = document.getElementById("playerModalCountry");
+    const playerModalBio = document.getElementById("playerModalBio");
+    const playerModalSocials = document.getElementById("playerModalSocials");
+    let lastFocusedCard = null;
+
+    function openPlayerModal(card){
+        if(!playerModal) return;
+
+        const name = card.dataset.player || card.querySelector("h3")?.textContent.trim() || "Jogador";
+        const imgEl = card.querySelector(".player-photo img");
+        const data = playersData[name] || {
+            game: card.dataset.game || "Modalidade",
+            role: "Jogador Titular",
+            country: "Brasil",
+            bio: "Jogador oficial da Dread Wyrm Esports.",
+            socials: []
+        };
+
+        lastFocusedCard = card;
+
+        playerModalImg.src = imgEl ? imgEl.getAttribute("src") : "";
+        playerModalImg.alt = name;
+        playerModalGame.textContent = data.game;
+        playerModalName.textContent = name;
+        playerModalRole.textContent = data.role;
+        playerModalCountry.textContent = data.country;
+        playerModalBio.textContent = data.bio;
+
+        playerModalSocials.innerHTML = "";
+        (data.socials || []).forEach(social => {
+            const link = document.createElement("a");
+            link.href = social.url;
+            link.className = "player-modal-social";
+            link.textContent = social.label;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            playerModalSocials.appendChild(link);
+        });
+
+        playerModal.hidden = false;
+        requestAnimationFrame(() => {
+            playerModal.classList.add("open");
+        });
+        document.body.style.overflow = "hidden";
+        playerModalClose?.focus();
+    }
+
+    function closePlayerModal(){
+        if(!playerModal || playerModal.hidden) return;
+
+        playerModal.classList.remove("open");
+        document.body.style.overflow = "";
+
+        setTimeout(() => {
+            if(!playerModal.classList.contains("open")){
+                playerModal.hidden = true;
+            }
+        }, 280);
+
+        if(lastFocusedCard){
+            lastFocusedCard.focus();
+        }
+    }
+
+    document.querySelectorAll(".player-card").forEach(card => {
+        card.addEventListener("click", () => openPlayerModal(card));
+        card.addEventListener("keydown", event => {
+            if(event.key === "Enter" || event.key === " "){
+                event.preventDefault();
+                openPlayerModal(card);
+            }
+        });
+    });
+
+    playerModalClose?.addEventListener("click", closePlayerModal);
+
+    playerModal?.addEventListener("click", event => {
+        if(event.target === playerModal){
+            closePlayerModal();
+        }
+    });
+
+    document.addEventListener("keydown", event => {
+        if(event.key === "Escape" && playerModal && !playerModal.hidden){
+            closePlayerModal();
+        }
+    });
 
 
     /* =====================================================

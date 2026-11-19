@@ -9,8 +9,8 @@ const auth = getAuth(app);
 const CART_KEY = 'dwy_cart';
 
 // --- CONFIGURAÇÃO DO SEU PIX ---
-const MINHA_CHAVE_PIX = "contact@dwyesports.gg"; // Coloque aqui sua chave do Nubank
-const NOME_RECEBEDOR = "DREAD WYRM ESPORTS";
+const MINHA_CHAVE_PIX = "+5511940559879"; // Coloque aqui sua chave do Nubank
+const NOME_RECEBEDOR = "G.F Silva";
 const CIDADE_RECEBEDOR = "SAO PAULO";
 
 function getCartItems() {
