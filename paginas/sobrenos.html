@@ -240,7 +240,7 @@ ul{
     gap:8px;
 }
 
-/* Todos os links começam brancos */
+/* Todos os links começam pretos/padrão */
 .nav-links a{
     position:relative;
 
@@ -258,14 +258,17 @@ ul{
     transition:color .25s ease;
 }
 
+.nav-links a.active{
+    color:#ff0000;
+}
+
 /* Ao entrar na área da navbar,
-   todos os links ficam cinza */
+   todos os links ficam cinza, exceto o ativo se desejar, mas mantemos o hover */
 .nav-links:hover a{
     color:#696969;
 }
 
-/* O link que está recebendo o cursor
- */
+.nav-links:hover a.active,
 .nav-links:hover a:hover{
     color:#ff0000;
 }
@@ -274,11 +277,6 @@ ul{
 .nav-links a::after{
     display:none !important;
     content:none !important;
-}
-
-.nav-links a:hover::after,
-.nav-links a.active::after{
-    width:100%;
 }
 
 .nav-right{
@@ -1376,7 +1374,7 @@ ul{
 
 
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVO
 ========================================================= */
 
 @media(max-width:1100px){
@@ -3132,7 +3130,7 @@ ul{
                     Loja
                 </a>
 
-                <a href="#contact">
+                <a href="contato.html">
                     Contato
                 </a>
 
@@ -3378,7 +3376,7 @@ ul{
         <div class="footer-bottom">
 
             <span>
-                © 2026 <span id="year"></span>
+                © <span id="year"></span>
                 Dread Wyrm Esports.
                 Todos os direitos reservados.
             </span>

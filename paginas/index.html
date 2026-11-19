@@ -261,7 +261,7 @@ ul{
     gap:8px;
 }
 
-/* Todos os links começam brancos */
+/* Todos os links começam brancos/pretos */
 .nav-links a{
     position:relative;
 
@@ -279,6 +279,10 @@ ul{
     transition:color .25s ease;
 }
 
+.nav-links a.active{
+    color:#ff0000;
+}
+
 /* Ao entrar na área da navbar,
    todos os links ficam cinza */
 .nav-links:hover a{
@@ -287,6 +291,7 @@ ul{
 
 /* O link que está recebendo o cursor
  */
+.nav-links:hover a.active,
 .nav-links:hover a:hover{
     color:#ff0000;
 }
@@ -295,11 +300,6 @@ ul{
 .nav-links a::after{
     display:none !important;
     content:none !important;
-}
-
-.nav-links a:hover::after,
-.nav-links a.active::after{
-    width:100%;
 }
 
 .nav-right{
@@ -4027,7 +4027,7 @@ ul{
         <div class="footer-bottom">
 
             <span>
-                © 2026 <span id="year"></span>
+                © <span id="year"></span>
                 Dread Wyrm Esports.
                 Todos os direitos reservados.
             </span>
@@ -4129,48 +4129,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =================================================
-       ACTIVE NAV
-    ================================================= */
-
-    const sections = document.querySelectorAll("section[id]");
-    const navigationLinks = document.querySelectorAll(".nav-links a");
-
-    if("IntersectionObserver" in window){
-
-        const navObserver = new IntersectionObserver(
-            entries => {
-
-                entries.forEach(entry => {
-
-                    if(!entry.isIntersecting) return;
-
-                    navigationLinks.forEach(link => {
-                        link.classList.remove("active");
-                    });
-
-                    const active = document.querySelector(
-                        `.nav-links a[href="#${entry.target.id}"]`
-                    );
-
-                    if(active){
-                        active.classList.add("active");
-                    }
-
-                });
-
-            },
-            {
-                rootMargin:"-35% 0px -55% 0px"
-            }
-        );
-
-        sections.forEach(section => {
-            navObserver.observe(section);
-        });
-    }
-
-
-    /* =================================================
        REVEAL ANIMATION
     ================================================= */
 
@@ -4205,46 +4163,6 @@ document.addEventListener("DOMContentLoaded", () => {
         revealElements.forEach(element => {
             element.classList.add("visible");
         });
-    }
-
-    /* =================================================
-       CRIAÇÃO DOS DOTS
-    ================================================= */
-
-    if(heroSlides.length && heroDotsContainer){
-
-        heroSlides.forEach((_, index) => {
-
-            const dot = document.createElement("button");
-
-            dot.type = "button";
-            dot.className = "hero-dot";
-
-            dot.setAttribute(
-                "aria-label",
-                `Ir para o produto ${index + 1}`
-            );
-
-            dot.addEventListener("click", () => {
-
-                showHeroSlide(index);
-                restartHeroTimer();
-
-            });
-
-            heroDotsContainer.appendChild(dot);
-        });
-
-        /* Primeiro slide */
-        heroSlides.forEach((slide, index) => {
-            slide.classList.toggle(
-                "active",
-                index === 0
-            );
-        });
-
-        updateHeroDots();
-        restartHeroTimer();
     }
 
 
